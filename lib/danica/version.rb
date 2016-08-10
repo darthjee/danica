@@ -1,3 +1,3 @@
-class Danica
+module Danica
   VERSION = '0.0.1'
 end
