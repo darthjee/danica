@@ -16,11 +16,19 @@ describe Danica::Function::Sum do
       expect(subject.to_f).to eq(10)
     end
 
+    it do
+      expect(subject.to_f).to be_a(Float)
+    end
+
     context 'when one variable is a number' do
       let(:variables) { (1..variables_number) }
 
        it do
         expect(subject.to_f).to eq(10)
+      end
+
+      it do
+        expect(subject.to_f).to be_a(Float)
       end
     end
   end
