@@ -4,7 +4,7 @@ module Danica
     attr_accessor :value, :name, :latex
 
     def calculate
-      value.nil? ? raise('errror') : value
+      value.nil? ? raise(NotDefined) : value
     end
   end
 end
