@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Danica::Function::Product do
+describe Danica::Function::Sum do
   let(:variables_number) { 4 }
   let(:variables) do
     Array.new(variables_number).map.with_index do |_,i|
@@ -13,7 +13,7 @@ describe Danica::Function::Product do
 
   describe :calculate do
     it do
-      expect(subject.calculate).to eq(24)
+      expect(subject.calculate).to eq(10)
     end
   end
 end
