@@ -3,7 +3,7 @@ module Danica
     include ActiveModel::Model
     attr_accessor :value, :name, :latex
 
-    def calculate
+    def to_f
       value.nil? ? raise(NotDefined) : value
     end
   end

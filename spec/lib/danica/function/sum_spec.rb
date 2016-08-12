@@ -11,9 +11,9 @@ describe Danica::Function::Sum do
     described_class.new(variables: variables)
   end
 
-  describe 'calculate' do
+  describe 'to_f' do
     it do
-      expect(subject.calculate).to eq(10)
+      expect(subject.to_f).to eq(10)
     end
   end
 end
