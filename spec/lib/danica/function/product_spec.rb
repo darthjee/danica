@@ -11,7 +11,7 @@ describe Danica::Function::Product do
     described_class.new(variables: variables)
   end
 
-  describe :calculate do
+  describe 'calculate' do
     it do
       expect(subject.calculate).to eq(24)
     end
