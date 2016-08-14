@@ -1,7 +1,10 @@
 shared_examples 'a function that joins many variables with same operation' do |arguments|
-  let(:calculated) { arguments[:calculated] }
-  let(:symbol) { arguments[:symbol] }
+  it_behaves_like 'a function that knows how to calculate', arguments
+  it_behaves_like 'a function that knows how to write to tex', arguments
+end
 
+shared_examples 'a function that knows how to calculate' do |arguments|
+  let(:calculated) { arguments[:calculated] }
   let(:variables_number) { 4 }
   let(:variables) do
     (1..variables_number).map do |i|
@@ -32,6 +35,14 @@ shared_examples 'a function that joins many variables with same operation' do |a
         expect(subject.to_f).to be_a(Float)
       end
     end
+  end
+end
+
+shared_examples 'a function that knows how to write to tex' do |arguments|
+  let(:variables_number) { 4 }
+  let(:symbol) { arguments[:symbol] }
+  let(:subject) do
+    described_class.new(variables: variables)
   end
 
   describe 'to_tex' do
