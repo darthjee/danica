@@ -27,7 +27,12 @@ module Danica
 
       def numeric_to_tex
         return [] if numeric_variables.empty?
-        [ sum(numeric_variables.map(&:to_f)).to_i ]
+        [ number_to_tex(sum(numeric_variables.map(&:to_f))) ]
+      end
+
+      def number_to_tex(number)
+        return number.to_i if number.to_i == number
+        number
       end
     end
   end
