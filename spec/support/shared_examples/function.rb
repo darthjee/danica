@@ -4,13 +4,15 @@ shared_examples 'a function that joins many variables with same operation' do |a
 end
 
 shared_examples 'a function that knows how to calculate' do |arguments|
-  let(:calculated) { arguments[:calculated] }
-  let(:variables_number) { 4 }
+  %w(calculated).each do |key|
+    let(key) { arguments[key.to_sym]  }
+  end
   let(:variables) do
-    (1..variables_number).map do |i|
-      Danica::Variable.new(name: "X#{i}", value: i)
+    (1..4).map do |i|
+      Danica::Variable.new(name: "X#{i}", value: numeric_variables[i-1])
     end
   end
+  let(:numeric_variables){ (1..4).to_a }
   let(:subject) do
     described_class.new(variables: variables)
   end
@@ -25,7 +27,7 @@ shared_examples 'a function that knows how to calculate' do |arguments|
     end
 
     context 'when one variable is a number' do
-      let(:variables) { (1..variables_number) }
+      let(:variables) { (1..4) }
 
       it do
         expect(subject.to_f).to eq(calculated)
@@ -39,8 +41,9 @@ shared_examples 'a function that knows how to calculate' do |arguments|
 end
 
 shared_examples 'a function that knows how to write to tex' do |arguments|
-  let(:variables_number) { 4 }
-  let(:symbol) { arguments[:symbol] }
+  %w(numeric_variables tex_integer_expected tex_expected tex_float_expected).each do |key|
+    let(key) { arguments[key.to_sym]  }
+  end
   let(:subject) do
     described_class.new(variables: variables)
   end
@@ -48,33 +51,32 @@ shared_examples 'a function that knows how to write to tex' do |arguments|
   describe 'to_tex' do
     context 'when variables have no value' do
       let(:variables) do
-        (1..variables_number).map do |i|
+        (1..4).map do |i|
           Danica::Variable.new(name: "X#{i}")
         end
       end
 
       it 'outputs a latex format' do
-        expect(subject.to_tex).to eq(%w(X1 X2 X3 X4).join(symbol))
+        expect(subject.to_tex).to eq(tex_expected)
       end
 
       context 'when some variables have values' do
+        let(:numeric_variables_index) { 1 }
         before do
-          (1..(variables_number / 2)).each do |i|
-            variables[i-1].value = i + 0.5
+          (0..numeric_variables_index).each do |i|
+            variables[i].value = numeric_variables[i]
           end
         end
 
         it 'outputs a latex format with colapsed numbers' do
-          expect(subject.to_tex).to eq(%w(4 X3 X4).join(symbol))
+          expect(subject.to_tex).to eq(tex_integer_expected)
         end
 
         context 'when numeric variables sum is a float value' do
-          before do
-            variables[2].value = 3.5
-          end
+          let(:numeric_variables_index) { 2 }
 
           it 'outputs a latex format with colapsed numbers' do
-            expect(subject.to_tex).to eq(%w(7.5 X4).join(symbol))
+            expect(subject.to_tex).to eq(tex_float_expected)
           end
         end
       end
