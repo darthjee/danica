@@ -16,6 +16,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   spec.add_runtime_dependency 'activesupport'
+  spec.add_runtime_dependency 'activemodel'
 
   spec.add_development_dependency 'bundler', '~> 1.6'
   spec.add_development_dependency 'rake'
@@ -23,4 +24,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rspec-mocks'
   spec.add_development_dependency 'pry-nav'
   spec.add_development_dependency 'simplecov'
+
 end
