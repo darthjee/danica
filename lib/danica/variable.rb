@@ -6,6 +6,10 @@ module Danica
     def to_f
       value.nil? ? raise(NotDefined) : value
     end
+
+    def to_tex
+      (latex || name).to_s
+    end
   end
 end
 
