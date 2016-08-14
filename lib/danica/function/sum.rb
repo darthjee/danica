@@ -6,6 +6,10 @@ module Danica
           a + b
         end.to_f
       end
+
+      def to_tex
+        variables.map(&:to_tex).join('+')
+      end
     end
   end
 end

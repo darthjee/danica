@@ -12,7 +12,7 @@ describe Danica::Function::Sum do
   end
 
   describe 'to_f' do
-    it do
+    it 'returns the sum of variables value' do
       expect(subject.to_f).to eq(10)
     end
 
@@ -29,6 +29,20 @@ describe Danica::Function::Sum do
 
       it do
         expect(subject.to_f).to be_a(Float)
+      end
+    end
+  end
+
+  describe 'to_tex' do
+    context 'when variables have no value' do
+      let(:variables) do
+        (1..variables_number).map do |i|
+          Danica::Variable.new(name: "X#{i}")
+        end
+      end
+
+      it 'outputs a latex format' do
+        expect(subject.to_tex).to eq('X1+X2+X3+X4')
       end
     end
   end
