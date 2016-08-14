@@ -44,6 +44,18 @@ describe Danica::Function::Sum do
       it 'outputs a latex format' do
         expect(subject.to_tex).to eq('X1+X2+X3+X4')
       end
+
+      context 'when some variables have values' do
+        before do
+          (1..(variables_number / 2)).each do |i|
+            variables[i-1].value = i
+          end
+        end
+
+        it 'outputs a latex format with colapsed numbers' do
+          expect(subject.to_tex).to eq('3+X3+X4')
+        end
+      end
     end
   end
 end
