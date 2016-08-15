@@ -3,17 +3,17 @@ require 'spec_helper'
 describe Danica::Function::Division do
   let(:variables_number) { 4 }
   let(:variables) do
-    (1..variables_number).map do |i|
+    [ 2, 4 ].map do |i|
       Danica::Variable.new(name: "X#{i}", value: i)
     end
   end
   let(:subject) do
-    described_class.new(variables: variables)
+    described_class.new(numerator: variables[0], denominator: variables[1])
   end
 
   describe 'to_f' do
     it do
-      expect(subject.to_f).to eq(1.0 / 24.0)
+      expect(subject.to_f).to eq(1.0 / 2.0)
     end
 
     it do
@@ -21,10 +21,10 @@ describe Danica::Function::Division do
     end
 
     context 'when one variable is a number' do
-      let(:variables) { (1..variables_number) }
+      let(:variables) { [ 2, 4 ] }
 
        it do
-        expect(subject.to_f).to eq(1.0 / 24.0)
+        expect(subject.to_f).to eq(1.0 / 2.0)
       end
 
       it do

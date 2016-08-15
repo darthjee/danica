@@ -4,7 +4,7 @@ module Danica
     attr_accessor :value, :name, :latex
 
     def to_f
-      value.nil? ? raise(NotDefined) : value
+      value.nil? ? raise(NotDefined) : value.to_f
     end
 
     def to_tex

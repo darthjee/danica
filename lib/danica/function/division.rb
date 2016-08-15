@@ -1,10 +1,10 @@
 module Danica
   class Function
     class Division < Function
+      attr_accessor :numerator, :denominator
+
       def to_f
-        variables.map(&:to_f).inject(1.0) do |a,b|
-          a / b.to_f
-        end
+        numerator.to_f / denominator.to_f
       end
     end
   end
