@@ -32,5 +32,35 @@ describe Danica::Function::Division do
       end
     end
   end
+
+  describe 'to_tex' do
+    context 'when variables have no value' do
+      let(:variables) do
+        [ 1,2 ].map do |i|
+          Danica::Variable.new(name: "X#{i}")
+        end
+      end
+
+      it 'returns a latex format fraction' do
+        expect(subject.to_tex).to eq('\frac{X1}{X2}')
+      end
+    end
+
+    context 'when one of the variables has value' do
+      before do
+        variables[1].value = nil
+      end
+
+      it 'returns the number instead of the value' do
+        expect(subject.to_tex).to eq('\frac{2}{X4}')
+      end
+    end
+
+    context 'when both variables are numeric' do
+      it 'prints both numbers' do
+        expect(subject.to_tex).to eq('\frac{2}{4}')
+      end
+    end
+  end
 end
 

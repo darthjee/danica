@@ -8,7 +8,7 @@ module Danica
     end
 
     def to_tex
-      (latex || name).to_s
+      (value || latex || name).to_s
     end
   end
 end
