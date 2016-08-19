@@ -1,6 +1,7 @@
 class Danica::Function
   include ActiveModel::Model
 
+  require 'danica/function/chained'
   require 'danica/function/product'
   require 'danica/function/sum'
   require 'danica/function/division'
