@@ -81,5 +81,26 @@ shared_examples 'a function that knows how to write to tex' do |arguments|
         end
       end
     end
+
+    context 'when some variables are numbers' do
+      let(:numeric_variables_index) { 1 }
+      before do
+        (0..numeric_variables_index).each do |i|
+          variables[i] = numeric_variables[i]
+        end
+      end
+
+      it 'outputs a latex format with colapsed numbers' do
+        expect(subject.to_tex).to eq(tex_integer_expected)
+      end
+
+      context 'when numeric variables sum is a float value' do
+        let(:numeric_variables_index) { 2 }
+
+        it 'outputs a latex format with colapsed numbers' do
+          expect(subject.to_tex).to eq(tex_float_expected)
+        end
+      end
+    end
   end
 end
