@@ -10,6 +10,14 @@ module Danica
       def to_tex
         "\\frac{#{numerator.to_tex}}{#{denominator.to_tex}}"
       end
+
+      def numerator=(value)
+        @numerator ||= wrap_value(value)
+      end
+
+      def denominator=(value)
+        @denominator ||= wrap_value(value)
+      end
     end
   end
 end

@@ -78,6 +78,17 @@ describe Danica::Function::Division do
         expect(subject.to_tex).to eq('\frac{2}{4}')
       end
     end
+
+    context 'when one of the variables is a number' do
+      before do
+        variables[1].value = nil
+        variables[0] = 1
+      end
+
+      it 'prints both numbers' do
+        expect(subject.to_tex).to eq('\frac{1}{X2}')
+      end
+    end
   end
 end
 
