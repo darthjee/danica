@@ -1,10 +1,14 @@
 module Danica
   class Function
-    class Product < Function
-      def to_f
-        variables.map(&:to_f).inject(1) do |a,b|
-          a * b
-        end.to_f
+    class Product < Chained
+      private
+
+      def tex_symbol
+        '\cdot'
+      end
+
+      def chain_operation(a, b)
+        a * b
       end
     end
   end
