@@ -1,19 +1,14 @@
 module Danica
   class Function
     class Sum < Chained
-      def to_tex
-        (numeric_to_tex + non_numeric_variables.map(&:to_tex)).join('+')
-      end
-
       private
+
+      def tex_symbol
+        '+'
+      end
 
       def chain_operation(a, b)
         a + b
-      end
-
-      def numeric_to_tex
-        return [] if numeric_variables.empty?
-        [ Number.new(chain(numeric_variables.map(&:to_f))).to_tex ]
       end
     end
   end
