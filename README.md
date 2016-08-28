@@ -50,19 +50,26 @@ class Danica::Function
       ]
     end
 
-    def spatial_velocity
-      Product.new(variables: [ initial_velocity, time ])
+    def spatial_acceleration
+      Division.new(numerator: Product.new(variables: [ acceleration, time_squared ]), denominator: 2)
     end
 
-    def spatial_acceleration
-      Division.new(numerator: Product.new(variables: [ acceleration, time, time ]), denominator: 2)
+    def time_squared
+      Power.new(base: time, exponent: 2)
     end
   end
 end
+
+Danica::Function.new(
+  time: Danica::Variable(name: 't'),
+  acceleration: Danica::Variable(name: 'a'),
+  initial_space: Danica::Variable.new(name: :S0, latex: 'S_0'),
+  initial_velocity: Danica::Variable.new(name: :V0, latex: 'V_0')
+).to_tex
 ```
 
 returns
 ```string
-S_0 + V_0 \cdot t + \frac{a \cdot t \cdot t}{2}
+S_0 + V_0 \cdot t + \frac{a \cdot t^2}{2}
 ```
 

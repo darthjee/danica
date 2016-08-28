@@ -1,7 +1,7 @@
 module Danica
   class Function
     class Division < Function
-      attr_accessor :numerator, :denominator
+      attr_reader :numerator, :denominator
 
       def to_f
         numerator.to_f / denominator.to_f
@@ -12,11 +12,11 @@ module Danica
       end
 
       def numerator=(value)
-        @numerator ||= wrap_value(value)
+        @numerator = wrap_value(value)
       end
 
       def denominator=(value)
-        @denominator ||= wrap_value(value)
+        @denominator = wrap_value(value)
       end
     end
   end

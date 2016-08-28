@@ -5,6 +5,7 @@ class Danica::Function
   require 'danica/function/product'
   require 'danica/function/sum'
   require 'danica/function/division'
+  require 'danica/function/power'
 
   attr_accessor :name, :variables
 
