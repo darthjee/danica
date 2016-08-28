@@ -63,6 +63,6 @@ end
 
 returns
 ```string
-S_0+V_0\cdott+\frac{a\cdott\cdott}{2}
+S_0 + V_0 \cdot t + \frac{a \cdot t \cdot t}{2}
 ```
 

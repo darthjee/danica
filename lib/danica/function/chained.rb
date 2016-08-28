@@ -6,7 +6,7 @@ module Danica
       end
 
       def to_tex
-        (numeric_to_tex + non_numeric_variables.map(&:to_tex)).join(tex_symbol)
+        (numeric_to_tex + non_numeric_variables.map(&:to_tex)).join(" #{tex_symbol} ")
       end
 
       private
