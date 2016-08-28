@@ -8,7 +8,7 @@ module Danica
       end
 
       def to_tex
-        [ base, exponent ].map(&:to_tex).join('^')
+        "#{base.to_tex}^{#{exponent.to_tex}}"
       end
 
       def base=(value)

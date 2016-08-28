@@ -57,7 +57,7 @@ describe Danica::Function::Power do
       end
 
       it 'returns a latex format fraction' do
-        expect(subject.to_tex).to eq('X1^X2')
+        expect(subject.to_tex).to eq('X1^{X2}')
       end
     end
 
@@ -67,13 +67,13 @@ describe Danica::Function::Power do
       end
 
       it 'returns the number instead of the value' do
-        expect(subject.to_tex).to eq('3^X2')
+        expect(subject.to_tex).to eq('3^{X2}')
       end
     end
 
     context 'when both variables are numeric' do
       it 'prints both numbers' do
-        expect(subject.to_tex).to eq('3^2')
+        expect(subject.to_tex).to eq('3^{2}')
       end
     end
 
@@ -84,7 +84,7 @@ describe Danica::Function::Power do
       end
 
       it 'prints both numbers' do
-        expect(subject.to_tex).to eq('1^X2')
+        expect(subject.to_tex).to eq('1^{X2}')
       end
     end
   end
