@@ -1,4 +1,6 @@
 # danica
+[![Code Climate](https://codeclimate.com/github/darthjee/danica/badges/gpa.svg)](https://codeclimate.com/github/darthjee/danica)
+
 A tool for math formulation on docs
 
 ## How to use
