@@ -10,7 +10,9 @@ describe Danica::Variable do
       let(:value) { 100 }
       let(:subject) { described_class.new(value: value) }
 
-      it { expect(subject.to_f).to eq(value) }
+      it 'returns the value' do
+        expect(subject.to_f).to eq(value)
+      end
     end
   end
 
