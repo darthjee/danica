@@ -5,11 +5,11 @@ module Danica
         chain(variables.map(&:to_f))
       end
 
-      def to_tex
+      private
+
+      def tex_string
         (numeric_to_tex + non_numeric_variables.map(&:to_tex)).join(" #{tex_symbol} ")
       end
-
-      private
 
       def numeric_variables
         variables.select { |v| v.valued? }

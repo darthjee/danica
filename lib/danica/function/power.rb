@@ -7,18 +7,18 @@ module Danica
         base.to_f ** exponent.to_f
       end
 
-      def to_tex
-        Number.new(to_f).to_tex
-      rescue NotDefined
-        "#{base.to_tex}^{#{exponent.to_tex}}"
-      end
-
       def base=(value)
         @base = wrap_value(value)
       end
 
       def exponent=(value)
         @exponent = wrap_value(value)
+      end
+
+      private
+
+      def tex_string
+        "#{base.to_tex}^{#{exponent.to_tex}}"
       end
     end
   end

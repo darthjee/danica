@@ -15,7 +15,9 @@ class Danica::Function
   end
 
   def to_tex
-    raise 'Not IMplemented yet'
+    Danica::Number.new(to_f).to_tex
+  rescue Danica::NotDefined
+    tex_string
   end
 
   def variables=(variables)
@@ -29,6 +31,10 @@ class Danica::Function
   end
 
   private
+
+  def tex_string
+    raise 'Not IMplemented yet'
+  end
 
   def wrap_value(value)
     return Danica::Number.new(value) if value.is_a?(Numeric)
