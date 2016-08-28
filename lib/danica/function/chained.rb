@@ -6,17 +6,17 @@ module Danica
       end
 
       def to_tex
-        (numeric_to_tex + non_numeric_variables.map(&:to_tex)).join(tex_symbol)
+        (numeric_to_tex + non_numeric_variables.map(&:to_tex)).join(" #{tex_symbol} ")
       end
 
       private
 
       def numeric_variables
-        variables.select { |v| v.value }
+        variables.select { |v| v.valued? }
       end
 
       def non_numeric_variables
-        variables.reject { |v| v.value }
+        variables.reject { |v| v.valued? }
       end
 
       def chain(numbers)

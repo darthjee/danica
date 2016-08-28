@@ -14,6 +14,10 @@ module Danica
       return value.to_i if value.to_i == value
       value
     end
+
+    def valued?
+      value.present?
+    end
   end
 end
 
