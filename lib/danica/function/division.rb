@@ -12,11 +12,11 @@ module Danica
       end
 
       def numerator=(value)
-        @numerator ||= wrap_value(value)
+        @numerator = wrap_value(value)
       end
 
       def denominator=(value)
-        @denominator ||= wrap_value(value)
+        @denominator = wrap_value(value)
       end
     end
   end
