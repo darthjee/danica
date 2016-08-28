@@ -72,8 +72,8 @@ describe Danica::Function::Division do
     end
 
     context 'when both variables are numeric' do
-      it 'prints both numbers' do
-        expect(subject.to_tex).to eq('\frac{2}{4}')
+      it 'prints the result of the division' do
+        expect(subject.to_tex).to eq('0.5')
       end
     end
 
