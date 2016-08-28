@@ -12,11 +12,11 @@ module Danica
       private
 
       def numeric_variables
-        variables.select { |v| v.value }
+        variables.select { |v| v.valued? }
       end
 
       def non_numeric_variables
-        variables.reject { |v| v.value }
+        variables.reject { |v| v.valued? }
       end
 
       def chain(numbers)

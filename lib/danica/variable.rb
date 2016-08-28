@@ -10,6 +10,10 @@ module Danica
     def to_tex
       (value || latex || name).to_s
     end
+
+    def valued?
+      value.present?
+    end
   end
 end
 

@@ -8,8 +8,22 @@ class Danica::Function
 
   attr_accessor :name, :variables
 
+  def to_f
+    raise 'Not IMplemented yet'
+  end
+
+  def to_tex
+    raise 'Not IMplemented yet'
+  end
+
   def variables=(variables)
     @variables = variables.map { |v| wrap_value(v) }
+  end
+
+  def valued?
+    to_f.presend?
+  rescue Danica::NotDefined
+    false
   end
 
   private
