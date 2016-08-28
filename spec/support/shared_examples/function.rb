@@ -9,7 +9,7 @@ shared_examples 'a function that knows how to calculate' do |arguments|
   end
   let(:variables) do
     (1..4).map do |i|
-      Danica::Variable.new(name: "X#{i}", value: numeric_variables[i-1])
+      { name: "X#{i}", value: numeric_variables[i-1] }
     end
   end
   let(:numeric_variables){ (1..4).to_a }
@@ -50,9 +50,7 @@ shared_examples 'a function that knows how to write to tex' do |arguments|
 
   describe 'to_tex' do
     let(:variables) do
-      (1..4).map do |i|
-        Danica::Variable.new(name: "X#{i}")
-      end
+      (1..4).map { |i| "X#{i}" }
     end
 
     context 'when variables have no value' do
@@ -65,7 +63,7 @@ shared_examples 'a function that knows how to write to tex' do |arguments|
       let(:numeric_variables_index) { 1 }
       before do
         (0..numeric_variables_index).each do |i|
-          variables[i].value = numeric_variables[i]
+          subject.variables[i].value = numeric_variables[i]
         end
       end
 
