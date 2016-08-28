@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Danica::Variable do
   describe 'to_f' do
     context 'when variable has no value' do
-      it { expect { subject.to_f }.to raise_error(Danica::NotDefined) }
+      it { expect { subject.to_f }.to raise_error(Danica::Exception::NotDefined) }
     end
 
     context 'when variable has value' do

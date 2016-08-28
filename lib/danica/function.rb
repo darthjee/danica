@@ -17,7 +17,7 @@ module Danica
   
     def to_tex
       Number.new(to_f).to_tex
-    rescue NotDefined
+    rescue Exception::NotDefined
       tex_string
     end
   
@@ -27,7 +27,7 @@ module Danica
   
     def valued?
       to_f.presend?
-    rescue NotDefined
+    rescue Exception::NotDefined
       false
     end
   

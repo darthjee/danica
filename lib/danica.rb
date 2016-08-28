@@ -4,6 +4,6 @@ module Danica
   require 'danica/number'
   require 'danica/variable'
   require 'danica/function'
-  require 'danica/not_defined'
+  require 'danica/exception'
 end
 
