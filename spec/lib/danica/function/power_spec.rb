@@ -72,8 +72,8 @@ describe Danica::Function::Power do
     end
 
     context 'when both variables are numeric' do
-      it 'prints both numbers' do
-        expect(subject.to_tex).to eq('3^{2}')
+      it 'prints the final calculation' do
+        expect(subject.to_tex).to eq('9')
       end
     end
 
