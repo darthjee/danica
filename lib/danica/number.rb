@@ -11,8 +11,8 @@ module Danica
     end
 
     def to_tex
-      return value.to_i if value.to_i == value
-      value
+      return value.to_i.to_s if value.to_i == value
+      value.to_s
     end
 
     def valued?
