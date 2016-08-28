@@ -5,7 +5,7 @@ describe Danica::Function::Division do
   let(:values) { [ 2, 4 ] }
   let(:variables) do
     [ 1, 2 ].map do |i|
-      Danica::Variable.new(name: "X#{i}", value: values[i-1])
+      { name: "X#{i}", value: values[i-1] }
     end
   end
   let(:subject) do
@@ -53,9 +53,7 @@ describe Danica::Function::Division do
   describe 'to_tex' do
     context 'when variables have no value' do
       let(:variables) do
-        [ 1,2 ].map do |i|
-          Danica::Variable.new(name: "X#{i}")
-        end
+        [ 1,2 ].map { |i| "X#{i}" }
       end
 
       it 'returns a latex format fraction' do
@@ -65,7 +63,7 @@ describe Danica::Function::Division do
 
     context 'when one of the variables has value' do
       before do
-        variables[1].value = nil
+        subject.denominator.value = nil
       end
 
       it 'returns the number instead of the value' do
@@ -81,8 +79,8 @@ describe Danica::Function::Division do
 
     context 'when one of the variables is a number' do
       before do
-        variables[1].value = nil
         variables[0] = 1
+        subject.denominator.value = nil
       end
 
       it 'prints both numbers' do

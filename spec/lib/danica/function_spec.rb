@@ -38,10 +38,10 @@ describe Danica::Function do
     context 'when creating the spatial function for constantly accelerated movement' do
       let(:variables) do
         {
-          time: Danica::Variable.new(name: :t),
-          acceleration: Danica::Variable.new(name: :a),
-          initial_space: Danica::Variable.new(name: :S0, latex: 'S_0'),
-          initial_velocity: Danica::Variable.new(name: :V0, latex: 'V_0')
+          time: :t,
+          acceleration: 'a',
+          initial_space: { name: :S0, latex: 'S_0' },
+          initial_velocity: { name: :V0, latex: 'V_0' }
         }
       end
 
