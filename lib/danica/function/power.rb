@@ -8,6 +8,8 @@ module Danica
       end
 
       def to_tex
+        Number.new(to_f).to_tex
+      rescue NotDefined
         "#{base.to_tex}^{#{exponent.to_tex}}"
       end
 
