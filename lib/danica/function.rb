@@ -30,6 +30,10 @@ class Danica::Function
   private
 
   def wrap_value(value)
-    value.is_a?(Numeric) ? Danica::Number.new(value) : value
+    return Danica::Number.new(value) if value.is_a?(Numeric)
+    return Danica::Variable.new(name: value) if value.is_a?(String)
+    return Danica::Variable.new(name: value) if value.is_a?(Symbol)
+    return Danica::Variable.new(value) if value.is_a?(Hash)
+    value
   end
 end

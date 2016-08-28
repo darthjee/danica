@@ -61,10 +61,10 @@ class Danica::Function
 end
 
 Danica::Function.new(
-  time: Danica::Variable(name: 't'),
-  acceleration: Danica::Variable(name: 'a'),
-  initial_space: Danica::Variable.new(name: :S0, latex: 'S_0'),
-  initial_velocity: Danica::Variable.new(name: :V0, latex: 'V_0')
+  time: :t,
+  acceleration: 'a',
+  initial_space: { name: :S0, latex: 'S_0' },
+  initial_velocity: { name: :V0, latex: 'V_0' }
 ).to_tex
 ```
 
