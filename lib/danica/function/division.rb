@@ -8,6 +8,8 @@ module Danica
       end
 
       def to_tex
+        Number.new(to_f).to_tex
+      rescue NotDefined
         "\\frac{#{numerator.to_tex}}{#{denominator.to_tex}}"
       end
 

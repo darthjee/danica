@@ -14,7 +14,7 @@ describe Danica::Function::Power do
 
   describe 'to_f' do
     context 'when variables are not numbers but have value' do
-      it 'returns the division of the values' do
+      it 'returns the power of the values' do
         expect(subject.to_f).to eq(9.0)
       end
 
@@ -26,7 +26,7 @@ describe Danica::Function::Power do
     context 'when all the variables are numbers' do
       let(:variables) { [ 3, 2 ] }
 
-      it 'returns the division of the values' do
+      it 'returns the power of the values' do
         expect(subject.to_f).to eq(9.0)
       end
 
@@ -40,7 +40,7 @@ describe Danica::Function::Power do
         variables[0] = 3
       end
 
-      it 'returns the division of the values' do
+      it 'returns the power of the values' do
         expect(subject.to_f).to eq(9.0)
       end
 
@@ -66,7 +66,7 @@ describe Danica::Function::Power do
         subject.exponent.value = nil
       end
 
-      it 'returns the number instead of the value' do
+      it 'returns both variables' do
         expect(subject.to_tex).to eq('3^{X2}')
       end
     end
@@ -83,7 +83,7 @@ describe Danica::Function::Power do
         subject.exponent.value = nil
       end
 
-      it 'prints both numbers' do
+      it 'prints both variables' do
         expect(subject.to_tex).to eq('1^{X2}')
       end
     end
