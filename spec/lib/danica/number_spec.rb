@@ -29,4 +29,22 @@ describe Danica::Number do
       end
     end
   end
+
+  describe '#to_gnu' do
+    context 'when value should be integer' do
+      let(:value) { 10.0 }
+
+      it 'returns the value integer string' do
+        expect(subject.to_gnu).to eq('10')
+      end
+    end
+
+    context 'when value should be integer' do
+      let(:value) { 10.5 }
+
+      it 'returns the value integer string' do
+        expect(subject.to_gnu).to eq('10.5')
+      end
+    end
+  end
 end
