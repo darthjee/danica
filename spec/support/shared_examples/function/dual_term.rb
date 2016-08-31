@@ -1,3 +1,8 @@
+shared_examples 'a function that has two terms' do |name, arguments|
+  it_behaves_like 'a function that has two terms and knows how to calculate it', name, arguments
+  it_behaves_like 'a function that has two terms and knows how to call to_tex', arguments
+end
+
 shared_examples 'a function that has two terms and knows how to calculate it' do |name, arguments|
   %w(values calculated).each do |key|
     let(key) { arguments[key.to_sym]  }
