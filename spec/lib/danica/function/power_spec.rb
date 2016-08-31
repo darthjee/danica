@@ -11,43 +11,10 @@ describe Danica::Function::Power do
     described_class.new(base: variables[0], exponent: variables[1])
   end
 
-  describe 'to_f' do
-    context 'when variables are not numbers but have value' do
-      it 'returns the power of the values' do
-        expect(subject.to_f).to eq(9.0)
-      end
-
-      it do
-        expect(subject.to_f).to be_a(Float)
-      end
-    end
-
-    context 'when all the variables are numbers' do
-      let(:variables) { [ 3, 2 ] }
-
-      it 'returns the power of the values' do
-        expect(subject.to_f).to eq(9.0)
-      end
-
-      it do
-        expect(subject.to_f).to be_a(Float)
-      end
-    end
-
-    context 'when one the variables are numbers' do
-      before do
-        variables[0] = 3
-      end
-
-      it 'returns the power of the values' do
-        expect(subject.to_f).to eq(9.0)
-      end
-
-      it do
-        expect(subject.to_f).to be_a(Float)
-      end
-    end
-  end
+  it_behaves_like 'a function that has two terms and knows how to calculate it', :division, {
+    values: [ 3, 2 ],
+    calculated: 9.0
+  }
 
   describe 'to_tex' do
     context 'when variables have no value' do

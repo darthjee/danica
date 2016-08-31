@@ -11,43 +11,10 @@ describe Danica::Function::Division do
     described_class.new(numerator: variables[0], denominator: variables[1])
   end
 
-  describe 'to_f' do
-    context 'when variables are not numbers but have value' do
-      it 'returns the division of the values' do
-        expect(subject.to_f).to eq(1.0 / 2.0)
-      end
-
-      it do
-        expect(subject.to_f).to be_a(Float)
-      end
-    end
-
-    context 'when all the variables are numbers' do
-      let(:variables) { [ 2, 4 ] }
-
-      it 'returns the division of the values' do
-        expect(subject.to_f).to eq(1.0 / 2.0)
-      end
-
-      it do
-        expect(subject.to_f).to be_a(Float)
-      end
-    end
-
-    context 'when one the variables are numbers' do
-      before do
-        variables[0] = 2
-      end
-
-      it 'returns the division of the values' do
-        expect(subject.to_f).to eq(1.0 / 2.0)
-      end
-
-      it do
-        expect(subject.to_f).to be_a(Float)
-      end
-    end
-  end
+  it_behaves_like 'a function that has two terms and knows how to calculate it', :division, {
+    values: [ 2, 4 ],
+    calculated: 1.0 / 2.0
+  }
 
   describe 'to_tex' do
     context 'when variables have no value' do
