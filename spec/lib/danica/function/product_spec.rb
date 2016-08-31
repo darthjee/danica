@@ -8,6 +8,11 @@ describe Danica::Function::Product do
       string_expected: %w(X1 X2 X3 X4).join(' \cdot '),
       integer_expected: %w(3 X3 X4).join(' \cdot '),
       float_expected: '10.5 \cdot X4'
+    },
+    to_gnu: {
+      string_expected: %w(X1 X2 X3 X4).join(' * '),
+      integer_expected: %w(3 X3 X4).join(' * '),
+      float_expected: '10.5 * X4'
     }
   }
 end
