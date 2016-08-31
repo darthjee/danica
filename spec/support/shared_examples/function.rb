@@ -41,8 +41,13 @@ shared_examples 'a function that knows how to calculate' do |arguments|
 end
 
 shared_examples 'a function that knows how to write to tex' do |arguments|
-  %w(numeric_variables tex_integer_expected tex_expected tex_float_expected).each do |key|
-    let(key) { arguments[key.to_sym]  }
+  it_behaves_like 'a function that knows how to write to a string', :to_tex, arguments
+end
+
+shared_examples 'a function that knows how to write to a string' do |command, arguments|
+  let(:numeric_variables) { arguments[:numeric_variables]  }
+  %w(integer_expected string_expected float_expected).each do |key|
+    let(key) { arguments[command][key.to_sym]  }
   end
   let(:subject) do
     described_class.new(variables: variables)
@@ -55,7 +60,7 @@ shared_examples 'a function that knows how to write to tex' do |arguments|
 
     context 'when variables have no value' do
       it 'outputs a latex format' do
-        expect(subject.to_tex).to eq(tex_expected)
+        expect(subject.public_send(command)).to eq(string_expected)
       end
     end
 
@@ -68,14 +73,14 @@ shared_examples 'a function that knows how to write to tex' do |arguments|
       end
 
       it 'outputs a latex format with colapsed numbers' do
-        expect(subject.to_tex).to eq(tex_integer_expected)
+        expect(subject.public_send(command)).to eq(integer_expected)
       end
 
       context 'when numeric variables sum is a float value' do
         let(:numeric_variables_index) { 2 }
 
         it 'outputs a latex format with colapsed numbers' do
-          expect(subject.to_tex).to eq(tex_float_expected)
+          expect(subject.public_send(command)).to eq(float_expected)
         end
       end
     end
@@ -89,14 +94,14 @@ shared_examples 'a function that knows how to write to tex' do |arguments|
       end
 
       it 'outputs a latex format with colapsed numbers' do
-        expect(subject.to_tex).to eq(tex_integer_expected)
+        expect(subject.public_send(command)).to eq(integer_expected)
       end
 
       context 'when numeric variables sum is a float value' do
         let(:numeric_variables_index) { 2 }
 
         it 'outputs a latex format with colapsed numbers' do
-          expect(subject.to_tex).to eq(tex_float_expected)
+          expect(subject.public_send(command)).to eq(float_expected)
         end
       end
     end
