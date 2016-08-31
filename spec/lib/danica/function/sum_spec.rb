@@ -8,6 +8,11 @@ describe Danica::Function::Sum do
       string_expected: 'X1 + X2 + X3 + X4',
       integer_expected: '4 + X3 + X4',
       float_expected: '7.5 + X4'
+    },
+    to_gnu: {
+      string_expected: 'X1 + X2 + X3 + X4',
+      integer_expected: '4 + X3 + X4',
+      float_expected: '7.5 + X4'
     }
   }
 end

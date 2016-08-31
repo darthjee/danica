@@ -1,6 +1,7 @@
 shared_examples 'a function that joins many variables with same operation' do |arguments|
   it_behaves_like 'a function that knows how to calculate', arguments
   it_behaves_like 'a function that knows how to write to tex', arguments
+  it_behaves_like 'a function that knows how to write to gnu', arguments
 end
 
 shared_examples 'a function that knows how to calculate' do |arguments|
@@ -42,6 +43,10 @@ end
 
 shared_examples 'a function that knows how to write to tex' do |arguments|
   it_behaves_like 'a function that knows how to write to a string', :to_tex, arguments
+end
+
+shared_examples 'a function that knows how to write to gnu' do |arguments|
+  it_behaves_like 'a function that knows how to write to a string', :to_gnu, arguments
 end
 
 shared_examples 'a function that knows how to write to a string' do |command, arguments|
