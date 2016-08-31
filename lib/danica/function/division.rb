@@ -20,6 +20,10 @@ module Danica
       def tex_string
         "\\frac{#{numerator.to_tex}}{#{denominator.to_tex}}"
       end
+
+      def gnu_string
+        "#{numerator.to_tex}/#{denominator.to_tex}"
+      end
     end
   end
 end

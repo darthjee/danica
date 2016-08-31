@@ -1,6 +1,7 @@
 shared_examples 'a function that has two terms' do |name, arguments|
   it_behaves_like 'a function that has two terms and knows how to calculate it', name, arguments
   it_behaves_like 'a function that has two terms and knows how to call to_tex', arguments
+  it_behaves_like 'a function that has two terms and knows how to call to_gnu', arguments
 end
 
 shared_examples 'a function that has two terms and knows how to calculate it' do |name, arguments|
@@ -55,6 +56,10 @@ end
 
 shared_examples 'a function that has two terms and knows how to call to_tex' do |arguments|
   it_behaves_like 'a function that has two terms and knows how to return a string out of it', :to_tex, arguments
+end
+
+shared_examples 'a function that has two terms and knows how to call to_gnu' do |arguments|
+  it_behaves_like 'a function that has two terms and knows how to return a string out of it', :to_gnu, arguments
 end
 
 shared_examples 'a function that has two terms and knows how to return a string out of it' do |command, arguments|

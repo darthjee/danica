@@ -12,6 +12,11 @@ describe Danica::Function::Division do
       string_expected: '\frac{X1}{X2}',
       numeric_string_expected: '0.5',
       partial_string_expected: '\frac{2}{X2}'
+    },
+    to_gnu: {
+      string_expected: 'X1/X2',
+      numeric_string_expected: '0.5',
+      partial_string_expected: '2/X2'
     }
   }
 end
