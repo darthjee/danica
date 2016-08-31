@@ -8,9 +8,11 @@ describe Danica::Function::Division do
   it_behaves_like 'a function that has two terms', :division, {
     values: [ 2, 4 ],
     calculated: 1.0 / 2.0,
-    string_expected: '\frac{X1}{X2}',
-    numeric_string_expected: '0.5',
-    partial_string_expected: '\frac{2}{X2}'
+    to_tex: {
+      string_expected: '\frac{X1}{X2}',
+      numeric_string_expected: '0.5',
+      partial_string_expected: '\frac{2}{X2}'
+    }
   }
 end
 

@@ -58,7 +58,7 @@ shared_examples 'a function that knows how to write to a string' do |command, ar
     described_class.new(variables: variables)
   end
 
-  describe 'to_tex' do
+  describe "#{command}" do
     let(:variables) do
       (1..4).map { |i| "X#{i}" }
     end

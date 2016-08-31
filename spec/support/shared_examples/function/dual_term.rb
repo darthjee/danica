@@ -54,10 +54,16 @@ shared_examples 'a function that has two terms and knows how to calculate it' do
 end
 
 shared_examples 'a function that has two terms and knows how to call to_tex' do |arguments|
-  %w(values string_expected numeric_string_expected partial_string_expected).each do |key|
-    let(key) { arguments[key.to_sym]  }
+  it_behaves_like 'a function that has two terms and knows how to return a string out of it', :to_tex, arguments
+end
+
+shared_examples 'a function that has two terms and knows how to return a string out of it' do |command, arguments|
+  let(:values) { arguments[:values]  }
+
+  %w(string_expected numeric_string_expected partial_string_expected).each do |key|
+    let(key) { arguments[command][key.to_sym]  }
   end
-  describe 'to_tex' do
+  describe "##{command}" do
     let(:variables) do
       [ 1, 2 ].map do |i|
         { name: "X#{i}", value: values[i-1] }
@@ -70,7 +76,7 @@ shared_examples 'a function that has two terms and knows how to call to_tex' do 
       end
 
       it 'returns a latex format fraction' do
-        expect(subject.to_tex).to eq(string_expected)
+        expect(subject.public_send(command)).to eq(string_expected)
       end
     end
 
@@ -80,13 +86,13 @@ shared_examples 'a function that has two terms and knows how to call to_tex' do 
       end
 
       it 'returns the number instead of the value' do
-        expect(subject.to_tex).to eq(partial_string_expected)
+        expect(subject.public_send(command)).to eq(partial_string_expected)
       end
     end
 
     context 'when both variables are numeric' do
       it 'prints the result of the division' do
-        expect(subject.to_tex).to eq(numeric_string_expected)
+        expect(subject.public_send(command)).to eq(numeric_string_expected)
       end
     end
 
@@ -97,7 +103,7 @@ shared_examples 'a function that has two terms and knows how to call to_tex' do 
       end
 
       it 'prints both numbers' do
-        expect(subject.to_tex).to eq(partial_string_expected)
+        expect(subject.public_send(command)).to eq(partial_string_expected)
       end
     end
   end
