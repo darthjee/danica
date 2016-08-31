@@ -8,15 +8,21 @@ module Danica
     end
 
     def to_tex
-      (value || latex || name).to_s
+      return value.to_tex if value
+      (latex || name).to_s
     end
 
     def to_gnu
-      (value || gnu || name).to_s
+      return value.to_gnu if value
+      (gnu || name).to_s
     end
 
     def valued?
       value.present?
+    end
+
+    def value=(value)
+      @value = value.is_a?(Numeric) ? Number.new(value) : value
     end
   end
 end

@@ -18,13 +18,21 @@ describe Danica::Variable do
 
   describe '#to_tex' do
     let(:name) { :delta }
-    let(:value) { 10 }
+    let(:value) { 10.0 }
 
     context 'when latex is not defined ' do
       let(:subject) { described_class.new name: name }
 
       it 'returns name' do
         expect(subject.to_tex).to eq('delta')
+      end
+
+      context 'when value is defined' do
+        let(:subject) { described_class.new name: name, value: value }
+
+        it 'returns the value' do
+          expect(subject.to_tex).to eq('10')
+        end
       end
     end
 
@@ -39,12 +47,21 @@ describe Danica::Variable do
 
   describe '#to_gnu' do
     let(:name) { :delta }
+    let(:value) { 10.0 }
 
     context 'when gnu is not defined ' do
       let(:subject) { described_class.new name: name }
 
       it 'returns name' do
         expect(subject.to_gnu).to eq('delta')
+      end
+
+      context 'when value has been defined' do
+        let(:subject) { described_class.new name: name, value: value }
+
+        it 'returns the value' do
+          expect(subject.to_tex).to eq('10')
+        end
       end
     end
 

@@ -20,6 +20,12 @@ module Danica
     rescue Exception::NotDefined
       tex_string
     end
+
+    def to_gnu
+      Number.new(to_f).to_gnu
+    rescue Exception::NotDefined
+      gnu_string
+    end
   
     def variables=(variables)
       @variables = variables.map { |v| wrap_value(v) }
@@ -34,6 +40,10 @@ module Danica
     private
   
     def tex_string
+      raise 'Not IMplemented yet'
+    end
+
+    def gnu_string
       raise 'Not IMplemented yet'
     end
   
