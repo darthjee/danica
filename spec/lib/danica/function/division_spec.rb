@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe Danica::Function::Division do
-  let(:variables_number) { 4 }
   let(:values) { [ 2, 4 ] }
   let(:variables) do
     [ 1, 2 ].map do |i|

@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe Danica::Function::Power do
-  let(:variables_number) { 4 }
   let(:values) { [ 3, 2 ] }
   let(:variables) do
     [ 1, 2 ].map do |i|
