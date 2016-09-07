@@ -17,60 +17,10 @@ describe Danica::Variable do
   end
 
   describe '#to_tex' do
-    let(:name) { :delta }
-    let(:value) { 10.0 }
-    let(:arguments) { { name: name, latex: '\delta', gnu: 'del' } }
-    let(:subject) { described_class.new(arguments) }
-
-    context 'when latex is not defined ' do
-      before { arguments.delete(:latex) }
-
-      it 'returns name' do
-        expect(subject.to_tex).to eq('delta')
-      end
-
-      context 'when value is defined' do
-        before { arguments[:value] = value }
-
-        it 'returns the value' do
-          expect(subject.to_tex).to eq('10')
-        end
-      end
-    end
-
-    context 'when latex has been defined' do
-      it 'returns latex' do
-        expect(subject.to_tex).to eq('\delta')
-      end
-    end
+    it_behaves_like 'a variable method to formated string', :to_tex, :latex
   end
 
   describe '#to_gnu' do
-    let(:name) { :delta }
-    let(:value) { 10.0 }
-    let(:arguments) { { name: name, latex: '\delta', gnu: 'del' } }
-    let(:subject) { described_class.new(arguments) }
-
-    context 'when gnu is not defined ' do
-      before { arguments.delete(:gnu) }
-
-      it 'returns name' do
-        expect(subject.to_gnu).to eq('delta')
-      end
-
-      context 'when value has been defined' do
-        before { arguments[:value] = value }
-
-        it 'returns the value' do
-          expect(subject.to_tex).to eq('10')
-        end
-      end
-    end
-
-    context 'when gnu has been defined' do
-      it 'returns latex' do
-        expect(subject.to_gnu).to eq('del')
-      end
-    end
+    it_behaves_like 'a variable method to formated string', :to_gnu, :gnu
   end
 end
