@@ -2,6 +2,7 @@ module Danica
   class Function
     include ActiveModel::Model
   
+    require 'danica/function/class_methods'
     require 'danica/function/chained'
     require 'danica/function/product'
     require 'danica/function/sum'

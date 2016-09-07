@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Danica::Function do
   class Danica::Function
     class Spatial < Danica::Function
-      attr_accessor :time, :acceleration, :initial_space, :initial_velocity
+      variables :time, :acceleration, :initial_space, :initial_velocity
       delegate :to_tex, :to_gnu, to: :sum
 
       private
