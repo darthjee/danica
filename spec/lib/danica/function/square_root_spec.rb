@@ -7,7 +7,7 @@ describe Danica::Function::SquareRoot do
     described_class.new(variable: variable)
   end
 
-  describe 'to_f' do
+  describe '#to_f' do
     context 'when variables are not numbers but have value' do
       it 'returns the division of the values' do
         expect(subject.to_f).to eq(3.0)
@@ -31,7 +31,7 @@ describe Danica::Function::SquareRoot do
     end
   end
 
-  describe 'to_tex' do
+  describe '#to_tex' do
     context 'when variables have no value' do
       let(:variable) { :X }
 
@@ -49,5 +49,23 @@ describe Danica::Function::SquareRoot do
       end
     end
   end
-end
 
+  describe '#to_gnu' do
+    context 'when variables have no value' do
+      let(:variable) { :X }
+
+      it 'returns a latex format fraction' do
+        expect(subject.to_gnu).to eq('sqrt(X)')
+      end
+    end
+
+    context 'when the variable is numeric' do
+      before do
+        subject.variable.value = 9
+      end
+      it 'prints both numbers' do
+        expect(subject.to_gnu).to eq('3')
+      end
+    end
+  end
+end

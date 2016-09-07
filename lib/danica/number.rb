@@ -18,6 +18,8 @@ module Danica
     def valued?
       value.present?
     end
+
+    alias_method :to_gnu, :to_tex
   end
 end
 

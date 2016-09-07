@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Danica::Variable do
-  describe 'to_f' do
+  describe '#to_f' do
     context 'when variable has no value' do
       it { expect { subject.to_f }.to raise_error(Danica::Exception::NotDefined) }
     end
@@ -16,23 +16,11 @@ describe Danica::Variable do
     end
   end
 
-  describe 'to_tex' do
-    let(:name) { :delta }
+  describe '#to_tex' do
+    it_behaves_like 'a variable method to formated string', :to_tex, :latex
+  end
 
-    context 'when latex is not defined ' do
-      let(:subject) { described_class.new name: name }
-
-      it 'returns name' do
-        expect(subject.to_tex).to eq('delta')
-      end
-    end
-
-    context 'when latex has been defined' do
-      let(:subject) { described_class.new name: name, latex: '\delta' }
-
-      it 'returns latex' do
-        expect(subject.to_tex).to eq('\delta')
-      end
-    end
+  describe '#to_gnu' do
+    it_behaves_like 'a variable method to formated string', :to_gnu, :gnu
   end
 end

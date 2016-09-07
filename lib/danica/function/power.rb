@@ -20,6 +20,10 @@ module Danica
       def tex_string
         "#{base.to_tex}^{#{exponent.to_tex}}"
       end
+
+      def gnu_string
+        "#{base.to_gnu}**#{exponent.to_gnu}"
+      end
     end
   end
 end

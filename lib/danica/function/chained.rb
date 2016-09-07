@@ -11,6 +11,10 @@ module Danica
         (numeric_to_tex + non_numeric_variables.map(&:to_tex)).join(" #{tex_symbol} ")
       end
 
+      def gnu_string
+        (numeric_to_tex + non_numeric_variables.map(&:to_gnu)).join(" #{gnu_symbol} ")
+      end
+
       def numeric_variables
         variables.select { |v| v.valued? }
       end

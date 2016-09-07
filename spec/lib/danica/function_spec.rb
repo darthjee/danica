@@ -4,7 +4,7 @@ describe Danica::Function do
   class Danica::Function
     class Spatial < Danica::Function
       attr_accessor :time, :acceleration, :initial_space, :initial_velocity
-      delegate :to_tex, to: :sum
+      delegate :to_tex, :to_gnu, to: :sum
 
       private
 
@@ -34,22 +34,33 @@ describe Danica::Function do
     end
   end
 
+  let(:variables) do
+    {
+      time: :t,
+      acceleration: 'a',
+      initial_space: { name: :S0, latex: 'S_0' },
+      initial_velocity: { name: :V0, latex: 'V_0' }
+    }
+  end
+
+  let(:subject) { described_class::Spatial.new(variables) }
+
   describe '#to_tex' do
     context 'when creating the spatial function for constantly accelerated movement' do
-      let(:variables) do
-        {
-          time: :t,
-          acceleration: 'a',
-          initial_space: { name: :S0, latex: 'S_0' },
-          initial_velocity: { name: :V0, latex: 'V_0' }
-        }
-      end
-
-      let(:subject) { described_class::Spatial.new(variables) }
       let(:expected) { 'S_0 + V_0 \cdot t + \frac{a \cdot t^{2}}{2}'  }
 
       it 'return the latex format CAM' do
         expect(subject.to_tex).to eq(expected)
+      end
+    end
+  end
+
+  describe '#to_gnu' do
+    context 'when creating the spatial function for constantly accelerated movement' do
+      let(:expected) { 'S0 + V0 * t + a * t**2/2'  }
+
+      it 'return the latex format CAM' do
+        expect(subject.to_gnu).to eq(expected)
       end
     end
   end
