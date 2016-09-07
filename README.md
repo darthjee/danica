@@ -63,16 +63,29 @@ class Danica::Function
   end
 end
 
-Danica::Function.new(
+fx = Danica::Function.new(
   time: :t,
   acceleration: 'a',
-  initial_space: { name: :S0, latex: 'S_0' },
-  initial_velocity: { name: :V0, latex: 'V_0' }
-).to_tex
+  initial_space: { name: :S0, latex: 'S_0', gnu: 'S0' },
+  initial_velocity: { name: :V0, latex: 'V_0', gnu: 'V0' }
+)
+```
+
+```ruby
+fx.to_tex
 ```
 
 returns
 ```string
 S_0 + V_0 \cdot t + \frac{a \cdot t^2}{2}
+```
+
+```ruby
+fx.to_gnu
+```
+
+returns
+```string
+S0 + V0 * t + a * t**2/2
 ```
 
