@@ -80,7 +80,7 @@ shared_examples 'a function that has two terms and knows how to return a string 
         [ 1,2 ].map { |i| "X#{i}" }
       end
 
-      it 'returns a latex format fraction' do
+      it 'returns a text format fraction' do
         expect(subject.public_send(command)).to eq(string_expected)
       end
     end
@@ -96,7 +96,7 @@ shared_examples 'a function that has two terms and knows how to return a string 
     end
 
     context 'when both variables are numeric' do
-      it 'prints the result of the division' do
+      it 'prints the result of the calculation' do
         expect(subject.public_send(command)).to eq(numeric_string_expected)
       end
     end
@@ -107,7 +107,7 @@ shared_examples 'a function that has two terms and knows how to return a string 
         variables[1][:value] = nil
       end
 
-      it 'prints both numbers' do
+      it 'prints both parts' do
         expect(subject.public_send(command)).to eq(partial_string_expected)
       end
     end

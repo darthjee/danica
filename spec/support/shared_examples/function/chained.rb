@@ -64,7 +64,7 @@ shared_examples 'a function that knows how to write to a string' do |command, ar
     end
 
     context 'when variables have no value' do
-      it 'outputs a latex format' do
+      it 'outputs a text format' do
         expect(subject.public_send(command)).to eq(string_expected)
       end
     end
@@ -81,10 +81,10 @@ shared_examples 'a function that knows how to write to a string' do |command, ar
         expect(subject.public_send(command)).to eq(integer_expected)
       end
 
-      context 'when numeric variables sum is a float value' do
+      context 'when numeric variables calculated is a float value' do
         let(:numeric_variables_index) { 2 }
 
-        it 'outputs a latex format with colapsed numbers' do
+        it 'outputs a text format with colapsed numbers' do
           expect(subject.public_send(command)).to eq(float_expected)
         end
       end
@@ -98,14 +98,14 @@ shared_examples 'a function that knows how to write to a string' do |command, ar
         end
       end
 
-      it 'outputs a latex format with colapsed numbers' do
+      it 'outputs a text format with colapsed numbers' do
         expect(subject.public_send(command)).to eq(integer_expected)
       end
 
-      context 'when numeric variables sum is a float value' do
+      context 'when numeric variables calculated is a float value' do
         let(:numeric_variables_index) { 2 }
 
-        it 'outputs a latex format with colapsed numbers' do
+        it 'outputs a text format with colapsed numbers' do
           expect(subject.public_send(command)).to eq(float_expected)
         end
       end
