@@ -18,7 +18,7 @@ module Danica
       end
 
       def gnu_string
-        "sqrt(#{variable.to_tex})"
+        "sqrt(#{variable.to_gnu})"
       end
     end
   end

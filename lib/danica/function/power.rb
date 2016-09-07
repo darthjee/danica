@@ -22,7 +22,7 @@ module Danica
       end
 
       def gnu_string
-        "#{base.to_tex}**#{exponent.to_tex}"
+        "#{base.to_gnu}**#{exponent.to_gnu}"
       end
     end
   end
