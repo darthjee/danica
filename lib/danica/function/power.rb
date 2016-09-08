@@ -7,14 +7,6 @@ module Danica
         base.to_f ** exponent.to_f
       end
 
-      def base=(value)
-        @base = wrap_value(value)
-      end
-
-      def exponent=(value)
-        @exponent = wrap_value(value)
-      end
-
       private
 
       def tex_string

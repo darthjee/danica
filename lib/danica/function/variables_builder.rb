@@ -17,15 +17,15 @@ class Danica::Function
 
     def add_setter(name)
       code = <<-CODE
-        @#{name} = value
-        variables_hash[:#{name}] = value
+        variables_hash[:#{name}] = wrap_value(value)
+        @variables = variables_hash.values
       CODE
       add_method("#{name}=(value)", code)
     end
 
     def add_reader(name)
       code = <<-CODE
-        @#{name}
+        variables_hash[:#{name}]
       CODE
       add_method("#{name}", code)
     end

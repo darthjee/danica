@@ -34,7 +34,7 @@ module Danica
     end
   
     def valued?
-      to_f.presend?
+      to_f.present?
     rescue Exception::NotDefined
       false
     end

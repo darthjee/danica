@@ -7,14 +7,6 @@ module Danica
         numerator.to_f / denominator.to_f
       end
 
-      def numerator=(value)
-        @numerator = wrap_value(value)
-      end
-
-      def denominator=(value)
-        @denominator = wrap_value(value)
-      end
-
       private
 
       def tex_string

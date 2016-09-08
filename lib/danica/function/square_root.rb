@@ -7,10 +7,6 @@ module Danica
         Math.sqrt(variable.to_f)
       end
 
-      def variable=(value)
-        @variable = wrap_value(value)
-      end
-
       private
 
       def tex_string
