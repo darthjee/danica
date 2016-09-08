@@ -66,7 +66,7 @@ describe Danica::Function do
   end
 
   describe '#variables_hash' do
-    let(:variables) do
+    let(:expected) do
       {
         time: Danica::Variable.new(name: :t),
         acceleration: Danica::Variable.new(name: 'a'),
@@ -75,8 +75,17 @@ describe Danica::Function do
       }
     end
 
-    it 'returns a hash with the variabels' do
-      expect(subject.variables_hash).to eq(variables)
+    context 'when variables are already wrapped with DanicaVariable' do
+      let(:variables) { expected }
+      it 'returns a hash with the variabels' do
+        expect(subject.variables_hash).to eq(expected)
+      end
+    end
+
+    context 'when variables are not wrapped yet' do
+      it 'returns a hash with the variabels' do
+        expect(subject.variables_hash).to eq(expected)
+      end
     end
   end
 
