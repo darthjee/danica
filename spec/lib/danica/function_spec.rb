@@ -82,6 +82,16 @@ describe Danica::Function do
       end
     end
 
+    context 'when variables have been defined with string name' do
+      before do
+        variables.change_keys!(&:to_s)
+      end
+
+      it 'returns a hash with the variabels' do
+        expect(subject.variables_hash).to eq(expected)
+      end
+    end
+
     context 'when variables are not wrapped yet' do
       it 'returns a hash with the variabels' do
         expect(subject.variables_hash).to eq(expected)
