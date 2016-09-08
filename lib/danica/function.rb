@@ -44,7 +44,7 @@ module Danica
     end
   
     private
-  
+
     def tex_string
       raise 'Not IMplemented yet'
     end

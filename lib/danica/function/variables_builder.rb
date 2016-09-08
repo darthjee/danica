@@ -1,4 +1,5 @@
 require 'concern_builder'
+require 'bidu/core_ext'
 
 class Danica::Function
   class VariablesBuilder < ::ConcernBuilder
@@ -27,3 +28,4 @@ class Danica::Function
     end
   end
 end
+
