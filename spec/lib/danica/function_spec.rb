@@ -100,22 +100,32 @@ describe Danica::Function do
   end
 
   describe '#variables' do
-    let(:subject) { described_class::Spatial.new }
-    let(:time) { Danica::Variable.new(name: :t) }
-
-    context 'when initialized with an empty variable set' do
+    context 'when initialized with an array of variables' do
+      let(:subject) { described_class::Spatial.new(variables: variables.values) }
+      let(:expected) { variables.values.map { |v| subject.send(:wrap_value, v)} }
       it do
-        expect(subject.variables.compact).to be_empty
+        expect(subject.variables.compact).to eq(expected)
       end
     end
 
-    context 'when changing a variable' do
-      before do
-        subject.time = time
+    context 'when not initializing all variables' do
+      let(:subject) { described_class::Spatial.new }
+      let(:time) { Danica::Variable.new(name: :t) }
+
+      context 'when initialized with an empty variable set' do
+        it do
+          expect(subject.variables.compact).to be_empty
+        end
       end
 
-      it 'returns the list of variables' do
-        expect(subject.variables.compact).to eq([ time ])
+      context 'when changing a variable' do
+        before do
+          subject.time = time
+        end
+
+        it 'returns the list of variables' do
+          expect(subject.variables.compact).to eq([ time ])
+        end
       end
     end
   end
