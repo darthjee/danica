@@ -1,8 +1,7 @@
 class Danica::Function
   class << self
     def variables(*names)
-      variable_names << names.map(&:to_sym)
-      attr_accessor *names
+      VariablesBuilder.new(names, self).build
     end
 
     private

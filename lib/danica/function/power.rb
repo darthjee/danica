@@ -1,7 +1,7 @@
 module Danica
   class Function
     class Power < Function
-      attr_reader :base, :exponent
+      variables :base, :exponent
 
       def to_f
         base.to_f ** exponent.to_f

@@ -1,7 +1,7 @@
 module Danica
   class Function
     class SquareRoot < Function
-      attr_reader :variable
+      variables :variable
 
       def to_f
         Math.sqrt(variable.to_f)

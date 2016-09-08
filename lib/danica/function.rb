@@ -2,6 +2,7 @@ module Danica
   class Function
     include ActiveModel::Model
   
+    require 'danica/function/variables_builder'
     require 'danica/function/class_methods'
     require 'danica/function/chained'
     require 'danica/function/product'
@@ -36,6 +37,10 @@ module Danica
       to_f.presend?
     rescue Exception::NotDefined
       false
+    end
+
+    def variables
+      @variables ||= []
     end
   
     private
