@@ -40,9 +40,13 @@ module Danica
     end
 
     def variables
-      @variables ||= []
+      @variables ||= variables_hash.values
     end
   
+    def variables_hash
+      @variabels_map ||= [].as_hash(self.class.variables_names)
+    end
+
     private
 
     def tex_string

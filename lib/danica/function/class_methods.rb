@@ -4,10 +4,8 @@ class Danica::Function
       VariablesBuilder.new(names, self).build
     end
 
-    private
-
-    def variable_names
-      @variable_names ||= []
+    def variables_names
+      @variables_names ||= []
     end
   end
 end
