@@ -97,6 +97,17 @@ describe Danica::Function do
         expect(subject.variables_hash).to eq(expected)
       end
     end
+
+    context 'when initializing with variables array' do
+      context 'as hash' do
+        let(:variables) { [ :t, 'a', {name: :S0, latex: 'S_0'}, { name: :V0, latex: 'V_0' } ] }
+        let(:subject) { described_class::Spatial.new(variables: variables) }
+
+        it 'returns a hash with the variabels' do
+          expect(subject.variables_hash).to eq(expected)
+        end
+      end
+    end
   end
 
   describe '#variables' do

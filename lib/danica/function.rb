@@ -44,7 +44,7 @@ module Danica
     end
   
     def variables_hash
-      @variabels_map ||= [].as_hash(self.class.variables_names)
+      @variabels_map ||= (@variables || []).as_hash(self.class.variables_names)
     end
 
     private
