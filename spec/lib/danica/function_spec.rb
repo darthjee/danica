@@ -179,6 +179,22 @@ describe Danica::Function do
         it 'returns the variables given oin initialization' do
           expect(subject.variables.map(&:name)).to eq(names)
         end
+
+        context 'when initializing variables with a hash out of order' do
+          let(:variables) do
+            {
+              initial_velocity: :v0,
+              initial_space: :s0,
+              acceleration: :a,
+              time: :t
+            }
+          end
+          let(:subject) { described_class::Spatial.new variables }
+
+          it 'returns the variables given on initialization' do
+            expect(subject.variables.map(&:name)).to eq(names)
+          end
+        end
       end
     end
   end
