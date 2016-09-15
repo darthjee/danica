@@ -12,6 +12,12 @@ module Danica
     require 'danica/function/square_root'
   
     attr_accessor :name, :variables
+
+    def initialize(*args)
+      options = args.extract_options!
+
+      super({ variables: args.flatten }.merge(options))
+    end
   
     def to_f
       raise 'Not IMplemented yet'
