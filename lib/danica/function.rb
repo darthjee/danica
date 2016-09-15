@@ -2,6 +2,8 @@ module Danica
   class Function
     include ActiveModel::Model
   
+    require 'danica/function/variables_builder'
+    require 'danica/function/class_methods'
     require 'danica/function/chained'
     require 'danica/function/product'
     require 'danica/function/sum'
@@ -10,6 +12,12 @@ module Danica
     require 'danica/function/square_root'
   
     attr_accessor :name, :variables
+
+    def initialize(*args)
+      options = args.extract_options!
+
+      super({ variables: args.flatten }.merge(options))
+    end
   
     def to_f
       raise 'Not IMplemented yet'
@@ -32,13 +40,21 @@ module Danica
     end
   
     def valued?
-      to_f.presend?
+      to_f.present?
     rescue Exception::NotDefined
       false
     end
+
+    def variables
+      @variables ||= variables_hash.values
+    end
   
+    def variables_hash
+      @variabels_map ||= (@variables || []).as_hash(self.class.variables_names)
+    end
+
     private
-  
+
     def tex_string
       raise 'Not IMplemented yet'
     end

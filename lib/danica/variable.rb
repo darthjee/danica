@@ -7,6 +7,14 @@ module Danica
       value.nil? ? raise(Exception::NotDefined) : value.to_f
     end
 
+    def ==(other)
+      return false unless other.class == Variable
+      return other.value == value &&
+             other.name == name &&
+             other.latex == latex &&
+             other.gnu == gnu
+    end
+
     def to_tex
       return value.to_tex if value
       (latex || name).to_s

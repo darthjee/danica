@@ -3,13 +3,13 @@ require 'spec_helper'
 describe Danica::Function do
   class Danica::Function
     class Spatial < Danica::Function
-      attr_accessor :time, :acceleration, :initial_space, :initial_velocity
+      variables :time, :acceleration, :initial_space, :initial_velocity
       delegate :to_tex, :to_gnu, to: :sum
 
       private
 
       def sum
-        @sum ||= Sum.new(variables: parcels)
+        @sum ||= Sum.new(parcels)
       end
 
       def parcels
@@ -21,15 +21,15 @@ describe Danica::Function do
       end
 
       def spatial_velocity
-        Product.new(variables: [ initial_velocity, time ])
+        Product.new(initial_velocity, time)
       end
 
       def spatial_acceleration
-        Division.new(numerator: Product.new(variables: [ acceleration, time_squared ]), denominator: 2)
+        Division.new(Product.new(acceleration, time_squared), 2)
       end
 
       def time_squared
-        Power.new(base: time, exponent: 2)
+        Power.new(time, 2)
       end
     end
   end
@@ -61,6 +61,140 @@ describe Danica::Function do
 
       it 'return the latex format CAM' do
         expect(subject.to_gnu).to eq(expected)
+      end
+    end
+  end
+
+  describe '#variables_hash' do
+    let(:expected) do
+      {
+        time: Danica::Variable.new(name: :t),
+        acceleration: Danica::Variable.new(name: 'a'),
+        initial_space: Danica::Variable.new( name: :S0, latex: 'S_0' ),
+        initial_velocity: Danica::Variable.new( name: :V0, latex: 'V_0' )
+      }
+    end
+
+    context 'when variables are already wrapped with DanicaVariable' do
+      let(:variables) { expected }
+      it 'returns a hash with the variabels' do
+        expect(subject.variables_hash).to eq(expected)
+      end
+    end
+
+    context 'when variables have been defined with string name' do
+      before do
+        variables.change_keys!(&:to_s)
+      end
+
+      it 'returns a hash with the variabels' do
+        expect(subject.variables_hash).to eq(expected)
+      end
+    end
+
+    context 'when variables are not wrapped yet' do
+      it 'returns a hash with the variabels' do
+        expect(subject.variables_hash).to eq(expected)
+      end
+    end
+
+    context 'when changing a variable' do
+      before do
+        subject.time = :x
+        expected[:time] = Danica::Variable.new(name: :x)
+      end
+
+      it do
+        expect(subject.variables_hash).to eq(expected)
+      end
+    end
+
+    context 'when initializing with array' do
+      context 'as hash' do
+        let(:variables) { [ :t, 'a', {name: :S0, latex: 'S_0'}, { name: :V0, latex: 'V_0' } ] }
+        let(:subject) { described_class::Spatial.new(variables) }
+
+        it 'returns a hash with the variabels' do
+          expect(subject.variables_hash).to eq(expected)
+        end
+      end
+    end
+
+    context 'when initializing with sequence' do
+      context 'as hash' do
+        let(:variables) { [ :t, 'a', {name: :S0, latex: 'S_0'}, { name: :V0, latex: 'V_0' } ] }
+        let(:subject) { described_class::Spatial.new(*variables, {}) }
+
+        it 'returns a hash with the variabels' do
+          expect(subject.variables_hash).to eq(expected)
+        end
+      end
+    end
+
+    context 'when initializing with variables array' do
+      context 'as hash' do
+        let(:variables) { [ :t, 'a', {name: :S0, latex: 'S_0'}, { name: :V0, latex: 'V_0' } ] }
+        let(:subject) { described_class::Spatial.new(variables: variables) }
+
+        it 'returns a hash with the variabels' do
+          expect(subject.variables_hash).to eq(expected)
+        end
+      end
+    end
+  end
+
+  describe '#variables' do
+    context 'when initialized with an array of variables' do
+      let(:subject) { described_class::Spatial.new(variables: variables.values) }
+      let(:expected) { variables.values.map { |v| subject.send(:wrap_value, v)} }
+      it do
+        expect(subject.variables.compact).to eq(expected)
+      end
+    end
+
+    context 'when not initializing all variables' do
+      let(:subject) { described_class::Spatial.new }
+      let(:time) { Danica::Variable.new(name: :t) }
+
+      context 'when initialized with an empty variable set' do
+        it do
+          expect(subject.variables.compact).to be_empty
+        end
+      end
+
+      context 'when changing a variable' do
+        before do
+          subject.time = time
+        end
+
+        it 'returns the list of variables' do
+          expect(subject.variables.compact).to eq([ time ])
+        end
+      end
+
+      context 'when initializing with a variable set' do
+        let(:names) { [ :t, :a, :s0, :v0 ] }
+        let(:subject) { described_class::Spatial.new *names }
+
+        it 'returns the variables given oin initialization' do
+          expect(subject.variables.map(&:name)).to eq(names)
+        end
+
+        context 'when initializing variables with a hash out of order' do
+          let(:variables) do
+            {
+              initial_velocity: :v0,
+              initial_space: :s0,
+              acceleration: :a,
+              time: :t
+            }
+          end
+          let(:subject) { described_class::Spatial.new variables }
+
+          it 'returns the variables given on initialization' do
+            expect(subject.variables.map(&:name)).to eq(names)
+          end
+        end
       end
     end
   end
