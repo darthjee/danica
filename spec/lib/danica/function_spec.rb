@@ -98,6 +98,17 @@ describe Danica::Function do
       end
     end
 
+    context 'when changing a variable' do
+      before do
+        subject.time = :x
+        expected[:time] = Danica::Variable.new(name: :x)
+      end
+
+      it do
+        expect(subject.variables_hash).to eq(expected)
+      end
+    end
+
     context 'when initializing with array' do
       context 'as hash' do
         let(:variables) { [ :t, 'a', {name: :S0, latex: 'S_0'}, { name: :V0, latex: 'V_0' } ] }
@@ -158,6 +169,15 @@ describe Danica::Function do
 
         it 'returns the list of variables' do
           expect(subject.variables.compact).to eq([ time ])
+        end
+      end
+
+      context 'when initializing with a variable set' do
+        let(:names) { [ :t, :a, :s0, :v0 ] }
+        let(:subject) { described_class::Spatial.new *names }
+
+        it 'returns the variables given oin initialization' do
+          expect(subject.variables.map(&:name)).to eq(names)
         end
       end
     end
