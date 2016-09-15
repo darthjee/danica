@@ -9,7 +9,7 @@ describe Danica::Function do
       private
 
       def sum
-        @sum ||= Sum.new(variables: parcels)
+        @sum ||= Sum.new(parcels)
       end
 
       def parcels
@@ -21,15 +21,15 @@ describe Danica::Function do
       end
 
       def spatial_velocity
-        Product.new(variables: [ initial_velocity, time ])
+        Product.new(initial_velocity, time)
       end
 
       def spatial_acceleration
-        Division.new(numerator: Product.new(variables: [ acceleration, time_squared ]), denominator: 2)
+        Division.new(Product.new(acceleration, time_squared), 2)
       end
 
       def time_squared
-        Power.new(base: time, exponent: 2)
+        Power.new(time, 2)
       end
     end
   end
