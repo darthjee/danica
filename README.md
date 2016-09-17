@@ -80,6 +80,8 @@ fx = Danica::Function.new(
 )
 ```
 
+#### to_tex
+
 ```ruby
 fx.to_tex
 ```
@@ -88,6 +90,8 @@ returns
 ```string
 S_0 + V_0 \cdot t + \frac{a \cdot t^2}{2}
 ```
+
+#### to_gnu
 
 ```ruby
 fx.to_gnu
@@ -98,3 +102,28 @@ returns
 S0 + V0 * t + a * t**2/2
 ```
 
+#### calculate
+
+```ruby
+fx = Danica::Function.new(
+  time: :t,
+  acceleration: :a,
+  initial_space: 1,
+  initial_velocity: 2
+)
+```
+
+```ruby
+fx.calculate(10, 3)
+```
+or
+
+```ruby
+fx.calculate(time: 10, acceleration: 3)
+```
+
+bothe return
+
+```ruby
+171.0
+```
