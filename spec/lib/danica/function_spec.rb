@@ -4,7 +4,7 @@ describe Danica::Function do
   class Danica::Function
     class Spatial < Danica::Function
       variables :time, :acceleration, :initial_space, :initial_velocity
-      delegate :to_tex, :to_gnu, to: :sum
+      delegate :to_f, :to_tex, :to_gnu, to: :sum
 
       private
 
@@ -193,6 +193,36 @@ describe Danica::Function do
 
           it 'returns the variables given on initialization' do
             expect(subject.variables.map(&:name)).to eq(names)
+          end
+        end
+      end
+    end
+  end
+
+  describe '#calculate' do
+    context 'when all variables have value' do
+      let(:time_value) { 2 }
+      let(:time) { time_value }
+      let(:acceleration) { 3 }
+      let(:initial_space) { 1 }
+      let(:initial_velocity) { 1 }
+      let(:subject) { described_class::Spatial.new(time, acceleration, initial_space, initial_velocity) }
+      let(:expected) { initial_space + initial_velocity * time_value + acceleration * (time_value ** 2) / 2.0 }
+
+      it 'retuirns the calculated value' do
+        expect(subject.calculate).to eq(expected)
+      end
+
+      context 'when not all variables have value' do
+        let(:time) { :t }
+
+        it do
+          expect { subject.calculate }.to raise_error(Danica::Exception::NotDefined)
+        end
+
+        context 'but calling calculate with a value for the variables' do
+          it 'calculate using the given value' do
+            expect(subject.calculate(time_value)).to eq(expected)
           end
         end
       end

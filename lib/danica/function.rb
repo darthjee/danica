@@ -22,6 +22,14 @@ module Danica
     def to_f
       raise 'Not IMplemented yet'
     end
+
+    def calculate(*args)
+      non_valued_variables.each.with_index do |v, i|
+        v.value = args[i]
+      end
+
+      to_f
+    end
   
     def to_tex
       Number.new(to_f).to_tex
@@ -54,6 +62,10 @@ module Danica
     end
 
     private
+
+    def non_valued_variables
+      variables.reject(&:valued?)
+    end
 
     def tex_string
       raise 'Not IMplemented yet'
