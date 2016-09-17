@@ -24,10 +24,15 @@ module Danica
     end
 
     def calculate(*args)
+      vars_map = args.extract_options!
       vars = non_valued_variables
 
       vars.each.with_index do |v, i|
         v.value = args[i]
+      end
+
+      vars_map.each do |k, v|
+        public_send("#{k}").value = v
       end
 
       to_f.tap do

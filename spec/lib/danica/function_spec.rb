@@ -231,6 +231,18 @@ describe Danica::Function do
             end.not_to change(subject.time, :valued?)
           end
         end
+
+        context 'when calling with a hash for the values' do
+          it 'calculate using the given value' do
+            expect(subject.calculate(time: time_value)).to eq(expected)
+          end
+
+          it 'does not change the values of then valued variables' do
+            expect do
+              subject.calculate(time: time_value)
+            end.not_to change(subject.time, :valued?)
+          end
+        end
       end
     end
   end
