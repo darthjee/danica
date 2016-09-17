@@ -24,11 +24,15 @@ module Danica
     end
 
     def calculate(*args)
-      non_valued_variables.each.with_index do |v, i|
+      vars = non_valued_variables
+
+      vars.each.with_index do |v, i|
         v.value = args[i]
       end
 
-      to_f
+      to_f.tap do
+        vars.each { |v| v.value = nil }
+      end
     end
   
     def to_tex

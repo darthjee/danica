@@ -224,6 +224,12 @@ describe Danica::Function do
           it 'calculate using the given value' do
             expect(subject.calculate(time_value)).to eq(expected)
           end
+
+          it 'does not change the values of then valued variables' do
+            expect do
+              subject.calculate(time_value)
+            end.not_to change(subject.time, :valued?)
+          end
         end
       end
     end
