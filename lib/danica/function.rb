@@ -24,7 +24,6 @@ module Danica
     end
 
     def calculate(*args)
-      binding.pry
       vars_map = args.extract_options!
       vars_map = variables_value_hash.merge(vars_map)
       vars_map.each do |k, v|
@@ -88,6 +87,7 @@ module Danica
       return Number.new(value) if value.is_a?(Numeric)
       return Variable.new(value) if value.is_a?(Hash)
       return Variable.new(name: value) if [ String, Symbol ].any? { |c| value.is_a?(c) }
+      return Variable.new if value == nil
       value
     end
   end
