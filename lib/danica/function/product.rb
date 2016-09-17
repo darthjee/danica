@@ -1,3 +1,5 @@
+require 'danica/function/chained'
+
 module Danica
   class Function
     class Product < Chained

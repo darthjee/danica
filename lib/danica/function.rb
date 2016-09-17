@@ -4,12 +4,6 @@ module Danica
   
     require 'danica/function/variables_builder'
     require 'danica/function/class_methods'
-    require 'danica/function/chained'
-    require 'danica/function/product'
-    require 'danica/function/sum'
-    require 'danica/function/division'
-    require 'danica/function/power'
-    require 'danica/function/square_root'
   
     attr_accessor :name, :variables
 
