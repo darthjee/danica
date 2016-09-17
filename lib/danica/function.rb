@@ -24,20 +24,16 @@ module Danica
     end
 
     def calculate(*args)
+      binding.pry
       vars_map = args.extract_options!
-      vars = non_valued_variables
-
-      vars.each.with_index do |v, i|
-        v.value = args[i]
-      end
-
+      vars_map = variables_value_hash.merge(vars_map)
       vars_map.each do |k, v|
-        public_send("#{k}").value = v
+        unless v && (v.is_a?(Fixnum) || v.valued?)
+          vars_map[k] = args.shift
+        end
       end
 
-      to_f.tap do
-        vars.each { |v| v.value = nil }
-      end
+      self.class.new(vars_map).to_f
     end
   
     def to_tex
@@ -68,6 +64,10 @@ module Danica
   
     def variables_hash
       @variabels_map ||= (@variables || []).as_hash(self.class.variables_names)
+    end
+
+    def variables_value_hash
+      variables.map(&:value).as_hash(self.class.variables_names)
     end
 
     private
