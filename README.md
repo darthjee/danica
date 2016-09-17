@@ -34,6 +34,11 @@ end
 ### Sample
 
 ```ruby
+require 'danica/function/product'
+require 'danica/function/sum'
+require 'danica/function/division'
+require 'danica/function/power'
+
 class Danica::Function
   class Spatial < Danica::Function
     variables :time, :acceleration, :initial_space, :initial_velocity
