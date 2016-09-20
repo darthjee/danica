@@ -5,9 +5,7 @@ shared_examples 'a function that has two terms' do |name, arguments|
 end
 
 shared_examples 'a function that has two terms and knows how to calculate it' do |name, arguments|
-  %w(values calculated).each do |key|
-    let(key) { arguments[key.to_sym]  }
-  end
+  include_context 'variables are initialized', arguments, *%w(values calculated)
 
   let(:variables) do
     [ 1, 2 ].map do |i|
@@ -65,9 +63,7 @@ end
 shared_examples 'a function that has two terms and knows how to return a string out of it' do |command, arguments|
   let(:values) { arguments[:values]  }
 
-  %w(string_expected numeric_string_expected partial_string_expected).each do |key|
-    let(key) { arguments[command][key.to_sym]  }
-  end
+  include_context 'variables are initialized', arguments[command], *%w(string_expected numeric_string_expected partial_string_expected)
   describe "##{command}" do
     let(:variables) do
       [ 1, 2 ].map do |i|

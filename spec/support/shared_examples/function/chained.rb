@@ -5,9 +5,7 @@ shared_examples 'a function that joins many variables with same operation' do |a
 end
 
 shared_examples 'a function that knows how to calculate' do |arguments|
-  %w(calculated).each do |key|
-    let(key) { arguments[key.to_sym]  }
-  end
+  include_context 'variables are initialized', arguments, 'calculated'
   let(:variables) do
     (1..4).map do |i|
       { name: "X#{i}", value: numeric_variables[i-1] }
@@ -51,9 +49,7 @@ end
 
 shared_examples 'a function that knows how to write to a string' do |command, arguments|
   let(:numeric_variables) { arguments[:numeric_variables]  }
-  %w(integer_expected string_expected float_expected).each do |key|
-    let(key) { arguments[command][key.to_sym]  }
-  end
+  include_context 'variables are initialized', arguments[command], *%w(integer_expected string_expected float_expected)
   let(:subject) do
     described_class.new(*variables, {})
   end

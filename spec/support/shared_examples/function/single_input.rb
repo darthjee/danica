@@ -1,7 +1,5 @@
 shared_examples 'a function with a single input value' do |arguments|
-  %w(variable_value expected_number expected_tex expected_number_text expected_gnu).each do |key|
-    let(key) { arguments[key.to_sym]  }
-  end
+  include_context 'variables are initialized', arguments, *%w(variable_value expected_number expected_tex expected_number_text expected_gnu)
   let(:variable) { { name: "X", value: variable_value } }
   let(:subject) do
     described_class.new(variable, {})
