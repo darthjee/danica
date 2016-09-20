@@ -40,7 +40,7 @@ shared_examples 'a function with a single input value' do |arguments|
 
     context 'when the variable is numeric' do
       before do
-        subject.variable.value = variable_value
+        subject.variables[0].value = variable_value
       end
       it 'prints both numbers' do
         expect(subject.to_tex).to eq(expected_number_text)
@@ -59,7 +59,7 @@ shared_examples 'a function with a single input value' do |arguments|
 
     context 'when the variable is numeric' do
       before do
-        subject.variable.value = variable_value
+        subject.variables[0].value = variable_value
       end
       it 'prints both numbers' do
         expect(subject.to_gnu).to eq(expected_number_text)
