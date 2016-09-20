@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Danica::Function::Power do
   let(:subject) do
-    described_class.new(base: variables[0], exponent: variables[1])
+    described_class.new(*variables, {})
   end
 
   it_behaves_like 'a function that has two terms', :power, {

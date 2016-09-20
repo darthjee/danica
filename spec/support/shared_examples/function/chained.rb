@@ -15,7 +15,7 @@ shared_examples 'a function that knows how to calculate' do |arguments|
   end
   let(:numeric_variables){ (1..4).to_a }
   let(:subject) do
-    described_class.new(variables: variables)
+    described_class.new(*variables, {})
   end
 
   describe 'to_f' do
@@ -55,7 +55,7 @@ shared_examples 'a function that knows how to write to a string' do |command, ar
     let(key) { arguments[command][key.to_sym]  }
   end
   let(:subject) do
-    described_class.new(variables: variables)
+    described_class.new(*variables, {})
   end
 
   describe "#{command}" do

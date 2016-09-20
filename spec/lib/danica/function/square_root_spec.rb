@@ -4,7 +4,7 @@ describe Danica::Function::SquareRoot do
   let(:variables_number) { 4 }
   let(:variable) { { name: "X", value: 9 } }
   let(:subject) do
-    described_class.new(variable: variable)
+    described_class.new(variable, {})
   end
 
   describe '#to_f' do
