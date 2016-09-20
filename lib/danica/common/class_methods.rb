@@ -1,4 +1,4 @@
-class Danica::Operator
+class Danica::Common
   class << self
     def variables(*names)
       VariablesBuilder.new(names, self).build
