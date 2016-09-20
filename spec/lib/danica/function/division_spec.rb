@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Danica::Function::Division do
   let(:subject) do
-    described_class.new(numerator: variables[0], denominator: variables[1])
+    described_class.new(*variables, {})
   end
 
   it_behaves_like 'a function that has two terms', :division, {
