@@ -1,11 +1,11 @@
 require 'spec_helper'
 
-describe Danica::Function::Division do
+describe Danica::Operator::Division do
   let(:subject) do
     described_class.new(*variables, {})
   end
 
-  it_behaves_like 'a function that has two terms', :division, {
+  it_behaves_like 'a operator that has two terms', :division, {
     values: [ 2, 4 ],
     calculated: 1.0 / 2.0,
     to_tex: {

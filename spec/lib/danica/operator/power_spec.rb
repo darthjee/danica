@@ -1,11 +1,11 @@
 require 'spec_helper'
 
-describe Danica::Function::Power do
+describe Danica::Operator::Power do
   let(:subject) do
     described_class.new(*variables, {})
   end
 
-  it_behaves_like 'a function that has two terms', :power, {
+  it_behaves_like 'a operator that has two terms', :power, {
     values: [ 3, 2 ],
     calculated: 9.0,
     to_tex: {

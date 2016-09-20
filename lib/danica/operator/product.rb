@@ -1,7 +1,7 @@
-require 'danica/function/chained'
+require 'danica/operator/chained'
 
 module Danica
-  class Function
+  class Operator
     class Product < Chained
       private
 

@@ -1,6 +1,6 @@
 module Danica
-  class Function
-    class SquareRoot < Function
+  class Operator
+    class SquareRoot < Operator
       variables :variable
 
       def to_f

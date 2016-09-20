@@ -1,7 +1,7 @@
 require 'concern_builder'
 require 'bidu/core_ext'
 
-class Danica::Function
+class Danica::Operator
   class VariablesBuilder < ::ConcernBuilder
     attr_reader :instance
 

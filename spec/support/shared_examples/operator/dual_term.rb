@@ -1,10 +1,10 @@
-shared_examples 'a function that has two terms' do |name, arguments|
-  it_behaves_like 'a function that has two terms and knows how to calculate it', name, arguments
-  it_behaves_like 'a function that has two terms and knows how to call to_tex', arguments
-  it_behaves_like 'a function that has two terms and knows how to call to_gnu', arguments
+shared_examples 'a operator that has two terms' do |name, arguments|
+  it_behaves_like 'a operator that has two terms and knows how to calculate it', name, arguments
+  it_behaves_like 'a operator that has two terms and knows how to call to_tex', arguments
+  it_behaves_like 'a operator that has two terms and knows how to call to_gnu', arguments
 end
 
-shared_examples 'a function that has two terms and knows how to calculate it' do |name, arguments|
+shared_examples 'a operator that has two terms and knows how to calculate it' do |name, arguments|
   include_context 'variables are initialized', arguments, *%w(values calculated)
 
   let(:variables) do
@@ -52,15 +52,15 @@ shared_examples 'a function that has two terms and knows how to calculate it' do
   end
 end
 
-shared_examples 'a function that has two terms and knows how to call to_tex' do |arguments|
-  it_behaves_like 'a function that has two terms and knows how to return a string out of it', :to_tex, arguments
+shared_examples 'a operator that has two terms and knows how to call to_tex' do |arguments|
+  it_behaves_like 'a operator that has two terms and knows how to return a string out of it', :to_tex, arguments
 end
 
-shared_examples 'a function that has two terms and knows how to call to_gnu' do |arguments|
-  it_behaves_like 'a function that has two terms and knows how to return a string out of it', :to_gnu, arguments
+shared_examples 'a operator that has two terms and knows how to call to_gnu' do |arguments|
+  it_behaves_like 'a operator that has two terms and knows how to return a string out of it', :to_gnu, arguments
 end
 
-shared_examples 'a function that has two terms and knows how to return a string out of it' do |command, arguments|
+shared_examples 'a operator that has two terms and knows how to return a string out of it' do |command, arguments|
   let(:values) { arguments[:values]  }
 
   include_context 'variables are initialized', arguments[command], *%w(string_expected numeric_string_expected partial_string_expected)

@@ -46,7 +46,7 @@ describe Danica::Function do
   let(:subject) { described_class::Spatial.new(variables) }
 
   describe '#to_tex' do
-    context 'when creating the spatial function for constantly accelerated movement' do
+    context 'when creating the spatial operator for constantly accelerated movement' do
       let(:expected) { 'S_0 + V_0 \cdot t + \frac{a \cdot t^{2}}{2}'  }
 
       it 'return the latex format CAM' do
@@ -56,7 +56,7 @@ describe Danica::Function do
   end
 
   describe '#to_gnu' do
-    context 'when creating the spatial function for constantly accelerated movement' do
+    context 'when creating the spatial operator for constantly accelerated movement' do
       let(:expected) { 'S0 + V0 * t + a * t**2/2'  }
 
       it 'return the latex format CAM' do
