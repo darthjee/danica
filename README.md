@@ -26,7 +26,7 @@ Operators are to be composed to create a Function (see below) being their differ
 
 ```ruby
 class MyOperator < Danica::Operator
-  variables :variables_list
+  variables :elements_list
   def to_f
     #implement to float method
   end
@@ -103,21 +103,36 @@ returns
 
 ### Functions
 
-```ruby
-require 'danica/function/product'
-require 'danica/function/sum'
-require 'danica/function/division'
-require 'danica/function/power'
+Functions are composition of operators threating their variables input.
 
-class Danica::Function
-  class Spatial < Danica::Function
+Example of function could be ```f(x,y) = x ^ y + y / 2``` which is composed of an operator sum of 2 parcels,
+being the first an operator power and the second an operator division, while the variable ```x``` is only used
+as the base of the power operator and the y variable is present on both power and division operator
+
+```ruby
+class MyFunction
+  variables :variables_list
+
+  # code of operators composition
+end
+```
+
+#### Sample
+```ruby
+require 'danica/operator/product'
+require 'danica/operator/sum'
+require 'danica/operator/division'
+require 'danica/operator/power'
+
+module Danica
+  class Function::Spatial < Function
     variables :time, :acceleration, :initial_space, :initial_velocity
     delegate :to_tex, :to_gnu, to: :sum
 
     private
 
     def sum
-      @sum ||= Sum.new(parcels)
+      @sum ||= Operator::Sum.new(parcels)
     end
 
     def parcels
@@ -129,28 +144,26 @@ class Danica::Function
     end
 
     def spatial_velocity
-      Product.new(initial_velocity, time)
+      Operator::Product.new(initial_velocity, time)
     end
 
     def spatial_acceleration
-      Division.new(Product.new(acceleration, time_squared), 2)
+      Operator::Division.new(Operator::Product.new(acceleration, time_squared), 2)
     end
 
     def time_squared
-      Power.new(time, 2)
+      Operator::Power.new(time, 2)
     end
   end
 end
 
-fx = Danica::Function.new(
+fx = Danica::Function::Spatial.new(
   time: :t,
   acceleration: 'a',
   initial_space: { name: :S0, latex: 'S_0', gnu: 'S0' },
   initial_velocity: { name: :V0, latex: 'V_0', gnu: 'V0' }
 )
 ```
-
-#### to_tex
 
 ```ruby
 fx.to_tex
@@ -161,8 +174,6 @@ returns
 S_0 + V_0 \cdot t + \frac{a \cdot t^2}{2}
 ```
 
-#### to_gnu
-
 ```ruby
 fx.to_gnu
 ```
@@ -172,10 +183,8 @@ returns
 S0 + V0 * t + a * t**2/2
 ```
 
-#### calculate
-
 ```ruby
-fx = Danica::Function.new(
+fx = Danica::Function::Spatial.new(
   time: :t,
   acceleration: :a,
   initial_space: 1,
