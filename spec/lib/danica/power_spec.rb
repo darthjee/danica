@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Danica::Operator::Power do
+describe Danica::Power do
   let(:subject) do
     described_class.new(*variables)
   end

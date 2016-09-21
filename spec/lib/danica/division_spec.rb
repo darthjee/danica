@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Danica::Operator::Division do
+describe Danica::Division do
   let(:subject) do
     described_class.new(*variables)
   end

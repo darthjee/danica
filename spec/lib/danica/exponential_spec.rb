@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Danica::Operator::Exponential do
+describe Danica::Exponential do
   it_behaves_like 'a operator with a single input value', {
     variable_value: 2,
     expected_number: Math.exp(2),
