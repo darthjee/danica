@@ -72,6 +72,8 @@ end
 
 fx = Danica::Inverse.new(:x)
 ```
+
+##### to_tex
 ```ruby
 fx.to_tex
 ```
@@ -80,6 +82,8 @@ returns
 ```string
 (x)^{-1}
 ```
+
+##### to_gnu
 ```ruby
 fx.to_gnu
 ```
@@ -88,6 +92,8 @@ returns
 ```string
 (x) ** -1
 ```
+
+##### calculate / to_f
 ```ruby
 fx.calculate(2)
 ```
@@ -96,7 +102,7 @@ or
 Danica::Inverse.new(2).to_f
 ```
 
-returns
+both return
 ```string
 0.5
 ```
@@ -165,6 +171,7 @@ fx = Danica::Function::Spatial.new(
 )
 ```
 
+##### to_tex
 ```ruby
 fx.to_tex
 ```
@@ -174,6 +181,7 @@ returns
 S_0 + V_0 \cdot t + \frac{a \cdot t^2}{2}
 ```
 
+##### to_gnu
 ```ruby
 fx.to_gnu
 ```
@@ -183,6 +191,7 @@ returns
 S0 + V0 * t + a * t**2/2
 ```
 
+##### to_gnu
 ```ruby
 fx = Danica::Function::Spatial.new(
   time: :t,
@@ -195,13 +204,21 @@ fx = Danica::Function::Spatial.new(
 ```ruby
 fx.calculate(10, 3)
 ```
+
 or
+
 
 ```ruby
 fx.calculate(time: 10, acceleration: 3)
 ```
 
-bothe return
+or
+
+```ruby
+Danica::Function::Spatial.new(10, 3, 1, 2).to_f
+```
+
+all return
 
 ```ruby
 171.0
