@@ -13,7 +13,7 @@ shared_examples 'a operator that knows how to calculate' do |arguments|
   end
   let(:numeric_variables){ (1..4).to_a }
   let(:subject) do
-    described_class.new(*variables, {})
+    described_class.new(*variables)
   end
 
   describe 'to_f' do
@@ -51,7 +51,7 @@ shared_examples 'a operator that knows how to write to a string' do |command, ar
   let(:numeric_variables) { arguments[:numeric_variables]  }
   include_context 'variables are initialized', arguments[command], *%w(integer_expected string_expected float_expected)
   let(:subject) do
-    described_class.new(*variables, {})
+    described_class.new(*variables)
   end
 
   describe "#{command}" do

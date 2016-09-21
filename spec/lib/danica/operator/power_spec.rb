@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Danica::Operator::Power do
   let(:subject) do
-    described_class.new(*variables, {})
+    described_class.new(*variables)
   end
 
   it_behaves_like 'a operator that has two terms', :power, {

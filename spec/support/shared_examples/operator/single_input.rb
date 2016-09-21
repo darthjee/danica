@@ -2,7 +2,7 @@ shared_examples 'a operator with a single input value' do |arguments|
   include_context 'variables are initialized', arguments, *%w(variable_value expected_number expected_tex expected_number_text expected_gnu)
   let(:variable) { { name: "X", value: variable_value } }
   let(:subject) do
-    described_class.new(variable, {})
+    described_class.new(variable)
   end
 
   describe '#to_f' do
