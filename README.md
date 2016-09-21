@@ -17,21 +17,91 @@ bundle install danica
 
 Now you can use in your project
 
+### Operators
+Operators are much like function, but they do not have a name.
+
+While a function would be something in the format ```f(x) = x + 1```, an operator would just represent the sum ```x + 1```
+
+Operators are to be composed to create a Function (see below) being their difference almost semantic
 
 ```ruby
-class MyFunction < Danica::Function
+class MyOperator < Danica::Operator
+  variables :variables_list
   def to_f
     #implement to float method
   end
 
   def to_tex
-    #implement to tex method
+    #optionaly implement custom to_tex method
+  end
+
+  def to_gnu
+    #optionaly implement custom to_gnu method
+  end
+
+  private
+
+  def tex_string
+    #implement tex_string here
+  end
+
+  def gnu_string
+    #implement gnu_string here
   end
 end
 ```
+#### Sample
+```ruby
+class Danica::Inverse
+  variables :value
 
+  def to_f
+    value.to_f ** -1 #Do not worry with nil value as this has been implemented already raising Danica::Exception::NotDefined
+  end
 
-### Sample
+  private
+
+  def tex_string
+    "(#{value.to_tex})^{-1}"
+  end
+
+  def gnu_string
+    "(#{value.to_gnu}) ** -1"
+  end
+end
+
+fx = Danica::Inverse.new(:x)
+```
+```ruby
+fx.to_tex
+```
+
+returns
+```string
+(x)^{-1}
+```
+```ruby
+fx.to_gnu
+```
+
+returns
+```string
+(x) ** -1
+```
+```ruby
+fx.calculate(2)
+```
+or
+```ruby
+Danica::Inverse.new(2).to_f
+```
+
+returns
+```string
+0.5
+```
+
+### Functions
 
 ```ruby
 require 'danica/function/product'
