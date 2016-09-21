@@ -1,7 +1,7 @@
-require 'danica/function/chained'
+require 'danica/operator/chained'
 
 module Danica
-  class Function
+  class Operator
     class Sum < Chained
       private
 

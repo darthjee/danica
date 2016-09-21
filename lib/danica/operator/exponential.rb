@@ -1,6 +1,6 @@
 module Danica
-  class Function
-    class Exponential < Function
+  class Operator
+    class Exponential < Operator
       variables :exponent
 
       def to_f

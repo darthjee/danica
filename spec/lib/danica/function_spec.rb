@@ -1,15 +1,15 @@
 require 'spec_helper'
 
 describe Danica::Function do
-  class Danica::Function
-    class Spatial < Danica::Function
+  module Danica
+    class Function::Spatial < Function
       variables :time, :acceleration, :initial_space, :initial_velocity
       delegate :to_f, :to_tex, :to_gnu, to: :sum
 
       private
 
       def sum
-        @sum ||= Sum.new(parcels)
+        @sum ||= Operator::Sum.new(parcels)
       end
 
       def parcels
@@ -21,15 +21,15 @@ describe Danica::Function do
       end
 
       def spatial_velocity
-        Product.new(initial_velocity, time)
+        Operator::Product.new(initial_velocity, time)
       end
 
       def spatial_acceleration
-        Division.new(Product.new(acceleration, time_squared), 2)
+        Operator::Division.new(Operator::Product.new(acceleration, time_squared), 2)
       end
 
       def time_squared
-        Power.new(time, 2)
+        Operator::Power.new(time, 2)
       end
     end
   end
@@ -46,7 +46,7 @@ describe Danica::Function do
   let(:subject) { described_class::Spatial.new(variables) }
 
   describe '#to_tex' do
-    context 'when creating the spatial function for constantly accelerated movement' do
+    context 'when creating the spatial operator for constantly accelerated movement' do
       let(:expected) { 'S_0 + V_0 \cdot t + \frac{a \cdot t^{2}}{2}'  }
 
       it 'return the latex format CAM' do
@@ -56,7 +56,7 @@ describe Danica::Function do
   end
 
   describe '#to_gnu' do
-    context 'when creating the spatial function for constantly accelerated movement' do
+    context 'when creating the spatial operator for constantly accelerated movement' do
       let(:expected) { 'S0 + V0 * t + a * t**2/2'  }
 
       it 'return the latex format CAM' do

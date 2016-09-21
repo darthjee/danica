@@ -1,10 +1,10 @@
-shared_examples 'a function that joins many variables with same operation' do |arguments|
-  it_behaves_like 'a function that knows how to calculate', arguments
-  it_behaves_like 'a function that knows how to write to tex', arguments
-  it_behaves_like 'a function that knows how to write to gnu', arguments
+shared_examples 'a operator that joins many variables with same operation' do |arguments|
+  it_behaves_like 'a operator that knows how to calculate', arguments
+  it_behaves_like 'a operator that knows how to write to tex', arguments
+  it_behaves_like 'a operator that knows how to write to gnu', arguments
 end
 
-shared_examples 'a function that knows how to calculate' do |arguments|
+shared_examples 'a operator that knows how to calculate' do |arguments|
   include_context 'variables are initialized', arguments, 'calculated'
   let(:variables) do
     (1..4).map do |i|
@@ -13,7 +13,7 @@ shared_examples 'a function that knows how to calculate' do |arguments|
   end
   let(:numeric_variables){ (1..4).to_a }
   let(:subject) do
-    described_class.new(*variables, {})
+    described_class.new(*variables)
   end
 
   describe 'to_f' do
@@ -39,19 +39,19 @@ shared_examples 'a function that knows how to calculate' do |arguments|
   end
 end
 
-shared_examples 'a function that knows how to write to tex' do |arguments|
-  it_behaves_like 'a function that knows how to write to a string', :to_tex, arguments
+shared_examples 'a operator that knows how to write to tex' do |arguments|
+  it_behaves_like 'a operator that knows how to write to a string', :to_tex, arguments
 end
 
-shared_examples 'a function that knows how to write to gnu' do |arguments|
-  it_behaves_like 'a function that knows how to write to a string', :to_gnu, arguments
+shared_examples 'a operator that knows how to write to gnu' do |arguments|
+  it_behaves_like 'a operator that knows how to write to a string', :to_gnu, arguments
 end
 
-shared_examples 'a function that knows how to write to a string' do |command, arguments|
+shared_examples 'a operator that knows how to write to a string' do |command, arguments|
   let(:numeric_variables) { arguments[:numeric_variables]  }
   include_context 'variables are initialized', arguments[command], *%w(integer_expected string_expected float_expected)
   let(:subject) do
-    described_class.new(*variables, {})
+    described_class.new(*variables)
   end
 
   describe "#{command}" do

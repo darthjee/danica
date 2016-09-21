@@ -1,6 +1,6 @@
 module Danica
-  class Function
-    class Chained < Function
+  class Operator
+    class Chained < Operator
       def to_f
         chain(variables.map(&:to_f))
       end

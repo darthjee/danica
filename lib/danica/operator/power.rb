@@ -1,6 +1,6 @@
 module Danica
-  class Function
-    class Power < Function
+  class Operator
+    class Power < Operator
       variables :base, :exponent
 
       def to_f

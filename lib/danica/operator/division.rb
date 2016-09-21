@@ -1,6 +1,6 @@
 module Danica
-  class Function
-    class Division < Function
+  class Operator
+    class Division < Operator
       variables :numerator, :denominator
 
       def to_f
