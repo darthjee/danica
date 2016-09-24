@@ -191,7 +191,7 @@ returns
 S0 + V0 * t + a * t**2/2
 ```
 
-##### to_gnu
+##### calculate / to_f
 ```ruby
 fx = Danica::Function::Spatial.new(
   time: :t,
