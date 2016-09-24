@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Danica::Operator::SquareRoot do
+describe Danica::SquareRoot do
   it_behaves_like 'a operator with a single input value', {
     variable_value: 9,
     expected_number: 3.0,

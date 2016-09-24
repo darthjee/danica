@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Danica::Operator::Product do
+describe Danica::Product do
   it_behaves_like 'a operator that joins many variables with same operation', {
     calculated: 24,
     numeric_variables: [ 1.5, 2, 3.5 ],
