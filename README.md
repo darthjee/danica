@@ -22,7 +22,7 @@ Operators are much like function, but they do not have a name.
 
 While a function would be something in the format ```f(x) = x + 1```, an operator would just represent the sum ```x + 1```
 
-Operators are to be composed to create a Function (see below) being their difference almost semantic
+Operators are to be composed to create a Function ([see below](#functions)) being their difference almost semantic
 
 ```ruby
 class MyOperator < Danica::Operator
