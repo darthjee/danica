@@ -138,7 +138,7 @@ module Danica
     private
 
     def sum
-      @sum ||= Operator::Sum.new(parcels)
+      @sum ||= Sum.new(parcels)
     end
 
     def parcels
@@ -150,15 +150,15 @@ module Danica
     end
 
     def spatial_velocity
-      Operator::Product.new(initial_velocity, time)
+      Product.new(initial_velocity, time)
     end
 
     def spatial_acceleration
-      Operator::Division.new(Operator::Product.new(acceleration, time_squared), 2)
+      Division.new(Product.new(acceleration, time_squared), 2)
     end
 
     def time_squared
-      Operator::Power.new(time, 2)
+      Power.new(time, 2)
     end
   end
 end
