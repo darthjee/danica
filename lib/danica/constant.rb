@@ -28,5 +28,8 @@ module Danica
       true
     end
   end
+
+  E = Constant.new(Math::E, :e, 'exp(1)')
+  PI =  Constant.new(Math::PI, '\pi', :pi)
 end
 
