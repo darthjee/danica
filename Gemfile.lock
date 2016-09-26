@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    danica (2.0.0)
+    danica (2.0.1)
       activemodel
       activesupport
       bidu-core_ext
