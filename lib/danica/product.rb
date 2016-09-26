@@ -5,15 +5,15 @@ module Danica
     private
 
     def tex_symbol
-    '\cdot'
+      '\cdot'
     end
 
     def gnu_symbol
-    '*'
+      '*'
     end
 
     def chain_operation(a, b)
-    a * b
+      a * b
     end
   end
 end
