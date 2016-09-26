@@ -7,5 +7,6 @@ module Danica
   require 'danica/operator'
   require 'danica/function'
   require 'danica/exception'
+  require 'danica/constant'
 end
 
