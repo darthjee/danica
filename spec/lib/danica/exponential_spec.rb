@@ -1,9 +1,7 @@
 require 'spec_helper'
 
 describe Danica::Exponential do
-  let(:subject) do
-    described_class.new(2)
-  end
+  subject { described_class.new(2) }
 
   it_behaves_like 'an object with + operation'
 

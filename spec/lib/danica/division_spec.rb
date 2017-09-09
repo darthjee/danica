@@ -2,9 +2,7 @@ require 'spec_helper'
 
 describe Danica::Division do
   let(:variables) { [2, 4] }
-  let(:subject) do
-    described_class.new(*variables)
-  end
+  subject { described_class.new(*variables) }
 
   it_behaves_like 'an object with + operation'
 

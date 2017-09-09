@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Danica::SquaredRoot do
-  let(:subject) { described_class.new(9) }
+  subject { described_class.new(9) }
 
   it_behaves_like 'an object with + operation'
 

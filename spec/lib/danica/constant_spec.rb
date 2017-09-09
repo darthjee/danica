@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Danica::Constant do
-  let(:subject) { described_class.new(2.5, :M, :m) }
+  subject { described_class.new(2.5, :M, :m) }
   let(:other) { described_class.new(3, :N, :n) }
 
   it_behaves_like 'an object with + operation'

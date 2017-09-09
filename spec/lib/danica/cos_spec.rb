@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Danica::Cos do
   it_behaves_like 'an object with + operation' do
-    let(:subject) { described_class.new(:x) }
+    subject { described_class.new(:x) }
   end
 
   it_behaves_like 'a operator with a single input value', {

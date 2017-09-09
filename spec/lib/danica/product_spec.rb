@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Danica::Product do
-  let(:subject) { described_class.new(2,4) }
+  subject { described_class.new(2,4) }
 
   it_behaves_like 'an object with + operation'
 
