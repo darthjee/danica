@@ -1,5 +1,5 @@
 module Danica
-  class SquareRoot < Operator
+  class SquaredRoot < Operator
     variables :variable
 
     def to_f

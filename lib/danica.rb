@@ -13,7 +13,7 @@ module Danica
   autoload :Sum,         'danica/sum'
   autoload :Division,    'danica/division'
   autoload :Power,       'danica/power'
-  autoload :SquareRoot,  'danica/square_root'
+  autoload :SquaredRoot,  'danica/squared_root'
   autoload :Exponential, 'danica/exponential'
   autoload :Sin,         'danica/sin'
   autoload :Cos,         'danica/cos'
