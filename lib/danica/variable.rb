@@ -1,6 +1,7 @@
 module Danica
   class Variable
     include ActiveModel::Model
+    include BaseOperations
     attr_accessor :value, :name, :latex, :gnu
 
     def to_f

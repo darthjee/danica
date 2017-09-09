@@ -1,9 +1,12 @@
 require 'spec_helper'
 
 describe Danica::Division do
+  let(:variables) { [2, 4] }
   let(:subject) do
     described_class.new(*variables)
   end
+
+  it_behaves_like 'an object with + operation'
 
   it_behaves_like 'a operator that has two terms', :division, {
     values: [ 2, 4 ],

@@ -1,6 +1,10 @@
 require 'spec_helper'
 
 describe Danica::Variable do
+  it_behaves_like 'an object with + operation' do
+    let(:subject) { described_class.new(value: 100) }
+  end
+
   describe '#to_f' do
     context 'when variable has no value' do
       it { expect { subject.to_f }.to raise_error(Danica::Exception::NotDefined) }

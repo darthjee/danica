@@ -1,5 +1,7 @@
 module Danica
   class Constant
+    include BaseOperations
+
     attr_reader :value, :latex, :gnu
 
     def initialize(value, latex, gnu)

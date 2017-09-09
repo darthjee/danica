@@ -1,5 +1,6 @@
 module Danica
   class Common
+    include BaseOperations
     require 'danica/common/class_methods'
     require 'danica/common/variables_builder'
 

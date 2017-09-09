@@ -2,6 +2,9 @@ require 'spec_helper'
 
 describe Danica::Constant do
   let(:subject) { described_class.new(2.5, :M, :m) }
+  let(:other) { described_class.new(3, :N, :n) }
+
+  it_behaves_like 'an object with + operation'
 
   describe '#to_f' do
     it 'has a value' do
@@ -34,7 +37,6 @@ describe Danica::Constant do
 
     context 'when comparing with a diferent object' do
       context 'with diferent values' do
-        let(:other) { described_class.new(3, :N, :n) }
         it { expect(subject).not_to eq(other) }
       end
 
