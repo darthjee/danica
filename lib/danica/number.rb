@@ -1,6 +1,7 @@
 module Danica
   class Number
     include ActiveModel::Model
+    include BaseOperations
 
     attr_accessor :value
 

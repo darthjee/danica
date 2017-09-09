@@ -43,7 +43,7 @@ describe Danica::Function do
     }
   end
 
-  let(:subject) { described_class::Spatial.new(variables) }
+  subject { described_class::Spatial.new(variables) }
 
   describe '#to_tex' do
     context 'when creating the spatial operator for constantly accelerated movement' do
@@ -112,7 +112,7 @@ describe Danica::Function do
     context 'when initializing with array' do
       context 'as hash' do
         let(:variables) { [ :t, 'a', {name: :S0, latex: 'S_0'}, { name: :V0, latex: 'V_0' } ] }
-        let(:subject) { described_class::Spatial.new(variables) }
+        subject { described_class::Spatial.new(variables) }
 
         it 'returns a hash with the variabels' do
           expect(subject.variables_hash).to eq(expected)
@@ -123,7 +123,7 @@ describe Danica::Function do
     context 'when initializing with sequence' do
       context 'as hash' do
         let(:variables) { [ :t, 'a', {name: :S0, latex: 'S_0'}, { name: :V0, latex: 'V_0' } ] }
-        let(:subject) { described_class::Spatial.new(*variables, {}) }
+        subject { described_class::Spatial.new(*variables, {}) }
 
         it 'returns a hash with the variabels' do
           expect(subject.variables_hash).to eq(expected)
@@ -134,7 +134,7 @@ describe Danica::Function do
     context 'when initializing with variables array' do
       context 'as hash' do
         let(:variables) { [ :t, 'a', {name: :S0, latex: 'S_0'}, { name: :V0, latex: 'V_0' } ] }
-        let(:subject) { described_class::Spatial.new(variables: variables) }
+        subject { described_class::Spatial.new(variables: variables) }
 
         it 'returns a hash with the variabels' do
           expect(subject.variables_hash).to eq(expected)
@@ -145,7 +145,7 @@ describe Danica::Function do
 
   describe '#variables' do
     context 'when initialized with an array of variables' do
-      let(:subject) { described_class::Spatial.new(variables: variables.values) }
+      subject { described_class::Spatial.new(variables: variables.values) }
       let(:expected) { variables.values.map { |v| subject.send(:wrap_value, v)} }
       it do
         expect(subject.variables.compact).to eq(expected)
@@ -153,7 +153,7 @@ describe Danica::Function do
     end
 
     context 'when not initializing all variables' do
-      let(:subject) { described_class::Spatial.new }
+      subject { described_class::Spatial.new }
       let(:time) { Danica::Variable.new(name: :t) }
 
       context 'when initialized with an empty variable set' do
@@ -174,7 +174,7 @@ describe Danica::Function do
 
       context 'when initializing with a variable set' do
         let(:names) { [ :t, :a, :s0, :v0 ] }
-        let(:subject) { described_class::Spatial.new *names }
+        subject { described_class::Spatial.new *names }
 
         it 'returns the variables given oin initialization' do
           expect(subject.variables.map(&:name)).to eq(names)
@@ -189,7 +189,7 @@ describe Danica::Function do
               time: :t
             }
           end
-          let(:subject) { described_class::Spatial.new variables }
+          subject { described_class::Spatial.new variables }
 
           it 'returns the variables given on initialization' do
             expect(subject.variables.map(&:name)).to eq(names)
@@ -206,7 +206,7 @@ describe Danica::Function do
       let(:acceleration) { 3 }
       let(:initial_space) { 1 }
       let(:initial_velocity) { 1 }
-      let(:subject) { described_class::Spatial.new(time, acceleration, initial_space, initial_velocity) }
+      subject { described_class::Spatial.new(time, acceleration, initial_space, initial_velocity) }
       let(:expected) { initial_space + initial_velocity * time_value + acceleration * (time_value ** 2) / 2.0 }
 
       it 'retuirns the calculated value' do

@@ -1,9 +1,10 @@
 require 'spec_helper'
 
 describe Danica::Power do
-  let(:subject) do
-    described_class.new(*variables)
-  end
+  let(:variables) { [2, 4] }
+  subject { described_class.new(*variables) }
+
+  it_behaves_like 'an object with + operation'
 
   it_behaves_like 'a operator that has two terms', :power, {
     values: [ 3, 2 ],

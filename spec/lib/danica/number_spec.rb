@@ -2,7 +2,9 @@ require 'spec_helper'
 
 describe Danica::Number do
   let(:value) { 10 }
-  let(:subject) { described_class.new(value) }
+  subject { described_class.new(value) }
+
+  it_behaves_like 'an object with + operation'
 
   describe '#to_f' do
     it 'returns the float of value' do

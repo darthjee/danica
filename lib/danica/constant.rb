@@ -1,5 +1,7 @@
 module Danica
   class Constant
+    include BaseOperations
+
     attr_reader :value, :latex, :gnu
 
     def initialize(value, latex, gnu)
@@ -14,6 +16,7 @@ module Danica
 
     def ==(other)
       return false unless other.class == self.class
+      gnu == other.gnu && latex == other.latex && value == other.value
     end
 
     def to_tex

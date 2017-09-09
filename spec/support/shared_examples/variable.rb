@@ -2,7 +2,7 @@ shared_examples 'a variable method to formated string' do |method, format|
   let(:name) { :delta }
   let(:value) { 10.0 }
   let(:arguments) { { name: name, latex: '\delta', gnu: 'del' } }
-  let(:subject) { described_class.new(arguments) }
+  subject { described_class.new(arguments) }
 
   context "when #{format} is not defined" do
     before { arguments.delete(format) }
