@@ -26,5 +26,23 @@ describe Danica::Constant do
     it { expect(subject).not_to respond_to(:latex=) }
     it { expect(subject).not_to respond_to(:gnu=) }
   end
+
+  describe '==' do
+    context 'when comparing with the same object' do
+      it { expect(subject).to eq(subject) }
+    end
+
+    context 'when comparing with a diferent object' do
+      context 'with diferent values' do
+        let(:other) { described_class.new(3, :N, :n) }
+        it { expect(subject).not_to eq(other) }
+      end
+
+      context 'with same values' do
+        let(:other) { described_class.new(2.5, :M, :m) }
+        it { expect(subject).to eq(other) }
+      end
+    end
+  end
 end
 

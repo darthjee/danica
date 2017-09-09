@@ -14,6 +14,7 @@ module Danica
 
     def ==(other)
       return false unless other.class == self.class
+      gnu == other.gnu && latex == other.latex && value == other.value
     end
 
     def to_tex
