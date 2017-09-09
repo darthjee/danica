@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    danica (2.0.1)
+    danica (2.0.2)
       activemodel
       activesupport
       bidu-core_ext
@@ -10,27 +10,27 @@ PATH
 GEM
   remote: https://rubygems.org/
   specs:
-    activemodel (5.0.0.1)
-      activesupport (= 5.0.0.1)
-    activesupport (5.0.0.1)
+    activemodel (5.1.4)
+      activesupport (= 5.1.4)
+    activesupport (5.1.4)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (~> 0.7)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
-    bidu-core_ext (1.2.2)
-      activesupport
+    bidu-core_ext (1.2.4)
+      activesupport (~> 5.1.1)
     codeclimate-test-reporter (0.5.0)
       simplecov (>= 0.7.1, < 1.0.0)
     coderay (1.1.1)
     concern_builder (0.0.2)
       activesupport
-    concurrent-ruby (1.0.2)
+    concurrent-ruby (1.0.5)
     diff-lcs (1.2.5)
     docile (1.1.5)
-    i18n (0.7.0)
+    i18n (0.8.6)
     json (2.1.0)
     method_source (0.8.2)
-    minitest (5.9.0)
+    minitest (5.10.3)
     pry (0.10.4)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -52,8 +52,8 @@ GEM
       simplecov-html (~> 0.10.0)
     simplecov-html (0.10.2)
     slop (3.6.0)
-    thread_safe (0.3.5)
-    tzinfo (1.2.2)
+    thread_safe (0.3.6)
+    tzinfo (1.2.3)
       thread_safe (~> 0.1)
 
 PLATFORMS
