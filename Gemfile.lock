@@ -2,8 +2,8 @@ PATH
   remote: .
   specs:
     danica (2.0.2)
-      activemodel
-      activesupport
+      activemodel (~> 5.1.4)
+      activesupport (~> 5.1.4)
       bidu-core_ext
       concern_builder
 
