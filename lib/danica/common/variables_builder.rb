@@ -1,5 +1,5 @@
 require 'concern_builder'
-require 'bidu/core_ext'
+require 'darthjee/core_ext'
 
 class Danica::Common
   class VariablesBuilder < ::ConcernBuilder
