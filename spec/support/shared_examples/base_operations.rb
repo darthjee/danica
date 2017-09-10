@@ -4,6 +4,12 @@ shared_examples 'an object with + operation' do
   let(:summed) { subject + other }
 
   it { expect(summed).to be_a(Danica::Sum) }
-  it { expect(summed.variables).to be_include(other_parcel) }
-  it { expect(summed.variables).to be_include(subject) }
+
+  it 'includes other as parcel of the sum' do
+    expect(summed).to be_include(other_parcel)
+  end
+
+  it 'includes the subject as parcel' do
+    expect(summed).to be_include(subject)
+  end
 end

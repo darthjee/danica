@@ -1,6 +1,8 @@
 module Danica
   class Operator
     class Chained < Operator
+      delegate :include?, to: :variables
+
       def to_f
         chain(variables.map(&:to_f))
       end
