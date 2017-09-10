@@ -1,0 +1,18 @@
+version: '2'
+services:
+  base: &base
+    image: ruby:2.4.0
+    working_dir: /home/app/danica
+    volumes:
+      - .:/home/app/danica
+      - danica_gems_2_4_0:/usr/local/bundle
+
+  #################### CONTAINERS ####################
+
+  danica:
+    <<: *base
+    container_name: danica
+    command: bundle exec rspec
+
+volumes:
+  danica_gems_2_4_0:
