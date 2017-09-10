@@ -3,7 +3,8 @@ require 'danica/operator/chained'
 module Danica
   class Sum < Operator::Chained
     def +(other)
-      Sum.new(variables + [ other ])
+      other_variables = other.is_a?(self.class) ? other.variables : [ other ]
+      Sum.new(variables + other_variables)
     end
 
     private

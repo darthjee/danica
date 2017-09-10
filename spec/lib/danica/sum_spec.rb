@@ -5,6 +5,14 @@ describe Danica::Sum do
 
   it_behaves_like 'an object with + operation' do
     let(:subject_included) { 10 }
+
+    context 'when other is also a sum' do
+      let(:other) { described_class.new(200, 5) }
+
+      it 'includes the sum parcels' do
+        expect(summed).to include(200)
+      end
+    end
   end
 
   it_behaves_like 'a operator that joins many variables with same operation', {
