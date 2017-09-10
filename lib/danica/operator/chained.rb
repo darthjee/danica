@@ -1,7 +1,6 @@
 module Danica
   class Operator
     class Chained < Operator
-
       def to_f
         chain(variables.map(&:to_f))
       end
@@ -12,6 +11,11 @@ module Danica
       end
 
       private
+
+      def repack(other)
+        other_variables = other.is_a?(self.class) ? other.variables : [ other ]
+        self.class.new(variables + other_variables)
+      end
 
       def tex_string
         (numeric_to_tex + non_numeric_variables.map(&:to_tex)).join(" #{tex_symbol} ")
