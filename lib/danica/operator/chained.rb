@@ -1,10 +1,14 @@
 module Danica
   class Operator
     class Chained < Operator
-      delegate :include?, to: :variables
 
       def to_f
         chain(variables.map(&:to_f))
+      end
+
+      def include?(value)
+        value = wrap_value(value)
+        variables.include?(value)
       end
 
       private
