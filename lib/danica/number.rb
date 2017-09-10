@@ -20,6 +20,11 @@ module Danica
       value.present?
     end
 
+    def ==(other)
+      return false unless other.class == self.class
+      value == other.value
+    end
+
     alias_method :to_gnu, :to_tex
   end
 end
