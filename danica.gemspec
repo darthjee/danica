@@ -17,8 +17,8 @@ Gem::Specification.new do |spec|
 
   spec.add_runtime_dependency 'activesupport', '~> 5.1.4'
   spec.add_runtime_dependency 'activemodel', '~> 5.1.4'
-  spec.add_runtime_dependency 'concern_builder'
-  spec.add_runtime_dependency 'bidu-core_ext'
+  spec.add_runtime_dependency 'concern_builder', '~> 0.0.3'
+  spec.add_runtime_dependency 'darthjee-core_ext', '~> 1.4.1'
 
   spec.add_development_dependency 'bundler', '~> 1.6'
   spec.add_development_dependency 'rake'
