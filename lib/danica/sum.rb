@@ -2,6 +2,10 @@ require 'danica/operator/chained'
 
 module Danica
   class Sum < Operator::Chained
+    def +(other)
+      Sum.new(variables + [ other ])
+    end
+
     private
 
     def tex_symbol
