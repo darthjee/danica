@@ -3,6 +3,17 @@ require 'spec_helper'
 describe Danica::Product do
   subject { described_class.new(2,4) }
 
+  it_behaves_like 'an object with * operation' do
+    let(:subject_included) { 4 }
+
+    context 'when other is also a sum' do
+      let(:other) { described_class.new(200, 5) }
+
+      it 'includes the sum parcels' do
+        expect(product).to include(200)
+      end
+    end
+  end
   it_behaves_like 'an object with + operation'
 
   it_behaves_like 'a operator that joins many variables with same operation', {

@@ -4,7 +4,7 @@ describe Danica::Division do
   let(:variables) { [2, 4] }
   subject { described_class.new(*variables) }
 
-  it_behaves_like 'an object with + operation'
+  it_behaves_like 'an object with basic operation'
 
   it_behaves_like 'a operator that has two terms', :division, {
     values: [ 2, 4 ],

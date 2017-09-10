@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Danica::Exponential do
   subject { described_class.new(2) }
 
-  it_behaves_like 'an object with + operation'
+  it_behaves_like 'an object with basic operation'
 
   it_behaves_like 'a operator with a single input value', {
     variable_value: 2,

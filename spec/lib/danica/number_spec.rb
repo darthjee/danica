@@ -4,7 +4,7 @@ describe Danica::Number do
   let(:value) { 10 }
   subject { described_class.new(value) }
 
-  it_behaves_like 'an object with + operation'
+  it_behaves_like 'an object with basic operation'
 
   describe '#to_f' do
     it 'returns the float of value' do
