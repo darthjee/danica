@@ -13,5 +13,9 @@ module Danica
     def /(other)
       Division.new(self, other)
     end
+
+    def -(other)
+      self + Number.new(-1) * other
+    end
   end
 end
