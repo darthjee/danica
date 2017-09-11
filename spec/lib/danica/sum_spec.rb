@@ -11,7 +11,7 @@ describe Danica::Sum do
       let(:other) { described_class.new(200, 5) }
 
       it 'includes the sum parcels' do
-        expect(summed).to include(200)
+        expect(result).to include(200)
       end
     end
   end
