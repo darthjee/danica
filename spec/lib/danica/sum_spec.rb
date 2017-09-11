@@ -15,6 +15,7 @@ describe Danica::Sum do
       end
     end
   end
+  it_behaves_like 'an object with / operation'
 
   it_behaves_like 'a operator that joins many variables with same operation', {
     calculated: 10,

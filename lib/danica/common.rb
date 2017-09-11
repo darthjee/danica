@@ -74,7 +74,7 @@ module Danica
       return Number.new(value) if value.is_a?(Numeric)
       return Variable.new(value) if value.is_a?(Hash)
       return Variable.new(name: value) if [ String, Symbol ].any? { |c| value.is_a?(c) }
-      return Variable.new if value == nil
+      return Variable.new if value.nil?
       value
     end
   end

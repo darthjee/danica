@@ -7,5 +7,9 @@ module Danica
     def *(other)
       return Product.new(self, other)
     end
+
+    def /(other)
+      return Division.new(self, other)
+    end
   end
 end
