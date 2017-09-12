@@ -4,6 +4,7 @@ module Danica
   autoload :BaseOperations, 'danica/base_operations'
   autoload :Common,        'danica/common'
   autoload :Number,        'danica/number'
+  autoload :Negative,      'danica/negative'
   autoload :Variable,      'danica/variable'
   autoload :Operator,      'danica/operator'
   autoload :Function,      'danica/function'
