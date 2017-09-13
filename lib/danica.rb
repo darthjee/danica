@@ -5,6 +5,7 @@ module Danica
   autoload :Common,        'danica/common'
   autoload :Number,        'danica/number'
   autoload :Negative,      'danica/negative'
+  autoload :Group,         'danica/group'
   autoload :Variable,      'danica/variable'
   autoload :Operator,      'danica/operator'
   autoload :Function,      'danica/function'
@@ -19,5 +20,8 @@ module Danica
   autoload :Exponential,   'danica/exponential'
   autoload :Sin,           'danica/sin'
   autoload :Cos,           'danica/cos'
+
+  E = Constant.new(Math::E, :e, 'exp(1)')
+  PI =  Constant.new(Math::PI, '\pi', :pi)
 end
 
