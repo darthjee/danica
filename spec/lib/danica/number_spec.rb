@@ -4,6 +4,8 @@ describe Danica::Number do
   let(:value) { 10 }
   subject { described_class.new(value) }
 
+  it_behaves_like 'an object that respond to basic_methods'
+
   it_behaves_like 'an object with basic operation'
 
   describe '#to_f' do

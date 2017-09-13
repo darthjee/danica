@@ -1,9 +1,10 @@
 require 'spec_helper'
 
 describe Danica::Cos do
-  it_behaves_like 'an object with basic operation' do
-    subject { described_class.new(:x) }
-  end
+  subject { described_class.new(:x) }
+
+  it_behaves_like 'an object that respond to basic_methods'
+  it_behaves_like 'an object with basic operation'
 
   it_behaves_like 'a operator with a single input value', {
     variable_value: Math::PI,

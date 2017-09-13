@@ -44,6 +44,7 @@ describe Danica::Function do
   end
 
   subject { described_class::Spatial.new(variables) }
+  it_behaves_like 'an object that respond to basic_methods'
 
   describe '#to_tex' do
     context 'when creating the spatial operator for constantly accelerated movement' do

@@ -3,6 +3,8 @@ require 'spec_helper'
 describe Danica::Sum do
   subject { described_class.new(10, 2) }
 
+  it_behaves_like 'an object that respond to basic_methods'
+
   it_behaves_like 'an object with * operation'
   it_behaves_like 'an object with + operation' do
     let(:subject_included) { 10 }

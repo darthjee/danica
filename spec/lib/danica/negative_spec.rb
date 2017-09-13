@@ -4,6 +4,8 @@ describe Danica::Negative do
   let(:value) { Danica::Number.new(10) }
   subject { described_class.new(value) }
 
+  it_behaves_like 'an object that respond to basic_methods'
+
   describe '#to_f' do
     it 'returns the float of value' do
       expect(subject.to_f).to eq(-10)

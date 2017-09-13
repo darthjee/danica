@@ -4,6 +4,7 @@ describe Danica::Constant do
   subject { described_class.new(2.5, :M, :m) }
   let(:other) { described_class.new(3, :N, :n) }
 
+  it_behaves_like 'an object that respond to basic_methods'
   it_behaves_like 'an object with basic operation'
 
   describe '#to_f' do
