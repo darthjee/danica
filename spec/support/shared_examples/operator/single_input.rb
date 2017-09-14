@@ -1,5 +1,5 @@
 shared_examples 'a operator with a single input value' do |arguments|
-  include_context 'variables are initialized', arguments, *%w(variable_value expected_number expected_tex expected_number_text expected_gnu)
+  include_context 'variables are initialized', arguments, *%w(variable_value expected_number expected_tex expected_number_tex expected_gnu expected_number_gnu)
   let(:variable) { { name: "X", value: variable_value } }
   subject { described_class.new(variable) }
 
@@ -41,7 +41,7 @@ shared_examples 'a operator with a single input value' do |arguments|
         subject.variables[0].value = variable_value
       end
       it 'prints both numbers' do
-        expect(subject.to_tex).to eq(expected_number_text)
+        expect(subject.to_tex).to eq(expected_number_tex)
       end
     end
   end
@@ -60,7 +60,7 @@ shared_examples 'a operator with a single input value' do |arguments|
         subject.variables[0].value = variable_value
       end
       it 'prints both numbers' do
-        expect(subject.to_gnu).to eq(expected_number_text)
+        expect(subject.to_gnu).to eq(expected_number_gnu)
       end
     end
   end
