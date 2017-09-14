@@ -7,5 +7,9 @@ class Danica::Common
     def variables_names
       @variables_names ||= []
     end
+
+    def priority(value)
+      define_method :priority  { value }
+    end
   end
 end

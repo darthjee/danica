@@ -2,6 +2,8 @@ module Danica
   class Exponential < Operator
     variables :exponent
 
+    priority 3
+
     def to_f
       Math.exp(exponent.to_f)
     end

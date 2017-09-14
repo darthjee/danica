@@ -30,6 +30,10 @@ module Danica
     def valued?
       true
     end
+
+    def priority
+      10
+    end
   end
 end
 

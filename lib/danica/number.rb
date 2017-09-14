@@ -25,6 +25,10 @@ module Danica
       value == other.value
     end
 
+    def priority
+      10
+    end
+
     alias_method :to_gnu, :to_tex
   end
 end

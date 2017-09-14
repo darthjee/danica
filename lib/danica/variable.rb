@@ -33,6 +33,10 @@ module Danica
     def value=(value)
       @value = value.is_a?(Numeric) ? Number.new(value) : value
     end
+
+    def priority
+      10
+    end
   end
 end
 

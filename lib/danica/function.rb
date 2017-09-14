@@ -4,6 +4,8 @@ module Danica
   
     attr_accessor :name
 
+    priority 3
+
     def initialize(*args)
       options = args.extract_options!
 
