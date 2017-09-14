@@ -1,8 +1,7 @@
-shared_examples 'an object with basic operation' do
-  it_behaves_like 'an object with + operation'
-  it_behaves_like 'an object with * operation'
-  it_behaves_like 'an object with / operation'
-  it_behaves_like 'an object with - operation'
+shared_examples 'an object with basic operation' do |operations:%i(+ - * /), ignore:[]|
+  (operations - [ ignore ].flatten).each do |operation|
+    it_behaves_like "an object with #{operation} operation"
+  end
 end
 
 shared_examples 'an object with an operation' do |clazz|

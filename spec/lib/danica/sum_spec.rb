@@ -5,7 +5,7 @@ describe Danica::Sum do
 
   it_behaves_like 'an object that respond to basic_methods'
 
-  it_behaves_like 'an object with * operation'
+  it_behaves_like 'an object with basic operation', operations: %i(* /)
   it_behaves_like 'an object with + operation' do
     let(:subject_included) { 10 }
 
@@ -17,7 +17,6 @@ describe Danica::Sum do
       end
     end
   end
-  it_behaves_like 'an object with / operation'
   it_behaves_like 'an object with - operation' do
     let(:subject_included) { 10 }
   end
