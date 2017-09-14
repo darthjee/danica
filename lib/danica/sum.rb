@@ -12,13 +12,11 @@ module Danica
       '+'
     end
 
-    def gnu_symbol
-      '+'
-    end
-
     def chain_operation(a, b)
       a + b
     end
+
+    alias_method :gnu_symbol, :tex_symbol
   end
 end
 
