@@ -26,11 +26,11 @@ module Danica
       end
 
       def numeric_variables
-        variables.select { |v| v.valued? }
+        variables.select(&:valued?)
       end
 
       def non_numeric_variables
-        variables.reject { |v| v.valued? }
+        variables.reject(&:valued?)
       end
 
       def chain(numbers)
