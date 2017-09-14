@@ -18,6 +18,9 @@ describe Danica::Sum do
     end
   end
   it_behaves_like 'an object with / operation'
+  it_behaves_like 'an object with - operation' do
+    let(:subject_included) { 10 }
+  end
 
   it_behaves_like 'a operator that joins many variables with same operation', {
     calculated: 10,

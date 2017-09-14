@@ -21,6 +21,11 @@ module Danica
     def to_gnu
       "-#{value.to_gnu}"
     end
+
+    def ==(other)
+      return false unless other.class == self.class
+      value == other.value
+    end
   end
 end
 

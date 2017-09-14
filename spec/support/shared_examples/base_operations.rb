@@ -2,7 +2,7 @@ shared_examples 'an object with basic operation' do
   it_behaves_like 'an object with + operation'
   it_behaves_like 'an object with * operation'
   it_behaves_like 'an object with / operation'
-#  it_behaves_like 'an object with - operation'
+  it_behaves_like 'an object with - operation'
 end
 
 shared_examples 'an object with an operation' do |clazz|
@@ -61,12 +61,14 @@ end
 
 shared_examples 'an object with - operation' do
   let(:other) { 104 }
+  let(:negative_other) { Danica::Negative.new(other) }
   let(:result) { subject - other }
+  let(:subject_included) { subject }
 
   it { expect(result).to be_a(Danica::Sum) }
 
-  it 'includes other as parcel' do
-    expect(result).to be_include(other)
+  it 'includes other as negative parcel' do
+    expect(result).to be_include(negative_other)
   end
 
   it 'includes the subject as parcel' do

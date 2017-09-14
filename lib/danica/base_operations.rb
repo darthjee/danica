@@ -15,7 +15,7 @@ module Danica
     end
 
     def -(other)
-      self + Number.new(-1) * other
+      self + Negative.new(other)
     end
   end
 end

@@ -8,6 +8,7 @@ describe Danica::Division do
   it_behaves_like 'an object with * operation'
   it_behaves_like 'an object with + operation'
   it_behaves_like 'an object with / operation'
+  it_behaves_like 'an object with - operation'
 
   it_behaves_like 'a operator that has two terms', :division, {
     values: [ 2, 4 ],
