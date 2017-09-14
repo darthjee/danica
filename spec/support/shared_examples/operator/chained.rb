@@ -90,14 +90,14 @@ shared_examples 'a operator that knows how to write to a string' do |command, ar
         end
       end
 
-      it 'outputs a text format with colapsed numbers' do
+      it 'outputs a text format of numbers' do
         expect(subject.public_send(command)).to eq(integer_expected)
       end
 
-      context 'when numeric variables calculated is a float value' do
+      context 'when numeric variables are a float value' do
         let(:numeric_variables_index) { 2 }
 
-        it 'outputs a text format with colapsed numbers' do
+        it 'outputs a text format of numbers' do
           expect(subject.public_send(command)).to eq(float_expected)
         end
       end
