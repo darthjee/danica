@@ -22,13 +22,13 @@ describe Danica::Product do
     numeric_variables: [ 1.5, 2, 3.5 ],
     to_tex: { 
       string_expected: %w(X1 X2 X3 X4).join(' \cdot '),
-      integer_expected: %w(3 X3 X4).join(' \cdot '),
-      float_expected: '10.5 \cdot X4'
+      integer_expected: %w(1.5 2 X3 X4).join(' \cdot '),
+      float_expected: %w(1.5 2 3.5 X4).join(' \cdot ')
     },
     to_gnu: {
       string_expected: %w(X1 X2 X3 X4).join(' * '),
-      integer_expected: %w(3 X3 X4).join(' * '),
-      float_expected: '10.5 * X4'
+      integer_expected: %w(1.5 2 X3 X4).join(' * '),
+      float_expected: %w(1.5 2 3.5 X4).join(' * '),
     }
   }
 end
