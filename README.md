@@ -41,12 +41,12 @@ class MyOperator < Danica::Operator
 
   private
 
-  def tex_string
-    #implement tex_string here
+  def to_tex
+    #implement to_tex here
   end
 
-  def gnu_string
-    #implement gnu_string here
+  def to_gnu
+    #implement to_gnu here
   end
 end
 ```
@@ -61,11 +61,11 @@ class Danica::Inverse
 
   private
 
-  def tex_string
+  def to_tex
     "(#{value.to_tex})^{-1}"
   end
 
-  def gnu_string
+  def to_gnu
     "(#{value.to_gnu}) ** -1"
   end
 end

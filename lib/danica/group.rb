@@ -11,10 +11,12 @@ module Danica
     end
 
     def to_tex
-      "(#{value.to_tex})"
+      "\\left(#{value.to_tex}\\right)"
     end
 
-    alias_method :to_gnu, :to_tex
+    def to_gnu
+      "(#{value.to_gnu})"
+    end
   end
 end
 

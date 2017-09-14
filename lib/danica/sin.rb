@@ -6,13 +6,11 @@ module Danica
       Math.sin(variable.to_f)
     end
 
-    private
-
-    def tex_string
+    def to_tex
       "sin(#{variable.to_tex})"
     end
 
-    def gnu_string
+    def to_gnu
       "sin(#{variable.to_gnu})"
     end
   end

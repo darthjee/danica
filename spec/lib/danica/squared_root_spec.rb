@@ -9,7 +9,8 @@ describe Danica::SquaredRoot do
   it_behaves_like 'a operator with a single input value', {
     variable_value: 9,
     expected_number: 3.0,
-    expected_number_text: '3',
+    expected_number_tex: '\sqrt{9}',
+    expected_number_gnu: 'sqrt(9)',
     expected_tex: '\sqrt{X}',
     expected_gnu: 'sqrt(X)'
   }

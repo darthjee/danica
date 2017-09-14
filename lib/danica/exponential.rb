@@ -6,13 +6,11 @@ module Danica
       Math.exp(exponent.to_f)
     end
 
-    private
-
-    def tex_string
+    def to_tex
       "e^{#{exponent.to_tex}}"
     end
 
-    def gnu_string
+    def to_gnu
       "exp(#{exponent.to_gnu})"
     end
   end

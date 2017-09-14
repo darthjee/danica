@@ -6,13 +6,11 @@ module Danica
       Math.cos(variable.to_f)
     end
 
-    private
-
-    def tex_string
+    def to_tex
       "cos(#{variable.to_tex})"
     end
 
-    def gnu_string
+    def to_gnu
       "cos(#{variable.to_gnu})"
     end
   end
