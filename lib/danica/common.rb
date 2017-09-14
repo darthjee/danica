@@ -11,14 +11,10 @@ module Danica
     end
   
     def to_tex
-      Number.new(to_f).to_tex
-    rescue Exception::NotDefined
       tex_string
     end
 
     def to_gnu
-      Number.new(to_f).to_gnu
-    rescue Exception::NotDefined
       gnu_string
     end
   

@@ -36,7 +36,7 @@ shared_examples 'a operator that has two terms and knows how to calculate it' do
       end
     end
 
-    context 'when one the variables are numbers' do
+    context 'when one of the variables is number' do
       before do
         variables[0] = values[0]
       end
