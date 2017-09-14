@@ -12,12 +12,12 @@ describe Danica::Power do
     calculated: 9.0,
     to_tex: {
       string_expected: 'X1^{X2}',
-      numeric_string_expected: '9',
+      numeric_string_expected: '3^{2}',
       partial_string_expected: '3^{X2}'
     },
     to_gnu: {
       string_expected: 'X1**X2',
-      numeric_string_expected: '9',
+      numeric_string_expected: '3**2',
       partial_string_expected: '3**X2'
     }
   }
