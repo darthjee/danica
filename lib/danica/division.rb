@@ -6,13 +6,11 @@ module Danica
       numerator.to_f / denominator.to_f
     end
 
-    private
-
-    def tex_string
+    def to_tex
       "\\frac{#{numerator.to_tex}}{#{denominator.to_tex}}"
     end
 
-    def gnu_string
+    def to_gnu
       "#{numerator.to_gnu}/#{denominator.to_gnu}"
     end
   end

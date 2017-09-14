@@ -10,14 +10,6 @@ module Danica
       raise 'Not IMplemented yet'
     end
   
-    def to_tex
-      tex_string
-    end
-
-    def to_gnu
-      gnu_string
-    end
-  
     def variables=(variables)
       @variables = variables.map { |v| wrap_value(v) }
     end
@@ -44,14 +36,6 @@ module Danica
 
     def non_valued_variables
       variables.reject(&:valued?)
-    end
-
-    def tex_string
-      raise 'Not IMplemented yet'
-    end
-
-    def gnu_string
-      raise 'Not IMplemented yet'
     end
   
     def wrap_value(value)

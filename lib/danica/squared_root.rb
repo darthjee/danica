@@ -6,13 +6,11 @@ module Danica
       Math.sqrt(variable.to_f)
     end
 
-    private
-
-    def tex_string
+    def to_tex
       "\\sqrt{#{variable.to_tex}}"
     end
 
-    def gnu_string
+    def to_gnu
       "sqrt(#{variable.to_gnu})"
     end
   end
