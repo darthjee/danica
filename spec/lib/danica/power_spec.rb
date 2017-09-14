@@ -4,7 +4,8 @@ describe Danica::Power do
   let(:variables) { [2, 4] }
   subject { described_class.new(*variables) }
 
-  it_behaves_like 'an object with + operation'
+  it_behaves_like 'an object that respond to basic_methods'
+  it_behaves_like 'an object with basic operation'
 
   it_behaves_like 'a operator that has two terms', :power, {
     values: [ 3, 2 ],

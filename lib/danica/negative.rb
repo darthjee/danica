@@ -1,31 +1,31 @@
 module Danica
-  class Number
+  class Negative <  Common
     include ActiveModel::Model
-    include BaseOperations
 
     attr_accessor :value
-
-    delegate :to_f, to: :value
+    
+    delegate :valued?, to: :value
 
     def initialize(value)
-      @value = value
+      @value = wrap_value(value)
+    end
+
+    def to_f
+      -value.to_f
     end
 
     def to_tex
-      return value.to_i.to_s if value.to_i == value
-      value.to_s
+      "-#{value.to_tex}"
     end
 
-    def valued?
-      value.present?
+    def to_gnu
+      "-#{value.to_gnu}"
     end
 
     def ==(other)
       return false unless other.class == self.class
       value == other.value
     end
-
-    alias_method :to_gnu, :to_tex
   end
 end
 

@@ -125,11 +125,6 @@ end
 
 #### Sample
 ```ruby
-require 'danica/operator/product'
-require 'danica/operator/sum'
-require 'danica/operator/division'
-require 'danica/operator/power'
-
 module Danica
   class Function::Spatial < Function
     variables :time, :acceleration, :initial_space, :initial_velocity

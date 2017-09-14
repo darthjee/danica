@@ -1,7 +1,9 @@
 require 'spec_helper'
 
 describe Danica::Variable do
-  it_behaves_like 'an object with + operation' do
+  it_behaves_like 'an object that respond to basic_methods'
+
+  it_behaves_like 'an object with basic operation' do
     subject { described_class.new(value: 100) }
   end
 
