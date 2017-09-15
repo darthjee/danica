@@ -23,7 +23,11 @@ module Danica
       def to_string(type)
         extractor = string_extractor("to_#{type}")
         symbol = { tex: tex_symbol, gnu: gnu_symbol }[type]
-        variables.procedural_join(extractor) { " #{symbol} " }
+        variables.procedural_join(extractor, &join_proc(symbol))
+      end
+
+      def join_proc(symbol)
+        proc { " #{symbol} " }
       end
 
       def string_extractor(method)

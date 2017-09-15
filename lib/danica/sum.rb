@@ -19,6 +19,12 @@ module Danica
     end
 
     alias_method :gnu_symbol, :tex_symbol
+
+    def join_proc(symbol)
+      proc do |_, value|
+        value.is_a?(Negative) ? ' ' : " #{symbol} "
+      end
+    end
   end
 end
 

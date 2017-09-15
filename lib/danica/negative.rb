@@ -4,7 +4,7 @@ module Danica
 
     attr_accessor :value
 
-    priority 0
+    priority 1
     
     delegate :valued?, to: :value
 
