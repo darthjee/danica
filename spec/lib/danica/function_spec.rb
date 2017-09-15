@@ -231,7 +231,7 @@ describe Danica::Function do
 
     describe '#to_tex' do
       context 'when creating the spatial operator for constantly accelerated movement' do
-        let(:expected) { '\frac{1}{\sqrt{2 \cdot \pi \cdot v^{2}}} \cdot e^{-\frac{\left(x + -u\right)^{2}}{2 \cdot v^{2}}}'  }
+        let(:expected) { '\frac{1}{\sqrt{2 \cdot \pi \cdot v^{2}}} \cdot e^{-\frac{\left(x + \left(-u\right)\right)^{2}}{2 \cdot v^{2}}}'  }
 
         it 'return the latex format CAM' do
           expect(subject.to_tex).to eq(expected)
@@ -241,7 +241,7 @@ describe Danica::Function do
 
     describe '#to_gnu' do
       context 'when creating the spatial operator for constantly accelerated movement' do
-        let(:expected) { '1/sqrt(2 * pi * v**2) * exp(-(x + -u)**2/2 * v**2)' }
+        let(:expected) { '1/sqrt(2 * pi * v**2) * exp(-(x + (-u))**2/2 * v**2)' }
 
         it 'return the latex format CAM' do
           expect(subject.to_gnu).to eq(expected)
