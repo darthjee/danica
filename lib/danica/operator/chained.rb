@@ -11,11 +11,25 @@ module Danica
       end
 
       def to_tex
-        variables.map(&:to_tex).join(" #{tex_symbol} ")
+        packer = proc do |parcel|
+          if parcel.priority < priority
+            Group.new(parcel).to_tex
+          else
+            parcel.to_tex
+          end
+        end
+        variables.procedural_join(packer) { " #{tex_symbol} " }
       end
 
       def to_gnu
-        variables.map(&:to_gnu).join(" #{gnu_symbol} ")
+        packer = proc do |parcel|
+          if parcel.priority < priority
+            Group.new(parcel).to_gnu
+          else
+            parcel.to_gnu
+          end
+        end
+        variables.procedural_join(packer) { " #{gnu_symbol} " }
       end
 
       private

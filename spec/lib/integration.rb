@@ -13,5 +13,11 @@ describe 'integration' do
         expect(subject.to_tex).to eq('3 \cdot \left(2 + 4\right)')
       end
     end
+
+    describe '#to_gnu' do
+      it 'returns the correct tex string' do
+        expect(subject.to_tex).to eq('3 * (2 + 4)')
+      end
+    end
   end
 end
