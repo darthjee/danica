@@ -11,28 +11,27 @@ module Danica
       end
 
       def to_tex
-        packer = proc do |parcel|
-          if parcel.priority < priority
-            Group.new(parcel).to_tex
-          else
-            parcel.to_tex
-          end
-        end
-        variables.procedural_join(packer) { " #{tex_symbol} " }
+        to_string(:tex)
       end
 
       def to_gnu
-        packer = proc do |parcel|
-          if parcel.priority < priority
-            Group.new(parcel).to_gnu
-          else
-            parcel.to_gnu
-          end
-        end
-        variables.procedural_join(packer) { " #{gnu_symbol} " }
+        to_string(:gnu)
       end
 
       private
+
+      def to_string(type)
+        extractor = string_extractor("to_#{type}")
+        symbol = { tex: tex_symbol, gnu: gnu_symbol }[type]
+        variables.procedural_join(extractor) { " #{symbol} " }
+      end
+
+      def string_extractor(method)
+        proc do |parcel|
+          parcel = Group.new(parcel) if parcel.priority < priority
+          parcel.public_send(method)
+        end
+      end
 
       def repack(other)
         other_variables = other.is_a?(self.class) ? other.variables : [ other ]
