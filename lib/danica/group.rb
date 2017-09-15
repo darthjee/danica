@@ -1,5 +1,6 @@
 module Danica
-  class Group <  Common
+  class Group
+    include Common
     include ActiveModel::Model
 
     attr_accessor :value

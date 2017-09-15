@@ -1,7 +1,7 @@
 require 'concern_builder'
 require 'darthjee/core_ext'
 
-class Danica::Common
+module Danica::Common
   class VariablesBuilder < ::ConcernBuilder
     attr_reader :instance
 

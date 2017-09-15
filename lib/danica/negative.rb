@@ -1,5 +1,6 @@
 module Danica
-  class Negative <  Common
+  class Negative
+    include Common
     include ActiveModel::Model
 
     attr_accessor :value

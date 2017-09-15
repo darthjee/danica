@@ -1,5 +1,6 @@
 module Danica
-  class Function < Common
+  class Function
+    include Common
     include ActiveModel::Model
   
     attr_accessor :name

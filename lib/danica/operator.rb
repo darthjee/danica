@@ -1,5 +1,6 @@
 module Danica
-  class Operator < Common
+  class Operator
+    include Common
     include ActiveModel::Model
   
     def initialize(*args)

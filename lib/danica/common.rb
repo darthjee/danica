@@ -1,8 +1,23 @@
 module Danica
-  class Common
-    include BaseOperations
-    require 'danica/common/class_methods'
+  module Common extend ::ActiveSupport::Concern
     require 'danica/common/variables_builder'
+
+    included do
+      include BaseOperations
+      class << self
+        def variables(*names)
+          VariablesBuilder.new(names, self).build
+        end
+
+        def variables_names
+          @variables_names ||= []
+        end
+
+        def default_value(name, value)
+          define_method(name) { value }
+        end
+      end
+    end
 
     attr_accessor :variables
  
