@@ -16,7 +16,7 @@ describe 'integration' do
 
     describe '#to_gnu' do
       it 'returns the correct tex string' do
-        expect(subject.to_tex).to eq('3 * (2 + 4)')
+        expect(subject.to_gnu).to eq('3 * (2 + 4)')
       end
     end
   end
