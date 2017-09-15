@@ -2,7 +2,7 @@ require 'danica/operator/chained'
 
 module Danica
   class Product < Operator::Chained
-    priority 2
+    default_value :priority, 2
 
     def *(other)
       repack(other)

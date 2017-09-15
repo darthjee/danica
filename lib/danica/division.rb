@@ -1,7 +1,7 @@
 module Danica
   class Division < Operator
     variables :numerator, :denominator
-    priority 2
+    default_value :priority, 2
 
     def to_f
       numerator.to_f / denominator.to_f

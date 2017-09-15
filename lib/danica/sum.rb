@@ -2,7 +2,7 @@ require 'danica/operator/chained'
 
 module Danica
   class Sum < Operator::Chained
-    priority 1
+    default_value :priority, 1
 
     def +(other)
       repack(other)

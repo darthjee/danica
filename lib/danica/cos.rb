@@ -2,7 +2,7 @@ module Danica
   class Cos < Operator
     variables :variable
 
-    priority 3
+    default_value :priority, 3
 
     def to_f
       Math.cos(variable.to_f)

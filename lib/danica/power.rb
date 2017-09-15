@@ -2,7 +2,7 @@ module Danica
   class Power < Operator
     variables :base, :exponent
 
-    priority 3
+    default_value :priority, 3
 
     def to_f
       base.to_f ** exponent.to_f

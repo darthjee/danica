@@ -8,8 +8,8 @@ class Danica::Common
       @variables_names ||= []
     end
 
-    def priority(value)
-      define_method :priority  { value }
+    def default_value(name, value)
+      define_method(name) { value }
     end
   end
 end
