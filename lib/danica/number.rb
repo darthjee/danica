@@ -2,9 +2,11 @@ module Danica
   class Number
     include ActiveModel::Model
     include BaseOperations
+    include Common
 
     attr_accessor :value
 
+    default_value :priority, 10
     delegate :to_f, to: :value
 
     def initialize(value)
@@ -23,10 +25,6 @@ module Danica
     def ==(other)
       return false unless other.class == self.class
       value == other.value
-    end
-
-    def priority
-      10
     end
 
     alias_method :to_gnu, :to_tex
