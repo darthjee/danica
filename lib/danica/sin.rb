@@ -2,8 +2,6 @@ module Danica
   class Sin < Operator
     variables :variable
 
-    default_value :priority, 3
-
     def to_f
       Math.sin(variable.to_f)
     end

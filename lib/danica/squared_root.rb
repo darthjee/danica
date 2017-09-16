@@ -2,8 +2,6 @@ module Danica
   class SquaredRoot < Operator
     variables :variable
 
-    default_value :priority, 3
-
     def to_f
       Math.sqrt(variable.to_f)
     end
