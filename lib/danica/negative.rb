@@ -1,6 +1,7 @@
 module Danica
   class Negative
     include Common
+    include VariablesHolder
     include ActiveModel::Model
 
     attr_accessor :value
