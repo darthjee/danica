@@ -1,6 +1,7 @@
 module Danica
   class Exponential < Operator
     variables :exponent
+    default_value :is_grouped?, true
 
     def to_f
       Math.exp(exponent.to_f)

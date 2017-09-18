@@ -7,6 +7,7 @@ module Danica
     attr_accessor :value
 
     default_value :priority, 1
+    default_value :is_grouped?, false
     
     delegate :valued?, to: :value
 

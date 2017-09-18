@@ -6,6 +6,7 @@ module Danica
     include ActiveModel::Model
 
     default_value :priority, 3
+    default_value :is_grouped?, false
   
     def initialize(*args)
       super( variables: args.flatten )

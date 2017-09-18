@@ -7,6 +7,7 @@ module Danica
 
     default_value :priority, 10
     default_value :valued?, true
+    default_value :is_grouped?, false
 
     def initialize(value, latex, gnu)
       @value = value

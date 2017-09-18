@@ -7,6 +7,7 @@ module Danica
     attr_accessor :value, :name, :latex, :gnu
 
     default_value :priority, 10
+    default_value :is_grouped?, false
 
     def to_f
       value.nil? ? raise(Exception::NotDefined) : value.to_f

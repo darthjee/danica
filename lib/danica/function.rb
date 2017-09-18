@@ -7,6 +7,7 @@ module Danica
     attr_accessor :name
 
     default_value :priority, 3
+    default_value :is_grouped?, false
 
     def initialize(*args)
       options = args.extract_options!
