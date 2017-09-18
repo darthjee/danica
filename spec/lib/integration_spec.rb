@@ -2,6 +2,21 @@ require 'spec_helper'
 
 describe 'integration' do
   describe '#to_gnu' do
+    describe 'power' do
+      describe 'of sums' do
+        subject do
+          Danica::Power.new(
+            Danica::Sum.new(3, 4),
+            Danica::Sum.new(5, 6)
+          )
+        end
+
+        it 'returns the correct string' do
+          expect(subject.to_gnu).to eq('(3 + 4)**(5 + 6)')
+        end
+      end
+    end
+
     describe 'a sum' do
       describe 'with negative numbers' do
         subject do

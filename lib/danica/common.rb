@@ -21,10 +21,11 @@ module Danica
     private
 
     def wrap_value(value)
-      return Number.new(value) if value.is_a?(Numeric)
-      return Variable.new(value) if value.is_a?(Hash)
-      return Variable.new(name: value) if [ String, Symbol ].any? { |c| value.is_a?(c) }
-      return Variable.new if value.nil?
+      return wrap_value(Number.new(value)) if value.is_a?(Numeric)
+      return wrap_value(Variable.new(value)) if value.is_a?(Hash)
+      return wrap_value(Variable.new(name: value)) if [ String, Symbol ].any? { |c| value.is_a?(c) }
+      return wrap_value(Variable.new) if value.nil?
+      return Group.new(value) if value.priority < priority unless self.is_a?(Group)
       value
     end
   end

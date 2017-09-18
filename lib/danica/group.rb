@@ -4,6 +4,8 @@ module Danica
     include ActiveModel::Model
 
     attr_accessor :value
+
+    default_value :priority, 10
     
     delegate :to_f, :valued?, to: :value
 
