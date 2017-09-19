@@ -15,6 +15,12 @@ describe 'integration' do
           expect(subject.to_gnu).to eq('(3 + 4)**(5 + 6)')
         end
       end
+
+      describe '#to_tex' do
+        it 'returns the correct string' do
+          expect(subject.to_tex).to eq('\left(3 + 4\right)^{\left(5 + 6\right)}')
+        end
+      end
     end
   end
 
@@ -27,6 +33,12 @@ describe 'integration' do
       describe '#to_gnu' do
         it 'returns the correct string' do
           expect(subject.to_gnu).to eq('-1 + 2 -3 + 4')
+        end
+      end
+
+      describe '#to_tex' do
+        it 'returns the correct string' do
+          expect(subject.to_tex).to eq('-1 + 2 -3 + 4')
         end
       end
     end
@@ -45,6 +57,12 @@ describe 'integration' do
           expect(subject.to_gnu).to eq('3 * (2 + 4)')
         end
       end
+
+      describe '#to_gnu' do
+        it 'returns the correct string' do
+          expect(subject.to_tex).to eq('3 \cdot \left(2 + 4\right)')
+        end
+      end
     end
 
     describe 'of sums' do
@@ -58,6 +76,12 @@ describe 'integration' do
       describe '#to_gnu' do
         it 'returns the correct string' do
           expect(subject.to_gnu).to eq('(1 + 2) * (3 + 4)')
+        end
+      end
+
+      describe '#to_tex' do
+        it 'returns the correct string' do
+          expect(subject.to_tex).to eq('\left(1 + 2\right) \cdot \left(3 + 4\right)')
         end
       end
     end
