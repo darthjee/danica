@@ -18,7 +18,7 @@ describe 'integration' do
 
       describe '#to_tex' do
         it 'returns the correct string' do
-          expect(subject.to_tex).to eq('\left(3 + 4\right)^{\left(5 + 6\right)}')
+          expect(subject.to_tex).to eq('\left(3 + 4\right)^{5 + 6}')
         end
       end
     end

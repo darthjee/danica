@@ -25,12 +25,12 @@ module Danica
       return wrap_value(Variable.new(value)) if value.is_a?(Hash)
       return wrap_value(Variable.new(name: value)) if [ String, Symbol ].any? { |c| value.is_a?(c) }
       return wrap_value(Variable.new) if value.nil?
-      return Group.new(value) if wrap_as_group?(value)
       value
     end
 
-    def wrap_as_group?(value)
-      value.priority < priority unless is_grouped?
+    def wrap_as_group(value)
+      return value if is_grouped? || value.priority >= priority
+      Group.new(value)
     end
   end
 end

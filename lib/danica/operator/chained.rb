@@ -32,7 +32,7 @@ module Danica
 
       def string_extractor(method)
         proc do |parcel|
-          parcel = Group.new(parcel) if parcel.priority < priority
+          parcel = wrap_as_group(parcel)
           parcel.public_send(method)
         end
       end

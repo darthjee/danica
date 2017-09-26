@@ -1,17 +1,18 @@
 module Danica
   class Power < Operator
     variables :base, :exponent
+    default_value :is_grouped?, false
 
     def to_f
       base.to_f ** exponent.to_f
     end
 
     def to_tex
-      "#{base.to_tex}^{#{exponent.to_tex}}"
+      "#{wrap_as_group(base).to_tex}^{#{exponent.to_tex}}"
     end
 
     def to_gnu
-      "#{base.to_gnu}**#{exponent.to_gnu}"
+      "#{ wrap_as_group(base).to_gnu}**(#{exponent.to_gnu})"
     end
   end
 end
