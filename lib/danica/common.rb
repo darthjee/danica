@@ -1,17 +1,15 @@
 module Danica
-  class Common
-    include BaseOperations
-    require 'danica/common/class_methods'
-    require 'danica/common/variables_builder'
+  module Common extend ::ActiveSupport::Concern
+    included do
+      class << self
+        def default_value(name, value)
+          define_method(name) { value }
+        end
+      end
+    end
 
-    attr_accessor :variables
- 
     def to_f
       raise 'Not IMplemented yet'
-    end
-  
-    def variables=(variables)
-      @variables = variables.map { |v| wrap_value(v) }
     end
   
     def valued?
@@ -19,31 +17,20 @@ module Danica
     rescue Exception::NotDefined
       false
     end
-
-    def variables
-      @variables ||= variables_hash.values
-    end
   
-    def variables_hash
-      @variabels_map ||= (@variables || []).as_hash(self.class.variables_names)
-    end
-
-    def variables_value_hash
-      variables.map(&:value).as_hash(self.class.variables_names)
-    end
-
     private
 
-    def non_valued_variables
-      variables.reject(&:valued?)
-    end
-  
     def wrap_value(value)
-      return Number.new(value) if value.is_a?(Numeric)
-      return Variable.new(value) if value.is_a?(Hash)
-      return Variable.new(name: value) if [ String, Symbol ].any? { |c| value.is_a?(c) }
-      return Variable.new if value.nil?
+      return wrap_value(Number.new(value)) if value.is_a?(Numeric)
+      return wrap_value(Variable.new(value)) if value.is_a?(Hash)
+      return wrap_value(Variable.new(name: value)) if [ String, Symbol ].any? { |c| value.is_a?(c) }
+      return wrap_value(Variable.new) if value.nil?
       value
+    end
+
+    def wrap_as_group(value)
+      return value if is_grouped? || value.priority >= priority
+      Group.new(value)
     end
   end
 end

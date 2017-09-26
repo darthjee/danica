@@ -11,14 +11,31 @@ module Danica
       end
 
       def to_tex
-        variables.map(&:to_tex).join(" #{tex_symbol} ")
+        to_string(:tex)
       end
 
       def to_gnu
-        variables.map(&:to_gnu).join(" #{gnu_symbol} ")
+        to_string(:gnu)
       end
 
       private
+
+      def to_string(type)
+        extractor = string_extractor("to_#{type}")
+        symbol = { tex: tex_symbol, gnu: gnu_symbol }[type]
+        variables.procedural_join(extractor, &join_proc(symbol))
+      end
+
+      def join_proc(symbol)
+        proc { " #{symbol} " }
+      end
+
+      def string_extractor(method)
+        proc do |parcel|
+          parcel = wrap_as_group(parcel)
+          parcel.public_send(method)
+        end
+      end
 
       def repack(other)
         other_variables = other.is_a?(self.class) ? other.variables : [ other ]

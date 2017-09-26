@@ -2,6 +2,7 @@ require 'active_model'
 
 module Danica
   autoload :BaseOperations, 'danica/base_operations'
+  autoload :VariablesHolder, 'danica/variables_holder'
   autoload :Common,        'danica/common'
   autoload :Number,        'danica/number'
   autoload :Negative,      'danica/negative'

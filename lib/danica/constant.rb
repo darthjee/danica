@@ -1,8 +1,13 @@
 module Danica
   class Constant
     include BaseOperations
+    include Common
 
     attr_reader :value, :latex, :gnu
+
+    default_value :priority, 10
+    default_value :valued?, true
+    default_value :is_grouped?, false
 
     def initialize(value, latex, gnu)
       @value = value
@@ -25,10 +30,6 @@ module Danica
 
     def to_gnu
       gnu.to_s
-    end
-
-    def valued?
-      true
     end
   end
 end

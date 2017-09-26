@@ -16,9 +16,9 @@ describe Danica::Power do
       partial_string_expected: '3^{X2}'
     },
     to_gnu: {
-      string_expected: 'X1**X2',
-      numeric_string_expected: '3**2',
-      partial_string_expected: '3**X2'
+      string_expected: 'X1**(X2)',
+      numeric_string_expected: '3**(2)',
+      partial_string_expected: '3**(X2)'
     }
   }
 end

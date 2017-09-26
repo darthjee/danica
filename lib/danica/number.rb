@@ -2,10 +2,13 @@ module Danica
   class Number
     include ActiveModel::Model
     include BaseOperations
+    include Common
 
     attr_accessor :value
 
+    default_value :priority, 10
     delegate :to_f, to: :value
+    default_value :is_grouped?, false
 
     def initialize(value)
       @value = value

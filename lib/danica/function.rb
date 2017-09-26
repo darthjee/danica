@@ -1,8 +1,13 @@
 module Danica
-  class Function < Common
+  class Function
+    include Common
+    include VariablesHolder
     include ActiveModel::Model
   
     attr_accessor :name
+
+    default_value :priority, 3
+    default_value :is_grouped?, false
 
     def initialize(*args)
       options = args.extract_options!

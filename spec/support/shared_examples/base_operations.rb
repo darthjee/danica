@@ -8,11 +8,11 @@ shared_examples 'an object with an operation' do |clazz|
   it { expect(result).to be_a(clazz) }
 
   it 'includes other as parcel' do
-    expect(result).to be_include(other)
+    expect(result).to include(other)
   end
 
   it 'includes the subject as parcel' do
-    expect(result).to be_include(subject_included)
+    expect(result).to include(subject_included)
   end
 end
 
@@ -67,11 +67,11 @@ shared_examples 'an object with - operation' do
   it { expect(result).to be_a(Danica::Sum) }
 
   it 'includes other as negative parcel' do
-    expect(result).to be_include(negative_other)
+    expect(result).to include(negative_other)
   end
 
   it 'includes the subject as parcel' do
-    expect(result).to be_include(subject_included)
+    expect(result).to include(subject_included)
   end
 end
 

@@ -2,6 +2,8 @@ require 'danica/operator/chained'
 
 module Danica
   class Sum < Operator::Chained
+    default_value :priority, 1
+
     def +(other)
       repack(other)
     end
@@ -17,6 +19,12 @@ module Danica
     end
 
     alias_method :gnu_symbol, :tex_symbol
+
+    def join_proc(symbol)
+      proc do |_, value|
+        value.is_a?(Negative) ? ' ' : " #{symbol} "
+      end
+    end
   end
 end
 

@@ -1,6 +1,7 @@
 module Danica
   class SquaredRoot < Operator
     variables :variable
+    default_value :is_grouped?, true
 
     def to_f
       Math.sqrt(variable.to_f)

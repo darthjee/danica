@@ -2,7 +2,12 @@ module Danica
   class Variable
     include ActiveModel::Model
     include BaseOperations
+    include Common
+
     attr_accessor :value, :name, :latex, :gnu
+
+    default_value :priority, 10
+    default_value :is_grouped?, false
 
     def to_f
       value.nil? ? raise(Exception::NotDefined) : value.to_f
@@ -24,10 +29,6 @@ module Danica
     def to_gnu
       return value.to_gnu if value
       (gnu || name).to_s
-    end
-
-    def valued?
-      value.present?
     end
 
     def value=(value)

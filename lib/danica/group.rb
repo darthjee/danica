@@ -1,8 +1,12 @@
 module Danica
-  class Group <  Common
+  class Group
+    include Common
     include ActiveModel::Model
 
     attr_accessor :value
+
+    default_value :priority, 10
+    default_value :is_grouped?, true
     
     delegate :to_f, :valued?, to: :value
 
@@ -16,6 +20,11 @@ module Danica
 
     def to_gnu
       "(#{value.to_gnu})"
+    end
+
+    def ==(other)
+      return value == other unless other.is_a?(self.class)
+      value == other.value
     end
   end
 end
