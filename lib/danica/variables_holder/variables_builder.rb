@@ -9,13 +9,13 @@ module Danica::VariablesHolder
       attr_names.extract_options!.each do |name, default|
         add_setter(name)
         add_reader(name, default)
-        instance.send(:variables_names) << name
+        instance.variables_names << name
       end
 
       attr_names.each do |name|
         add_setter(name)
         add_reader(name, name)
-        instance.send(:variables_names) << name
+        instance.variables_names << name
       end
     end
 
