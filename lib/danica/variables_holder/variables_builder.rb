@@ -22,18 +22,16 @@ module Danica::VariablesHolder
     private
 
     def add_setter(name)
-      code = <<-CODE
-        variables_hash[:#{name}] = wrap_value(value)
+      instance.send(:define_method, "#{name}=") do |value|
+        variables_hash[name.to_sym] = wrap_value(value)
         @variables = variables_hash.values
-      CODE
-      add_method("#{name}=(value)", code)
+      end
     end
 
     def add_reader(name, default)
-      code = <<-CODE
-        variables_hash[:#{name}] ||= wrap_value(#{default.is_a?(Hash) ? default : ":#{default}"})
-      CODE
-      add_method("#{name}", code)
+      instance.send(:define_method, name) do
+        variables_hash[name.to_sym] ||= wrap_value(default)
+      end
     end
   end
 end
