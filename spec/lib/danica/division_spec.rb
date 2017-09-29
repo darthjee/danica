@@ -16,10 +16,31 @@ describe Danica::Division do
       partial_string_expected: '\frac{2}{X2}'
     },
     to_gnu: {
-      string_expected: 'X1/X2',
-      numeric_string_expected: '2/4',
-      partial_string_expected: '2/X2'
+      string_expected: '(X1)/(X2)',
+      numeric_string_expected: '(2)/(4)',
+      partial_string_expected: '(2)/(X2)'
     }
   }
+
+  describe 'more complex division' do
+    describe 'of two sums' do
+      subject do
+        Danica::Division.new(
+          Danica::Sum.new(2, :x),
+          Danica::Sum.new(3, :y)
+        )
+      end
+
+      describe 'to_gnu' do
+        let(:expected) do
+          '(2 + x)/(3 + y)'
+        end
+
+        it 'groups sum' do
+          expect(subject.to_gnu).to eq(expected)
+        end
+      end
+    end
+  end
 end
 

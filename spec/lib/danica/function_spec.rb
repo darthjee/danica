@@ -26,7 +26,7 @@ describe Danica::Function do
 
     describe '#to_gnu' do
       context 'when creating the spatial operator for constantly accelerated movement' do
-        let(:expected) { 'S0 + V0 * t + a * t**(2)/2'  }
+        let(:expected) { 'S0 + V0 * t + (a * t**(2))/(2)'  }
 
         it 'return the latex format CAM' do
           expect(subject.to_gnu).to eq(expected)
@@ -241,7 +241,7 @@ describe Danica::Function do
 
     describe '#to_gnu' do
       context 'when creating the spatial operator for constantly accelerated movement' do
-        let(:expected) { '1/sqrt(2 * pi * v**(2)) * exp(-(x -u)**(2)/2 * v**(2))' }
+        let(:expected) { '(1)/(sqrt(2 * pi * v**(2))) * exp(-((x -u)**(2))/(2 * v**(2)))' }
 
         it 'return the gnu format CAM' do
           expect(subject.to_gnu).to eq(expected)
@@ -271,7 +271,7 @@ describe Danica::Function do
     end
 
     describe '#to_gnu' do
-      let(:expected) { '-b + sqrt(b**(2) -4 * a * c)/2 * a'  }
+      let(:expected) { '(-b + sqrt(b**(2) -4 * a * c))/(2 * a)'  }
 
       it 'return the gnu format CAM' do
         expect(subject.to_gnu).to eq(expected)

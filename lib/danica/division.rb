@@ -13,7 +13,7 @@ module Danica
     end
 
     def to_gnu
-      "#{numerator.to_gnu}/#{denominator.to_gnu}"
+      "(#{numerator.to_gnu})/(#{denominator.to_gnu})"
     end
   end
 end
