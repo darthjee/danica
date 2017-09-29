@@ -222,7 +222,7 @@ describe Danica::Function do
       {
         x: :x,
         median: :u,
-        variance_root: :v
+        variance_root: { latex: '\theta', gnu: :v }
       }
     end
 
@@ -231,7 +231,7 @@ describe Danica::Function do
 
     describe '#to_tex' do
       context 'when creating the spatial operator for constantly accelerated movement' do
-        let(:expected) { '\frac{1}{\sqrt{2 \cdot \pi \cdot v^{2}}} \cdot e^{-\frac{\left(x -u\right)^{2}}{2 \cdot v^{2}}}'  }
+        let(:expected) { '\frac{1}{\sqrt{2 \cdot \pi \cdot \theta^{2}}} \cdot e^{-\frac{\left(x -u\right)^{2}}{2 \cdot \theta^{2}}}'  }
 
         it 'return the latex format CAM' do
           expect(subject.to_tex).to eq(expected)
@@ -253,7 +253,7 @@ describe Danica::Function do
       subject { described_class::Gauss.new }
 
       describe '#to_tex' do
-        let(:expected) { '\frac{1}{\sqrt{2 \cdot \pi \cdot v^{2}}} \cdot e^{-\frac{\left(x -u\right)^{2}}{2 \cdot v^{2}}}'  }
+        let(:expected) { '\frac{1}{\sqrt{2 \cdot \pi \cdot \theta^{2}}} \cdot e^{-\frac{\left(x -u\right)^{2}}{2 \cdot \theta^{2}}}'  }
 
         it 'rely on default variables definition' do
           expect(subject.to_tex).to eq(expected)
