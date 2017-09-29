@@ -6,9 +6,15 @@ module Danica::VariablesHolder
     attr_reader :instance
 
     def init
+      attr_names.extract_options!.each do |name, default|
+        add_setter(name)
+        add_reader(name, default)
+        instance.send(:variables_names) << name
+      end
+
       attr_names.each do |name|
         add_setter(name)
-        add_reader(name)
+        add_reader(name, name)
         instance.send(:variables_names) << name
       end
     end
@@ -23,9 +29,9 @@ module Danica::VariablesHolder
       add_method("#{name}=(value)", code)
     end
 
-    def add_reader(name)
+    def add_reader(name, default)
       code = <<-CODE
-        variables_hash[:#{name}] ||= wrap_value(:#{name})
+        variables_hash[:#{name}] ||= wrap_value(:#{default})
       CODE
       add_method("#{name}", code)
     end

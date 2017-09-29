@@ -248,6 +248,26 @@ describe Danica::Function do
         end
       end
     end
+
+    context 'when not passing variables' do
+      subject { described_class::Gauss.new }
+
+      describe '#to_tex' do
+        let(:expected) { '\frac{1}{\sqrt{2 \cdot \pi \cdot v^{2}}} \cdot e^{-\frac{\left(x -u\right)^{2}}{2 \cdot v^{2}}}'  }
+
+        it 'rely on default variables definition' do
+          expect(subject.to_tex).to eq(expected)
+        end
+      end
+
+      describe '#to_gnu' do
+        let(:expected) { '(1)/(sqrt(2 * pi * v**(2))) * exp(-((x -u)**(2))/(2 * v**(2)))' }
+
+        it 'rely on default variables definition' do
+          expect(subject.to_gnu).to eq(expected)
+        end
+      end
+    end
   end
 
   describe 'baskara' do
