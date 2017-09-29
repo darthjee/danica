@@ -251,30 +251,24 @@ describe Danica::Function do
   end
 
   describe 'baskara' do
-    let(:variables) do
-      {
-        a: :a,
-        b: :b,
-        c: :c
-      }
-    end
+    context 'when using the default value for variables' do
+      subject { described_class::Baskara.new }
+      it_behaves_like 'an object that respond to basic_methods'
 
-    subject { described_class::Baskara.new(variables) }
-    it_behaves_like 'an object that respond to basic_methods'
+      describe '#to_tex' do
+        let(:expected) { '\frac{-b + \sqrt{b^{2} -4 \cdot a \cdot c}}{2 \cdot a}'  }
 
-    describe '#to_tex' do
-      let(:expected) { '\frac{-b + \sqrt{b^{2} -4 \cdot a \cdot c}}{2 \cdot a}'  }
-
-      it 'return the latex format CAM' do
-        expect(subject.to_tex).to eq(expected)
+        it 'return the latex format CAM' do
+          expect(subject.to_tex).to eq(expected)
+        end
       end
-    end
 
-    describe '#to_gnu' do
-      let(:expected) { '(-b + sqrt(b**(2) -4 * a * c))/(2 * a)'  }
+      describe '#to_gnu' do
+        let(:expected) { '(-b + sqrt(b**(2) -4 * a * c))/(2 * a)'  }
 
-      it 'return the gnu format CAM' do
-        expect(subject.to_gnu).to eq(expected)
+        it 'return the gnu format CAM' do
+          expect(subject.to_gnu).to eq(expected)
+        end
       end
     end
   end

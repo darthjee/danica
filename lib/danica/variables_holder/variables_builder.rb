@@ -25,7 +25,7 @@ module Danica::VariablesHolder
 
     def add_reader(name)
       code = <<-CODE
-        variables_hash[:#{name}]
+        variables_hash[:#{name}] ||= wrap_value(:#{name})
       CODE
       add_method("#{name}", code)
     end
