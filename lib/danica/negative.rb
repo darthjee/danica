@@ -1,6 +1,7 @@
 module Danica
   class Negative
     include Common
+    include BaseOperations
     include VariablesHolder
     include ActiveModel::Model
 
