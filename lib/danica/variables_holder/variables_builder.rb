@@ -1,11 +1,15 @@
-require 'concern_builder'
 require 'darthjee/core_ext'
 
 module Danica::VariablesHolder
-  class VariablesBuilder < ::ConcernBuilder
-    attr_reader :instance
+  class VariablesBuilder
+    attr_reader :instance, :attr_names
 
-    def init
+    def initialize(attr_names, instance)
+      @instance = instance
+      @attr_names = attr_names
+    end
+
+    def build
       attr_names.extract_options!.each do |name, default|
         add_setter(name)
         add_reader(name, default)
