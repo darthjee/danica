@@ -1,12 +1,11 @@
 module Danica
   class Function::Baskara < Function
     variables :a, :b, :c
-    delegate :to_f, :to_tex, :to_gnu, to: :division
 
     private
 
-    def division
-      numerator / denominator
+    def function
+      @function ||= numerator / denominator
     end
 
     def numerator

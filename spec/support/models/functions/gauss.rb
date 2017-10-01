@@ -1,12 +1,11 @@
 module Danica
   class Function::Gauss < Function
     variables :x, median: :u, variance_root: { latex: '\theta', gnu: :v }
-    delegate :to_f, :to_tex, :to_gnu, to: :product
 
     private
 
-    def product
-      @sum ||= Product.new(parcels)
+    def function
+      @function ||= Product.new(parcels)
     end
 
     def parcels

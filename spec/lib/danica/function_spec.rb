@@ -1,6 +1,40 @@
 require 'spec_helper'
 
 describe Danica::Function do
+  describe '.build' do
+    let(:variables) { %i(x y) }
+    let(:function_class) do
+      described_class.build(*variables) do
+        Danica::Power.new(x, y)
+      end
+    end
+    let(:function) do
+      function_class.new
+    end
+
+    it 'returns a function class' do
+      expect(function_class.superclass).to eq(described_class)
+    end
+
+    it 'returns a class whose instance responds to the variables' do
+      variables.each do |variable|
+        expect(function).to respond_to(variable)
+      end
+    end
+
+    it 'returns a function that uses the block to process to_tex' do
+      expect(function.to_tex).to eq('x^{y}')
+    end
+
+    it 'returns a function that uses the block to process to_gnu' do
+      expect(function.to_gnu).to eq('x**(y)')
+    end
+
+    it 'returns a function thtat knows how to calculate' do
+      expect(function.calculate(x: 2, y: 3)).to eq(8)
+    end
+  end
+
   describe 'spatial' do
     let(:variables) do
       {
