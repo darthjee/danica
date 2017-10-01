@@ -4,7 +4,9 @@ describe Danica::Function do
   describe '.build' do
     let(:variables) { %i(x y) }
     let(:function_class) do
-      described_class.build(*variables)
+      described_class.build(*variables) do
+        Danica::Power.new(x, y)
+      end
     end
     let(:function) do
       function_class.new
@@ -18,6 +20,14 @@ describe Danica::Function do
       variables.each do |variable|
         expect(function).to respond_to(variable)
       end
+    end
+
+    it 'returns a function that uses the block to process to_tex' do
+      expect(function.to_tex).to eq('x^{y}')
+    end
+
+    it 'returns a function that uses the block to process to_gnu' do
+      expect(function.to_gnu).to eq('x**(y)')
     end
   end
 
