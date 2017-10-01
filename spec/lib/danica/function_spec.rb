@@ -29,6 +29,10 @@ describe Danica::Function do
     it 'returns a function that uses the block to process to_gnu' do
       expect(function.to_gnu).to eq('x**(y)')
     end
+
+    it 'returns a function thtat knows how to calculate' do
+      expect(function.calculate(x: 2, y: 3)).to eq(8)
+    end
   end
 
   describe 'spatial' do

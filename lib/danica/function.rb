@@ -8,11 +8,13 @@ module Danica
 
     default_value :priority, 3
     default_value :is_grouped?, false
-    delegate :to_tex, :to_gnu, to: :function
+    delegate :to_f, :to_tex, :to_gnu, to: :function
 
     def self.build(*vars, &block)
       Class.new(self) do
-        variables *vars
+        variables(*vars)
+
+        private
 
         define_method :function do
           @function ||= instance_eval(&block)
