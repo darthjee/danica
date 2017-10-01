@@ -1,6 +1,26 @@
 require 'spec_helper'
 
 describe Danica::Function do
+  describe '.build' do
+    let(:variables) { %i(x y) }
+    let(:function_class) do
+      described_class.build(*variables)
+    end
+    let(:function) do
+      function_class.new
+    end
+
+    it 'returns a function class' do
+      expect(function_class.superclass).to eq(described_class)
+    end
+
+    it 'returns a class whose instance responds to the variables' do
+      variables.each do |variable|
+        expect(function).to respond_to(variable)
+      end
+    end
+  end
+
   describe 'spatial' do
     let(:variables) do
       {

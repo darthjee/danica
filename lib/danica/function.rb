@@ -9,6 +9,12 @@ module Danica
     default_value :priority, 3
     default_value :is_grouped?, false
 
+    def self.build(*vars)
+      Class.new(self) do
+        variables *vars
+      end
+    end
+
     def initialize(*args)
       options = args.extract_options!
 
