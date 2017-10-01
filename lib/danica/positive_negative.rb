@@ -7,7 +7,7 @@ module Danica
 
     attr_accessor :value
 
-    default_value :priority, 1
+    default_value :priority, 2
     default_value :is_grouped?, false
     
     delegate :valued?, to: :value
@@ -21,11 +21,11 @@ module Danica
     end
 
     def to_tex
-      "\\pm #{value.to_tex}"
+      "\\pm #{wrap_as_group(value).to_tex}"
     end
 
     def to_gnu
-      "+ #{value.to_gnu}"
+      "+ #{wrap_as_group(value).to_gnu}"
     end
 
     def ==(other)
