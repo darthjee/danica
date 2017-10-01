@@ -1,6 +1,6 @@
 module Danica
   class Function::Gauss < Function
-    variables :x, :median, :variance_root
+    variables :x, median: :u, variance_root: { latex: '\theta', gnu: :v }
     delegate :to_f, :to_tex, :to_gnu, to: :product
 
     private

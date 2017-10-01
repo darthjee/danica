@@ -26,7 +26,7 @@ describe Danica::Function do
 
     describe '#to_gnu' do
       context 'when creating the spatial operator for constantly accelerated movement' do
-        let(:expected) { 'S0 + V0 * t + a * t**(2)/2'  }
+        let(:expected) { 'S0 + V0 * t + (a * t**(2))/(2)'  }
 
         it 'return the latex format CAM' do
           expect(subject.to_gnu).to eq(expected)
@@ -222,7 +222,7 @@ describe Danica::Function do
       {
         x: :x,
         median: :u,
-        variance_root: :v
+        variance_root: { latex: '\theta', gnu: :v }
       }
     end
 
@@ -231,7 +231,7 @@ describe Danica::Function do
 
     describe '#to_tex' do
       context 'when creating the spatial operator for constantly accelerated movement' do
-        let(:expected) { '\frac{1}{\sqrt{2 \cdot \pi \cdot v^{2}}} \cdot e^{-\frac{\left(x -u\right)^{2}}{2 \cdot v^{2}}}'  }
+        let(:expected) { '\frac{1}{\sqrt{2 \cdot \pi \cdot \theta^{2}}} \cdot e^{-\frac{\left(x -u\right)^{2}}{2 \cdot \theta^{2}}}'  }
 
         it 'return the latex format CAM' do
           expect(subject.to_tex).to eq(expected)
@@ -241,9 +241,52 @@ describe Danica::Function do
 
     describe '#to_gnu' do
       context 'when creating the spatial operator for constantly accelerated movement' do
-        let(:expected) { '1/sqrt(2 * pi * v**(2)) * exp(-(x -u)**(2)/2 * v**(2))' }
+        let(:expected) { '(1)/(sqrt(2 * pi * v**(2))) * exp(-((x -u)**(2))/(2 * v**(2)))' }
+
+        it 'return the gnu format CAM' do
+          expect(subject.to_gnu).to eq(expected)
+        end
+      end
+    end
+
+    context 'when not passing variables' do
+      subject { described_class::Gauss.new }
+
+      describe '#to_tex' do
+        let(:expected) { '\frac{1}{\sqrt{2 \cdot \pi \cdot \theta^{2}}} \cdot e^{-\frac{\left(x -u\right)^{2}}{2 \cdot \theta^{2}}}'  }
+
+        it 'rely on default variables definition' do
+          expect(subject.to_tex).to eq(expected)
+        end
+      end
+
+      describe '#to_gnu' do
+        let(:expected) { '(1)/(sqrt(2 * pi * v**(2))) * exp(-((x -u)**(2))/(2 * v**(2)))' }
+
+        it 'rely on default variables definition' do
+          expect(subject.to_gnu).to eq(expected)
+        end
+      end
+    end
+  end
+
+  describe 'baskara' do
+    context 'when using the default value for variables' do
+      subject { described_class::Baskara.new }
+      it_behaves_like 'an object that respond to basic_methods'
+
+      describe '#to_tex' do
+        let(:expected) { '\frac{-b \pm \sqrt{b^{2} -4 \cdot a \cdot c}}{2 \cdot a}'  }
 
         it 'return the latex format CAM' do
+          expect(subject.to_tex).to eq(expected)
+        end
+      end
+
+      describe '#to_gnu' do
+        let(:expected) { '(-b + sqrt(b**(2) -4 * a * c))/(2 * a)'  }
+
+        it 'return the gnu format CAM' do
           expect(subject.to_gnu).to eq(expected)
         end
       end

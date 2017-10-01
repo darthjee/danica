@@ -1,33 +1,41 @@
-require 'concern_builder'
 require 'darthjee/core_ext'
 
 module Danica::VariablesHolder
-  class VariablesBuilder < ::ConcernBuilder
-    attr_reader :instance
+  class VariablesBuilder
+    attr_reader :instance, :attr_names
 
-    def init
+    def initialize(attr_names, instance)
+      @instance = instance
+      @attr_names = attr_names
+    end
+
+    def build
+      attr_names.extract_options!.each do |name, default|
+        add_setter(name)
+        add_reader(name, default)
+        instance.variables_names << name
+      end
+
       attr_names.each do |name|
         add_setter(name)
-        add_reader(name)
-        instance.send(:variables_names) << name
+        add_reader(name, name)
+        instance.variables_names << name
       end
     end
 
     private
 
     def add_setter(name)
-      code = <<-CODE
-        variables_hash[:#{name}] = wrap_value(value)
+      instance.send(:define_method, "#{name}=") do |value|
+        variables_hash[name.to_sym] = wrap_value(value)
         @variables = variables_hash.values
-      CODE
-      add_method("#{name}=(value)", code)
+      end
     end
 
-    def add_reader(name)
-      code = <<-CODE
-        variables_hash[:#{name}]
-      CODE
-      add_method("#{name}", code)
+    def add_reader(name, default)
+      instance.send(:define_method, name) do
+        variables_hash[name.to_sym] ||= wrap_value(default)
+      end
     end
   end
 end

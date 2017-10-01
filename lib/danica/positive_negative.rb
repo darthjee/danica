@@ -1,5 +1,5 @@
 module Danica
-  class Negative
+  class PositiveNegative
     include Common
     include BaseOperations
     include VariablesHolder
@@ -17,15 +17,15 @@ module Danica
     end
 
     def to_f
-      -value.to_f
+      value.to_f
     end
 
     def to_tex
-      "-#{wrap_as_group(value).to_tex}"
+      "\\pm #{wrap_as_group(value).to_tex}"
     end
 
     def to_gnu
-      "-#{wrap_as_group(value).to_gnu}"
+      "+ #{wrap_as_group(value).to_gnu}"
     end
 
     def ==(other)
