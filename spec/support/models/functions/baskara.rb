@@ -10,7 +10,7 @@ module Danica
     end
 
     def numerator
-       Negative.new(b) + SquaredRoot.new(delta)
+       Negative.new(b) + PositiveNegative.new(SquaredRoot.new(delta))
     end
 
     def denominator

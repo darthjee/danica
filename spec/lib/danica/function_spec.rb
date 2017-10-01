@@ -276,7 +276,7 @@ describe Danica::Function do
       it_behaves_like 'an object that respond to basic_methods'
 
       describe '#to_tex' do
-        let(:expected) { '\frac{-b + \sqrt{b^{2} -4 \cdot a \cdot c}}{2 \cdot a}'  }
+        let(:expected) { '\frac{-b \pm \sqrt{b^{2} -4 \cdot a \cdot c}}{2 \cdot a}'  }
 
         it 'return the latex format CAM' do
           expect(subject.to_tex).to eq(expected)
