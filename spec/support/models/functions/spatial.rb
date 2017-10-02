@@ -1,12 +1,7 @@
 module Danica
-  class Function::Spatial < Function
-    variables :time, :acceleration, :initial_space, :initial_velocity
+  class Function::Spatial < Function.build(:time, :acceleration, :initial_space, :initial_velocity) { sum(parcels) }
 
     private
-
-    def function_block
-      @function_block ||= sum(parcels)
-    end
 
     def parcels
       [

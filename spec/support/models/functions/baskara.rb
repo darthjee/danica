@@ -1,12 +1,7 @@
 module Danica
-  class Function::Baskara < Function
-    variables :a, :b, :c
+  class Function::Baskara < Function.build(:a, :b, :c) { numerator / denominator }
 
     private
-
-    def function_block
-      @function_block ||= numerator / denominator
-    end
 
     def numerator
        negative(b) + PositiveNegative.new(squared_root(delta))

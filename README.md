@@ -193,11 +193,9 @@ fx.calculate(10, 3)
 
 or
 
-
 ```ruby
 fx.calculate(time: 10, acceleration: 3)
 ```
-
 or
 
 ```ruby
@@ -208,4 +206,100 @@ all return
 
 ```ruby
 171.0
+```
+
+#### Danica::Function.build
+Alternativily, a function can be created through ```Danica::Function.build(*variables, &block)```
+
+```ruby
+class Saddle < Danica::Function.build(:x, :y) { power(x, 2) - power(y, 2) }
+end
+
+fx = Saddle.new
+```
+
+or
+
+```ruby
+fx = Danica::Function.build(:x, :y) { power(x, 2) - power(y, 2) }.new
+```
+
+##### to_tex
+```ruby
+fx.to_tex
+```
+
+returns
+```string
+x^{2} -y^{2}
+```
+
+##### to_gnu
+```ruby
+fx.to_gnu
+```
+
+returns
+```string
+x**(2) -y**(2)
+```
+
+### DSL and building
+A function can be created using the DSL direct from ```Danica```
+
+```ruby
+Danica.build do
+  power(:x, -1)
+end
+```
+
+will result into a ```Danica::Power``` object
+
+```ruby
+Danica::Power.new(:x, -1)
+```
+
+#### Operator registering on DSL
+
+Any operator created can be added to the DSL by running ```DSL.register```
+
+```ruby
+module Danica
+  class Inverse < Danica::Operator
+    include DSL
+    variables :value
+
+    delegate :to_f, :to_tex, :to_gnu, to: :pow
+
+    def pow
+      @pow ||= power(value, -1)
+    end
+  end
+end
+```
+
+In order to add the new operator, DSL cna infer by the name ```inverse``` which results in ```Danica::Inverse```
+
+```ruby
+Danica::DSL.register(:inverse)
+```
+
+or
+
+```ruby
+Danica::DSL.register(:inverse, Danica::inverse)
+```
+
+This will allow the usage of the inverse function
+
+```ruby
+Danica.build do
+  inverse(:x)
+end
+```
+
+will result into a ```Danica::Inverse``` object
+
+```ruby
+Danica::Inverse.new(:x)
 ```

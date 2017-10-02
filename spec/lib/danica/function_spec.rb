@@ -43,6 +43,54 @@ describe Danica::Function do
         expect(function_class.superclass).to eq(described_class)
       end
     end
+
+    context 'when creating a class using build' do
+      let(:function_class) { Danica::Hyperbole }
+
+      it 'has the defined variables on class definition' do
+        expect(function_class.variables_names).to eq([:x])
+      end
+
+      it 'has the defined variables' do
+        expect(function.variables_hash).to eq(x: nil)
+      end
+
+      context 'when calling to_tex' do
+        it 'build function from block' do
+          expect(function.to_tex).to eq('x^{2}')
+        end
+      end
+
+      context 'when calling to_gnu' do
+        it 'build function from block' do
+          expect(function.to_gnu).to eq('x**(2)')
+        end
+      end
+    end
+
+    context 'when using a class that inherits from another class' do
+      let(:function_class) { Danica::SaddleHyperbole }
+
+      it 'has the defined variables on class definition' do
+        expect(function_class.variables_names).to eq([:x, :y])
+      end
+
+      it 'has the defined variables' do
+        expect(function.variables_hash).to eq(x: nil, y: nil)
+      end
+
+      context 'when calling to_tex' do
+        it 'build function from block' do
+          expect(function.to_tex).to eq('x^{2} -y^{2}')
+        end
+      end
+
+      context 'when calling to_gnu' do
+        it 'build function from block' do
+          expect(function.to_gnu).to eq('x**(2) -y**(2)')
+        end
+      end
+    end
   end
 
   describe 'spatial' do
