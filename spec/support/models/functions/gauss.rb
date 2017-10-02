@@ -1,11 +1,7 @@
 module Danica
-  class Function::Gauss < Function.build(:x, median: :u, variance_root: { latex: '\theta', gnu: :v })
+  class Function::Gauss < Function.build(:x, median: :u, variance_root: { latex: '\theta', gnu: :v }) { product(parcels) }
 
     private
-
-    def function_block
-      @function_block ||= product(parcels)
-    end
 
     def parcels
       [
