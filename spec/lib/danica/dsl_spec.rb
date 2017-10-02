@@ -9,17 +9,22 @@ shared_context 'a class with alias to a clazz' do |aliaz, clazz, *variables|
 end
 
 shared_context 'a class with mapped dsl' do
-  mapping = {
+  {
     sum: Danica::Sum,
     product: Danica::Product,
     division: Danica::Division,
     sin: Danica::Sin,
     cos: Danica::Cos,
     power: Danica::Power
-  }
-
-  mapping.each do |aliaz, clazz|
+  }.each do |aliaz, clazz|
     it_behaves_like 'a class with alias to a clazz', aliaz, clazz, 2, 3
+  end
+  {
+    squared_root: Danica::SquaredRoot,
+    exponential: Danica::Exponential,
+    group: Danica::Group
+  }.each do |aliaz, clazz|
+    it_behaves_like 'a class with alias to a clazz', aliaz, clazz, 9
   end
 end
 

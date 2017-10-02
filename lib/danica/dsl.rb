@@ -14,4 +14,7 @@ module Danica
   DSL.register(:sin)
   DSL.register(:cos)
   DSL.register(:power)
+  DSL.register(:squared_root)
+  DSL.register(:exponential)
+  DSL.register(:group)
 end
