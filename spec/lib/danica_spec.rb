@@ -34,7 +34,7 @@ describe Danica do
       let(:block) do
         proc do
           function(:x) do
-            Danica::Power.new(x, 2)
+            power(x, 2)
           end
         end
       end

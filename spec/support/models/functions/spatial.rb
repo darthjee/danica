@@ -4,8 +4,8 @@ module Danica
 
     private
 
-    def function
-      @function ||= Sum.new(parcels)
+    def function_block
+      @function_block ||= Sum.new(parcels)
     end
 
     def parcels

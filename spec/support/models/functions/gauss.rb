@@ -4,8 +4,8 @@ module Danica
 
     private
 
-    def function
-      @function ||= Product.new(parcels)
+    def function_block
+      @function_block ||= Product.new(parcels)
     end
 
     def parcels

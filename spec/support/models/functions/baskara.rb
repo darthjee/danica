@@ -4,8 +4,8 @@ module Danica
 
     private
 
-    def function
-      @function ||= numerator / denominator
+    def function_block
+      @function_block ||= numerator / denominator
     end
 
     def numerator
