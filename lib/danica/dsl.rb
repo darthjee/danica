@@ -1,13 +1,14 @@
 module Danica
   module DSL
-    def self.register(method, clazz)
+    def self.register(method, clazz=nil)
+      clazz = "Danica::#{method.to_s.camelize}".constantize unless clazz
       DSL.send(:define_method, method) do |*args|
         clazz.new(*args)
       end
     end
   end
 
-  DSL.register(:sum, Sum)
-  DSL.register(:product, Product)
-  DSL.register(:division, Division)
+  DSL.register(:sum)
+  DSL.register(:product)
+  DSL.register(:division)
 end
