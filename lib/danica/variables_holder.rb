@@ -9,7 +9,9 @@ module Danica
         end
 
         def variables_names
-          @variables_names ||= []
+          @variables_names ||= (
+            (superclass.try(:variables_names) || []) + []
+          )
         end
       end
     end
