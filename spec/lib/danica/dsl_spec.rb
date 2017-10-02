@@ -2,7 +2,10 @@ shared_context 'a class with mapped dsl' do
   mapping = {
     sum: Danica::Sum,
     product: Danica::Product,
-    division: Danica::Division
+    division: Danica::Division,
+    sin: Danica::Sin,
+    cos: Danica::Cos,
+    power: Danica::Power
   }
 
   let(:variables) { [2, 3] }

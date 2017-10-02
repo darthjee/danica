@@ -11,4 +11,7 @@ module Danica
   DSL.register(:sum)
   DSL.register(:product)
   DSL.register(:division)
+  DSL.register(:sin)
+  DSL.register(:cos)
+  DSL.register(:power)
 end
