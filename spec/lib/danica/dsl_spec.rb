@@ -1,3 +1,5 @@
+require 'spec_helper'
+
 shared_context 'a class with alias to a clazz' do |aliaz, clazz, *variables|
   it do
     expect(subject).to respond_to(aliaz)
