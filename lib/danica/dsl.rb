@@ -8,13 +8,10 @@ module Danica
     end
   end
 
-  DSL.register(:sum)
-  DSL.register(:product)
-  DSL.register(:division)
-  DSL.register(:sin)
-  DSL.register(:cos)
-  DSL.register(:power)
-  DSL.register(:squared_root)
-  DSL.register(:exponential)
-  DSL.register(:group)
+  %i(
+    sum product division sin cos power
+    squared_root exponential group
+  ).each do |method|
+    DSL.register(method)
+  end
 end
