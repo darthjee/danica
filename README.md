@@ -193,11 +193,9 @@ fx.calculate(10, 3)
 
 or
 
-
 ```ruby
 fx.calculate(time: 10, acceleration: 3)
 ```
-
 or
 
 ```ruby
@@ -208,4 +206,40 @@ all return
 
 ```ruby
 171.0
+```
+
+#### Danica::Function.build
+Alternativily, a function can be created through ```Danica::Function.build(*variables, &block)```
+
+```ruby
+class Saddle < Danica::Function.build(:x, :y) { power(x, 2) - power(y, 2) }
+end
+
+fx = Saddle.new
+```
+
+or
+
+```ruby
+fx = Danica::Function.build(:x, :y) { power(x, 2) - power(y, 2) }.new
+```
+
+##### to_tex
+```ruby
+fx.to_tex
+```
+
+returns
+```string
+x^{2} -y^{2}
+```
+
+##### to_gnu
+```ruby
+fx.to_gnu
+```
+
+returns
+```string
+x**(2) -y**(2)
 ```
