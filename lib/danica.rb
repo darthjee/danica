@@ -22,6 +22,7 @@ module Danica
   autoload :Exponential,      'danica/exponential'
   autoload :Sin,              'danica/sin'
   autoload :Cos,              'danica/cos'
+  autoload :DSL,              'danica/dsl'
 
   E = Constant.new(Math::E, :e, 'exp(1)')
   PI =  Constant.new(Math::PI, '\pi', :pi)
