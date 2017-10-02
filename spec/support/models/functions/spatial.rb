@@ -1,6 +1,5 @@
 module Danica
-  class Function::Spatial < Function
-    variables :time, :acceleration, :initial_space, :initial_velocity
+  class Function::Spatial < Function.build(:time, :acceleration, :initial_space, :initial_velocity)
 
     private
 

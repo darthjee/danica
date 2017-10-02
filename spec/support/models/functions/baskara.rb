@@ -1,6 +1,5 @@
 module Danica
-  class Function::Baskara < Function
-    variables :a, :b, :c
+  class Function::Baskara < Function.build(:a, :b, :c)
 
     private
 

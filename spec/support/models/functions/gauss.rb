@@ -1,6 +1,5 @@
 module Danica
-  class Function::Gauss < Function
-    variables :x, median: :u, variance_root: { latex: '\theta', gnu: :v }
+  class Function::Gauss < Function.build(:x, median: :u, variance_root: { latex: '\theta', gnu: :v })
 
     private
 
