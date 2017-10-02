@@ -9,8 +9,8 @@ module Danica
   end
 
   %i(
-    sum product division sin cos power
-    squared_root exponential group
+    sum product division sin cos power number
+    squared_root exponential group negative
   ).each do |method|
     DSL.register(method)
   end
