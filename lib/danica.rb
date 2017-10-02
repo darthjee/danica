@@ -1,6 +1,7 @@
 require 'active_model'
 
 module Danica
+  autoload :Builder,          'danica/builder'
   autoload :BaseOperations,   'danica/base_operations'
   autoload :VariablesHolder,  'danica/variables_holder'
   autoload :Common,           'danica/common'
@@ -22,6 +23,15 @@ module Danica
   autoload :Exponential,      'danica/exponential'
   autoload :Sin,              'danica/sin'
   autoload :Cos,              'danica/cos'
+  autoload :DSL,              'danica/dsl'
+
+  class << self
+    delegate :build, to: :builder
+
+    def builder
+      @builder ||= Builder.new
+    end
+  end
 
   E = Constant.new(Math::E, :e, 'exp(1)')
   PI =  Constant.new(Math::PI, '\pi', :pi)

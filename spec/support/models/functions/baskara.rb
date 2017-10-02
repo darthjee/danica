@@ -4,20 +4,20 @@ module Danica
 
     private
 
-    def function
-      @function ||= numerator / denominator
+    def function_block
+      @function_block ||= numerator / denominator
     end
 
     def numerator
-       Negative.new(b) + PositiveNegative.new(SquaredRoot.new(delta))
+       negative(b) + PositiveNegative.new(squared_root(delta))
     end
 
     def denominator
-      Number.new(2) * a
+      number(2) * a
     end
 
     def delta
-      Power.new(b, 2) - Product.new(4, a, c)
+      power(b, 2) - product(4, a, c)
     end
   end
 end

@@ -38,28 +38,18 @@ class MyOperator < Danica::Operator
   def to_gnu
     #optionaly implement custom to_gnu method
   end
-
-  private
-
-  def to_tex
-    #implement to_tex here
-  end
-
-  def to_gnu
-    #implement to_gnu here
-  end
 end
 ```
+
 #### Sample
 ```ruby
-class Danica::Inverse
+class Danica::Inverse < Danica::Operator
+
   variables :value
 
   def to_f
     value.to_f ** -1 #Do not worry with nil value as this has been implemented already raising Danica::Exception::NotDefined
   end
-
-  private
 
   def to_tex
     "(#{value.to_tex})^{-1}"
@@ -119,7 +109,9 @@ as the base of the power operator and the y variable is present on both power an
 class MyFunction
   variables :variables_list
 
-  # code of operators composition
+  def function_block
+    # code of operators composition
+  end
 end
 ```
 
@@ -128,12 +120,11 @@ end
 module Danica
   class Function::Spatial < Function
     variables :time, :acceleration, :initial_space, :initial_velocity
-    delegate :to_tex, :to_gnu, to: :sum
 
     private
 
-    def sum
-      @sum ||= Sum.new(parcels)
+    def function_block
+      @function_block ||= sum(parcels)
     end
 
     def parcels
@@ -145,15 +136,15 @@ module Danica
     end
 
     def spatial_velocity
-      Product.new(initial_velocity, time)
+      product(initial_velocity, time)
     end
 
     def spatial_acceleration
-      Division.new(Product.new(acceleration, time_squared), 2)
+      division(product(acceleration, time_squared), 2)
     end
 
     def time_squared
-      Power.new(time, 2)
+      power(time, 2)
     end
   end
 end
@@ -173,7 +164,7 @@ fx.to_tex
 
 returns
 ```string
-S_0 + V_0 \cdot t + \frac{a \cdot t^2}{2}
+S_0 + V_0 \cdot t + \frac{a \cdot t^{2}}{2}
 ```
 
 ##### to_gnu
@@ -183,7 +174,7 @@ fx.to_gnu
 
 returns
 ```string
-S0 + V0 * t + a * t**2/2
+S0 + V0 * t + (a * t**(2))/(2)
 ```
 
 ##### calculate / to_f

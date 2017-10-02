@@ -3,12 +3,13 @@ module Danica
     include Common
     include VariablesHolder
     include ActiveModel::Model
+    include DSL
   
     attr_accessor :name
 
     default_value :priority, 3
     default_value :is_grouped?, false
-    delegate :to_f, :to_tex, :to_gnu, to: :function
+    delegate :to_f, :to_tex, :to_gnu, to: :function_block
 
     def self.build(*vars, &block)
       Class.new(self) do
@@ -16,8 +17,8 @@ module Danica
 
         private
 
-        define_method :function do
-          @function ||= instance_eval(&block)
+        define_method :function_block do
+          @function_block ||= instance_eval(&block) if block
         end
       end
     end
