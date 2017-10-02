@@ -18,6 +18,11 @@ module Danica
         to_string(:gnu)
       end
 
+      def ==(other)
+        return false unless other.class == self.class
+        variables == other.variables
+      end
+
       private
 
       def to_string(type)
