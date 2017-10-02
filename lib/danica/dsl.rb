@@ -6,6 +6,10 @@ module Danica
         clazz.new(*args)
       end
     end
+
+    def function(*variables, &block)
+      Function.build(*variables, &block).new
+    end
   end
 
   %i(
