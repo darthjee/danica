@@ -243,3 +243,63 @@ returns
 ```string
 x**(2) -y**(2)
 ```
+
+### DSL and building
+A function can be created using the DSL direct from ```Danica```
+
+```ruby
+Danica.build do
+  power(:x, -1)
+end
+```
+
+will result into a ```Danica::Power``` object
+
+```ruby
+Danica::Power.new(:x, -1)
+```
+
+#### Operator registering on DSL
+
+Any operator created can be added to the DSL by running ```DSL.register```
+
+```ruby
+module Danica
+  class Inverse < Danica::Operator
+    include DSL
+    variables :value
+
+    delegate :to_f, :to_tex, :to_gnu, to: :pow
+
+    def pow
+      @pow ||= power(value, -1)
+    end
+  end
+end
+```
+
+In order to add the new operator, DSL cna infer by the name ```inverse``` which results in ```Danica::Inverse```
+
+```ruby
+Danica::DSL.register(:inverse)
+```
+
+or
+
+```ruby
+Danica::DSL.register(:inverse, Danica::inverse)
+```
+
+This will allow the usage of the inverse function
+
+```ruby
+Danica.build do
+  inverse(:x)
+end
+```
+
+will result into a ```Danica::Inverse``` object
+
+```ruby
+Danica::Inverse.new(:x)
+```
