@@ -18,7 +18,7 @@ module Danica
         private
 
         define_method :function_block do
-          @function ||= instance_eval(&block)
+          @function_block ||= instance_eval(&block) if block
         end
       end
     end

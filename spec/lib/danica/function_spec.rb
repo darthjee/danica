@@ -33,6 +33,16 @@ describe Danica::Function do
     it 'returns a function thtat knows how to calculate' do
       expect(function.calculate(x: 2, y: 3)).to eq(8)
     end
+
+    context 'when no block is given' do
+      let(:function_class) do
+        described_class.build(*variables)
+      end
+
+      it 'returns a function class' do
+        expect(function_class.superclass).to eq(described_class)
+      end
+    end
   end
 
   describe 'spatial' do
