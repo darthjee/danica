@@ -5,35 +5,35 @@ module Danica
     private
 
     def function_block
-      @function_block ||= Product.new(parcels)
+      @function_block ||= product(parcels)
     end
 
     def parcels
       [
-        Division.new(1, denominator),
-        Exponential.new(exponential)
+        division(1, denominator),
+        exponential(exp)
       ]
     end
 
     def denominator
-      SquaredRoot.new(
-        Product.new(2, PI, variance),
+      squared_root(
+        product(2, PI, variance),
       )
     end
 
-    def exponential
-      Negative.new(
-        Division.new(
-          Power.new(Group.new(
-            Sum.new(x, Negative.new(median))
+    def exp
+      negative(
+        division(
+          power(group(
+            sum(x, negative(median))
           ), 2),
-          Product.new(2, variance)
+          product(2, variance)
         )
       )
     end
 
     def variance
-      @variance ||= Power.new(variance_root, 2)
+      @variance ||= power(variance_root, 2)
     end
   end
 end
