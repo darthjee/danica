@@ -11,5 +11,10 @@ module Danica
     def initialize(*args)
       super( variables: args.flatten )
     end
+
+    def ==(other)
+      return false unless other.class == self.class
+      variables == other.variables
+    end
   end
 end
