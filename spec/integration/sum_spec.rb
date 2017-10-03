@@ -4,9 +4,9 @@ describe 'integration of sum' do
   describe 'with negative and positivenegative (+/-) numbers' do
     subject do
       Danica::Operator::Sum.new(
-        Danica::Negative.new(1),
+        Danica::Wrapper::Negative.new(1),
         2,
-        Danica::Negative.new(3),
+        Danica::Wrapper::Negative.new(3),
         4,
         Danica::PositiveNegative.new(5)
       )

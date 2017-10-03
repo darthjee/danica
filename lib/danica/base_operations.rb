@@ -15,7 +15,7 @@ module Danica
     end
 
     def -(other)
-      self + Negative.new(other)
+      self + Wrapper::Negative.new(other)
     end
   end
 end

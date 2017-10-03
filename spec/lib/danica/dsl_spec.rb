@@ -24,9 +24,9 @@ shared_context 'a class with mapped dsl' do
   {
     squared_root: Danica::Operator::SquaredRoot,
     exponential: Danica::Operator::Exponential,
-    group: Danica::Group,
-    negative: Danica::Negative,
-    number: Danica::Number
+    group: Danica::Wrapper::Group,
+    negative: Danica::Wrapper::Negative,
+    number: Danica::Wrapper::Number
   }.each do |aliaz, clazz|
     it_behaves_like 'a class with alias to a clazz', aliaz, clazz, 9
   end

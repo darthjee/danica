@@ -1,5 +1,5 @@
 module Danica
-  class Negative
+  class Wrapper::Negative
     include Common
     include BaseOperations
     include VariablesHolder

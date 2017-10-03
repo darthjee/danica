@@ -24,7 +24,7 @@ shared_examples 'an object with + operation' do
   it_behaves_like 'an object with an operation', Danica::Operator::Sum
 
   context 'when operating as reverse' do
-    let(:result) { Danica::Number.new(other) + subject }
+    let(:result) { Danica::Wrapper::Number.new(other) + subject }
     it_behaves_like 'an object with an operation', Danica::Operator::Sum
   end
 end
@@ -37,14 +37,14 @@ shared_examples 'an object with * operation' do
   it_behaves_like 'an object with an operation', Danica::Operator::Product
 
   context 'when operating as reverse' do
-    let(:result) { Danica::Number.new(other) * subject }
+    let(:result) { Danica::Wrapper::Number.new(other) * subject }
     it_behaves_like 'an object with an operation', Danica::Operator::Product
   end
 end
 
 shared_examples 'an object with / operation' do
   let(:other) { 104 }
-  let(:other_number) { Danica::Number.new(104) }
+  let(:other_number) { Danica::Wrapper::Number.new(104) }
   let(:result) { subject / other }
 
   it { expect(result).to be_a(Danica::Operator::Division) }
@@ -60,7 +60,7 @@ end
 
 shared_examples 'an object with - operation' do
   let(:other) { 104 }
-  let(:negative_other) { Danica::Negative.new(other) }
+  let(:negative_other) { Danica::Wrapper::Negative.new(other) }
   let(:result) { subject - other }
   let(:subject_included) { subject }
 

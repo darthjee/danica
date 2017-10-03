@@ -1,5 +1,5 @@
 module Danica
-  class Number
+  class Wrapper::Number
     include ActiveModel::Model
     include BaseOperations
     include Common

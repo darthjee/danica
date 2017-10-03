@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Danica::PositiveNegative do
-  let(:value) { Danica::Number.new(10) }
+  let(:value) { Danica::Wrapper::Number.new(10) }
   subject { described_class.new(value) }
 
   it_behaves_like 'an object that respond to basic_methods'

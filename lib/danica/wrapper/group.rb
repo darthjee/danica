@@ -1,5 +1,5 @@
 module Danica
-  class Group
+  class Wrapper::Group
     include Common
     include ActiveModel::Model
 

@@ -21,6 +21,6 @@ module Danica
   %i(
     number group negative
   ).each do |method|
-    DSL.register(method, "Danica::#{method.to_s.camelize}".constantize)
+    DSL.register(method, "Danica::Wrapper::#{method.to_s.camelize}".constantize)
   end
 end
