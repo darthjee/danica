@@ -43,7 +43,7 @@ end
 
 #### Sample
 ```ruby
-class Danica::Inverse < Danica::Operator
+class Danica::Operator::Inverse < Danica::Operator
 
   variables :value
 
@@ -60,7 +60,7 @@ class Danica::Inverse < Danica::Operator
   end
 end
 
-fx = Danica::Inverse.new(:x)
+fx = Danica::Operator::Inverse.new(:x)
 ```
 
 ##### to_tex
@@ -89,7 +89,7 @@ fx.calculate(2)
 ```
 or
 ```ruby
-Danica::Inverse.new(2).to_f
+Danica::Operator::Inverse.new(2).to_f
 ```
 
 both return
@@ -253,19 +253,19 @@ Danica.build do
 end
 ```
 
-will result into a ```Danica::Power``` object
+will result into a ```Danica::Operator::Power``` object
 
 ```ruby
-Danica::Power.new(:x, -1)
+Danica::Operator::Power.new(:x, -1)
 ```
 
 #### Operator registering on DSL
 
-Any operator created can be added to the DSL by running ```DSL.register```
+Any operator created can be added to the DSL by running ```DSL.register_operator```
 
 ```ruby
 module Danica
-  class Inverse < Danica::Operator
+  class Operator::Inverse < Danica::Operator
     include DSL
     variables :value
 
@@ -278,16 +278,16 @@ module Danica
 end
 ```
 
-In order to add the new operator, DSL cna infer by the name ```inverse``` which results in ```Danica::Inverse```
+In order to add the new operator, DSL cna infer by the name ```inverse``` which results in ```Danica::Operator::Inverse```
 
 ```ruby
-Danica::DSL.register(:inverse)
+Danica::DSL.register_operator(:inverse)
 ```
 
 or
 
 ```ruby
-Danica::DSL.register(:inverse, Danica::inverse)
+Danica::DSL.register(:inverse, Danica::Operator::Inverse)
 ```
 
 This will allow the usage of the inverse function
@@ -298,8 +298,8 @@ Danica.build do
 end
 ```
 
-will result into a ```Danica::Inverse``` object
+will result into a ```Danica::Operator::Inverse``` object
 
 ```ruby
-Danica::Inverse.new(:x)
+Danica::Operator::Inverse.new(:x)
 ```
