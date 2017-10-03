@@ -1,11 +1,11 @@
 module Danica
   module DSL
     def self.register_operator(method, clazz=nil)
-      register(method, clazz, base='Danica::Operator')
+      register(method, clazz, 'Danica::Operator')
     end
 
     def self.register_wrapper(method, clazz=nil)
-      register(method, clazz, base='Danica::Wrapper')
+      register(method, clazz, 'Danica::Wrapper')
     end
 
     def self.register(method, clazz=nil, base=nil)
