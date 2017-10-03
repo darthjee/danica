@@ -5,7 +5,6 @@ module Danica
   autoload :BaseOperations,   'danica/base_operations'
   autoload :VariablesHolder,  'danica/variables_holder'
   autoload :Common,           'danica/common'
-  autoload :PositiveNegative, 'danica/positive_negative'
   autoload :Variable,         'danica/variable'
   autoload :Function,         'danica/function'
   autoload :Exception,        'danica/exception'

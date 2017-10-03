@@ -8,7 +8,7 @@ describe 'integration of sum' do
         2,
         Danica::Wrapper::Negative.new(3),
         4,
-        Danica::PositiveNegative.new(5)
+        Danica::Wrapper::PositiveNegative.new(5)
       )
     end
 

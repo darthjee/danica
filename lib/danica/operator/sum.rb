@@ -22,7 +22,7 @@ module Danica
 
     def join_proc(symbol)
       proc do |_, value|
-        value.is_a?(Wrapper::Negative) || value.is_a?(PositiveNegative) ? ' ' : " #{symbol} "
+        value.is_a?(Wrapper::Negative) || value.is_a?(Wrapper::PositiveNegative) ? ' ' : " #{symbol} "
       end
     end
   end
