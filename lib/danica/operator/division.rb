@@ -1,5 +1,5 @@
 module Danica
-  class Division < Operator
+  class Operator::Division < Operator
     variables :numerator, :denominator
     default_value :priority, 2
     default_value :is_grouped?, true

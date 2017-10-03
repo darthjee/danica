@@ -21,11 +21,11 @@ shared_examples 'an object with + operation' do
   let(:result) { subject + other }
   let(:subject_included) { subject }
 
-  it_behaves_like 'an object with an operation', Danica::Sum
+  it_behaves_like 'an object with an operation', Danica::Operator::Sum
 
   context 'when operating as reverse' do
     let(:result) { Danica::Number.new(other) + subject }
-    it_behaves_like 'an object with an operation', Danica::Sum
+    it_behaves_like 'an object with an operation', Danica::Operator::Sum
   end
 end
 
@@ -34,11 +34,11 @@ shared_examples 'an object with * operation' do
   let(:result) { subject * other }
   let(:subject_included) { subject }
 
-  it_behaves_like 'an object with an operation', Danica::Product
+  it_behaves_like 'an object with an operation', Danica::Operator::Product
 
   context 'when operating as reverse' do
     let(:result) { Danica::Number.new(other) * subject }
-    it_behaves_like 'an object with an operation', Danica::Product
+    it_behaves_like 'an object with an operation', Danica::Operator::Product
   end
 end
 
@@ -47,7 +47,7 @@ shared_examples 'an object with / operation' do
   let(:other_number) { Danica::Number.new(104) }
   let(:result) { subject / other }
 
-  it { expect(result).to be_a(Danica::Division) }
+  it { expect(result).to be_a(Danica::Operator::Division) }
 
   it 'includes other as denominator' do
     expect(result.denominator).to eq(other_number)
@@ -64,7 +64,7 @@ shared_examples 'an object with - operation' do
   let(:result) { subject - other }
   let(:subject_included) { subject }
 
-  it { expect(result).to be_a(Danica::Sum) }
+  it { expect(result).to be_a(Danica::Operator::Sum) }
 
   it 'includes other as negative parcel' do
     expect(result).to include(negative_other)

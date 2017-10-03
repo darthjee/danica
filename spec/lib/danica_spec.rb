@@ -10,7 +10,7 @@ describe Danica do
       end
 
       it 'returns the expected sum' do
-        expect(result).to eq(Danica::Sum.new(1,2))
+        expect(result).to eq(Danica::Operator::Sum.new(1,2))
       end
     end
 
@@ -19,9 +19,9 @@ describe Danica do
         proc { power(sum(1, 2), product(2,3)) }
       end
       let(:expected) do
-        Danica::Power.new(
-          Danica::Sum.new(1, 2),
-          Danica::Product.new(2, 3)
+        Danica::Operator::Power.new(
+          Danica::Operator::Sum.new(1, 2),
+          Danica::Operator::Product.new(2, 3)
         )
       end
 
@@ -40,7 +40,7 @@ describe Danica do
       end
       let(:function) do
         Danica::Function.build(:x) do
-          Danica::Power.new(x, 2)
+          Danica::Operator::Power.new(x, 2)
         end.new
       end
 

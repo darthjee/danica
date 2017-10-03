@@ -4,7 +4,7 @@ describe 'integration of negative' do
   describe 'with a sum' do
     subject do
       Danica::Negative.new(
-        Danica::Sum.new(1,2,3)
+        Danica::Operator::Sum.new(1,2,3)
       )
     end
 

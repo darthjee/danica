@@ -1,5 +1,5 @@
 module Danica
-  class Power < Operator
+  class Operator::Power < Operator
     variables :base, :exponent
     default_value :is_grouped?, false
 

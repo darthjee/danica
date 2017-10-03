@@ -5,7 +5,7 @@ describe Danica::Function do
     let(:variables) { %i(x y) }
     let(:function_class) do
       described_class.build(*variables) do
-        Danica::Power.new(x, y)
+        Danica::Operator::Power.new(x, y)
       end
     end
     let(:function) do

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Danica::Division do
+describe Danica::Operator::Division do
   let(:variables) { [2, 4] }
   subject { described_class.new(*variables) }
 
@@ -25,9 +25,9 @@ describe Danica::Division do
   describe 'more complex division' do
     describe 'of two sums' do
       subject do
-        Danica::Division.new(
-          Danica::Sum.new(2, :x),
-          Danica::Sum.new(3, :y)
+        Danica::Operator::Division.new(
+          Danica::Operator::Sum.new(2, :x),
+          Danica::Operator::Sum.new(3, :y)
         )
       end
 

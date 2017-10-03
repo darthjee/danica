@@ -3,7 +3,7 @@ require 'spec_helper'
 describe 'integration of sum' do
   describe 'with negative and positivenegative (+/-) numbers' do
     subject do
-      Danica::Sum.new(
+      Danica::Operator::Sum.new(
         Danica::Negative.new(1),
         2,
         Danica::Negative.new(3),

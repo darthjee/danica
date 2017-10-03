@@ -1,5 +1,5 @@
 module Danica
-  class Sin < Operator
+  class Operator::Sin < Operator
     variables :variable
 
     def to_f

@@ -3,8 +3,8 @@ require 'spec_helper'
 describe 'integration of product' do
   describe 'of number and sum' do
     subject do
-      Danica::Product.new(
-        3, Danica::Sum.new(2, 4)
+      Danica::Operator::Product.new(
+        3, Danica::Operator::Sum.new(2, 4)
       )
     end
 
@@ -23,9 +23,9 @@ describe 'integration of product' do
 
   describe 'of sums' do
     subject do
-      Danica::Product.new(
-        Danica::Sum.new(1,2),
-        Danica::Sum.new(3,4)
+      Danica::Operator::Product.new(
+        Danica::Operator::Sum.new(1,2),
+        Danica::Operator::Sum.new(3,4)
       )
     end
 

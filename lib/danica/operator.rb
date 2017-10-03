@@ -16,5 +16,14 @@ module Danica
       return false unless other.class == self.class
       variables == other.variables
     end
+
+    autoload :Product,          'danica/operator/product'
+    autoload :Sum,              'danica/operator/sum'
+    autoload :Division,         'danica/operator/division'
+    autoload :Power,            'danica/operator/power'
+    autoload :Cos,              'danica/operator/cos'
+    autoload :Sin,              'danica/operator/sin'
+    autoload :SquaredRoot,      'danica/operator/squared_root'
+    autoload :Exponential,      'danica/operator/exponential'
   end
 end

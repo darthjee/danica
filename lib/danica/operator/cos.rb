@@ -1,5 +1,5 @@
 module Danica
-  class Cos < Operator
+  class Operator::Cos < Operator
     variables :variable
 
     def to_f

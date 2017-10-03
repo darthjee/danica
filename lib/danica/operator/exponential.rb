@@ -1,5 +1,5 @@
 module Danica
-  class Exponential < Operator
+  class Operator::Exponential < Operator
     variables :exponent
     default_value :is_grouped?, true
 

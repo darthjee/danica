@@ -15,14 +15,6 @@ module Danica
   autoload :Exception,        'danica/exception'
   autoload :Constant,         'danica/constant'
 
-  autoload :Product,          'danica/product'
-  autoload :Sum,              'danica/sum'
-  autoload :Division,         'danica/division'
-  autoload :Power,            'danica/power'
-  autoload :SquaredRoot,      'danica/squared_root'
-  autoload :Exponential,      'danica/exponential'
-  autoload :Sin,              'danica/sin'
-  autoload :Cos,              'danica/cos'
   autoload :DSL,              'danica/dsl'
 
   class << self

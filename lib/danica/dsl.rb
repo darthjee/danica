@@ -2,7 +2,7 @@ module Danica
   module DSL
     def self.register(method, clazz=nil)
       define_method method do |*args|
-        clazz = "Danica::#{method.to_s.camelize}".constantize unless clazz
+        clazz = "Danica::Operator::#{method.to_s.camelize}".constantize unless clazz
         clazz.new(*args)
       end
     end
@@ -13,9 +13,14 @@ module Danica
   end
 
   %i(
-    sum product division sin cos power number
-    squared_root exponential group negative
+    sum product division sin cos power
+    squared_root exponential
   ).each do |method|
     DSL.register(method)
+  end
+  %i(
+    number group negative
+  ).each do |method|
+    DSL.register(method, "Danica::#{method.to_s.camelize}".constantize)
   end
 end

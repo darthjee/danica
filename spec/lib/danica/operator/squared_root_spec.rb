@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Danica::SquaredRoot do
+describe Danica::Operator::SquaredRoot do
   subject { described_class.new(9) }
 
   it_behaves_like 'an object that respond to basic_methods'

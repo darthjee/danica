@@ -1,7 +1,7 @@
 require 'danica/operator/chained'
 
 module Danica
-  class Product < Operator::Chained
+  class Operator::Product < Operator::Chained
     default_value :priority, 2
 
     def *(other)

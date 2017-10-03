@@ -1,5 +1,5 @@
 module Danica
-  class SquaredRoot < Operator
+  class Operator::SquaredRoot < Operator
     variables :variable
     default_value :is_grouped?, true
 
