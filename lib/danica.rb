@@ -10,12 +10,13 @@ module Danica
   autoload :PositiveNegative, 'danica/positive_negative'
   autoload :Group,            'danica/group'
   autoload :Variable,         'danica/variable'
-  autoload :Operator,         'danica/operator'
   autoload :Function,         'danica/function'
   autoload :Exception,        'danica/exception'
   autoload :Constant,         'danica/constant'
 
   autoload :DSL,              'danica/dsl'
+  autoload :Wrapper,          'danica/wrapper'
+  autoload :Operator,         'danica/operator'
 
   class << self
     delegate :build, to: :builder
