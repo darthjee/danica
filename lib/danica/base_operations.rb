@@ -2,20 +2,20 @@ module Danica
   module BaseOperations
     def +(other)
       return other + self if other.is_a?(Operator::Sum)
-      Operator::Sum.new(self, other)
+      sum(self, other)
     end
 
     def *(other)
       return other * self if other.is_a?(Operator::Product)
-      Operator::Product.new(self, other)
+      product(self, other)
     end
 
     def /(other)
-      Operator::Division.new(self, other)
+      division(self, other)
     end
 
     def -(other)
-      self + Wrapper::Negative.new(other)
+      self + negative(other)
     end
   end
 end

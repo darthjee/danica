@@ -1,6 +1,8 @@
 module Danica
   module Common extend ::ActiveSupport::Concern
     included do
+      include DSL
+
       class << self
         def default_value(name, value)
           define_method(name) { value }
@@ -21,7 +23,7 @@ module Danica
     private
 
     def wrap_value(value)
-      return wrap_value(Wrapper::Number.new(value)) if value.is_a?(Numeric)
+      return wrap_value(number(value)) if value.is_a?(Numeric)
       return wrap_value(Variable.new(value)) if value.is_a?(Hash)
       return wrap_value(Variable.new(name: value)) if [ String, Symbol ].any? { |c| value.is_a?(c) }
       return wrap_value(Variable.new) if value.nil?
@@ -30,7 +32,7 @@ module Danica
 
     def wrap_as_group(value)
       return value if is_grouped? || value.priority >= priority
-      Wrapper::Group.new(value)
+      group(value)
     end
   end
 end

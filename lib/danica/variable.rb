@@ -32,7 +32,7 @@ module Danica
     end
 
     def value=(value)
-      @value = value.is_a?(Numeric) ? Wrapper::Number.new(value) : value
+      @value = value.is_a?(Numeric) ? number(value) : value
     end
   end
 end
