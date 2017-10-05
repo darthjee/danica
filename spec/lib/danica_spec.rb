@@ -14,14 +14,14 @@ describe Danica do
       end
     end
 
-    context 'when creating a power of addition and product' do
+    context 'when creating a power of addition and multiplication' do
       let(:block) do
-        proc { power(addition(1, 2), product(2,3)) }
+        proc { power(addition(1, 2), multiplication(2,3)) }
       end
       let(:expected) do
         Danica::Operator::Power.new(
           Danica::Operator::Addition.new(1, 2),
-          Danica::Operator::Product.new(2, 3)
+          Danica::Operator::Multiplication.new(2, 3)
         )
       end
 

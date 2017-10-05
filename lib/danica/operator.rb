@@ -17,7 +17,7 @@ module Danica
       variables == other.variables
     end
 
-    autoload :Product,          'danica/operator/product'
+    autoload :Multiplication,          'danica/operator/multiplication'
     autoload :Addition,              'danica/operator/addition'
     autoload :Division,         'danica/operator/division'
     autoload :Power,            'danica/operator/power'

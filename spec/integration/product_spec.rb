@@ -1,9 +1,9 @@
 require 'spec_helper'
 
-describe 'integration of product' do
+describe 'integration of multiplication' do
   describe 'of number and addition' do
     subject do
-      Danica::Operator::Product.new(
+      Danica::Operator::Multiplication.new(
         3, Danica::Operator::Addition.new(2, 4)
       )
     end
@@ -23,7 +23,7 @@ describe 'integration of product' do
 
   describe 'of additions' do
     subject do
-      Danica::Operator::Product.new(
+      Danica::Operator::Multiplication.new(
         Danica::Operator::Addition.new(1,2),
         Danica::Operator::Addition.new(3,4)
       )

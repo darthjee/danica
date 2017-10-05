@@ -6,8 +6,8 @@ module Danica
     end
 
     def *(other)
-      return other * self if other.is_a?(Operator::Product)
-      product(self, other)
+      return other * self if other.is_a?(Operator::Multiplication)
+      multiplication(self, other)
     end
 
     def /(other)

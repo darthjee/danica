@@ -34,11 +34,11 @@ shared_examples 'an object with * operation' do
   let(:result) { subject * other }
   let(:subject_included) { subject }
 
-  it_behaves_like 'an object with an operation', Danica::Operator::Product
+  it_behaves_like 'an object with an operation', Danica::Operator::Multiplication
 
   context 'when operating as reverse' do
     let(:result) { Danica::Wrapper::Number.new(other) * subject }
-    it_behaves_like 'an object with an operation', Danica::Operator::Product
+    it_behaves_like 'an object with an operation', Danica::Operator::Multiplication
   end
 end
 

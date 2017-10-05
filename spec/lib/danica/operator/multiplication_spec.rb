@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Danica::Operator::Product do
+describe Danica::Operator::Multiplication do
   subject { described_class.new(2,4) }
   it_behaves_like 'an object that respond to basic_methods'
 

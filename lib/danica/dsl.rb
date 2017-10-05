@@ -22,7 +22,7 @@ module Danica
   end
 
   %i(
-    addition product division sin cos power
+    addition multiplication division sin cos power
     squared_root exponential
   ).each do |method|
     DSL.register_operator(method)
@@ -33,6 +33,7 @@ module Danica
   end
 
   DSL.register_operator :sum, :Addition
+  DSL.register_operator :product, :Multiplication
 end
 
 Danica.build do

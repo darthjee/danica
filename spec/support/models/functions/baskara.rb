@@ -12,7 +12,7 @@ module Danica
     end
 
     def delta
-      power(b, 2) - product(4, a, c)
+      power(b, 2) - multiplication(4, a, c)
     end
   end
 end

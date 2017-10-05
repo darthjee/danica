@@ -124,7 +124,7 @@ module Danica
     private
 
     def function_block
-      @function_block ||= sum(parcels)
+      @function_block ||= addition(parcels)
     end
 
     def parcels
@@ -136,11 +136,11 @@ module Danica
     end
 
     def spatial_velocity
-      product(initial_velocity, time)
+      multiplication(initial_velocity, time)
     end
 
     def spatial_acceleration
-      division(product(acceleration, time_squared), 2)
+      division(multiplication(acceleration, time_squared), 2)
     end
 
     def time_squared
