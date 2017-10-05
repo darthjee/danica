@@ -24,9 +24,9 @@ module Danica
 
     def wrap_value(value)
       return wrap_value(number(value)) if value.is_a?(Numeric)
-      return wrap_value(Wrapper::Variable.new(value)) if value.is_a?(Hash)
-      return wrap_value(Wrapper::Variable.new(name: value)) if [ String, Symbol ].any? { |c| value.is_a?(c) }
-      return wrap_value(Wrapper::Variable.new) if value.nil?
+      return wrap_value(variable(value)) if value.is_a?(Hash)
+      return wrap_value(variable(name: value)) if [ String, Symbol ].any? { |c| value.is_a?(c) }
+      return wrap_value(variable) if value.nil?
       value
     end
 
