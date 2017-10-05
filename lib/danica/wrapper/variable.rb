@@ -14,7 +14,7 @@ module Danica
     end
 
     def ==(other)
-      return false unless other.class == Wrapper::Variable
+      return false unless other.class == self.class
       return other.value == value &&
              other.name == name &&
              other.latex == latex &&
