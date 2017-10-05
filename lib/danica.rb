@@ -8,7 +8,6 @@ module Danica
   autoload :Variable,         'danica/variable'
   autoload :Function,         'danica/function'
   autoload :Exception,        'danica/exception'
-  autoload :Constant,         'danica/constant'
 
   autoload :DSL,              'danica/dsl'
   autoload :Wrapper,          'danica/wrapper'
@@ -22,7 +21,7 @@ module Danica
     end
   end
 
-  E = Constant.new(Math::E, :e, 'exp(1)')
-  PI =  Constant.new(Math::PI, '\pi', :pi)
+  E = Wrapper::Constant.new(Math::E, :e, 'exp(1)')
+  PI =  Wrapper::Constant.new(Math::PI, '\pi', :pi)
 end
 

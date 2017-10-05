@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Danica::Constant do
+describe Danica::Wrapper::Constant do
   subject { described_class.new(2.5, :M, :m) }
   let(:other) { described_class.new(3, :N, :n) }
 

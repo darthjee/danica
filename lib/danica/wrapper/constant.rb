@@ -1,5 +1,5 @@
 module Danica
-  class Constant
+  class Wrapper::Constant
     include BaseOperations
     include Common
 
