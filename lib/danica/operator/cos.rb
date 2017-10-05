@@ -1,20 +1,5 @@
 module Danica
-  class Operator::Cos < Operator
-    variables :value
-
-    def to_f
-      Math.cos(value.to_f)
-    end
-
-    def to_tex
-      "cos(#{value.to_tex})"
-    end
-
-    def to_gnu
-      "cos(#{value.to_gnu})"
-    end
+  class Operator::Cos < Operator::Functional.build(operator: :cos, tex: 'cos(:value:)', gnu: 'cos(:value:)')
   end
 end
-
-
 

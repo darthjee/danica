@@ -17,6 +17,8 @@ module Danica
       variables == other.variables
     end
 
+    autoload :Functional,     'danica/operator/functional'
+    autoload :Chained,        'danica/operator/chained'
     autoload :Multiplication, 'danica/operator/multiplication'
     autoload :Addition,       'danica/operator/addition'
     autoload :Division,       'danica/operator/division'
@@ -25,6 +27,5 @@ module Danica
     autoload :Sin,            'danica/operator/sin'
     autoload :SquaredRoot,    'danica/operator/squared_root'
     autoload :Exponential,    'danica/operator/exponential'
-    autoload :Chained,        'danica/operator/chained'
   end
 end
