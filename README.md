@@ -17,7 +17,7 @@ bundle install danica
 
 Now you can use in your project
 
-###Quick Use
+### Quick Use
 Use Danica build to build and use your formula using ```Danica.build```
 ```ruby
 formula = Danica.build do
