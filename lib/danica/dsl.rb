@@ -35,7 +35,3 @@ module Danica
   DSL.register_operator :sum, :Addition
   DSL.register_operator :product, :Multiplication
 end
-
-Danica.build do
-  sum(1, 2)
-end
