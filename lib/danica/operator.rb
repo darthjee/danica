@@ -17,13 +17,13 @@ module Danica
       variables == other.variables
     end
 
-    autoload :Multiplication,          'danica/operator/multiplication'
-    autoload :Addition,              'danica/operator/addition'
-    autoload :Division,         'danica/operator/division'
-    autoload :Power,            'danica/operator/power'
-    autoload :Cos,              'danica/operator/cos'
-    autoload :Sin,              'danica/operator/sin'
-    autoload :SquaredRoot,      'danica/operator/squared_root'
-    autoload :Exponential,      'danica/operator/exponential'
+    autoload :Multiplication, 'danica/operator/multiplication'
+    autoload :Addition,       'danica/operator/addition'
+    autoload :Division,       'danica/operator/division'
+    autoload :Power,          'danica/operator/power'
+    autoload :Cos,            'danica/operator/cos'
+    autoload :Sin,            'danica/operator/sin'
+    autoload :SquaredRoot,    'danica/operator/squared_root'
+    autoload :Exponential,    'danica/operator/exponential'
   end
 end
