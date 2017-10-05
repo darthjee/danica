@@ -129,14 +129,14 @@ describe Danica::Function do
     describe '#variables_hash' do
       let(:expected) do
         {
-          time: Danica::Variable.new(name: :t),
-          acceleration: Danica::Variable.new(name: 'a'),
-          initial_space: Danica::Variable.new( name: :S0, latex: 'S_0' ),
-          initial_velocity: Danica::Variable.new( name: :V0, latex: 'V_0' )
+          time: Danica::Wrapper::Variable.new(name: :t),
+          acceleration: Danica::Wrapper::Variable.new(name: 'a'),
+          initial_space: Danica::Wrapper::Variable.new( name: :S0, latex: 'S_0' ),
+          initial_velocity: Danica::Wrapper::Variable.new( name: :V0, latex: 'V_0' )
         }
       end
 
-      context 'when variables are already wrapped with DanicaVariable' do
+      context 'when variables are already wrapped with Danica::Wrapper::Variable' do
         let(:variables) { expected }
         it 'returns a hash with the variabels' do
           expect(subject.variables_hash).to eq(expected)
@@ -162,7 +162,7 @@ describe Danica::Function do
       context 'when changing a variable' do
         before do
           subject.time = :x
-          expected[:time] = Danica::Variable.new(name: :x)
+          expected[:time] = Danica::Wrapper::Variable.new(name: :x)
         end
 
         it do
@@ -215,7 +215,7 @@ describe Danica::Function do
 
       context 'when not initializing all variables' do
         subject { described_class::Spatial.new }
-        let(:time) { Danica::Variable.new(name: :t) }
+        let(:time) { Danica::Wrapper::Variable.new(name: :t) }
 
         context 'when initialized with an empty variable set' do
           it do

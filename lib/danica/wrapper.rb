@@ -5,5 +5,6 @@ module Danica
     autoload :Negative,         'danica/wrapper/negative'
     autoload :PositiveNegative, 'danica/wrapper/positive_negative'
     autoload :Constant,         'danica/wrapper/constant'
+    autoload :Variable,         'danica/wrapper/variable'
   end
 end
