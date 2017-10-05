@@ -3,7 +3,11 @@ module Danica
     variables :value
     default_value :is_grouped?, true
 
-    def self.build(operator:, tex:, gnu:)
+    def self.build(operator:, text: nil, tex: nil, gnu: nil)
+      text = "#{operator}(:value:)" if text.nil?
+      tex = text if tex.nil?
+      gnu = text if gnu.nil?
+
       Class.new(self) do
         module_eval(%Q(
           def to_f

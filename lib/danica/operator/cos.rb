@@ -1,5 +1,5 @@
 module Danica
-  class Operator::Cos < Operator::Functional.build(operator: :cos, tex: 'cos(:value:)', gnu: 'cos(:value:)')
+  class Operator::Cos < Operator::Functional.build(operator: :cos)
   end
 end
 

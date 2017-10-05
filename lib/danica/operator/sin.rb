@@ -1,5 +1,5 @@
 module Danica
-  class Operator::Sin < Operator::Functional.build(operator: :sin, tex: 'sin(:value:)', gnu: 'sin(:value:)')
+  class Operator::Sin < Operator::Functional.build(operator: :sin)
   end
 end
 
