@@ -1,5 +1,5 @@
 module Danica
-  class Variable
+  class Wrapper::Variable
     include ActiveModel::Model
     include BaseOperations
     include Common
@@ -14,7 +14,7 @@ module Danica
     end
 
     def ==(other)
-      return false unless other.class == Variable
+      return false unless other.class == self.class
       return other.value == value &&
              other.name == name &&
              other.latex == latex &&
@@ -32,7 +32,7 @@ module Danica
     end
 
     def value=(value)
-      @value = value.is_a?(Numeric) ? Number.new(value) : value
+      @value = value.is_a?(Numeric) ? number(value) : value
     end
   end
 end

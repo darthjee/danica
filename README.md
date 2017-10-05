@@ -17,6 +17,30 @@ bundle install danica
 
 Now you can use in your project
 
+###Quick Use
+Use Danica build to build and use your formula using ```Danica.build```
+```ruby
+formula = Danica.build do
+  (number(1) + 2) * power(3,4)
+end
+
+formula.to_tex
+```
+
+create and use functions
+
+```ruby
+func = Danica.build do
+  formula(:x, :y) do
+    (number(1) + x) * power(3, y)
+  end
+end
+
+func.to_gnu
+```
+
+create gnu or tex output strings to be used on yopur template
+
 ### Operators
 Operators are much like function, but they do not have a name.
 
@@ -43,7 +67,7 @@ end
 
 #### Sample
 ```ruby
-class Danica::Inverse < Danica::Operator
+class Danica::Operator::Inverse < Danica::Operator
 
   variables :value
 
@@ -60,7 +84,7 @@ class Danica::Inverse < Danica::Operator
   end
 end
 
-fx = Danica::Inverse.new(:x)
+fx = Danica::Operator::Inverse.new(:x)
 ```
 
 ##### to_tex
@@ -89,7 +113,7 @@ fx.calculate(2)
 ```
 or
 ```ruby
-Danica::Inverse.new(2).to_f
+Danica::Operator::Inverse.new(2).to_f
 ```
 
 both return
@@ -124,7 +148,7 @@ module Danica
     private
 
     def function_block
-      @function_block ||= sum(parcels)
+      @function_block ||= addition(parcels)
     end
 
     def parcels
@@ -136,11 +160,11 @@ module Danica
     end
 
     def spatial_velocity
-      product(initial_velocity, time)
+      multiplication(initial_velocity, time)
     end
 
     def spatial_acceleration
-      division(product(acceleration, time_squared), 2)
+      division(multiplication(acceleration, time_squared), 2)
     end
 
     def time_squared
@@ -253,19 +277,19 @@ Danica.build do
 end
 ```
 
-will result into a ```Danica::Power``` object
+will result into a ```Danica::Operator::Power``` object
 
 ```ruby
-Danica::Power.new(:x, -1)
+Danica::Operator::Power.new(:x, -1)
 ```
 
 #### Operator registering on DSL
 
-Any operator created can be added to the DSL by running ```DSL.register```
+Any operator created can be added to the DSL by running ```DSL.register_operator```
 
 ```ruby
 module Danica
-  class Inverse < Danica::Operator
+  class Operator::Inverse < Danica::Operator
     include DSL
     variables :value
 
@@ -278,16 +302,16 @@ module Danica
 end
 ```
 
-In order to add the new operator, DSL cna infer by the name ```inverse``` which results in ```Danica::Inverse```
+In order to add the new operator, DSL cna infer by the name ```inverse``` which results in ```Danica::Operator::Inverse```
 
 ```ruby
-Danica::DSL.register(:inverse)
+Danica::DSL.register_operator(:inverse)
 ```
 
 or
 
 ```ruby
-Danica::DSL.register(:inverse, Danica::inverse)
+Danica::DSL.register(:inverse, Danica::Operator::Inverse)
 ```
 
 This will allow the usage of the inverse function
@@ -298,8 +322,8 @@ Danica.build do
 end
 ```
 
-will result into a ```Danica::Inverse``` object
+will result into a ```Danica::Operator::Inverse``` object
 
 ```ruby
-Danica::Inverse.new(:x)
+Danica::Operator::Inverse.new(:x)
 ```

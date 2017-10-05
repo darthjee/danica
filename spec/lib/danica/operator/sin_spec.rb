@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Danica::Sin do
+describe Danica::Operator::Sin do
   subject { described_class.new(10) }
 
   it_behaves_like 'an object that respond to basic_methods'

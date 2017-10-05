@@ -1,5 +1,5 @@
 module Danica
-  class Function::Gauss < Function.build(:x, median: :u, variance_root: { latex: '\theta', gnu: :v }) { product(parcels) }
+  class Function::Gauss < Function.build(:x, median: :u, variance_root: { latex: '\theta', gnu: :v }) { multiplication(parcels) }
 
     private
 
@@ -12,7 +12,7 @@ module Danica
 
     def denominator
       squared_root(
-        product(2, PI, variance),
+        multiplication(2, PI, variance),
       )
     end
 
@@ -20,9 +20,9 @@ module Danica
       negative(
         division(
           power(group(
-            sum(x, negative(median))
+            addition(x, negative(median))
           ), 2),
-          product(2, variance)
+          multiplication(2, variance)
         )
       )
     end

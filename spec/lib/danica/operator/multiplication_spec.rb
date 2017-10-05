@@ -1,16 +1,16 @@
 require 'spec_helper'
 
-describe Danica::Product do
+describe Danica::Operator::Multiplication do
   subject { described_class.new(2,4) }
   it_behaves_like 'an object that respond to basic_methods'
 
   it_behaves_like 'an object with * operation' do
     let(:subject_included) { 4 }
 
-    context 'when other is also a sum' do
+    context 'when other is also a addition' do
       let(:other) { described_class.new(200, 5) }
 
-      it 'includes the sum parcels' do
+      it 'includes the addition parcels' do
         expect(result).to include(200)
       end
     end

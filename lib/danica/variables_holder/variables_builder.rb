@@ -1,5 +1,3 @@
-require 'darthjee/core_ext'
-
 module Danica::VariablesHolder
   class VariablesBuilder
     attr_reader :instance, :attr_names

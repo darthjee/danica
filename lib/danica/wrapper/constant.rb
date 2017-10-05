@@ -1,5 +1,5 @@
 module Danica
-  class Constant
+  class Wrapper::Constant
     include BaseOperations
     include Common
 
@@ -32,5 +32,8 @@ module Danica
       gnu.to_s
     end
   end
+
+  E = Wrapper::Constant.new(Math::E, :e, 'exp(1)')
+  PI = Wrapper::Constant.new(Math::PI, '\pi', :pi)
 end
 

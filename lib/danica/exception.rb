@@ -1,4 +1,4 @@
 class Danica::Exception < ::Exception
-  require 'danica/exception/not_defined'
+  class Danica::Exception::NotDefined < self; end
 end
 

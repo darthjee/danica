@@ -4,24 +4,24 @@ describe Danica do
   describe '.build' do
     let(:result) { described_class.build(&block) }
 
-    context 'when creating a sum' do
+    context 'when creating a addition' do
       let(:block) do
-        proc { sum(1, 2) }
+        proc { addition(1, 2) }
       end
 
-      it 'returns the expected sum' do
-        expect(result).to eq(Danica::Sum.new(1,2))
+      it 'returns the expected addition' do
+        expect(result).to eq(Danica::Operator::Addition.new(1,2))
       end
     end
 
-    context 'when creating a power of sum and product' do
+    context 'when creating a power of addition and multiplication' do
       let(:block) do
-        proc { power(sum(1, 2), product(2,3)) }
+        proc { power(addition(1, 2), multiplication(2,3)) }
       end
       let(:expected) do
-        Danica::Power.new(
-          Danica::Sum.new(1, 2),
-          Danica::Product.new(2, 3)
+        Danica::Operator::Power.new(
+          Danica::Operator::Addition.new(1, 2),
+          Danica::Operator::Multiplication.new(2, 3)
         )
       end
 
@@ -40,7 +40,7 @@ describe Danica do
       end
       let(:function) do
         Danica::Function.build(:x) do
-          Danica::Power.new(x, 2)
+          Danica::Operator::Power.new(x, 2)
         end.new
       end
 

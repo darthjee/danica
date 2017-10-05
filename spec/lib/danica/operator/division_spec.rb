@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Danica::Division do
+describe Danica::Operator::Division do
   let(:variables) { [2, 4] }
   subject { described_class.new(*variables) }
 
@@ -23,11 +23,11 @@ describe Danica::Division do
   }
 
   describe 'more complex division' do
-    describe 'of two sums' do
+    describe 'of two additions' do
       subject do
-        Danica::Division.new(
-          Danica::Sum.new(2, :x),
-          Danica::Sum.new(3, :y)
+        Danica::Operator::Division.new(
+          Danica::Operator::Addition.new(2, :x),
+          Danica::Operator::Addition.new(3, :y)
         )
       end
 
@@ -36,7 +36,7 @@ describe Danica::Division do
           '(2 + x)/(3 + y)'
         end
 
-        it 'groups sum' do
+        it 'groups addition' do
           expect(subject.to_gnu).to eq(expected)
         end
       end

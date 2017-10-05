@@ -1,6 +1,7 @@
 module Danica
-  class Group
+  class Wrapper::Group
     include Common
+    include BaseOperations
     include ActiveModel::Model
 
     attr_accessor :value

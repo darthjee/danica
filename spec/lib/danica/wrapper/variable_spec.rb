@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Danica::Variable do
+describe Danica::Wrapper::Variable do
   it_behaves_like 'an object that respond to basic_methods'
 
   it_behaves_like 'an object with basic operation' do

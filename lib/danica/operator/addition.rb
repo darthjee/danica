@@ -1,7 +1,5 @@
-require 'danica/operator/chained'
-
 module Danica
-  class Sum < Operator::Chained
+  class Operator::Addition < Operator::Chained
     default_value :priority, 1
 
     def +(other)
@@ -22,7 +20,7 @@ module Danica
 
     def join_proc(symbol)
       proc do |_, value|
-        value.is_a?(Negative) || value.is_a?(PositiveNegative) ? ' ' : " #{symbol} "
+        value.is_a?(Wrapper::Negative) || value.is_a?(Wrapper::PlusMinus) ? ' ' : " #{symbol} "
       end
     end
   end

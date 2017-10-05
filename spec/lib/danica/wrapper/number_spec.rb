@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Danica::Number do
+describe Danica::Wrapper::Number do
   let(:value) { 10 }
   subject { described_class.new(value) }
 

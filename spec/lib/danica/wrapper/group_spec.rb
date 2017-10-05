@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-describe Danica::PositiveNegative do
-  let(:value) { Danica::Number.new(10) }
+describe Danica::Wrapper::Group do
+  let(:value) { 10 }
   subject { described_class.new(value) }
 
   it_behaves_like 'an object that respond to basic_methods'
@@ -20,7 +20,7 @@ describe Danica::PositiveNegative do
       let(:value) { 10.0 }
 
       it 'returns the positive negative string' do
-        expect(subject.to_tex).to eq('\pm 10')
+        expect(subject.to_tex).to eq('\left(10\right)')
       end
     end
 
@@ -28,7 +28,7 @@ describe Danica::PositiveNegative do
       let(:value) { 10.5 }
 
       it 'returns the positive negative string' do
-        expect(subject.to_tex).to eq('\pm 10.5')
+        expect(subject.to_tex).to eq('\left(10.5\right)')
       end
     end
   end
@@ -38,7 +38,7 @@ describe Danica::PositiveNegative do
       let(:value) { 10.0 }
 
       it 'returns the value integer string' do
-        expect(subject.to_gnu).to eq('+ 10')
+        expect(subject.to_gnu).to eq('(10)')
       end
     end
 
@@ -46,7 +46,7 @@ describe Danica::PositiveNegative do
       let(:value) { 10.5 }
 
       it 'returns the value float string' do
-        expect(subject.to_gnu).to eq('+ 10.5')
+        expect(subject.to_gnu).to eq('(10.5)')
       end
     end
   end
