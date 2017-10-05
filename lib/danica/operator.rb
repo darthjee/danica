@@ -25,5 +25,6 @@ module Danica
     autoload :Sin,            'danica/operator/sin'
     autoload :SquaredRoot,    'danica/operator/squared_root'
     autoload :Exponential,    'danica/operator/exponential'
+    autoload :Chained,        'danica/operator/chained'
   end
 end

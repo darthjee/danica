@@ -1,5 +1,3 @@
-require 'danica/operator/chained'
-
 module Danica
   class Operator::Addition < Operator::Chained
     default_value :priority, 1
