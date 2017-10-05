@@ -23,11 +23,11 @@ describe Danica::Operator::Division do
   }
 
   describe 'more complex division' do
-    describe 'of two sums' do
+    describe 'of two additions' do
       subject do
         Danica::Operator::Division.new(
-          Danica::Operator::Sum.new(2, :x),
-          Danica::Operator::Sum.new(3, :y)
+          Danica::Operator::Addition.new(2, :x),
+          Danica::Operator::Addition.new(3, :y)
         )
       end
 
@@ -36,7 +36,7 @@ describe Danica::Operator::Division do
           '(2 + x)/(3 + y)'
         end
 
-        it 'groups sum' do
+        it 'groups addition' do
           expect(subject.to_gnu).to eq(expected)
         end
       end

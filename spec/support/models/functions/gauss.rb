@@ -20,7 +20,7 @@ module Danica
       negative(
         division(
           power(group(
-            sum(x, negative(median))
+            addition(x, negative(median))
           ), 2),
           product(2, variance)
         )

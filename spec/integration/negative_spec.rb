@@ -1,10 +1,10 @@
 require 'spec_helper'
 
 describe 'integration of negative' do
-  describe 'with a sum' do
+  describe 'with a addition' do
     subject do
       Danica::Wrapper::Negative.new(
-        Danica::Operator::Sum.new(1,2,3)
+        Danica::Operator::Addition.new(1,2,3)
       )
     end
 

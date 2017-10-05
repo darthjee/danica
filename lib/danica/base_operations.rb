@@ -1,8 +1,8 @@
 module Danica
   module BaseOperations
     def +(other)
-      return other + self if other.is_a?(Operator::Sum)
-      sum(self, other)
+      return other + self if other.is_a?(Operator::Addition)
+      addition(self, other)
     end
 
     def *(other)

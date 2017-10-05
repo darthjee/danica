@@ -1,11 +1,11 @@
 require 'spec_helper'
 
 describe 'integration of power' do
-  describe 'of sums' do
+  describe 'of additions' do
     subject do
       Danica::Operator::Power.new(
-        Danica::Operator::Sum.new(3, 4),
-        Danica::Operator::Sum.new(5, 6)
+        Danica::Operator::Addition.new(3, 4),
+        Danica::Operator::Addition.new(5, 6)
       )
     end
 

@@ -18,7 +18,7 @@ module Danica
     end
 
     autoload :Product,          'danica/operator/product'
-    autoload :Sum,              'danica/operator/sum'
+    autoload :Addition,              'danica/operator/addition'
     autoload :Division,         'danica/operator/division'
     autoload :Power,            'danica/operator/power'
     autoload :Cos,              'danica/operator/cos'

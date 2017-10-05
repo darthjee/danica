@@ -12,7 +12,8 @@ end
 
 shared_context 'a class with mapped dsl' do
   {
-    sum: Danica::Operator::Sum,
+    addition: Danica::Operator::Addition,
+    sum: Danica::Operator::Addition,
     product: Danica::Operator::Product,
     division: Danica::Operator::Division,
     sin: Danica::Operator::Sin,

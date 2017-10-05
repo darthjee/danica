@@ -1,7 +1,7 @@
 require 'danica/operator/chained'
 
 module Danica
-  class Operator::Sum < Operator::Chained
+  class Operator::Addition < Operator::Chained
     default_value :priority, 1
 
     def +(other)

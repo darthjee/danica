@@ -21,11 +21,11 @@ shared_examples 'an object with + operation' do
   let(:result) { subject + other }
   let(:subject_included) { subject }
 
-  it_behaves_like 'an object with an operation', Danica::Operator::Sum
+  it_behaves_like 'an object with an operation', Danica::Operator::Addition
 
   context 'when operating as reverse' do
     let(:result) { Danica::Wrapper::Number.new(other) + subject }
-    it_behaves_like 'an object with an operation', Danica::Operator::Sum
+    it_behaves_like 'an object with an operation', Danica::Operator::Addition
   end
 end
 
@@ -64,7 +64,7 @@ shared_examples 'an object with - operation' do
   let(:result) { subject - other }
   let(:subject_included) { subject }
 
-  it { expect(result).to be_a(Danica::Operator::Sum) }
+  it { expect(result).to be_a(Danica::Operator::Addition) }
 
   it 'includes other as negative parcel' do
     expect(result).to include(negative_other)

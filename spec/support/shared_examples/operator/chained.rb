@@ -15,7 +15,7 @@ shared_examples 'a operator that knows how to calculate' do |arguments|
   subject { described_class.new(*variables) }
 
   describe 'to_f' do
-    it 'returns the sum of variables value' do
+    it 'returns the addition of variables value' do
       expect(subject.to_f).to eq(calculated)
     end
 

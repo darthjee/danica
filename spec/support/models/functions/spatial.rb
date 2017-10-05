@@ -1,5 +1,5 @@
 module Danica
-  class Function::Spatial < Function.build(:time, :acceleration, :initial_space, :initial_velocity) { sum(parcels) }
+  class Function::Spatial < Function.build(:time, :acceleration, :initial_space, :initial_velocity) { addition(parcels) }
 
     private
 
