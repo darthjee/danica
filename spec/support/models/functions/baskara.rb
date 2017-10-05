@@ -4,7 +4,7 @@ module Danica
     private
 
     def numerator
-       negative(b) + Wrapper::PositiveNegative.new(squared_root(delta))
+       negative(b) + Wrapper::PlusMinus.new(squared_root(delta))
     end
 
     def denominator

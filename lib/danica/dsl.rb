@@ -27,7 +27,7 @@ module Danica
     DSL.register_operator(method)
   end
 
-  %i(number group negative).each do |method|
+  %i(number group negative plus_minus).each do |method|
     DSL.register_wrapper(method)
   end
 end

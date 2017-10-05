@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Danica::Wrapper::PositiveNegative do
+describe Danica::Wrapper::PlusMinus do
   let(:value) { 10 }
   subject { described_class.new(value) }
 
