@@ -20,8 +20,5 @@ module Danica
       @builder ||= Builder.new
     end
   end
-
-  E = Wrapper::Constant.new(Math::E, :e, 'exp(1)')
-  PI =  Wrapper::Constant.new(Math::PI, '\pi', :pi)
 end
 
