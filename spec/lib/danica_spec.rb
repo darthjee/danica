@@ -30,6 +30,17 @@ describe Danica do
       end
     end
 
+    context 'when starting with a negative object' do
+      let(:block) do
+        proc { - Danica::Wrapper::Number.new(10) }
+      end
+      let(:expected) { Danica::Wrapper::Negative.new(10) }
+
+      it 'returns the expected negative' do
+        expect(result).to eq(expected)
+      end
+    end
+
     context 'when defining a function' do
       let(:block) do
         proc do

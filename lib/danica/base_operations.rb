@@ -21,5 +21,9 @@ module Danica
     def **(other)
       power(self, other)
     end
+
+    def -@
+      Wrapper::Negative.new(self)
+    end
   end
 end
