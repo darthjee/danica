@@ -32,6 +32,7 @@ module Danica
     DSL.register_wrapper(method)
   end
 
-  DSL.register_operator :sum, :Addition
+  DSL.register_wrapper  :num,     :Number
+  DSL.register_operator :sum,     :Addition
   DSL.register_operator :product, :Multiplication
 end
