@@ -23,7 +23,7 @@ module Danica
     end
 
     def -@
-      Wrapper::Negative.new(self)
+      negative(self)
     end
   end
 end
