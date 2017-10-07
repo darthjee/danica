@@ -12,24 +12,25 @@ end
 
 shared_context 'a class with mapped dsl' do
   {
-    addition: Danica::Operator::Addition,
-    sum: Danica::Operator::Addition,
+    addition:       Danica::Operator::Addition,
+    sum:            Danica::Operator::Addition,
     multiplication: Danica::Operator::Multiplication,
-    product: Danica::Operator::Multiplication,
-    division: Danica::Operator::Division,
-    sin: Danica::Operator::Sin,
-    cos: Danica::Operator::Cos,
-    power: Danica::Operator::Power
+    product:        Danica::Operator::Multiplication,
+    division:       Danica::Operator::Division,
+    sin:            Danica::Operator::Sin,
+    cos:            Danica::Operator::Cos,
+    power:          Danica::Operator::Power
   }.each do |aliaz, clazz|
     it_behaves_like 'a class with alias to a clazz', aliaz, clazz, 2, 3
   end
   {
-    squared_root: Danica::Operator::SquaredRoot,
-    exponential: Danica::Operator::Exponential,
-    group: Danica::Wrapper::Group,
-    negative: Danica::Wrapper::Negative,
-    number: Danica::Wrapper::Number,
-    plus_minus: Danica::Wrapper::PlusMinus
+    squared_root:  Danica::Operator::SquaredRoot,
+    exponential:   Danica::Operator::Exponential,
+    group:         Danica::Wrapper::Group,
+    negative:      Danica::Wrapper::Negative,
+    number:        Danica::Wrapper::Number,
+    num:           Danica::Wrapper::Number,
+    plus_minus:    Danica::Wrapper::PlusMinus
   }.each do |aliaz, clazz|
     it_behaves_like 'a class with alias to a clazz', aliaz, clazz, 9
   end

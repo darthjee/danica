@@ -5,7 +5,7 @@ describe Danica::Operator::Addition do
 
   it_behaves_like 'an object that respond to basic_methods'
 
-  it_behaves_like 'an object with basic operation', operations: %i(* /)
+  it_behaves_like 'an object with basic operation', ignore: %i(+ -)
   it_behaves_like 'an object with + operation' do
     let(:subject_included) { 10 }
 

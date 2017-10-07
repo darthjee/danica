@@ -1,4 +1,4 @@
-shared_examples 'an object with basic operation' do |operations:%i(+ - * /), ignore:[]|
+shared_examples 'an object with basic operation' do |operations:%i(+ - * / **), ignore:[]|
   (operations - [ ignore ].flatten).each do |operation|
     it_behaves_like "an object with #{operation} operation"
   end
@@ -72,6 +72,21 @@ shared_examples 'an object with - operation' do
 
   it 'includes the subject as parcel' do
     expect(result).to include(subject_included)
+  end
+end
+
+shared_examples 'an object with ** operation' do
+  let(:other) { 104 }
+  let(:result) { subject ** other }
+
+  it { expect(result).to be_a(Danica::Operator::Power) }
+
+  it 'sets the subject as base' do
+    expect(result.base).to eq(subject)
+  end
+
+  it 'sets the other as exponent' do
+    expect(result.exponent).to eq(Danica::Wrapper::Number.new(other))
   end
 end
 

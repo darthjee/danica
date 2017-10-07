@@ -30,6 +30,17 @@ describe Danica do
       end
     end
 
+    context 'when starting with a negative object' do
+      let(:block) do
+        proc { - Danica::Wrapper::Number.new(10) }
+      end
+      let(:expected) { Danica::Wrapper::Negative.new(10) }
+
+      it 'returns the expected negative' do
+        expect(result).to eq(expected)
+      end
+    end
+
     context 'when defining a function' do
       let(:block) do
         proc do
@@ -50,6 +61,36 @@ describe Danica do
 
       it 'returns the expected function with block' do
         expect(result.to_tex).to eq(function.to_tex)
+      end
+    end
+
+    context 'when defining a negative output' do
+      let(:block) do
+        proc { -(sum(2, 3)) }
+      end
+
+      let(:expected) do
+        Danica::Wrapper::Negative.new(
+          Danica::Operator::Addition.new(2, 3)
+        )
+      end
+
+      it 'wrap object with negative' do
+        expect(result).to eq(expected)
+      end
+
+      context 'for a number' do
+        let(:block) do
+          proc { -num(2) }
+        end
+
+        let(:expected) do
+          Danica::Wrapper::Negative.new(2)
+        end
+
+        it 'wrap object with negative' do
+          expect(result).to eq(expected)
+        end
       end
     end
   end

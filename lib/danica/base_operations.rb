@@ -17,5 +17,13 @@ module Danica
     def -(other)
       self + negative(other)
     end
+
+    def **(other)
+      power(self, other)
+    end
+
+    def -@
+      negative(self)
+    end
   end
 end
