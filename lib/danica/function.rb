@@ -23,6 +23,10 @@ module Danica
       end
     end
 
+    def self.create(*vars, &block)
+      build(*vars, &block).new
+    end
+
     def initialize(*args)
       options = args.extract_options!
 
