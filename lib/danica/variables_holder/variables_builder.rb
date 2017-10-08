@@ -8,15 +8,17 @@ module Danica::VariablesHolder
     end
 
     def build
-      attr_names.extract_options!.each do |name, default|
-        add_setter(name)
-        add_reader(name, default)
-        instance.variables_names << name
-      end
+      names_hash = attr_names.extract_options!
 
       attr_names.each do |name|
         add_setter(name)
         add_reader(name, name)
+        instance.variables_names << name
+      end
+
+      names_hash.each do |name, default|
+        add_setter(name)
+        add_reader(name, default)
         instance.variables_names << name
       end
     end
