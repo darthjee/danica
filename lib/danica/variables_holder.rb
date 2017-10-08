@@ -31,7 +31,9 @@ module Danica
     end
 
     def variables_value_hash
-      variables.map(&:value).as_hash(self.class.variables_names)
+      variables.map do |var|
+        var.try(:value)
+      end.as_hash(self.class.variables_names)
     end
 
     private
