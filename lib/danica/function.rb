@@ -45,6 +45,10 @@ module Danica
       self.class.new(vars_map).to_f
     end
 
+    def describe_tex
+      "#{name}(#{variables}) = #{to_tex}"
+    end
+
     autoload :Gauss,    'danica/function/gauss'
   end
 end

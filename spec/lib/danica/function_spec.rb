@@ -26,13 +26,13 @@ end
 
 describe Danica::Function do
   let(:variables) { %i(x y) }
+  let(:function_class) do
+    described_class.build(*variables) do
+      Danica::Operator::Power.new(x, y)
+    end
+  end
 
   describe '.build' do
-    let(:function_class) do
-      described_class.build(*variables) do
-        Danica::Operator::Power.new(x, y)
-      end
-    end
     let(:function) do
       function_class.new
     end
@@ -105,6 +105,18 @@ describe Danica::Function do
       end
     end
     it_behaves_like 'a generically generated function'
+  end
+
+  describe '#describe_tex' do
+    context 'when function has a name' do
+      let(:function) do
+        function_class.new(name: :f)
+      end
+
+      xit 'returns the full function description' do
+        expect(function.describe_tex).to eq('f(x, y) = x^{y}')
+      end
+    end
   end
 
   describe 'spatial' do
