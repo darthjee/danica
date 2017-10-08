@@ -13,6 +13,8 @@ module Danica
   autoload :Wrapper,          'danica/wrapper'
   autoload :Operator,         'danica/operator'
 
+  autoload :PI,               'danica/wrapper/constant'
+
   class << self
     delegate :build, to: :builder
 

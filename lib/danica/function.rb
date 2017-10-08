@@ -40,5 +40,7 @@ module Danica
 
       self.class.new(vars_map).to_f
     end
+
+    autoload :Gauss,    'danica/function/gauss'
   end
 end
