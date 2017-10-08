@@ -1,9 +1,9 @@
 module Danica
-  class Function::Gauss < Function.build(:x, median: :u, variance_root: { latex: '\theta', gnu: :v }) { multiplication(parcels) }
+  class Function::Gauss < Function.build(:x, average: { latex: '\mu', gnu: :u }, variance_root: { latex: '\sigma', gnu: :v }) { multiplication(elements) }
 
     private
 
-    def parcels
+    def elements
       [
         division(1, denominator),
         exponential(exp)
@@ -11,8 +11,9 @@ module Danica
     end
 
     def denominator
+      variance_root *
       squared_root(
-        multiplication(2, PI, variance),
+        multiplication(2, PI),
       )
     end
 
@@ -20,7 +21,7 @@ module Danica
       negative(
         division(
           power(group(
-            addition(x, negative(median))
+            addition(x, negative(average))
           ), 2),
           multiplication(2, variance)
         )
