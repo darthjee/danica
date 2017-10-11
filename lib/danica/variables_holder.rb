@@ -19,7 +19,7 @@ module Danica
     end
 
     def variables=(vars)
-      vars = vars.as_hash(self.class.variables_names) unless vars.is_a? Hash
+      vars = vars.as_hash(self.class.variables_names).compact unless vars.is_a? Hash
       vars = vars.change_values(skip_inner: false) { |v| wrap_value(v) }
       @variables_hash = self.class.variables_hash.merge(vars)
     end

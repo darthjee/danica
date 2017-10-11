@@ -37,6 +37,18 @@ describe Danica::VariablesHolder do
       it 'changes the values of the variables' do
         expect(subject.x).to eq(Danica::Wrapper::Number.new(1))
       end
+
+      context 'but the array is empty' do
+        let(:variables) { [] }
+
+        it 'does not change the value of the variables' do
+          expect(subject.variables_hash).to eq(
+            x: Danica::Wrapper::Variable.new(name: :x),
+            y: Danica::Wrapper::Variable.new(latex: '\y'),
+            z: Danica::Wrapper::Number.new(10)
+          )
+        end
+      end
     end
 
     context 'when setting the variales using a hash' do
@@ -44,6 +56,18 @@ describe Danica::VariablesHolder do
 
       it 'changes the values of the variables' do
         expect(subject.x).to eq(Danica::Wrapper::Number.new(1))
+      end
+
+      context 'but the hash is empty' do
+        let(:variables) { {} }
+
+        it 'does not change the value of the variables' do
+          expect(subject.variables_hash).to eq(
+            x: Danica::Wrapper::Variable.new(name: :x),
+            y: Danica::Wrapper::Variable.new(latex: '\y'),
+            z: Danica::Wrapper::Number.new(10)
+          )
+        end
       end
     end
   end
