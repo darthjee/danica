@@ -2,6 +2,13 @@ require 'spec_helper'
 
 describe Danica::Operator::Multiplication do
   subject { described_class.new(2,4) }
+
+  it 'initializes from array' do
+    expect do
+      described_class.new(10, 2)
+    end.not_to raise_error
+  end
+
   it_behaves_like 'an object that respond to basic_methods'
 
   it_behaves_like 'an object with * operation' do

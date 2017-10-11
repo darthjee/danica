@@ -9,29 +9,33 @@ module Danica
         end
 
         def variables_names
-          @variables_names ||= (
-            (superclass.try(:variables_names) || []) + []
-          )
+          variables_hash.keys
+        end
+
+        def variables_hash
+          @variables_hash ||= (superclass.try(:variables_hash) || {}).dup
         end
       end
     end
 
-    attr_accessor :variables
- 
-    def variables=(variables)
-      @variables = variables.map { |v| wrap_value(v) }
+    def variables=(vars)
+      vars = vars.as_hash(self.class.variables_names).compact unless vars.is_a? Hash
+      vars = vars.change_values(skip_inner: false) { |v| wrap_value(v) }
+      @variables_hash = self.class.variables_hash.merge(vars)
     end
 
     def variables
-      @variables ||= variables_hash.values
+      variables_hash.values
     end
   
     def variables_hash
-      @variabels_map ||= (@variables || []).as_hash(self.class.variables_names)
+      @variables_hash ||= {}.merge(self.class.variables_hash)
     end
 
     def variables_value_hash
-      variables.map(&:value).as_hash(self.class.variables_names)
+      variables.map do |var|
+        var.try(:value)
+      end.as_hash(self.class.variables_names)
     end
 
     private

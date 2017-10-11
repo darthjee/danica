@@ -23,6 +23,10 @@ module Danica
       end
     end
 
+    def self.create(*vars, &block)
+      build(*vars, &block).new
+    end
+
     def initialize(*args)
       options = args.extract_options!
 
@@ -39,6 +43,14 @@ module Danica
       end
 
       self.class.new(vars_map).to_f
+    end
+
+    def describe_tex
+      "#{name}(#{variables.map(&:to_tex).join(', ')}) = #{to_tex}"
+    end
+
+    def describe_gnu
+      "#{name}(#{variables.map(&:to_gnu).join(', ')}) = #{to_gnu}"
     end
 
     autoload :Gauss,    'danica/function/gauss'

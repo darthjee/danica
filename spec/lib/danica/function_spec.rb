@@ -1,38 +1,43 @@
 require 'spec_helper'
 
-describe Danica::Function do
-  describe '.build' do
-    let(:variables) { %i(x y) }
-    let(:function_class) do
-      described_class.build(*variables) do
-        Danica::Operator::Power.new(x, y)
-      end
+shared_examples 'a generically generated function' do
+  it 'returns a function class' do
+    expect(function.class.superclass).to eq(described_class)
+  end
+
+  it 'returns a class whose instance responds to the variables' do
+    variables.each do |variable|
+      expect(function).to respond_to(variable)
     end
+  end
+
+  it 'returns a function that uses the block to process to_tex' do
+    expect(function.to_tex).to eq('x^{y}')
+  end
+
+  it 'returns a function that uses the block to process to_gnu' do
+    expect(function.to_gnu).to eq('x**(y)')
+  end
+
+  it 'returns a function thtat knows how to calculate' do
+    expect(function.calculate(x: 2, y: 3)).to eq(8)
+  end
+end
+
+describe Danica::Function do
+  let(:variables) { %i(x y) }
+  let(:function_class) do
+    described_class.build(*variables) do
+      Danica::Operator::Power.new(x, y)
+    end
+  end
+
+  describe '.build' do
     let(:function) do
       function_class.new
     end
 
-    it 'returns a function class' do
-      expect(function_class.superclass).to eq(described_class)
-    end
-
-    it 'returns a class whose instance responds to the variables' do
-      variables.each do |variable|
-        expect(function).to respond_to(variable)
-      end
-    end
-
-    it 'returns a function that uses the block to process to_tex' do
-      expect(function.to_tex).to eq('x^{y}')
-    end
-
-    it 'returns a function that uses the block to process to_gnu' do
-      expect(function.to_gnu).to eq('x**(y)')
-    end
-
-    it 'returns a function thtat knows how to calculate' do
-      expect(function.calculate(x: 2, y: 3)).to eq(8)
-    end
+    it_behaves_like 'a generically generated function'
 
     context 'when no block is given' do
       let(:function_class) do
@@ -52,7 +57,7 @@ describe Danica::Function do
       end
 
       it 'has the defined variables' do
-        expect(function.variables_hash).to eq(x: nil)
+        expect(function.variables_hash).to eq(x: Danica::Wrapper::Variable.new(name: :x))
       end
 
       context 'when calling to_tex' do
@@ -76,7 +81,10 @@ describe Danica::Function do
       end
 
       it 'has the defined variables' do
-        expect(function.variables_hash).to eq(x: nil, y: nil)
+        expect(function.variables_hash).to eq(
+          x: Danica::Wrapper::Variable.new(name: :x),
+          y: Danica::Wrapper::Variable.new(name: :y)
+        )
       end
 
       context 'when calling to_tex' do
@@ -89,6 +97,39 @@ describe Danica::Function do
         it 'build function from block' do
           expect(function.to_gnu).to eq('x**(2) -y**(2)')
         end
+      end
+    end
+  end
+
+  describe '.create' do
+    let(:function) do
+      described_class.create(*variables) do
+        Danica::Operator::Power.new(x, y)
+      end
+    end
+    it_behaves_like 'a generically generated function'
+  end
+
+  describe '#describe_tex' do
+    context 'when function has a name' do
+      let(:function) do
+        function_class.new(name: :f)
+      end
+
+      it 'returns the full function description' do
+        expect(function.describe_tex).to eq('f(x, y) = x^{y}')
+      end
+    end
+  end
+
+  describe '#describe_gnu' do
+    context 'when function has a name' do
+      let(:function) do
+        function_class.new(name: :f)
+      end
+
+      it 'returns the full function description' do
+        expect(function.describe_gnu).to eq('f(x, y) = x**(y)')
       end
     end
   end
@@ -219,7 +260,7 @@ describe Danica::Function do
 
         context 'when initialized with an empty variable set' do
           it do
-            expect(subject.variables.compact).to be_empty
+            expect(subject.variables.compact).not_to be_empty
           end
         end
 
@@ -228,8 +269,13 @@ describe Danica::Function do
             subject.time = time
           end
 
-          it 'returns the list of variables' do
-            expect(subject.variables.compact).to eq([ time ])
+          it 'returns the list of variables merged default and new variables' do
+            expect(subject.variables.compact).to eq([
+              time,
+              Danica::Wrapper::Variable.new(name: :acceleration),
+              Danica::Wrapper::Variable.new(name: :initial_space),
+              Danica::Wrapper::Variable.new(name: :initial_velocity)
+            ])
           end
         end
 

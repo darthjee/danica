@@ -4,6 +4,18 @@ describe Danica::Operator::Division do
   let(:variables) { [2, 4] }
   subject { described_class.new(*variables) }
 
+  describe '#numerator' do
+    it 'returns the numerator' do
+      expect(subject.numerator).to eq(Danica::Wrapper::Number.new(2))
+    end
+  end
+
+  describe '#denominator' do
+    it 'returns the denominator' do
+      expect(subject.denominator).to eq(Danica::Wrapper::Number.new(4))
+    end
+  end
+
   it_behaves_like 'an object that respond to basic_methods'
   it_behaves_like 'an object with basic operation'
 

@@ -17,8 +17,6 @@ shared_context 'a class with mapped dsl' do
     multiplication: Danica::Operator::Multiplication,
     product:        Danica::Operator::Multiplication,
     division:       Danica::Operator::Division,
-    sin:            Danica::Operator::Sin,
-    cos:            Danica::Operator::Cos,
     power:          Danica::Operator::Power
   }.each do |aliaz, clazz|
     it_behaves_like 'a class with alias to a clazz', aliaz, clazz, 2, 3
@@ -26,6 +24,8 @@ shared_context 'a class with mapped dsl' do
   {
     squared_root:  Danica::Operator::SquaredRoot,
     exponential:   Danica::Operator::Exponential,
+    sin:           Danica::Operator::Sin,
+    cos:           Danica::Operator::Cos,
     group:         Danica::Wrapper::Group,
     negative:      Danica::Wrapper::Negative,
     number:        Danica::Wrapper::Number,

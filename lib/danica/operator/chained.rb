@@ -1,6 +1,12 @@
 module Danica
   class Operator
     class Chained < Operator
+      attr_reader :variables
+
+      def variables=(vars)
+        @variables = vars.map { |v| wrap_value(v) }
+      end
+
       def to_f
         chain(variables.map(&:to_f))
       end

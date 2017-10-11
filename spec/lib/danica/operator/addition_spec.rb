@@ -3,6 +3,12 @@ require 'spec_helper'
 describe Danica::Operator::Addition do
   subject { described_class.new(10, 2) }
 
+  it 'initializes from array' do
+    expect do
+      described_class.new(10, 2)
+    end.not_to raise_error
+  end
+
   it_behaves_like 'an object that respond to basic_methods'
 
   it_behaves_like 'an object with basic operation', ignore: %i(+ -)
