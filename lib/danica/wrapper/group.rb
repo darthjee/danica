@@ -2,7 +2,6 @@ module Danica
   class Wrapper::Group
     include Common
     include BaseOperations
-    include ActiveModel::Model
 
     attr_accessor :value
 
