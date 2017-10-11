@@ -55,7 +55,11 @@ describe Danica::VariablesHolder do
       end
 
       it 'returns the base variables set on the class' do
-        expect(subject.variables).to eq(clazz.variables_hash.values)
+        expect(subject.variables).to eq([
+          Danica::Wrapper::Variable.new(name: :x),
+          Danica::Wrapper::Variable.new(latex: '\y'),
+          Danica::Wrapper::Number.new(10)
+        ])
       end
     end
 
@@ -65,9 +69,11 @@ describe Danica::VariablesHolder do
       end
 
       it 'returns the default variables and the new set one' do
-        expect(subject.variables).to eq(clazz.variables_hash.merge(
-          y: Danica::Wrapper::Number.new(1)
-        ).values)
+        expect(subject.variables).to eq([
+          Danica::Wrapper::Variable.new(name: :x),
+          Danica::Wrapper::Number.new(1),
+          Danica::Wrapper::Number.new(10)
+        ])
       end
 
       it 'does not change the class variables' do
@@ -81,7 +87,11 @@ describe Danica::VariablesHolder do
   describe '#variables_hash' do
     context 'when instance has no variables defined' do
       it 'returns the variables map with default values' do
-        expect(subject.variables_hash).to eq(clazz.variables_hash)
+        expect(subject.variables_hash).to eq(
+          x: Danica::Wrapper::Variable.new(name: :x),
+          y: Danica::Wrapper::Variable.new(latex: '\y'),
+          z: Danica::Wrapper::Number.new(10)
+        )
       end
     end
 
@@ -91,9 +101,11 @@ describe Danica::VariablesHolder do
       end
 
       it 'returns the default hash with the set value' do
-        expect(subject.variables_hash).to eq(clazz.variables_hash.merge(
-          y: Danica::Wrapper::Number.new(1)
-        ))
+        expect(subject.variables_hash).to eq(
+          x: Danica::Wrapper::Variable.new(name: :x),
+          y: Danica::Wrapper::Number.new(1),
+          z: Danica::Wrapper::Number.new(10)
+        )
       end
     end
   end
