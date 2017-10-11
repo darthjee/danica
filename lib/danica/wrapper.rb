@@ -1,11 +1,11 @@
 module Danica
   module Wrapper
     def wrap_value(value)
-      return wrap_value(number(value)) if value.is_a?(Numeric)
-      return wrap_value(constant(value)) if value.is_a?(Hash) && value.keys.map(&:to_sym) == %i(value latex gnu)
-      return wrap_value(variable(value)) if value.is_a?(Hash)
-      return wrap_value(variable(name: value)) if [ String, Symbol ].any? { |c| value.is_a?(c) }
-      return wrap_value(variable) if value.nil?
+      return number(value) if value.is_a?(Numeric)
+      return constant(value) if value.is_a?(Hash) && value.keys.map(&:to_sym) == %i(value latex gnu)
+      return variable(value) if value.is_a?(Hash)
+      return variable(name: value) if [ String, Symbol ].any? { |c| value.is_a?(c) }
+      return variable if value.nil?
       value
     end
 
