@@ -11,41 +11,28 @@ class Danica::Wrapper::Dummy
   end
 end
 
+shared_examples 'a value wrapper' do |examples|
+  examples.each do |val, expected|
+    context "when value is a #{val.class}" do
+      let(:value) { val }
+
+      it do
+        expect(subject.wrapped_value).to be_a(expected)
+      end
+    end
+  end
+end
+
 describe Danica::Wrapper do
   let(:clazz) { described_class::Dummy }
   subject { clazz.new(value) }
 
   describe 'wrap_value' do
-    context 'when value is a number' do
-      let(:value) { 10 }
-
-      it do
-        expect(subject.wrapped_value).to be_a(Danica::Wrapper::Number)
-      end
-    end
-
-    context 'when value is a symbol' do
-      let(:value) { :x }
-
-      it do
-        expect(subject.wrapped_value).to be_a(Danica::Wrapper::Variable)
-      end
-    end
-
-    context 'when value is a string' do
-      let(:value) { 'x' }
-
-      it do
-        expect(subject.wrapped_value).to be_a(Danica::Wrapper::Variable)
-      end
-    end
-
-    context 'when value is a hash' do
-      let(:value) { { name: :x } }
-
-      it do
-        expect(subject.wrapped_value).to be_a(Danica::Wrapper::Variable)
-      end
-    end
+    it_behaves_like 'a value wrapper', {
+      x: Danica::Wrapper::Variable,
+      'x' => Danica::Wrapper::Variable,
+      10 => Danica::Wrapper::Number,
+      { name: :x } => Danica::Wrapper::Variable
+    }
   end
 end
