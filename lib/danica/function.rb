@@ -2,7 +2,6 @@ module Danica
   class Function
     include Common
     include VariablesHolder
-    include ActiveModel::Model
     include DSL
   
     attr_accessor :name
@@ -30,7 +29,11 @@ module Danica
     def initialize(*args)
       options = args.extract_options!
 
-      super({ variables: args.flatten }.merge(options))
+      attributes = { variables: args.flatten }.merge(options)
+
+      attributes.each do |key, value|
+        self.public_send("#{key}=", value)
+      end
     end
 
     def calculate(*args)

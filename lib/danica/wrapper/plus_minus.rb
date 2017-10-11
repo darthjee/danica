@@ -3,7 +3,6 @@ module Danica
     include Common
     include BaseOperations
     include VariablesHolder
-    include ActiveModel::Model
 
     attr_accessor :value
 

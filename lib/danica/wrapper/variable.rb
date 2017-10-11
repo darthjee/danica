@@ -1,6 +1,5 @@
 module Danica
   class Wrapper::Variable
-    include ActiveModel::Model
     include BaseOperations
     include Common
 
@@ -8,6 +7,12 @@ module Danica
 
     default_value :priority, 10
     default_value :is_grouped?, false
+
+    def initialize(attributes={})
+      attributes.each do |key, value|
+        self.public_send("#{key}=", value)
+      end
+    end
 
     def to_f
       value.nil? ? raise(Exception::NotDefined) : value.to_f

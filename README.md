@@ -201,6 +201,34 @@ returns
 S0 + V0 * t + (a * t**(2))/(2)
 ```
 
+##### describe_tex
+Returns the full description of the function
+
+```ruby
+fx.name = :g
+fx.describe_tex
+```
+
+returns
+
+```string
+g(t, a, S_0, V_0) = S_0 + V_0 \cdot t + \frac{a \cdot t^{2}}{2}
+```
+
+##### describe_gnu
+Returns the full description of the function
+
+```ruby
+fx.name = :g
+fx.describe_gnu
+```
+
+returns
+
+```string
+g(t, a, S0, V0) = S0 + V0 * t + (a * t**(2))/(2)
+```
+
 ##### calculate / to_f
 ```ruby
 fx = Danica::Function::Spatial.new(

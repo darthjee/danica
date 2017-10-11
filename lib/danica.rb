@@ -1,4 +1,3 @@
-require 'active_model'
 require 'darthjee/core_ext'
 
 module Danica
