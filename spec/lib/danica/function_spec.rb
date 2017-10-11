@@ -57,7 +57,7 @@ describe Danica::Function do
       end
 
       it 'has the defined variables' do
-        expect(function.variables_hash).to eq(x: nil)
+        expect(function.variables_hash).to eq(x: Danica::Wrapper::Variable.new(name: :x))
       end
 
       context 'when calling to_tex' do
@@ -81,7 +81,10 @@ describe Danica::Function do
       end
 
       it 'has the defined variables' do
-        expect(function.variables_hash).to eq(x: nil, y: nil)
+        expect(function.variables_hash).to eq(
+          x: Danica::Wrapper::Variable.new(name: :x),
+          y: Danica::Wrapper::Variable.new(name: :y)
+        )
       end
 
       context 'when calling to_tex' do
@@ -245,7 +248,7 @@ describe Danica::Function do
 
         context 'when initialized with an empty variable set' do
           it do
-            expect(subject.variables.compact).to be_empty
+            expect(subject.variables.compact).not_to be_empty
           end
         end
 
@@ -254,8 +257,13 @@ describe Danica::Function do
             subject.time = time
           end
 
-          it 'returns the list of variables' do
-            expect(subject.variables.compact).to eq([ time ])
+          it 'returns the list of variables merged default and new variables' do
+            expect(subject.variables.compact).to eq([
+              time,
+              Danica::Wrapper::Variable.new(name: :acceleration),
+              Danica::Wrapper::Variable.new(name: :initial_space),
+              Danica::Wrapper::Variable.new(name: :initial_velocity)
+            ])
           end
         end
 
