@@ -46,7 +46,7 @@ module Danica
     end
 
     def describe_tex
-      "#{name}(#{variables}) = #{to_tex}"
+      "#{name}(#{variables.map(&:to_tex).join(', ')}) = #{to_tex}"
     end
 
     autoload :Gauss,    'danica/function/gauss'

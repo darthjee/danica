@@ -116,7 +116,7 @@ describe Danica::Function do
         function_class.new(name: :f)
       end
 
-      xit 'returns the full function description' do
+      it 'returns the full function description' do
         expect(function.describe_tex).to eq('f(x, y) = x^{y}')
       end
     end
