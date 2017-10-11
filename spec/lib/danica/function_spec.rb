@@ -122,6 +122,18 @@ describe Danica::Function do
     end
   end
 
+  describe '#describe_gnu' do
+    context 'when function has a name' do
+      let(:function) do
+        function_class.new(name: :f)
+      end
+
+      it 'returns the full function description' do
+        expect(function.describe_gnu).to eq('f(x, y) = x**(y)')
+      end
+    end
+  end
+
   describe 'spatial' do
     let(:variables) do
       {

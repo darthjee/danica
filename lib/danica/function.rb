@@ -49,6 +49,10 @@ module Danica
       "#{name}(#{variables.map(&:to_tex).join(', ')}) = #{to_tex}"
     end
 
+    def describe_gnu
+      "#{name}(#{variables.map(&:to_gnu).join(', ')}) = #{to_gnu}"
+    end
+
     autoload :Gauss,    'danica/function/gauss'
   end
 end
