@@ -39,7 +39,7 @@ describe Danica::Wrapper do
       context 'but it has value' do
         let(:value) { { value: 10 } }
 
-        xit do
+        it do
           expect(subject.wrapped_value).to be_a(Danica::Wrapper::Constant)
         end
       end
