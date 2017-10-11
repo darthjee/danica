@@ -9,7 +9,7 @@ module Danica
     default_value :valued?, true
     default_value :is_grouped?, false
 
-    def initialize(value, latex, gnu)
+    def initialize(value, latex = nil, gnu = nil)
       @value = value
       @latex = latex
       @gnu = gnu
