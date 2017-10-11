@@ -34,5 +34,15 @@ describe Danica::Wrapper do
       10 => Danica::Wrapper::Number,
       { name: :x } => Danica::Wrapper::Variable
     }
+
+    context 'when value is a Hash' do
+      context 'but it has value' do
+        let(:value) { { value: 10 } }
+
+        xit do
+          expect(subject.wrapped_value).to be_a(Danica::Wrapper::Constant)
+        end
+      end
+    end
   end
 end
