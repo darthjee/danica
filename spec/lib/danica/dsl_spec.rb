@@ -30,7 +30,8 @@ shared_context 'a class with mapped dsl' do
     negative:      Danica::Wrapper::Negative,
     number:        Danica::Wrapper::Number,
     num:           Danica::Wrapper::Number,
-    plus_minus:    Danica::Wrapper::PlusMinus
+    plus_minus:    Danica::Wrapper::PlusMinus,
+    constant:      Danica::Wrapper::Constant
   }.each do |aliaz, clazz|
     it_behaves_like 'a class with alias to a clazz', aliaz, clazz, 9
   end
