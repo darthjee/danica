@@ -1,5 +1,25 @@
 require 'spec_helper'
 
+shared_examples 'an object that returns the default variables hash' do
+  it 'returns the default variables hash' do
+    expect(subject.variables_hash).to eq(
+      x: Danica::Wrapper::Variable.new(name: :x),
+      y: Danica::Wrapper::Variable.new(latex: '\y'),
+      z: Danica::Wrapper::Number.new(10)
+    )
+  end
+end
+
+shared_examples 'an object that returns the default variables' do
+  it 'returns the default variables hash' do
+    expect(subject.variables).to eq([
+      Danica::Wrapper::Variable.new(name: :x),
+      Danica::Wrapper::Variable.new(latex: '\y'),
+      Danica::Wrapper::Number.new(10)
+    ])
+  end
+end
+
 describe Danica::VariablesHolder do
   class Danica::VariablesHolder::Dummy
     include Danica::Common
@@ -41,13 +61,7 @@ describe Danica::VariablesHolder do
       context 'but the array is empty' do
         let(:variables) { [] }
 
-        it 'does not change the value of the variables' do
-          expect(subject.variables_hash).to eq(
-            x: Danica::Wrapper::Variable.new(name: :x),
-            y: Danica::Wrapper::Variable.new(latex: '\y'),
-            z: Danica::Wrapper::Number.new(10)
-          )
-        end
+        it_behaves_like 'an object that returns the default variables hash'
       end
     end
 
@@ -61,13 +75,7 @@ describe Danica::VariablesHolder do
       context 'but the hash is empty' do
         let(:variables) { {} }
 
-        it 'does not change the value of the variables' do
-          expect(subject.variables_hash).to eq(
-            x: Danica::Wrapper::Variable.new(name: :x),
-            y: Danica::Wrapper::Variable.new(latex: '\y'),
-            z: Danica::Wrapper::Number.new(10)
-          )
-        end
+        it_behaves_like 'an object that returns the default variables hash'
       end
     end
   end
@@ -78,13 +86,7 @@ describe Danica::VariablesHolder do
         expect(subject.variables).not_to be_empty
       end
 
-      it 'returns the base variables set on the class' do
-        expect(subject.variables).to eq([
-          Danica::Wrapper::Variable.new(name: :x),
-          Danica::Wrapper::Variable.new(latex: '\y'),
-          Danica::Wrapper::Number.new(10)
-        ])
-      end
+      it_behaves_like 'an object that returns the default variables'
     end
 
     context 'when some variables where defined' do
@@ -110,13 +112,7 @@ describe Danica::VariablesHolder do
 
   describe '#variables_hash' do
     context 'when instance has no variables defined' do
-      it 'returns the variables map with default values' do
-        expect(subject.variables_hash).to eq(
-          x: Danica::Wrapper::Variable.new(name: :x),
-          y: Danica::Wrapper::Variable.new(latex: '\y'),
-          z: Danica::Wrapper::Number.new(10)
-        )
-      end
+      it_behaves_like 'an object that returns the default variables hash'
     end
 
     context 'when some variables where defined' do
