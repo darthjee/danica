@@ -1,6 +1,7 @@
 module Danica
   module Wrapper
     def wrap_value(value)
+      return negative(number(-value)) if value.is_a?(Numeric) && value < 0
       return number(value) if value.is_a?(Numeric)
       return constant(value) if value.is_a?(Hash) && value.keys.map(&:to_sym) == %i(value latex gnu)
       return variable(value) if value.is_a?(Hash)

@@ -32,6 +32,7 @@ describe Danica::Wrapper do
       x: Danica::Wrapper::Variable,
       'x' => Danica::Wrapper::Variable,
       10 => Danica::Wrapper::Number,
+      -10 => Danica::Wrapper::Negative,
       { name: :x } => Danica::Wrapper::Variable
     }
 
