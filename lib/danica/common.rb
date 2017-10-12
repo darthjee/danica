@@ -12,7 +12,7 @@ module Danica
     end
 
     def to_f
-      raise 'Not IMplemented yet'
+      raise Exception::NotImplemented
     end
 
     def to_tex
