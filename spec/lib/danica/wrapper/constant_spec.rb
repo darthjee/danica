@@ -19,6 +19,36 @@ describe Danica::Wrapper::Constant do
     end
   end
 
+  describe '#to' do
+    context 'when requesting :tex' do
+      it 'has a string for latex' do
+        expect(subject.to(:tex)).to eq('M')
+      end
+    end
+    context "when requesting 'tex'" do
+      it 'has a string for latex' do
+        expect(subject.to('tex')).to eq('M')
+      end
+    end
+    context 'when requesting :gnu' do
+      it 'has a string for gnu' do
+        expect(subject.to(:gnu)).to eq('m')
+      end
+    end
+    context "when requesting 'gnu'" do
+      it 'has a string for gnu' do
+        expect(subject.to('gnu')).to eq('m')
+      end
+    end
+    context "when requesting wrong format" do
+      it do
+        expect do
+          subject.to('format')
+        end.to raise_error(Danica::Exception::FormatNotFound)
+      end
+    end
+  end
+
   describe '#to_gnu' do
     it 'has a string for gnu' do
       expect(subject.to_gnu).to eq('m')
