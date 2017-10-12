@@ -25,10 +25,32 @@ describe Danica::Wrapper::Constant do
     end
   end
 
-  describe 'variables' do
+  describe 'attr_setters' do
     it { expect(subject).not_to respond_to(:value=) }
     it { expect(subject).not_to respond_to(:latex=) }
     it { expect(subject).not_to respond_to(:gnu=) }
+  end
+
+  context 'when initializing from hash' do
+    subject { described_class.new(value: 2.5, latex: :M, gnu: :m) }
+
+    it 'initialize normaly' do
+      expect do
+        described_class.new(value: 2.5, latex: :M, gnu: :m)
+      end.not_to raise_error
+    end
+
+    it 'sets the value' do
+      expect(subject.value).to eq(2.5)
+    end
+
+    it 'sets the latex' do
+      expect(subject.to_tex).to eq('M')
+    end
+
+    it 'sets the gnu' do
+      expect(subject.to_gnu).to eq('m')
+    end
   end
 
   describe '==' do

@@ -9,10 +9,13 @@ module Danica
     default_value :valued?, true
     default_value :is_grouped?, false
 
-    def initialize(value, latex, gnu)
-      @value = value
-      @latex = latex
-      @gnu = gnu
+    def initialize(*args)
+      attrs = args.extract_options!
+      attrs = args.as_hash(%i(value latex gnu)).merge(attrs)
+
+      attrs.each do |key, value|
+        self.send("#{key}=", value)
+      end
     end
 
     def to_f
@@ -30,6 +33,20 @@ module Danica
 
     def to_gnu
       gnu.to_s
+    end
+
+    private
+
+    def value=(value)
+      @value = value
+    end
+
+    def latex=(latex)
+      @latex = latex
+    end
+
+    def gnu=(gnu)
+      @gnu = gnu
     end
   end
 

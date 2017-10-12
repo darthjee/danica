@@ -6,7 +6,7 @@ describe 'integration of addition' do
       Danica::Operator::Addition.new(
         Danica::Wrapper::Negative.new(1),
         2,
-        Danica::Wrapper::Negative.new(3),
+        -3,
         4,
         Danica::Wrapper::PlusMinus.new(5)
       )

@@ -49,11 +49,11 @@ module Danica
     end
 
     def describe_tex
-      "#{name}(#{variables.map(&:to_tex).join(', ')}) = #{to_tex}"
+      "#{name}(#{variables.reject(&:valued?).map(&:to_tex).join(', ')}) = #{to_tex}"
     end
 
     def describe_gnu
-      "#{name}(#{variables.map(&:to_gnu).join(', ')}) = #{to_gnu}"
+      "#{name}(#{variables.reject(&:valued?).map(&:to_gnu).join(', ')}) = #{to_gnu}"
     end
 
     autoload :Gauss,    'danica/function/gauss'

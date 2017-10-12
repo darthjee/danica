@@ -120,6 +120,16 @@ describe Danica::Function do
         expect(function.describe_tex).to eq('f(x, y) = x^{y}')
       end
     end
+
+    context 'when a variable is set as a constant' do
+      let(:function) do
+        function_class.new(name: :f, x: Danica::PI)
+      end
+
+      it do
+        expect(function.describe_tex).to eq('f(y) = \pi^{y}')
+      end
+    end
   end
 
   describe '#describe_gnu' do
@@ -130,6 +140,16 @@ describe Danica::Function do
 
       it 'returns the full function description' do
         expect(function.describe_gnu).to eq('f(x, y) = x**(y)')
+      end
+    end
+
+    context 'when a variable is set as a constant' do
+      let(:function) do
+        function_class.new(name: :f, x: Danica::PI)
+      end
+
+      it do
+        expect(function.describe_gnu).to eq('f(y) = pi**(y)')
       end
     end
   end
