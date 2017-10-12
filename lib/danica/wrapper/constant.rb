@@ -27,23 +27,12 @@ module Danica
       gnu == other.gnu && latex == other.latex && value == other.value
     end
 
-    def to(format)
-      case format.to_sym
-      when :tex
-        latex.to_s
-      when :gnu
-        gnu.to_s
-      else
-        raise Exception::FormatNotFound.new
-      end
-    end
-
     def to_tex
-      to(:tex)
+      latex.to_s
     end
 
     def to_gnu
-      to(:gnu)
+      gnu.to_s
     end
 
     private

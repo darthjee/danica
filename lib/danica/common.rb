@@ -14,6 +14,25 @@ module Danica
     def to_f
       raise 'Not IMplemented yet'
     end
+
+    def to_tex
+      to(:tex)
+    end
+
+    def to_gnu
+      to(:gnu)
+    end
+
+    def to(format)
+      case format.to_sym
+      when :tex
+        to_tex
+      when :gnu
+        to_gnu
+      else
+        raise Exception::FormatNotFound.new
+      end
+    end
   
     def valued?
       to_f.present?
