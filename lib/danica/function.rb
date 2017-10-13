@@ -48,14 +48,28 @@ module Danica
       self.class.new(vars_map).to_f
     end
 
+    def describe(format)
+      "#{name}(#{description_variables(format)}) = #{to(format)}"
+    end
+
     def describe_tex
-      "#{name}(#{variables.reject(&:valued?).map(&:to_tex).join(', ')}) = #{to_tex}"
+      describe(:tex)
     end
 
     def describe_gnu
-      "#{name}(#{variables.reject(&:valued?).map(&:to_gnu).join(', ')}) = #{to_gnu}"
+      describe(:gnu)
     end
 
     autoload :Gauss,    'danica/function/gauss'
+
+    private
+
+    def description_variables(format)
+      non_valued_variables.map { |v| v.to(format) }.join(', ')
+    end
+
+    def non_valued_variables
+      variables.reject(&:valued?)
+    end
   end
 end
