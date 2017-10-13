@@ -1,14 +1,26 @@
 require 'spec_helper'
 
-class Danica::Common::Dummy
-  include Danica::Common
+module Danica
+  module Common
+    class Dummy
+      include Common
 
-  def to_tex
-    'tex'
-  end
+      def to_tex
+        'tex'
+      end
 
-  def to_gnu
-    'gnu'
+      def to_gnu
+        'gnu'
+      end
+    end
+
+    class Dummy2
+      include Common
+
+      def to(format)
+        "formatted: #{format}"
+      end
+    end
   end
 end
 
@@ -52,6 +64,24 @@ describe Danica::Common do
             subject.to('format')
           end.to raise_error(Danica::Exception::FormatNotFound)
         end
+      end
+    end
+  end
+
+  describe '#to_tex' do
+    context 'when defined the #to method' do
+      let(:clazz) { described_class::Dummy2 }
+      it 'returns the call of #to(:tex)' do
+        expect(subject.to_tex).to eq('formatted: tex')
+      end
+    end
+  end
+
+  describe '#to_gnu' do
+    context 'when defined the #to method' do
+      let(:clazz) { described_class::Dummy2 }
+      it 'returns the call of #to(:gnu)' do
+        expect(subject.to_gnu).to eq('formatted: gnu')
       end
     end
   end
