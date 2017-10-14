@@ -4,7 +4,7 @@ module Danica
     private
 
     def denominator
-      variance_root * squared_root(num(2) * PI)
+      variance_root * sqrt(num(2) * PI)
     end
 
     def exp

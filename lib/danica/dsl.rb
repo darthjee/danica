@@ -35,4 +35,5 @@ module Danica
   DSL.register_wrapper  :num,     :Number
   DSL.register_operator :sum,     :Addition
   DSL.register_operator :product, :Multiplication
+  DSL.register_operator :sqrt,    :SquaredRoot
 end
