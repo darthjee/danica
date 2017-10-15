@@ -16,21 +16,13 @@ module Danica
         variables.include?(value)
       end
 
-      def to_tex
-        to_string(:tex)
-      end
-
-      def to_gnu
-        to_string(:gnu)
+      def to(format)
+        extractor = string_extractor(format)
+        symbol = { tex: tex_symbol, gnu: gnu_symbol }[format]
+        variables.procedural_join(extractor, &join_proc(symbol))
       end
 
       private
-
-      def to_string(type)
-        extractor = string_extractor("to_#{type}")
-        symbol = { tex: tex_symbol, gnu: gnu_symbol }[type]
-        variables.procedural_join(extractor, &join_proc(symbol))
-      end
 
       def join_proc(symbol)
         proc { " #{symbol} " }
@@ -39,7 +31,7 @@ module Danica
       def string_extractor(method)
         proc do |parcel|
           parcel = wrap_as_group(parcel)
-          parcel.public_send(method)
+          parcel.to(method)
         end
       end
 
