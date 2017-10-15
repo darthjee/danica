@@ -18,11 +18,29 @@ module Danica
 
       def to(format)
         extractor = string_extractor(format)
-        symbol = { tex: tex_symbol, gnu: gnu_symbol }[format]
-        variables.procedural_join(extractor, &join_proc(symbol))
+        variables.procedural_join(extractor, &join_proc(symbol(format)))
       end
 
       private
+
+      def symbol(format)
+        case format.to_sym
+        when :tex
+          tex_symbol
+        when :gnu
+          gnu_symbol
+        else
+          raise Exception::FormatNotFound.new
+        end
+      end
+
+      def tex_symbol
+        symbol(:tex)
+      end
+
+      def gnu_symbol
+        symbol(:gnu)
+      end
 
       def join_proc(symbol)
         proc { " #{symbol} " }

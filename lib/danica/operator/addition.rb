@@ -8,8 +8,7 @@ module Danica
 
     private
 
-    default_value :tex_symbol, :+
-    alias_method :gnu_symbol, :tex_symbol
+    default_value :symbol, :+
 
     def chain_operation(a, b)
       a + b

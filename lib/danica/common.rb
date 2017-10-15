@@ -6,7 +6,7 @@ module Danica
 
       class << self
         def default_value(name, value)
-          define_method(name) { value }
+          define_method(name) { |*_| value }
         end
       end
     end
