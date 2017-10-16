@@ -8,6 +8,16 @@ describe Danica::Wrapper::Number do
 
   it_behaves_like 'an object with basic operation'
 
+  describe '#valued?' do
+    context 'when value is present' do
+      it { expect(subject.valued?).to be_truthy }
+    end
+    context 'when value is not present' do
+      let(:value) { false }
+      it { expect(subject.valued?).to be_falsey }
+    end
+  end
+
   describe '#to_f' do
     it 'returns the float of value' do
       expect(subject.to_f).to eq(10)

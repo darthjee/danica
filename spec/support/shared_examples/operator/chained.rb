@@ -38,26 +38,26 @@ shared_examples 'a operator that knows how to calculate' do |arguments|
 end
 
 shared_examples 'a operator that knows how to write to tex' do |arguments|
-  it_behaves_like 'a operator that knows how to write to a string', :to_tex, arguments
+  it_behaves_like 'a operator that knows how to write to a string', :tex, arguments
 end
 
 shared_examples 'a operator that knows how to write to gnu' do |arguments|
-  it_behaves_like 'a operator that knows how to write to a string', :to_gnu, arguments
+  it_behaves_like 'a operator that knows how to write to a string', :gnu, arguments
 end
 
-shared_examples 'a operator that knows how to write to a string' do |command, arguments|
+shared_examples 'a operator that knows how to write to a string' do |format, arguments|
   let(:numeric_variables) { arguments[:numeric_variables]  }
-  include_context 'variables are initialized', arguments[command], *%w(integer_expected string_expected float_expected)
+  include_context 'variables are initialized', arguments[format], *%w(integer_expected string_expected float_expected)
   subject { described_class.new(*variables) }
 
-  describe "#{command}" do
+  describe "#to(#{format})" do
     let(:variables) do
       (1..4).map { |i| "X#{i}" }
     end
 
     context 'when variables have no value' do
       it 'outputs a text format' do
-        expect(subject.public_send(command)).to eq(string_expected)
+        expect(subject.to(format)).to eq(string_expected)
       end
     end
 
@@ -70,14 +70,14 @@ shared_examples 'a operator that knows how to write to a string' do |command, ar
       end
 
       it 'outputs a latex format with colapsed numbers' do
-        expect(subject.public_send(command)).to eq(integer_expected)
+        expect(subject.to(format)).to eq(integer_expected)
       end
 
       context 'when numeric variables calculated is a float value' do
         let(:numeric_variables_index) { 2 }
 
         it 'outputs a text format with colapsed numbers' do
-          expect(subject.public_send(command)).to eq(float_expected)
+          expect(subject.to(format)).to eq(float_expected)
         end
       end
     end
@@ -91,14 +91,14 @@ shared_examples 'a operator that knows how to write to a string' do |command, ar
       end
 
       it 'outputs a text format of numbers' do
-        expect(subject.public_send(command)).to eq(integer_expected)
+        expect(subject.to(format)).to eq(integer_expected)
       end
 
       context 'when numeric variables are a float value' do
         let(:numeric_variables_index) { 2 }
 
         it 'outputs a text format of numbers' do
-          expect(subject.public_send(command)).to eq(float_expected)
+          expect(subject.to(format)).to eq(float_expected)
         end
       end
     end

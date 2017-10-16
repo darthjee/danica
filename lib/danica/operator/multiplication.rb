@@ -8,13 +8,8 @@ module Danica
 
     private
 
-    def tex_symbol
-      '\cdot'
-    end
-
-    def gnu_symbol
-      '*'
-    end
+    default_value :tex_symbol, '\cdot'
+    default_value :gnu_symbol, :*
 
     def chain_operation(a, b)
       a * b

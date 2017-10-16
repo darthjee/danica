@@ -27,12 +27,12 @@ describe Danica::Operator::Multiplication do
   it_behaves_like 'a operator that joins many variables with same operation', {
     calculated: 24,
     numeric_variables: [ 1.5, 2, 3.5 ],
-    to_tex: { 
+    tex: { 
       string_expected: %w(X1 X2 X3 X4).join(' \cdot '),
       integer_expected: %w(1.5 2 X3 X4).join(' \cdot '),
       float_expected: %w(1.5 2 3.5 X4).join(' \cdot ')
     },
-    to_gnu: {
+    gnu: {
       string_expected: %w(X1 X2 X3 X4).join(' * '),
       integer_expected: %w(1.5 2 X3 X4).join(' * '),
       float_expected: %w(1.5 2 3.5 X4).join(' * '),

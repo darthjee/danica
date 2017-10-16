@@ -13,7 +13,7 @@ module Danica
       @value = value
     end
 
-    def to_tex
+    def to(_)
       return value.to_i.to_s if value.to_i == value
       value.to_s
     end
@@ -22,12 +22,14 @@ module Danica
       value.present?
     end
 
+    def signaled?
+      value < 0
+    end
+
     def ==(other)
       return false unless other.class == self.class
       value == other.value
     end
-
-    alias_method :to_gnu, :to_tex
   end
 end
 

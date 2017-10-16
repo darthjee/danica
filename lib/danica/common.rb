@@ -6,13 +6,35 @@ module Danica
 
       class << self
         def default_value(name, value)
-          define_method(name) { value }
+          define_method(name) { |*_| value }
         end
       end
+
+      default_value :constant?, false
+      default_value :signaled?, false
     end
 
     def to_f
-      raise 'Not IMplemented yet'
+      raise Exception::NotImplemented
+    end
+
+    def to_tex
+      to(:tex)
+    end
+
+    def to_gnu
+      to(:gnu)
+    end
+
+    def to(format)
+      case format.to_sym
+      when :tex
+        to_tex
+      when :gnu
+        to_gnu
+      else
+        raise Exception::FormatNotFound.new
+      end
     end
   
     def valued?

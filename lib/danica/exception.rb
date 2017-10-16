@@ -1,4 +1,6 @@
 class Danica::Exception < ::Exception
-  class Danica::Exception::NotDefined < self; end
+  class NotDefined < self; end
+  class FormatNotFound < self; end
+  class NotImplemented < self; end
 end
 

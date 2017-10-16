@@ -37,11 +37,5 @@ module Danica
         var.try(:value)
       end.as_hash(self.class.variables_names)
     end
-
-    private
-
-    def non_valued_variables
-      variables.reject(&:valued?)
-    end
   end
 end

@@ -23,6 +23,7 @@ shared_context 'a class with mapped dsl' do
   end
   {
     squared_root:  Danica::Operator::SquaredRoot,
+    sqrt:          Danica::Operator::SquaredRoot,
     exponential:   Danica::Operator::Exponential,
     sin:           Danica::Operator::Sin,
     cos:           Danica::Operator::Cos,

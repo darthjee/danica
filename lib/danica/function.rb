@@ -8,7 +8,7 @@ module Danica
 
     default_value :priority, 3
     default_value :is_grouped?, false
-    delegate :to_f, :to_tex, :to_gnu, to: :function_block
+    delegate :to_f, :to, to: :function_block
 
     def self.build(*vars, &block)
       Class.new(self) do
@@ -48,14 +48,28 @@ module Danica
       self.class.new(vars_map).to_f
     end
 
+    def describe(format)
+      "#{name}(#{description_variables(format)}) = #{to(format)}"
+    end
+
     def describe_tex
-      "#{name}(#{variables.reject(&:valued?).map(&:to_tex).join(', ')}) = #{to_tex}"
+      describe(:tex)
     end
 
     def describe_gnu
-      "#{name}(#{variables.reject(&:valued?).map(&:to_gnu).join(', ')}) = #{to_gnu}"
+      describe(:gnu)
     end
 
     autoload :Gauss,    'danica/function/gauss'
+
+    private
+
+    def description_variables(format)
+      non_constant_variables.map { |v| v.to(format) }.join(', ')
+    end
+
+    def non_constant_variables
+      variables.reject(&:constant?)
+    end
   end
 end
