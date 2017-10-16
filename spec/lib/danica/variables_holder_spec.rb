@@ -129,7 +129,7 @@ describe Danica::VariablesHolder do
       end
     end
   end
-  
+
   describe '#variables_value_hash' do
     context 'when instance has no variables defined' do
       it 'returns the default value' do

@@ -36,13 +36,13 @@ module Danica
         raise Exception::FormatNotFound.new
       end
     end
-  
+
     def valued?
       to_f.present?
     rescue Exception::NotDefined
       false
     end
-  
+
     private
 
     def wrap_as_group(value)

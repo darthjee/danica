@@ -3,7 +3,7 @@ module Danica
     include Common
     include VariablesHolder
     include DSL
-  
+
     attr_accessor :name
 
     default_value :priority, 3

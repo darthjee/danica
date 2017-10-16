@@ -27,7 +27,7 @@ module Danica
     def variables
       variables_hash.values
     end
-  
+
     def variables_hash
       @variables_hash ||= {}.merge(self.class.variables_hash)
     end

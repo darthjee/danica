@@ -6,7 +6,7 @@ module Danica
 
     default_value :priority, 3
     default_value :is_grouped?, false
-  
+
     def initialize(*args)
       self.variables = args.flatten
     end

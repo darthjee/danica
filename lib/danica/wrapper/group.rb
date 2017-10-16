@@ -7,7 +7,7 @@ module Danica
 
     default_value :priority, 10
     default_value :is_grouped?, true
-    
+
     delegate :to_f, :valued?, to: :value
 
     def initialize(value)
