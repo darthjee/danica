@@ -11,6 +11,7 @@ module Danica
       end
 
       default_value :constant?, false
+      default_value :signaled?, false
     end
 
     def to_f

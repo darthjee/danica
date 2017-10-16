@@ -8,6 +8,7 @@ module Danica
 
     default_value :priority, 2
     default_value :is_grouped?, false
+    default_value :signaled?, true
     
     delegate :valued?, to: :value
 

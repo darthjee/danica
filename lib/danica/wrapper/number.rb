@@ -22,6 +22,10 @@ module Danica
       value.present?
     end
 
+    def signaled?
+      value < 0
+    end
+
     def ==(other)
       return false unless other.class == self.class
       value == other.value

@@ -16,7 +16,7 @@ module Danica
 
     def join_proc(symbol)
       proc do |_, value|
-        value.is_a?(Wrapper::Negative) || value.is_a?(Wrapper::PlusMinus) ? ' ' : " #{symbol} "
+        value.signaled? ? ' ' : " #{symbol} "
       end
     end
   end
