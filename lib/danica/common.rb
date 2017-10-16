@@ -9,6 +9,8 @@ module Danica
           define_method(name) { |*_| value }
         end
       end
+
+      default_value :constant?, false
     end
 
     def to_f

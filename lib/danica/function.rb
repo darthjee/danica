@@ -69,7 +69,7 @@ module Danica
     end
 
     def non_constant_variables
-      variables.reject { |v| v.is_a?(Wrapper::Constant) }
+      variables.reject(&:constant?)
     end
   end
 end
