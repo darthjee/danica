@@ -32,14 +32,6 @@ module Danica
         end
       end
 
-      def tex_symbol
-        symbol(:tex)
-      end
-
-      def gnu_symbol
-        symbol(:gnu)
-      end
-
       def join_proc(symbol)
         proc { " #{symbol} " }
       end
