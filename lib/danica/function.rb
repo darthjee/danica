@@ -67,9 +67,5 @@ module Danica
     def description_variables(format)
       non_valued_variables.map { |v| v.to(format) }.join(', ')
     end
-
-    def non_valued_variables
-      variables.reject(&:valued?)
-    end
   end
 end
