@@ -29,8 +29,6 @@ module Danica
           tex_symbol
         when :gnu
           gnu_symbol
-        else
-          raise Exception::FormatNotFound.new
         end
       end
 
