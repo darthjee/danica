@@ -65,7 +65,11 @@ module Danica
     private
 
     def description_variables(format)
-      non_valued_variables.map { |v| v.to(format) }.join(', ')
+      non_constant_variables.map { |v| v.to(format) }.join(', ')
+    end
+
+    def non_constant_variables
+      variables.reject { |v| v.is_a?(Wrapper::Constant) }
     end
   end
 end

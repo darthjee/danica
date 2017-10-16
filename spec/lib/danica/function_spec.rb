@@ -126,8 +126,18 @@ describe Danica::Function do
         function_class.new(name: :f, x: Danica::PI)
       end
 
-      it do
+      it 'ignores the constant in the definition' do
         expect(function.describe_tex).to eq('f(y) = \pi^{y}')
+      end
+    end
+
+    context 'whn a variable has value' do
+      let(:function) do
+        function_class.new(name: :f, x: 2)
+      end
+
+      it 'sohws the variable as number' do
+        expect(function.describe_tex).to eq('f(2, y) = 2^{y}')
       end
     end
   end
@@ -150,6 +160,16 @@ describe Danica::Function do
 
       it do
         expect(function.describe_gnu).to eq('f(y) = pi**(y)')
+      end
+    end
+
+    context 'whn a variable has value' do
+      let(:function) do
+        function_class.new(name: :f, x: 2)
+      end
+
+      it 'sohws the variable as number' do
+        expect(function.describe_gnu).to eq('f(2, y) = 2**(y)')
       end
     end
   end
