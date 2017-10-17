@@ -4,6 +4,9 @@ module Danica
     include VariablesHolder
     include DSL
 
+    autoload :Gauss,    'danica/function/gauss'
+    autoload :Name,    'danica/function/name'
+
     attr_accessor :name
 
     default_value :priority, 3
@@ -59,8 +62,6 @@ module Danica
     def describe_gnu
       describe(:gnu)
     end
-
-    autoload :Gauss,    'danica/function/gauss'
 
     private
 
