@@ -5,7 +5,7 @@ module Danica
 
     def initialize(name:, variables:)
       @name = name
-      @variables = variables
+      @variables = variables.map { |v| wrap_value(v) }
     end
 
     def to(format)
