@@ -7,7 +7,7 @@ module Danica
     autoload :Gauss,    'danica/function/gauss'
     autoload :Name,    'danica/function/name'
 
-    attr_accessor :name
+    attr_reader :name
 
     default_value :priority, 3
     default_value :is_grouped?, false
@@ -52,7 +52,7 @@ module Danica
     end
 
     def describe(format)
-      "#{name}(#{description_variables(format)}) = #{to(format)}"
+      "#{name.to(format)} = #{to(format)}"
     end
 
     def describe_tex
@@ -61,6 +61,10 @@ module Danica
 
     def describe_gnu
       describe(:gnu)
+    end
+
+    def name=(name)
+      @name = Name.new(name: name, variables: variables)
     end
 
     private
