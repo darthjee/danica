@@ -30,13 +30,19 @@ module Danica::VariablesHolder
 
     def add_setter(name)
       instance.send(:define_method, "#{name}=") do |value|
-        variables_hash[name.to_sym] = wrap_value(value)
+        if(variables_hash[name.to_sym].try(:container?))
+          variables_hash[name.to_sym].content = wrap_value(value)
+        else
+          value = wrap_value(value)
+          value = Danica::Wrapper::Container.new value unless value.container?
+          variables_hash[name.to_sym] = value
+        end
       end
     end
 
     def add_reader(name)
       instance.send(:define_method, name) do
-        variables_hash[name.to_sym]
+        variables_hash[name.to_sym].content
       end
     end
   end

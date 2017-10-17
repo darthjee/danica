@@ -25,6 +25,10 @@ module Danica
     end
 
     def variables
+      containers.map(&:content)
+    end
+
+    def containers
       variables_hash.values
     end
 

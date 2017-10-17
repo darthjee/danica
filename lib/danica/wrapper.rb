@@ -23,5 +23,6 @@ module Danica
     autoload :PlusMinus, 'danica/wrapper/plus_minus'
     autoload :Constant,  'danica/wrapper/constant'
     autoload :Variable,  'danica/wrapper/variable'
+    autoload :Container, 'danica/wrapper/container'
   end
 end

@@ -328,7 +328,7 @@ describe Danica::Function do
     describe '#variables' do
       context 'when initialized with an array of variables' do
         subject { described_class::Spatial.new(variables: variables.values) }
-        let(:expected) { variables.values.map { |v| subject.send(:wrap_value, v)} }
+        let(:expected) { variables.values.map { |v| Danica::Wrapper::Variable.new(v.is_a?(Hash) ? v : { name: v }) } }
         it do
           expect(subject.variables.compact).to eq(expected)
         end
