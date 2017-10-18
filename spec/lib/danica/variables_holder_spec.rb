@@ -20,6 +20,15 @@ shared_examples 'an object that returns the default variables' do
   end
 end
 
+shared_examples 'an variable set that does not change the class variables' do
+  it 'does not change the the class variables' do
+    expect do
+      subject.variables = variables
+    end.not_to change { clazz.variables_hash }
+  end
+end
+
+
 describe Danica::VariablesHolder do
   class Danica::VariablesHolder::Dummy
     include Danica::Common
@@ -47,11 +56,32 @@ describe Danica::VariablesHolder do
   end
 
   describe '#variables=' do
-    before do
-      subject.variables = variables
+    context 'when changing the variables of the object' do
+      context 'when all the variables are set with value' do
+        let(:variables) { [1, 2, 3] }
+        it_behaves_like 'an variable set that does not change the class variables'
+      end
+
+      context 'setting the variables through a hash' do
+        let(:variables) { { x: 1, y: 2, z: 3 } }
+        it_behaves_like 'an variable set that does not change the class variables'
+      end
+
+      context 'when none of the variables are set with values' do
+        let(:variables) { [] }
+        it_behaves_like 'an variable set that does not change the class variables'
+      end
+
+      context 'when the variables are set through an empty hash' do
+        let(:variables) { {} }
+        it_behaves_like 'an variable set that does not change the class variables'
+      end
     end
 
     context 'when setting the variables using a list' do
+      before do
+        subject.variables = variables
+      end
       let(:variables) { [1, 2, 3] }
 
       it 'changes the values of the variables' do
@@ -60,12 +90,15 @@ describe Danica::VariablesHolder do
 
       context 'but the array is empty' do
         let(:variables) { [] }
-
         it_behaves_like 'an object that returns the default variables hash'
       end
     end
 
     context 'when setting the variales using a hash' do
+      before do
+        subject.variables = variables
+      end
+
       let(:variables) { { x: 1, y: 2, z: 3 } }
 
       it 'changes the values of the variables' do
@@ -74,7 +107,6 @@ describe Danica::VariablesHolder do
 
       context 'but the hash is empty' do
         let(:variables) { {} }
-
         it_behaves_like 'an object that returns the default variables hash'
       end
     end
