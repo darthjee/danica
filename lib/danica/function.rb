@@ -7,7 +7,7 @@ module Danica
     autoload :Gauss,    'danica/function/gauss'
     autoload :Name,    'danica/function/name'
 
-    attr_reader :name
+    attr_accessor :name
 
     default_value :priority, 3
     default_value :is_grouped?, false
@@ -63,8 +63,8 @@ module Danica
       describe(:gnu)
     end
 
-    def name=(name)
-      @name = Name.new(name: name, variables: variables)
+    def name
+      Name.new(name: @name, variables: containers)
     end
 
     private
