@@ -110,6 +110,24 @@ describe Danica::Function do
     it_behaves_like 'a generically generated function'
   end
 
+  describe '#name' do
+    let(:function) do
+      function_class.new(name: :f)
+    end
+
+    it do
+      expect(function.name).to be_a(Danica::Function::Name)
+    end
+
+    context 'when changing the function variables' do
+      it 'changes the name variables' do
+        expect do
+          function.x = 2
+        end.to change { function.name.variables }
+      end
+    end
+  end
+
   describe '#describe_tex' do
     context 'when function has a name' do
       let(:function) do
@@ -118,6 +136,14 @@ describe Danica::Function do
 
       it 'returns the full function description' do
         expect(function.describe_tex).to eq('f(x, y) = x^{y}')
+      end
+
+      context 'and one of the variables is changed' do
+        it 'uses the new variable value' do
+          expect do
+            function.y = 2
+          end.to change(function, :describe_tex).to('f(x) = x^{2}')
+        end
       end
     end
 

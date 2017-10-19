@@ -179,4 +179,20 @@ describe Danica::VariablesHolder do
       end
     end
   end
+
+  describe '#containers' do
+    it 'is an array of Containers' do
+      expect(subject.containers.first).to be_a(Danica::Wrapper::Container)
+    end
+
+    context 'when changing the variable on the object' do
+      let(:containers) { subject.containers }
+
+      it 'changes the variables in the containers' do
+        expect do
+          subject.x = 2
+        end.to change { containers.map(&:content) }
+      end
+    end
+  end
 end
