@@ -123,7 +123,7 @@ describe Danica::Function do
       it 'changes the name variables' do
         expect do
           function.x = 2
-        end.to change { function.name.variables }
+        end.to change { function.name.variables.map(&:content) }
       end
     end
   end
