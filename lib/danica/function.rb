@@ -64,7 +64,7 @@ module Danica
     end
 
     def name
-      Name.new(name: @name, variables: containers)
+      @name_object ||= Name.new(name: @name, variables: containers)
     end
 
     private
