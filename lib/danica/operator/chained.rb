@@ -1,8 +1,6 @@
 module Danica
   class Operator
     class Chained < Operator
-      attr_reader :variables
-
       def variables=(vars)
         @variables = vars.map { |v| wrap_value(v) }
       end
@@ -13,12 +11,16 @@ module Danica
 
       def include?(value)
         value = wrap_value(value)
-        variables.include?(value)
+        variables.include?(value.content)
       end
 
       def to(format)
         extractor = string_extractor(format)
         variables.procedural_join(extractor, &join_proc(symbol(format)))
+      end
+
+      def variables
+        @variables.map(&:content)
       end
 
       private

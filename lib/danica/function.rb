@@ -4,6 +4,9 @@ module Danica
     include VariablesHolder
     include DSL
 
+    autoload :Gauss,    'danica/function/gauss'
+    autoload :Name,    'danica/function/name'
+
     attr_accessor :name
 
     default_value :priority, 3
@@ -49,7 +52,7 @@ module Danica
     end
 
     def describe(format)
-      "#{name}(#{description_variables(format)}) = #{to(format)}"
+      "#{name.to(format)} = #{to(format)}"
     end
 
     def describe_tex
@@ -60,7 +63,9 @@ module Danica
       describe(:gnu)
     end
 
-    autoload :Gauss,    'danica/function/gauss'
+    def name
+      @name_object ||= Name.new(name: @name, variables: containers)
+    end
 
     private
 

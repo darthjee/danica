@@ -17,7 +17,7 @@ shared_examples 'a value wrapper' do |examples|
       let(:value) { val }
 
       it do
-        expect(subject.wrapped_value).to be_a(expected)
+        expect(subject.wrapped_value.content).to be_a(expected)
       end
     end
   end
@@ -41,7 +41,7 @@ describe Danica::Wrapper do
         let(:value) { { value: 10, latex: :x, gnu: :X } }
 
         it do
-          expect(subject.wrapped_value).to be_a(Danica::Wrapper::Constant)
+          expect(subject.wrapped_value.content).to be_a(Danica::Wrapper::Constant)
         end
       end
     end

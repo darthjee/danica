@@ -12,6 +12,7 @@ module Danica
 
       default_value :constant?, false
       default_value :signaled?, false
+      default_value :container?, false
     end
 
     def to_f
@@ -41,6 +42,10 @@ module Danica
       to_f.present?
     rescue Exception::NotDefined
       false
+    end
+
+    def content
+      self
     end
 
     private
