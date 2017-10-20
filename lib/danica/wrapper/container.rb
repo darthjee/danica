@@ -4,7 +4,7 @@ module Danica
     attr_accessor :content
 
     delegate :to_f, :contentd?, :to, :to_tex, :to_gnu, :priority, :grouped?,
-             :signaled?, :constant?, :valued?, to: :content
+             :signaled?, :constant?, :valued?, :*, :+, :-, :/, :**, to: :content
 
     default_value :container?, true
 
