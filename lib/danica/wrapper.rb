@@ -1,20 +1,30 @@
 module Danica
   module Wrapper
     def wrap_value(value)
+      Wrapper.wrap_value(value)
+    end
+
+    def self.wrap_value(value)
       case value
       when Numeric
-        return negative(number(-value)) if value < 0
-        number(value)
+        wrap_numeric(value)
       when Hash
-        return constant(value) if value.keys.map(&:to_sym).sort == %i(gnu latex value)
-        variable(value)
-      when String, Symbol
-        variable(name: value)
-      when NilClass
-        variable
+        wrap_hash(value)
+      when String, Symbol, NilClass
+        Variable.new(name: value)
       else
         value
       end
+    end
+
+    def self.wrap_numeric(number)
+      return Negative.new(Number.new(-number)) if number < 0
+      Number.new(number)
+    end
+
+    def self.wrap_hash(hash)
+      return Constant.new(hash) if hash.keys.map(&:to_sym).sort == %i(gnu latex value)
+      Variable.new(hash)
     end
 
     autoload :Number,    'danica/wrapper/number'

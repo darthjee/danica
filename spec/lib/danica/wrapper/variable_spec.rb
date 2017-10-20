@@ -7,6 +7,18 @@ describe Danica::Wrapper::Variable do
     subject { described_class.new(value: 100) }
   end
 
+  it 'can be initialize from nil value' do
+    expect do
+      described_class.new(nil)
+    end
+  end
+
+  it 'can be initialize from nil name' do
+    expect do
+      described_class.new(name: nil)
+    end
+  end
+
   describe '#to_f' do
     context 'when variable has no value' do
       it { expect { subject.to_f }.to raise_error(Danica::Exception::NotDefined) }
