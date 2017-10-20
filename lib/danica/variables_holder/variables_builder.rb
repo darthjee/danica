@@ -42,7 +42,7 @@ module Danica::VariablesHolder
 
     def add_reader(name)
       instance.send(:define_method, name) do
-        containers_hash[name.to_sym].content
+        containers_hash[name.to_sym]
       end
     end
   end

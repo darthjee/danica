@@ -20,7 +20,7 @@ module Danica
 
     def variables=(vars)
       vars = vars.as_hash(self.class.variables_names).compact unless vars.is_a? Hash
-      vars = vars.change_values(skip_inner: false) { |v| wrap_value(v) }
+      vars = vars.dup.change_values!(skip_inner: false) { |v| wrap_value(v) }
       vars.each do |k, v|
         public_send("#{k}=", v)
       end

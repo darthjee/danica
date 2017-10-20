@@ -142,7 +142,7 @@ describe Danica::Function do
         it 'uses the new variable value' do
           expect do
             function.y = 2
-          end.to change(function, :describe_tex).to('f(x) = x^{2}')
+          end.to change(function, :describe_tex).to('f(x, 2) = x^{2}')
         end
       end
     end
