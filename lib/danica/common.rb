@@ -12,7 +12,7 @@ module Danica
 
       default_value :constant?, false
       default_value :signaled?, false
-      default_value :container?, false
+      default_value :variable?, false
     end
 
     def to_f

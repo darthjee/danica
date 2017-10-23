@@ -1,23 +1,17 @@
 module Danica
   class Function::Name
     include Common
-    attr_reader :name, :containers
+    attr_reader :name, :variables
 
     def initialize(name:, variables:)
       @name = name
-      @containers = variables.map do |v|
-        v = wrap_value(v)
-        v = Wrapper::Container.new(v) unless v.container?
-        v
+      @variables = variables.map do |v|
+        wrap_value(v)
       end
     end
 
     def to(format)
       "#{name}(#{description_variables(format)})"
-    end
-
-    def variables
-      containers.map(&:content)
     end
 
     private

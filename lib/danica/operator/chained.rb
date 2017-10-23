@@ -11,7 +11,7 @@ module Danica
 
       def include?(value)
         value = wrap_value(value)
-        variables.include?(value.content)
+        variables.include?(value)
       end
 
       def to(format)
@@ -20,7 +20,7 @@ module Danica
       end
 
       def variables
-        @variables.map(&:content)
+        @variables
       end
 
       private

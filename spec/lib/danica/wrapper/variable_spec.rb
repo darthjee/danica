@@ -41,4 +41,15 @@ describe Danica::Wrapper::Variable do
   describe '#to_gnu' do
     it_behaves_like 'a variable method to formated string', :to_gnu, :gnu
   end
+
+  describe '#value' do
+    context 'when variale is initialized with a number for value' do
+      subject { described_class.new(value: value) }
+      let(:value) { 100 }
+
+      it do
+        expect(subject.value).to be(100)
+      end
+    end
+  end
 end

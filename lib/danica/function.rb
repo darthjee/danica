@@ -20,7 +20,7 @@ module Danica
         private
 
         define_method :function_block do
-          @function_block ||= instance_eval(&block) if block
+          instance_eval(&block) if block
         end
       end
     end
@@ -64,7 +64,7 @@ module Danica
     end
 
     def name
-      @name_object ||= Name.new(name: @name, variables: containers)
+      Name.new(name: @name, variables: variables)
     end
 
     private
