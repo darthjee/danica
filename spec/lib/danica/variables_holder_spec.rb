@@ -42,6 +42,13 @@ describe Danica::VariablesHolder do
     clazz.new
   end
 
+  it 'generates one instance of each variable for each instance' do
+    other = clazz.new
+    expect(subject.x).not_to be(other.x)
+    expect(subject.y).not_to be(other.y)
+    expect(subject.z).not_to be(other.z)
+  end
+
   it 'creates setters and getters for the variables' do
     %i(x y z).each do |var|
       expect(subject).to respond_to(var)
@@ -85,12 +92,20 @@ describe Danica::VariablesHolder do
       let(:variables) { [1, 2, 3] }
 
       it 'changes the values of the variables' do
-        expect(subject.x).to eq(Danica::Wrapper::Number.new(1))
+        expect(subject.x.content).to eq(Danica::Wrapper::Number.new(1))
+        expect(subject.z).to eq(Danica::Wrapper::Number.new(3))
       end
 
       context 'but the array is empty' do
         let(:variables) { [] }
-        it_behaves_like 'an object that returns the default variables hash'
+        #it_behaves_like 'an object that returns the default variables hash'
+        it 'returns the default variables hash' do
+          expect(subject.variables_hash).to eq(
+            x: Danica::Wrapper::Variable.new(name: :x),
+            y: Danica::Wrapper::Variable.new(latex: '\y'),
+            z: Danica::Wrapper::Number.new(10)
+          )
+        end
       end
     end
 
@@ -102,7 +117,7 @@ describe Danica::VariablesHolder do
       let(:variables) { { x: 1, y: 2, z: 3 } }
 
       it 'changes the values of the variables' do
-        expect(subject.x).to eq(Danica::Wrapper::Number.new(1))
+        expect(subject.x.content).to eq(Danica::Wrapper::Number.new(1))
       end
 
       context 'but the hash is empty' do
@@ -129,7 +144,7 @@ describe Danica::VariablesHolder do
       it 'returns the default variables and the new set one' do
         expect(subject.variables).to eq([
           Danica::Wrapper::Variable.new(name: :x),
-          Danica::Wrapper::Number.new(1),
+          Danica::Wrapper::Variable.new(latex: '\y', value: Danica::Wrapper::Number.new(1)),
           Danica::Wrapper::Number.new(10)
         ])
       end
@@ -155,7 +170,7 @@ describe Danica::VariablesHolder do
       it 'returns the default hash with the set value' do
         expect(subject.variables_hash).to eq(
           x: Danica::Wrapper::Variable.new(name: :x),
-          y: Danica::Wrapper::Number.new(1),
+          y: Danica::Wrapper::Variable.new(latex: '\y', value: Danica::Wrapper::Number.new(1)),
           z: Danica::Wrapper::Number.new(10)
         )
       end
@@ -176,22 +191,6 @@ describe Danica::VariablesHolder do
 
       it 'returns the values' do
         expect(subject.variables_value_hash).to eq({x: nil, y: 1, z: 10})
-      end
-    end
-  end
-
-  describe '#containers' do
-    it 'is an array of Containers' do
-      expect(subject.containers.first).to be_a(Danica::Wrapper::Container)
-    end
-
-    context 'when changing the variable on the object' do
-      let(:containers) { subject.containers }
-
-      it 'changes the variables in the containers' do
-        expect do
-          subject.x = 2
-        end.to change { containers.map(&:content) }
       end
     end
   end

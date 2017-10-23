@@ -11,14 +11,14 @@ describe Danica::Operator do
 
   describe 'variables assignment' do
     it 'assignes the variables tpo its places' do
-      expect(subject.a).to eq(Danica::Wrapper::Number.new(2))
-      expect(subject.b).to eq(Danica::Wrapper::Number.new(4))
+      expect(subject.a.content).to eq(Danica::Wrapper::Number.new(2))
+      expect(subject.b.content).to eq(Danica::Wrapper::Number.new(4))
     end
 
     context 'when initializing with a hash' do
       let(:variables) { [{ name: :A, value: 2 }, { name: :B, value: 4 }] }
 
-      it 'assignes the variables tpo its places' do
+      it 'assignes the variables to its places' do
         expect(subject.a).to eq(Danica::Wrapper::Variable.new(name: :A, value: 2))
         expect(subject.b).to eq(Danica::Wrapper::Variable.new(name: :B, value: 4))
       end

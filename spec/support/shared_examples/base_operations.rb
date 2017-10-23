@@ -50,11 +50,11 @@ shared_examples 'an object with / operation' do
   it { expect(result).to be_a(Danica::Operator::Division) }
 
   it 'includes other as denominator' do
-    expect(result.denominator).to eq(other_number)
+    expect(result.denominator.content).to eq(other_number)
   end
 
   it 'includes the subject as numerator' do
-    expect(result.numerator).to eq(subject)
+    expect(result.numerator.content).to eq(subject.content)
   end
 end
 
@@ -82,11 +82,11 @@ shared_examples 'an object with ** operation' do
   it { expect(result).to be_a(Danica::Operator::Power) }
 
   it 'sets the subject as base' do
-    expect(result.base).to eq(subject)
+    expect(result.base.content).to eq(subject.content)
   end
 
   it 'sets the other as exponent' do
-    expect(result.exponent).to eq(Danica::Wrapper::Number.new(other))
+    expect(result.exponent.content).to eq(Danica::Wrapper::Number.new(other))
   end
 end
 

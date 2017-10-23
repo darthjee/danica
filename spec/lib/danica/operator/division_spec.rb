@@ -6,13 +6,13 @@ describe Danica::Operator::Division do
 
   describe '#numerator' do
     it 'returns the numerator' do
-      expect(subject.numerator).to eq(Danica::Wrapper::Number.new(2))
+      expect(subject.numerator.content).to eq(Danica::Wrapper::Number.new(2))
     end
   end
 
   describe '#denominator' do
     it 'returns the denominator' do
-      expect(subject.denominator).to eq(Danica::Wrapper::Number.new(4))
+      expect(subject.denominator.content).to eq(Danica::Wrapper::Number.new(4))
     end
   end
 
