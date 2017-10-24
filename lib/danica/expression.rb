@@ -4,6 +4,8 @@ module Danica
     include VariablesHolder
     include DSL
 
+    autoload :Gauss,    'danica/expression/gauss'
+
     delegate :to_f, :to, :is_grouped?, :priority, to: :expression_block
 
     def self.build(*vars, &block)

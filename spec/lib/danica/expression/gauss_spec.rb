@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Danica::Function::Gauss do
+describe Danica::Expression::Gauss do
   let(:variables) do
     {
       x: :x,

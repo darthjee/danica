@@ -4,7 +4,6 @@ module Danica
     include VariablesHolder
     include DSL
 
-    autoload :Gauss,    'danica/function/gauss'
     autoload :Name,    'danica/function/name'
 
     attr_accessor :name
