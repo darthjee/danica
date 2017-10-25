@@ -1,11 +1,16 @@
 module Danica
   module VariablesHolder extend ::ActiveSupport::Concern
     require 'danica/variables_holder/variables_builder'
+    require 'danica/variables_holder/alias_builder'
 
     included do
       class << self
         def variables(*names)
           VariablesBuilder.new(names, self).build
+        end
+
+        def variable_alias(origin, destiny)
+          AliasBuilder.new(origin, destiny, self).build
         end
 
         def variables_names

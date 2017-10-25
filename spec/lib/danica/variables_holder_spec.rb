@@ -62,6 +62,14 @@ describe Danica::VariablesHolder do
         expect(clazz.variables_names).to eq(%i(k z))
       end
     end
+
+    context 'when we alias a variable' do
+      let(:clazz) { described_class::DummyAlias }
+
+      it 'returns the list of variables of both classes merged' do
+        expect(clazz.variables_names).to eq(%i(a y z))
+      end
+    end
   end
 
   describe '#variables=' do
