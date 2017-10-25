@@ -13,7 +13,16 @@ module Danica
         end
 
         def variables_hash
-          @variables_hash ||= (superclass.try(:variables_hash) || {}).dup
+          @variables_hash ||= superclass_variables_hash.dup
+        end
+
+        def reset_variables
+          @superclass_variables_hash = {}
+          @variables_hash = nil
+        end
+
+        def superclass_variables_hash
+          @superclass_variables_hash ||= (superclass.try(:variables_hash) || {})
         end
       end
     end

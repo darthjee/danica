@@ -30,17 +30,6 @@ end
 
 
 describe Danica::VariablesHolder do
-  class Danica::VariablesHolder::Dummy
-    include Danica::Common
-    include Danica::VariablesHolder
-
-    variables :x, y: { latex: '\y' }, z: 10
-  end
-
-  class Danica::VariablesHolder::DummyChild < Danica::VariablesHolder::Dummy
-    variables :k, z: { name: 'zeta' }
-  end
-
   let(:clazz) { described_class::Dummy }
   subject do
     clazz.new
@@ -63,6 +52,14 @@ describe Danica::VariablesHolder do
 
       it 'returns the list of variables of both classes merged' do
         expect(clazz.variables_names).to eq(%i(x y z k))
+      end
+    end
+
+    context 'when variables are reseted on child class' do
+      let(:clazz) { described_class::DummyOverwrite }
+
+      it 'returns the list of variables of both classes merged' do
+        expect(clazz.variables_names).to eq(%i(k z))
       end
     end
   end
