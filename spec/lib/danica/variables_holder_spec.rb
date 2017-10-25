@@ -37,6 +37,10 @@ describe Danica::VariablesHolder do
     variables :x, y: { latex: '\y' }, z: 10
   end
 
+  class Danica::VariablesHolder::DummyChild < Danica::VariablesHolder::Dummy
+    variables :k, z: { name: 'zeta' }
+  end
+
   let(:clazz) { described_class::Dummy }
   subject do
     clazz.new
@@ -52,6 +56,14 @@ describe Danica::VariablesHolder do
   describe '.variables_names' do
     it 'returns the list of variables pre configured' do
       expect(clazz.variables_names).to eq(%i(x y z))
+    end
+
+    context 'when variables are defined in super class' do
+      let(:clazz) { described_class::DummyChild }
+
+      it 'returns the list of variables of both classes merged' do
+        expect(clazz.variables_names).to eq(%i(x y z k))
+      end
     end
   end
 
