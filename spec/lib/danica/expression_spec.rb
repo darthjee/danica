@@ -31,12 +31,14 @@ describe Danica::Expression do
       Danica::Operator::Power.new(x, y)
     end
   end
+  subject { expression }
 
   describe '.build' do
     let(:expression) do
       expression_class.new
     end
-
+    it_behaves_like 'an object with basic operation'
+    it_behaves_like 'an object that respond to basic_methods'
     it_behaves_like 'a generically generated expression'
 
     context 'when no block is given' do
@@ -52,6 +54,8 @@ describe Danica::Expression do
     context 'when creating a class using build' do
       let(:expression_class) { Danica::Hyperbole }
 
+      it_behaves_like 'an object with basic operation'
+      it_behaves_like 'an object that respond to basic_methods'
       it 'has the defined variables on class definition' do
         expect(expression_class.variables_names).to eq([:x])
       end
@@ -75,6 +79,9 @@ describe Danica::Expression do
 
     context 'when using a class that inherits from another class' do
       let(:expression_class) { Danica::SaddleHyperbole }
+
+      it_behaves_like 'an object with basic operation'
+      it_behaves_like 'an object that respond to basic_methods'
 
       it 'has the defined variables on class definition' do
         expect(expression_class.variables_names).to eq([:x, :y])
@@ -107,6 +114,8 @@ describe Danica::Expression do
         Danica::Operator::Power.new(x, y)
       end
     end
+    it_behaves_like 'an object with basic operation'
+    it_behaves_like 'an object that respond to basic_methods'
     it_behaves_like 'a generically generated expression'
   end
 
@@ -121,6 +130,7 @@ describe Danica::Expression do
     end
 
     subject { described_class::Spatial.new(variables) }
+    it_behaves_like 'an object with basic operation'
     it_behaves_like 'an object that respond to basic_methods'
 
     describe '#to_tex' do

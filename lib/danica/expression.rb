@@ -3,6 +3,7 @@ module Danica
     include Common
     include VariablesHolder
     include DSL
+    include BaseOperations
 
     autoload :Gauss,    'danica/expression/gauss'
 
