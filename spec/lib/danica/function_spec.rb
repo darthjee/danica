@@ -12,11 +12,11 @@ shared_examples 'a generically generated function' do
   end
 
   it 'returns a function that uses the block to process to_tex' do
-    expect(function.to_tex).to eq('x^{y}')
+    expect(function.to_tex).to eq('f(x, y) = x^{y}')
   end
 
   it 'returns a function that uses the block to process to_gnu' do
-    expect(function.to_gnu).to eq('x**(y)')
+    expect(function.to_gnu).to eq('f(x, y) = x**(y)')
   end
 
   it 'returns a function thtat knows how to calculate' do
@@ -34,7 +34,7 @@ describe Danica::Function do
 
   describe '.build' do
     let(:function) do
-      function_class.new
+      function_class.new(name: :f)
     end
 
     it_behaves_like 'a generically generated function'
@@ -50,7 +50,7 @@ describe Danica::Function do
     end
 
     context 'when creating a class using build' do
-      let(:function_class) { Danica::Hyperbole }
+      let(:function_class) { Danica::Function::Hyperbole }
 
       it 'has the defined variables on class definition' do
         expect(function_class.variables_names).to eq([:x])
@@ -62,19 +62,19 @@ describe Danica::Function do
 
       context 'when calling to_tex' do
         it 'build function from block' do
-          expect(function.to_tex).to eq('x^{2}')
+          expect(function.to_tex).to eq('f(x) = x^{2}')
         end
       end
 
       context 'when calling to_gnu' do
         it 'build function from block' do
-          expect(function.to_gnu).to eq('x**(2)')
+          expect(function.to_gnu).to eq('f(x) = x**(2)')
         end
       end
     end
 
     context 'when using a class that inherits from another class' do
-      let(:function_class) { Danica::SaddleHyperbole }
+      let(:function_class) { Danica::Function::SaddleHyperbole }
 
       it 'has the defined variables on class definition' do
         expect(function_class.variables_names).to eq([:x, :y])
@@ -89,13 +89,13 @@ describe Danica::Function do
 
       context 'when calling to_tex' do
         it 'build function from block' do
-          expect(function.to_tex).to eq('x^{2} -y^{2}')
+          expect(function.to_tex).to eq('f(x, y) = x^{2} -y^{2}')
         end
       end
 
       context 'when calling to_gnu' do
         it 'build function from block' do
-          expect(function.to_gnu).to eq('x**(2) -y**(2)')
+          expect(function.to_gnu).to eq('f(x, y) = x**(2) -y**(2)')
         end
       end
     end
@@ -105,6 +105,8 @@ describe Danica::Function do
     let(:function) do
       described_class.create(*variables) do
         Danica::Operator::Power.new(x, y)
+      end.tap do |f|
+        f.name = :f
       end
     end
     it_behaves_like 'a generically generated function'
@@ -128,21 +130,21 @@ describe Danica::Function do
     end
   end
 
-  describe '#describe_tex' do
+  describe '#to_tex' do
     context 'when function has a name' do
       let(:function) do
         function_class.new(name: :f)
       end
 
       it 'returns the full function description' do
-        expect(function.describe_tex).to eq('f(x, y) = x^{y}')
+        expect(function.to_tex).to eq('f(x, y) = x^{y}')
       end
 
       context 'and one of the variables is changed' do
         it 'uses the new variable value' do
           expect do
             function.y = 2
-          end.to change(function, :describe_tex).to('f(x, 2) = x^{2}')
+          end.to change(function, :to_tex).to('f(x, 2) = x^{2}')
         end
       end
     end
@@ -153,7 +155,7 @@ describe Danica::Function do
       end
 
       it 'ignores the constant in the definition' do
-        expect(function.describe_tex).to eq('f(y) = \pi^{y}')
+        expect(function.to_tex).to eq('f(y) = \pi^{y}')
       end
 
       context 'from a hash' do
@@ -162,7 +164,7 @@ describe Danica::Function do
         end
 
         it 'ignores the constant in the definition' do
-          expect(function.describe_tex).to eq('f(y) = \pi^{y}')
+          expect(function.to_tex).to eq('f(y) = \pi^{y}')
         end
       end
     end
@@ -173,7 +175,7 @@ describe Danica::Function do
       end
 
       it 'sohws the variable as number' do
-        expect(function.describe_tex).to eq('f(2, y) = 2^{y}')
+        expect(function.to_tex).to eq('f(2, y) = 2^{y}')
       end
     end
 
@@ -183,19 +185,19 @@ describe Danica::Function do
       end
 
       it 'sohws the variable as number' do
-        expect(function.describe_tex).to eq('f(2, y) = 2^{y}')
+        expect(function.to_tex).to eq('f(2, y) = 2^{y}')
       end
     end
   end
 
-  describe '#describe_gnu' do
+  describe '#to_gnu' do
     context 'when function has a name' do
       let(:function) do
         function_class.new(name: :f)
       end
 
       it 'returns the full function description' do
-        expect(function.describe_gnu).to eq('f(x, y) = x**(y)')
+        expect(function.to_gnu).to eq('f(x, y) = x**(y)')
       end
     end
 
@@ -205,7 +207,7 @@ describe Danica::Function do
       end
 
       it 'ignores the constant in the definition' do
-        expect(function.describe_gnu).to eq('f(y) = pi**(y)')
+        expect(function.to_gnu).to eq('f(y) = pi**(y)')
       end
 
       context 'from a hash' do
@@ -214,7 +216,7 @@ describe Danica::Function do
         end
 
         it 'ignores the constant in the definition' do
-          expect(function.describe_gnu).to eq('f(y) = pi**(y)')
+          expect(function.to_gnu).to eq('f(y) = pi**(y)')
         end
       end
     end
@@ -225,7 +227,7 @@ describe Danica::Function do
       end
 
       it 'sohws the variable as number' do
-        expect(function.describe_gnu).to eq('f(2, y) = 2**(y)')
+        expect(function.to_gnu).to eq('f(2, y) = 2**(y)')
       end
     end
 
@@ -235,7 +237,7 @@ describe Danica::Function do
       end
 
       it 'sohws the variable as number' do
-        expect(function.describe_gnu).to eq('f(2, y) = 2**(y)')
+        expect(function.to_gnu).to eq('f(2, y) = 2**(y)')
       end
     end
   end

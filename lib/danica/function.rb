@@ -1,16 +1,15 @@
 module Danica
-  class Function
+  class Function < Equation
     include Common
     include VariablesHolder
     include DSL
 
     autoload :Name,    'danica/function/name'
-
     attr_accessor :name
 
-    default_value :priority, 3
-    default_value :is_grouped?, false
-    delegate :to_f, :to, to: :function_block
+    reset_variables
+
+    delegate :to_f, to: :expression
 
     def self.build(*vars, &block)
       Class.new(self) do
@@ -38,6 +37,24 @@ module Danica
       end
     end
 
+    def name
+      @name_object ||= Name.new(name: @name, variables: containers)
+    end
+
+    def expression
+      @expression ||= Expression.build(:x) do
+        x
+      end.new(function_block)
+    end
+
+    def left
+      name
+    end
+
+    def right
+      expression
+    end
+
     def calculate(*args)
       vars_map = args.extract_options!
       vars_map = variables_value_hash.merge(vars_map)
@@ -48,32 +65,6 @@ module Danica
       end
 
       self.class.new(vars_map).to_f
-    end
-
-    def describe(format)
-      "#{name.to(format)} = #{to(format)}"
-    end
-
-    def describe_tex
-      describe(:tex)
-    end
-
-    def describe_gnu
-      describe(:gnu)
-    end
-
-    def name
-      @name_object ||= Name.new(name: @name, variables: containers)
-    end
-
-    private
-
-    def description_variables(format)
-      non_constant_variables.map { |v| v.to(format) }.join(', ')
-    end
-
-    def non_constant_variables
-      variables.reject(&:constant?)
     end
   end
 end
