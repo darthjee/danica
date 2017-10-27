@@ -25,6 +25,8 @@ shared_examples 'a generically generated function' do
 end
 
 describe Danica::Function do
+  subject { function }
+  let(:function) { function_class.new }
   let(:variables) { %i(x y) }
   let(:function_class) do
     described_class.build(*variables) do
@@ -118,7 +120,7 @@ describe Danica::Function do
     end
 
     it do
-      expect(function.name).to be_a(Danica::Function::Name)
+      expect(function.name.content).to be_a(Danica::Function::Name)
     end
 
     context 'when changing the function variables' do
@@ -238,6 +240,26 @@ describe Danica::Function do
 
       it 'sohws the variable as number' do
         expect(function.to_gnu).to eq('f(2, y) = 2**(y)')
+      end
+    end
+
+    describe '#left' do
+      it 'is an alias for name' do
+        expect(subject.left).to eq(subject.name)
+      end
+    end
+
+    describe '#left=' do
+      it 'is an alias for the expression' do
+        expect do
+          subject.left = Danica::Operator::Power.new(:x, 2)
+        end.to change(subject, :left)
+      end
+    end
+
+    describe '#right' do
+      it 'is an alias for the expression' do
+        expect(subject.right).to eq(subject.right)
       end
     end
   end
