@@ -38,7 +38,7 @@ module Danica
     end
 
     def name
-      containers_hash[:name] ||= Danica::Wrapper::Container.new Name.new(name: @name, variables: containers)
+      containers_hash[:left] ||= Danica::Wrapper::Container.new Name.new(name: @name, variables: containers)
     end
 
     def expression
