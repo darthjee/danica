@@ -69,6 +69,46 @@ describe Danica::VariablesHolder do
       it 'returns the list of variables of both classes merged' do
         expect(clazz.variables_names).to eq(%i(a y z))
       end
+
+      context 'when original variable is set' do
+        before do
+          subject.x = 10
+        end
+
+        context 'when calling the alias variable' do
+          it 'returns the aliased value' do
+            expect(subject.a).to eq(subject.x)
+          end
+        end
+
+        context 'when changing the new alias value' do
+          it do
+            expect do
+              subject.a = 20
+            end.to change { subject.x.content }
+          end
+        end
+      end
+
+      context 'when alias variable is set' do
+        before do
+          subject.a = 10
+        end
+
+        context 'when calling the original variable' do
+          it 'returns the aliased value' do
+            expect(subject.x).to eq(subject.a)
+          end
+        end
+
+        context 'when changing the original variable value' do
+          it do
+            expect do
+              subject.x = 20
+            end.to change { subject.a.content }
+          end
+        end
+      end
     end
   end
 
