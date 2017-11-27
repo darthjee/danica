@@ -253,7 +253,7 @@ describe Danica::Function do
       it 'is an alias for the expression' do
         expect do
           subject.left = Danica::Operator::Power.new(:x, 2)
-        end.to change(subject, :left)
+        end.to change { subject.left.content }
       end
     end
 
