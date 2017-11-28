@@ -11,20 +11,22 @@ module Danica
 
     delegate :to_f, to: :expression
 
-    def self.build(*vars, &block)
-      Class.new(self) do
-        variables(*vars)
+    class << self
+      def build(*vars, &block)
+        Class.new(self) do
+          variables(*vars)
 
-        private
+          private
 
-        define_method :function_block do
-          @function_block ||= instance_eval(&block) if block
+          define_method :function_block do
+            @function_block ||= instance_eval(&block) if block
+          end
         end
       end
-    end
 
-    def self.create(*vars, &block)
-      build(*vars, &block).new
+      def create(*vars, &block)
+        build(*vars, &block).new
+      end
     end
 
     def initialize(*args)
