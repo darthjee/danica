@@ -40,6 +40,12 @@ module Danica
       end
     end
 
+    def extract_variables
+      containers_hash.select do |_, var|
+        var.content.is_a?(Wrapper::Variable)
+      end
+    end
+
     def variables
       containers.map(&:content)
     end

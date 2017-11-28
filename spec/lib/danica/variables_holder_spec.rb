@@ -252,4 +252,24 @@ describe Danica::VariablesHolder do
       end
     end
   end
+
+  describe '#extract_variables' do
+    let(:clazz) { described_class::DummyChild }
+    context 'when holder has straight variables' do
+      it 'returns the variables hash' do
+        expect(subject.extract_variables).to eq(subject.containers_hash)
+      end
+
+      context 'but one of them is a number' do
+        let(:clazz) { described_class::Dummy }
+        let(:expected) do
+          subject.containers_hash.reject { |k,v| k == :z }
+        end
+
+        it 'returns only the variables' do
+          expect(subject.extract_variables).to eq(expected)
+        end
+      end
+    end
+  end
 end
