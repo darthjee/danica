@@ -271,5 +271,20 @@ describe Danica::VariablesHolder do
         end
       end
     end
+
+    context 'when a variable is another variable holder' do
+      let(:inner) { Danica::Operator::Power.new }
+      let(:subject) do
+        clazz.new(z: inner)
+      end
+      let(:expected) do
+        subject.containers_hash.reject { |k,v| k == :z }
+                               .merge(inner.containers_hash)
+      end
+
+      it 'returns the ineer variables of the inner holder as well' do
+        expect(subject.extract_variables).to eq(expected)
+      end
+    end
   end
 end

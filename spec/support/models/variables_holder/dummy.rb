@@ -3,6 +3,10 @@ class Danica::VariablesHolder::Dummy
   include Danica::VariablesHolder
 
   variables :x, y: { latex: '\y' }, z: 10
+
+  def initialize(vars = {})
+    self.variables=vars
+  end
 end
 
 class Danica::VariablesHolder::DummyChild < Danica::VariablesHolder::Dummy
