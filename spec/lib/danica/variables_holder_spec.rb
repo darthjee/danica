@@ -257,7 +257,7 @@ describe Danica::VariablesHolder do
     let(:clazz) { described_class::DummyChild }
     context 'when holder has straight variables' do
       it 'returns the variables hash' do
-        expect(subject.extract_variables).to eq(subject.containers_hash)
+        expect(subject.extract_variables).to eq(subject.containers.as_hash([:x, :y, :zeta, :k]))
       end
 
       context 'but one of them is a number' do
@@ -269,6 +269,14 @@ describe Danica::VariablesHolder do
         it 'returns only the variables' do
           expect(subject.extract_variables).to eq(expected)
         end
+      end
+    end
+
+    context 'when variables names are different' do
+      let(:subject) { clazz.new(x: :xis, y: :lambda, z: :zeta, k: :key) }
+
+      it 'returns the names as keys' do
+        expect(subject.extract_variables.keys).to eq(%i(xis lambda zeta key))
       end
     end
 
@@ -284,6 +292,17 @@ describe Danica::VariablesHolder do
 
       it 'returns the ineer variables of the inner holder as well' do
         expect(subject.extract_variables).to eq(expected)
+      end
+
+      context 'when inner holder has the same variables' do
+        let(:inner) { clazz.new }
+        let(:expected) do
+          inner.containers.as_hash([:x, :y, :zeta, :k])
+        end
+
+        it 'merges them together in favor of the inner variables' do
+          expect(subject.extract_variables).to eq(expected)
+        end
       end
     end
   end

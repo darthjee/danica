@@ -47,8 +47,12 @@ module Danica
         hash.merge!(container.content.extract_variables)
       end
 
-      containers_hash.select do |_, container|
-        container.content.is_a?(Wrapper::Variable)
+      {}.tap do |hash|
+        containers_hash.select do |_, container|
+          container.content.is_a?(Wrapper::Variable)
+        end.each do |key, container|
+          hash[(container.content.name || key).to_sym] = container
+        end
       end.merge(other_variables)
     end
 
