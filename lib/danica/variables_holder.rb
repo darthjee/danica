@@ -41,19 +41,17 @@ module Danica
     end
 
     def extract_variables
-      other_variables = variables.select do |var|
+      variables.select do |var|
         var.is_a?(VariablesHolder)
       end.inject({}) do |hash, container|
         hash.merge!(container.content.extract_variables)
-      end
-
-      {}.tap do |hash|
+      end.tap do |hash|
         containers_hash.select do |_, container|
           container.content.is_a?(Wrapper::Variable)
         end.each do |key, container|
           hash[(container.content.name || key).to_sym] = container
         end
-      end.merge(other_variables)
+      end
     end
 
     def variables
