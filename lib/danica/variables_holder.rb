@@ -1,7 +1,7 @@
 module Danica
   module VariablesHolder extend ::ActiveSupport::Concern
-    require 'danica/variables_holder/variables_builder'
-    require 'danica/variables_holder/alias_builder'
+    autoload :VariablesBuilder, 'danica/variables_holder/variables_builder'
+    autoload :AliasBuilder,     'danica/variables_holder/alias_builder'
 
     included do
       class << self
