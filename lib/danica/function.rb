@@ -9,9 +9,11 @@ module Danica
 
     reset_variables
 
-    delegate :to_f, to: :expression
+    delegate :to_f, :calculate, to: :expression
 
     class << self
+      attr_accessor :block
+
       def build(*vars, &block)
         Class.new(self) do
           variables(*vars)
@@ -21,7 +23,7 @@ module Danica
           define_method :function_block do
             @function_block ||= instance_eval(&block) if block
           end
-        end
+        end.tap { |c| c.block = block}
       end
 
       def create(*vars, &block)
@@ -44,9 +46,7 @@ module Danica
     end
 
     def expression
-      @expression ||= Expression.build(:x) do
-        x
-      end.new(function_block)
+      @expression ||= build_expression
     end
 
     def left
@@ -57,16 +57,10 @@ module Danica
       expression
     end
 
-    def calculate(*args)
-      vars_map = args.extract_options!
-      vars_map = variables_value_hash.merge(vars_map)
-      vars_map.each do |k, v|
-        unless v && (v.is_a?(Integer) || v.valued?)
-          vars_map[k] = args.shift
-        end
-      end
+    private
 
-      self.class.new(vars_map).to_f
+    def build_expression
+      Expression.build(*(self.class.variables_names), &(self.class.block)).new(containers_hash.reject {|k, v| k == :left})
     end
   end
 end
