@@ -8,6 +8,7 @@ module Danica
     autoload :Gauss,    'danica/expression/gauss'
 
     delegate :to_f, :to, :is_grouped?, :priority, to: :expression_block
+    attr_writer :expression_block
 
     def self.build(*vars, &block)
       Class.new(self) do
@@ -16,7 +17,7 @@ module Danica
         private
 
         define_method :expression_block do
-          @function_block ||= instance_eval(&block) if block
+          @expression_block ||= (instance_eval(&block) if block)
         end
       end
     end

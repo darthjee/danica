@@ -60,7 +60,9 @@ module Danica
     private
 
     def build_expression
-      Expression.build(*(self.class.variables_names), &(self.class.block)).new(containers_hash.reject {|k, v| k == :left})
+      Expression.build(*(self.class.variables_names)).new(containers_hash.reject {|k, v| k == :left}).tap do |e|
+        e.expression_block = function_block
+      end
     end
   end
 end
