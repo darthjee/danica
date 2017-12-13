@@ -86,6 +86,7 @@ module Danica
           vars_map[k] = args.shift
         end
       end
+      raise Exception::NotDefined unless vars_map.values.all? { |v| v.present? && (v.is_a?(Integer) || v.valued?) }
 
       self.class.new(vars_map).to_f
     end

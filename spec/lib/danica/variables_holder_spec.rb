@@ -31,9 +31,7 @@ end
 
 describe Danica::VariablesHolder do
   let(:clazz) { described_class::Dummy }
-  subject do
-    clazz.new
-  end
+  subject { clazz.new }
 
   it 'creates setters and getters for the variables' do
     %i(x y z).each do |var|
@@ -302,6 +300,44 @@ describe Danica::VariablesHolder do
 
         it 'merges them together in favor of the inner variables' do
           expect(subject.extract_variables).to eq(expected)
+        end
+      end
+    end
+  end
+
+  describe '#calculate' do
+    context 'when object doesnt have the values defined' do
+      context 'when trying to calculate without passing the values' do
+        it do
+          expect { subject.calculate }.to raise_error(Danica::Exception::NotDefined)
+        end
+
+        context 'which does not complete the values' do
+          it do
+            expect { subject.calculate(2) }.to raise_error(Danica::Exception::NotDefined)
+          end
+        end
+      end
+
+      context 'when passing the values' do
+        context 'as a list of values' do
+          it do
+            expect { subject.calculate(2, 4) }.not_to raise_error
+          end
+        end
+
+        context 'as a hash' do
+          context 'which completes the values' do
+            it do
+              expect { subject.calculate(x: 2, y: 4) }.not_to raise_error
+            end
+          end
+
+          context 'which does not complete the values' do
+            it do
+              expect { subject.calculate(x: 2, z: 4) }.to raise_error(Danica::Exception::NotDefined)
+            end
+          end
         end
       end
     end
