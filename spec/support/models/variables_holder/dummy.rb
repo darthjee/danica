@@ -13,7 +13,7 @@ module Danica
       end
 
       def block
-        power(x, y) + z
+        x ** y + z
       end
     end
 
