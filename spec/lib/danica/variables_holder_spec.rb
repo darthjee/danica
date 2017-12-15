@@ -324,12 +324,30 @@ describe Danica::VariablesHolder do
           it do
             expect { subject.calculate(2, 4) }.not_to raise_error
           end
+
+          it 'calculates the expression' do
+            expect(subject.calculate(2, 4)).to eq(26)
+          end
+
+          context 'and replacing all the values' do
+            it do
+              expect { subject.calculate(2, 4, 5) }.not_to raise_error
+            end
+
+            it 'calculates the expression' do
+              expect(subject.calculate(2, 4, 5)).to eq(21)
+            end
+          end
         end
 
         context 'as a hash' do
           context 'which completes the values' do
             it do
               expect { subject.calculate(x: 2, y: 4) }.not_to raise_error
+            end
+
+            it 'calculates the expression' do
+              expect(subject.calculate(2, 4)).to eq(26)
             end
           end
 
