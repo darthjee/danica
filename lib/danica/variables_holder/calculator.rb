@@ -20,8 +20,8 @@ module Danica
         @vars_map ||= variables_value_hash.tap do |map|
           vars = args.dup
           map.merge! vars.extract_options!
-          non_valued_keys =  map.select { |_, value| !valued?(value) }.keys
-          map.merge! vars.as_hash(non_valued_keys)
+          vars_map = vars.as_hash(map.keys).select { |_, v| valued?(v) }
+          map.merge! vars_map
         end
       end
 
