@@ -19,7 +19,7 @@ module Danica
       private
 
       def all_valued?
-        vars_map.values.all? { |v| v.is_a?(Integer) || v.try(:valued?) }
+        vars_map.values.all? { |v| valued?(v) }
       end
 
       def vars_map
@@ -27,11 +27,15 @@ module Danica
           vars = args.dup
           map.merge! vars.extract_options!
           map.each do |name, value|
-            unless value.is_a?(Integer) || value.try(:valued?)
+            unless valued?(value)
               map[name] = vars.shift
             end
           end
         end
+      end
+
+      def valued?(value)
+        value.is_a?(Integer) || value.try(:valued?)
       end
 
       def clazz
