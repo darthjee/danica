@@ -3,6 +3,7 @@ module Danica
     include Common
     include VariablesHolder
     include DSL
+    include Expressable
 
     autoload :Name,    'danica/function/name'
     attr_accessor :name
@@ -10,6 +11,8 @@ module Danica
     reset_variables
 
     delegate :to_f, to: :expression
+
+    built_with(:function_block)
 
     class << self
       def build(*vars, &block)

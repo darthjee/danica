@@ -9,6 +9,7 @@ module Danica
   autoload :Equation,         'danica/equation'
   autoload :Function,         'danica/function'
   autoload :Exception,        'danica/exception'
+  autoload :Expressable,      'danica/expressable'
 
   autoload :DSL,              'danica/dsl'
   autoload :Wrapper,          'danica/wrapper'
