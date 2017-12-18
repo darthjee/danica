@@ -3,27 +3,13 @@ module Danica
     include Common
     include DSL
     include BaseOperations
-    include VariablesHolder
+    include Expressable
 
     autoload :Gauss,    'danica/expression/gauss'
 
     delegate :to_f, :to, :is_grouped?, :priority, to: :expression_block
 
-    def self.build(*vars, &block)
-      Class.new(self) do
-        variables(*vars)
-
-        private
-
-        define_method :expression_block do
-          @function_block ||= instance_eval(&block) if block
-        end
-      end
-    end
-
-    def self.create(*vars, &block)
-      build(*vars, &block).new
-    end
+    built_with(:expression_block)
 
     def initialize(*args)
       options = args.extract_options!

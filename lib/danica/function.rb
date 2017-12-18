@@ -1,7 +1,6 @@
 module Danica
   class Function < Equation
     include Common
-    include VariablesHolder
     include DSL
     include Expressable
 
@@ -13,24 +12,6 @@ module Danica
     delegate :to_f, to: :expression
 
     built_with(:function_block)
-
-    class << self
-      def build(*vars, &block)
-        Class.new(self) do
-          variables(*vars)
-
-          private
-
-          define_method :function_block do
-            @function_block ||= instance_eval(&block) if block
-          end
-        end
-      end
-
-      def create(*vars, &block)
-        build(*vars, &block).new
-      end
-    end
 
     def initialize(*args)
       options = args.extract_options!
