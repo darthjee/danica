@@ -5,6 +5,8 @@ module Danica
 
       class << self
         def built_with(block_name)
+          self.send(:delegate, :to_f, to: block_name)
+
           self.send(:define_singleton_method, :build) do |*vars, &block|
             Class.new(self) do
               variables(*vars)
@@ -21,6 +23,16 @@ module Danica
             build(*vars, &block).new
           end
         end
+      end
+    end
+
+    def initialize(*args)
+      options = args.extract_options!
+
+      attributes = { variables: args.flatten }.merge(options)
+
+      attributes.each do |key, value|
+        self.public_send("#{key}=", value)
       end
     end
   end

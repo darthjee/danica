@@ -9,19 +9,7 @@ module Danica
 
     reset_variables
 
-    delegate :to_f, to: :expression
-
     built_with(:function_block)
-
-    def initialize(*args)
-      options = args.extract_options!
-
-      attributes = { variables: args.flatten }.merge(options)
-
-      attributes.each do |key, value|
-        self.public_send("#{key}=", value)
-      end
-    end
 
     def name
       containers_hash[:left] ||= Danica::Wrapper::Container.new Name.new(name: @name, variables: containers)
