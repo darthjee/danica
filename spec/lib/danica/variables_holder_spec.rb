@@ -33,29 +33,31 @@ describe Danica::VariablesHolder do
   let(:clazz) { described_class::Dummy }
   subject { clazz.new }
 
-  it 'creates setters and getters for the variables' do
-    %i(x y z).each do |var|
-      expect(subject).to respond_to(var)
-      expect(subject).to respond_to("#{var}=")
+  describe 'variables assignement' do
+    it 'creates setters and getters for the variables' do
+      %i(x y z).each do |var|
+        expect(subject).to respond_to(var)
+        expect(subject).to respond_to("#{var}=")
+      end
     end
-  end
 
-  it 'accepts variable assignment' do
-    expect do
-      subject.x = 1
-    end.to change(subject.x, :content).to(Danica::Wrapper::Number.new(1))
-  end
+    it 'accepts variable assignment' do
+      expect do
+        subject.x = 1
+      end.to change(subject.x, :content).to(Danica::Wrapper::Number.new(1))
+    end
 
-  it 'variable assignemnt does not change the container' do
-    expect do
-      subject.x = 1
-    end.not_to change(subject, :x)
-  end
+    it 'variable assignemnt does not change the container' do
+      expect do
+        subject.x = 1
+      end.not_to change(subject, :x)
+    end
 
-  xit 'accepts containter assignment' do
-    expect do
-      subject.x = Danica::Wrapper::Container.new(Danica::Wrapper::Number.new(1))
-    end.to change(subject, :x)
+    xit 'accepts containter assignment' do
+      expect do
+        subject.x = Danica::Wrapper::Container.new(Danica::Wrapper::Number.new(1))
+      end.to change(subject, :x)
+    end
   end
 
   describe '.variables_names' do
