@@ -1,5 +1,5 @@
 module Danica
-  class Function::Baskara < Function.build(:a, :b, :c) { numerator / denominator }
+  class Expression::Baskara < Expression.build(:a, :b, :c) { numerator / denominator }
 
     private
 

@@ -1,6 +1,8 @@
 module Danica
   module VariablesHolder extend ::ActiveSupport::Concern
-    require 'danica/variables_holder/variables_builder'
+    autoload :VariablesBuilder, 'danica/variables_holder/variables_builder'
+    autoload :AliasBuilder,     'danica/variables_holder/alias_builder'
+    autoload :Calculator,       'danica/variables_holder/calculator'
 
     included do
       class << self
@@ -8,12 +10,25 @@ module Danica
           VariablesBuilder.new(names, self).build
         end
 
+        def variable_alias(origin, destiny)
+          AliasBuilder.new(origin, destiny, self).build
+        end
+
         def variables_names
           variables_hash.keys
         end
 
         def variables_hash
-          @variables_hash ||= (superclass.try(:variables_hash) || {}).dup
+          @variables_hash ||= superclass_variables_hash.dup
+        end
+
+        def reset_variables
+          @superclass_variables_hash = {}
+          @variables_hash = nil
+        end
+
+        def superclass_variables_hash
+          @superclass_variables_hash ||= (superclass.try(:variables_hash) || {})
         end
       end
     end
@@ -23,6 +38,20 @@ module Danica
       vars = vars.dup.change_values!(skip_inner: false) { |v| wrap_value(v) }
       vars.each do |k, v|
         public_send("#{k}=", v)
+      end
+    end
+
+    def extract_variables
+      variables.select do |var|
+        var.is_a?(VariablesHolder)
+      end.inject({}) do |hash, container|
+        hash.merge!(container.content.extract_variables)
+      end.tap do |hash|
+        containers_hash.select do |_, container|
+          container.content.is_a?(Wrapper::Variable)
+        end.each do |key, container|
+          hash[(container.content.name || key).to_sym] = container
+        end
       end
     end
 
@@ -48,6 +77,10 @@ module Danica
       variables.map do |var|
         var.try(:value)
       end.as_hash(self.class.variables_names)
+    end
+
+    def calculate(*args)
+      Calculator.new(self, *args).calculate
     end
   end
 end

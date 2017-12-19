@@ -30,28 +30,103 @@ end
 
 
 describe Danica::VariablesHolder do
-  class Danica::VariablesHolder::Dummy
-    include Danica::Common
-    include Danica::VariablesHolder
-
-    variables :x, y: { latex: '\y' }, z: 10
-  end
-
   let(:clazz) { described_class::Dummy }
-  subject do
-    clazz.new
-  end
+  subject { clazz.new }
 
-  it 'creates setters and getters for the variables' do
-    %i(x y z).each do |var|
-      expect(subject).to respond_to(var)
-      expect(subject).to respond_to("#{var}=")
+  describe 'variables assignement' do
+    it 'creates setters and getters for the variables' do
+      %i(x y z).each do |var|
+        expect(subject).to respond_to(var)
+        expect(subject).to respond_to("#{var}=")
+      end
+    end
+
+    it 'accepts variable assignment' do
+      expect do
+        subject.x = 1
+      end.to change(subject.x, :content).to(Danica::Wrapper::Number.new(1))
+    end
+
+    it 'variable assignemnt does not change the container' do
+      expect do
+        subject.x = 1
+      end.not_to change(subject, :x)
+    end
+
+    xit 'accepts containter assignment' do
+      expect do
+        subject.x = Danica::Wrapper::Container.new(Danica::Wrapper::Number.new(1))
+      end.to change(subject, :x)
     end
   end
 
   describe '.variables_names' do
     it 'returns the list of variables pre configured' do
       expect(clazz.variables_names).to eq(%i(x y z))
+    end
+
+    context 'when variables are defined in super class' do
+      let(:clazz) { described_class::DummyChild }
+
+      it 'returns the list of variables of both classes merged' do
+        expect(clazz.variables_names).to eq(%i(x y z k))
+      end
+    end
+
+    context 'when variables are reseted on child class' do
+      let(:clazz) { described_class::DummyOverwrite }
+
+      it 'returns the list of variables of both classes merged' do
+        expect(clazz.variables_names).to eq(%i(k z))
+      end
+    end
+
+    context 'when we alias a variable' do
+      let(:clazz) { described_class::DummyAlias }
+
+      it 'returns the list of variables of both classes merged' do
+        expect(clazz.variables_names).to eq(%i(a y z))
+      end
+
+      context 'when original variable is set' do
+        before do
+          subject.x = 10
+        end
+
+        context 'when calling the alias variable' do
+          it 'returns the aliased value' do
+            expect(subject.a).to eq(subject.x)
+          end
+        end
+
+        context 'when changing the new alias value' do
+          it do
+            expect do
+              subject.a = 20
+            end.to change { subject.x.content }
+          end
+        end
+      end
+
+      context 'when alias variable is set' do
+        before do
+          subject.a = 10
+        end
+
+        context 'when calling the original variable' do
+          it 'returns the aliased value' do
+            expect(subject.x).to eq(subject.a)
+          end
+        end
+
+        context 'when changing the original variable value' do
+          it do
+            expect do
+              subject.x = 20
+            end.to change { subject.a.content }
+          end
+        end
+      end
     end
   end
 
@@ -192,6 +267,116 @@ describe Danica::VariablesHolder do
         expect do
           subject.x = 2
         end.to change { containers.map(&:content) }
+      end
+    end
+  end
+
+  describe '#extract_variables' do
+    let(:clazz) { described_class::DummyChild }
+    context 'when holder has straight variables' do
+      it 'returns the variables hash' do
+        expect(subject.extract_variables).to eq(subject.containers.as_hash([:x, :y, :zeta, :k]))
+      end
+
+      context 'but one of them is a number' do
+        let(:clazz) { described_class::Dummy }
+        let(:expected) do
+          subject.containers_hash.reject { |k,v| k == :z }
+        end
+
+        it 'returns only the variables' do
+          expect(subject.extract_variables).to eq(expected)
+        end
+      end
+    end
+
+    context 'when variables names are different' do
+      let(:subject) { clazz.new(x: :xis, y: :lambda, z: :zeta, k: :key) }
+
+      it 'returns the names as keys' do
+        expect(subject.extract_variables.keys).to eq(%i(xis lambda zeta key))
+      end
+    end
+
+    context 'when a variable is another variable holder' do
+      let(:inner) { Danica::Operator::Power.new }
+      let(:subject) do
+        clazz.new(z: inner)
+      end
+      let(:expected) do
+        subject.containers_hash.reject { |k,v| k == :z }
+                               .merge(inner.containers_hash)
+      end
+
+      it 'returns the ineer variables of the inner holder as well' do
+        expect(subject.extract_variables).to eq(expected)
+      end
+
+      context 'when inner holder has the same variables' do
+        let(:inner) { clazz.new }
+        let(:expected) do
+          inner.containers.as_hash([:x, :y, :zeta, :k])
+        end
+
+        it 'merges them together in favor of the inner variables' do
+          expect(subject.extract_variables).to eq(expected)
+        end
+      end
+    end
+  end
+
+  describe '#calculate' do
+    context 'when object doesnt have the values defined' do
+      context 'when trying to calculate without passing the values' do
+        it do
+          expect { subject.calculate }.to raise_error(Danica::Exception::NotDefined)
+        end
+
+        context 'which does not complete the values' do
+          it do
+            expect { subject.calculate(2) }.to raise_error(Danica::Exception::NotDefined)
+          end
+        end
+      end
+
+      context 'when passing the values' do
+        context 'as a list of values' do
+          it do
+            expect { subject.calculate(2, 4) }.not_to raise_error
+          end
+
+          it 'calculates the expression' do
+            expect(subject.calculate(2, 4)).to eq(26)
+          end
+
+          context 'and replacing all the values' do
+            it do
+              expect { subject.calculate(2, 4, 5) }.not_to raise_error
+            end
+
+            it 'calculates the expression' do
+              expect(subject.calculate(2, 4, 5)).to eq(21)
+            end
+          end
+        end
+
+        context 'as a hash' do
+          context 'which completes the values' do
+            it do
+              expect { subject.calculate(x: 2, y: 4) }.not_to raise_error
+            end
+
+            it 'calculates the expression' do
+              expect(subject.calculate(2, 4)).to eq(26)
+            end
+          end
+
+          context 'which does not complete the values' do
+            it do
+              expect { subject.calculate(x: 2, z: 4) }.to raise_error(Danica::Exception::NotDefined)
+            end
+          end
+        end
       end
     end
   end

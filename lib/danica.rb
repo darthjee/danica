@@ -5,8 +5,11 @@ module Danica
   autoload :BaseOperations,   'danica/base_operations'
   autoload :VariablesHolder,  'danica/variables_holder'
   autoload :Common,           'danica/common'
+  autoload :Expression,       'danica/expression'
+  autoload :Equation,         'danica/equation'
   autoload :Function,         'danica/function'
   autoload :Exception,        'danica/exception'
+  autoload :Expressable,      'danica/expressable'
 
   autoload :DSL,              'danica/dsl'
   autoload :Wrapper,          'danica/wrapper'

@@ -8,7 +8,9 @@ module Danica
     default_value :is_grouped?, false
 
     def initialize(*args)
-      self.variables = args.flatten
+      args = args.flatten
+      args = args.first if (args.length == 1) && args.first.is_a?(Hash) && args.first.keys == self.class.variables_names
+      self.variables = args
     end
 
     def ==(other)
