@@ -40,6 +40,24 @@ describe Danica::VariablesHolder do
     end
   end
 
+  it 'accepts variable assignment' do
+    expect do
+      subject.x = 1
+    end.to change(subject.x, :content).to(Danica::Wrapper::Number.new(1))
+  end
+
+  it 'variable assignemnt does not change the container' do
+    expect do
+      subject.x = 1
+    end.not_to change(subject, :x)
+  end
+
+  xit 'accepts containter assignment' do
+    expect do
+      subject.x = Danica::Wrapper::Container.new(Danica::Wrapper::Number.new(1))
+    end.to change(subject, :x)
+  end
+
   describe '.variables_names' do
     it 'returns the list of variables pre configured' do
       expect(clazz.variables_names).to eq(%i(x y z))
