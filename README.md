@@ -18,20 +18,18 @@ bundle install danica
 Now you can use in your project
 
 ### Quick Use
-Use Danica build to build and use your formula using ```Danica.build```
+Use Danica build to build and use your expression using ```Danica.build```
 ```ruby
-formula = Danica.build do
+expression = Danica.build do
   (number(1) + 2) * power(3,4)
 end
-
-formula.to_tex
 ```
 
 create and use functions
 
 ```ruby
 func = Danica.build do
-  formula(:x, :y) do
+  Danica::Function.create(:x, :y) do
     (number(1) + x) * power(3, y)
   end
 end
