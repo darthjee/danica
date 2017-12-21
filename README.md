@@ -40,11 +40,9 @@ func.to_gnu
 create gnu or tex output strings to be used on yopur template
 
 ### Operators
-Operators are much like function, but they do not have a name.
+Operators represent a matematical operation such as sum, product, sin, etc..
 
-While a function would be something in the format ```f(x) = x + 1```, an operator would just represent the sum ```x + 1```
-
-Operators are to be composed to create a Function ([see below](#functions)) being their difference almost semantic
+Operators are to be composed to create an [expression](#expressions), [equation](#expressions) or [function](#functions) (see below)
 
 ```ruby
 class MyOperator < Danica::Operator
