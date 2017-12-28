@@ -194,18 +194,18 @@ x**(2) + y**(2) = 1 -z**(2)
 
 ### Functions
 
-Functions are composition of operators threating their variables input.
+Functions are equations whose one of the sides is actually the naming of the function and variables declaration
 
 Example of function could be ```f(x,y) = x ^ y + y / 2``` which is composed of an operator sum of 2 parcels,
 being the first an operator power and the second an operator division, while the variable ```x``` is only used
 as the base of the power operator and the y variable is present on both power and division operator
 
 ```ruby
-class MyFunction
-  variables :variables_list
+class MyFunction < Danica::Function
+  variables :x, :y ...
 
   def function_block
-    # code of operators composition
+    #your code goes here
   end
 end
 ```
@@ -340,7 +340,7 @@ x**(2) -y**(2)
 ```
 
 ### DSL and building
-A function can be created using the DSL direct from ```Danica```
+An expression can be created using the DSL direct from ```Danica```
 
 ```ruby
 Danica.build do
@@ -348,7 +348,7 @@ Danica.build do
 end
 ```
 
-will result into a ```Danica::Operator::Power``` object
+will result into a ```Danica::Operator::Power``` wrapped into an ```Danica::Expression```
 
 ```ruby
 Danica::Operator::Power.new(:x, -1)
