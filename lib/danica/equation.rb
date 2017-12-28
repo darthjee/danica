@@ -1,5 +1,5 @@
 module Danica
-  class Equation
+  class LegacyEquation
     include Common
     include VariablesHolder
 

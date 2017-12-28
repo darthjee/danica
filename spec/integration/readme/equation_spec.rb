@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Danica::Equation do
+describe Danica::LegacyEquation do
   subject do
     described_class.new.tap do |equation|
       equation.left = Danica.build(:x, :y) do

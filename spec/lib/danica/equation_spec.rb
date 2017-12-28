@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Danica::Equation do
+describe Danica::LegacyEquation do
   let(:left) do
     Danica::Expression.create(:y) { y }
   end

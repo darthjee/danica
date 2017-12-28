@@ -1,5 +1,5 @@
 module Danica
-  class Function < Equation
+  class Function < LegacyEquation
     include Common
     include DSL
     include Expressable
