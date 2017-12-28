@@ -4,7 +4,7 @@ module Danica
     attr_reader :name, :containers
 
     def initialize(name:, variables:)
-      @name = name
+      @name = name || :f
       @containers = variables.map do |v|
         v = wrap_value(v)
         v = Wrapper::Container.new(v) unless v.container?

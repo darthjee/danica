@@ -7,31 +7,29 @@ A tool for math formulation on docs
 ## How to use
 Add the gem to your project or just install the gem
 
-```
+```ruby
 gem 'danica'
 ```
 
-```console
+```bash
 bundle install danica
 ```
 
 Now you can use in your project
 
 ### Quick Use
-Use Danica build to build and use your formula using ```Danica.build```
+Use Danica build to build and use your expression using ```Danica.build```
 ```ruby
-formula = Danica.build do
+expression = Danica.build do
   (number(1) + 2) * power(3,4)
 end
-
-formula.to_tex
 ```
 
 create and use functions
 
 ```ruby
 func = Danica.build do
-  formula(:x, :y) do
+  Danica::Function.create(:x, :y) do
     (number(1) + x) * power(3, y)
   end
 end
@@ -39,14 +37,12 @@ end
 func.to_gnu
 ```
 
-create gnu or tex output strings to be used on yopur template
+create gnu or tex output strings to be used on your template
 
 ### Operators
-Operators are much like function, but they do not have a name.
+Operators represent a matematical operation such as sum, product, sin, etc..
 
-While a function would be something in the format ```f(x) = x + 1```, an operator would just represent the sum ```x + 1```
-
-Operators are to be composed to create a Function ([see below](#functions)) being their difference almost semantic
+Operators are to be composed to create an [expression](#expressions), [equation](#expressions) or [function](#functions) (see below)
 
 ```ruby
 class MyOperator < Danica::Operator
@@ -93,7 +89,7 @@ fx.to_tex
 ```
 
 returns
-```string
+```tex
 (x)^{-1}
 ```
 
@@ -103,7 +99,7 @@ fx.to_gnu
 ```
 
 returns
-```string
+```gnuplot
 (x) ** -1
 ```
 
@@ -117,24 +113,99 @@ Danica::Operator::Inverse.new(2).to_f
 ```
 
 both return
-```string
+```float
 0.5
+```
+
+### Expressions
+
+Expressions  are composition of operators threating their variables input.
+
+Example of expression could be ```x ^ y + y / 2``` which is composed of an operator sum of 2 parcels,
+being the first an operator power and the second an operator division, while the variable ```x``` is only used
+as the base of the power operator and the y variable is present on both power and division operator
+
+Expressions can be defined on the fly or as a class
+
+```ruby
+clazz = Danica::Expression.build(:a, :b, :c) do
+  (
+    negative(b) + Danica::Wrapper::PlusMinus.new(
+      squared_root(
+        power(b, 2) - multiplication(4, a, c)
+      )
+    )
+  ) / (number(2) * a)
+end
+```
+
+```ruby
+module Danica
+  class Expression::Baskara < Expression.build(:a, :b, :c) { numerator / denominator }
+
+    private
+
+    def numerator
+       negative(b) + Wrapper::PlusMinus.new(squared_root(delta))
+    end
+
+    def denominator
+      number(2) * a
+    end
+
+    def delta
+      power(b, 2) - multiplication(4, a, c)
+    end
+  end
+end
+clazz = Danica::Expression::Baskara
+```
+
+Both would create a class whose instance knows how to build baskara formula
+
+```ruby
+clazz.new.to_tex
+```
+
+```tex
+\frac{-b \pm \sqrt{b^{2} -4 \cdot a \cdot c}}{2 \cdot a}
+```
+
+### Equations
+
+Equations are formed by two expressions with their own variables
+
+```ruby
+Danica::Equation.new.tap do |equation|
+  equation.left = Danica.build(:x, :y) do
+    x ** 2 + y ** 2
+  end
+  equation.right = Danica.build(:x, :z) do
+    number(1) - z ** 2
+  end
+end.to_tex
+```
+
+so we can create the equation
+
+```gnuplot
+x**(2) + y**(2) = 1 -z**(2)
 ```
 
 ### Functions
 
-Functions are composition of operators threating their variables input.
+Functions are equations whose one of the sides is actually the naming of the function and variables declaration
 
 Example of function could be ```f(x,y) = x ^ y + y / 2``` which is composed of an operator sum of 2 parcels,
 being the first an operator power and the second an operator division, while the variable ```x``` is only used
 as the base of the power operator and the y variable is present on both power and division operator
 
 ```ruby
-class MyFunction
-  variables :variables_list
+class MyFunction < Danica::Function
+  variables :x, :y ...
 
   def function_block
-    # code of operators composition
+    #your code goes here
   end
 end
 ```
@@ -187,8 +258,8 @@ fx.to_tex
 ```
 
 returns
-```string
-S_0 + V_0 \cdot t + \frac{a \cdot t^{2}}{2}
+```tex
+f(t, a, S_0, V_0) = S_0 + V_0 \cdot t + \frac{a \cdot t^{2}}{2}
 ```
 
 ##### to_gnu
@@ -197,36 +268,8 @@ fx.to_gnu
 ```
 
 returns
-```string
-S0 + V0 * t + (a * t**(2))/(2)
-```
-
-##### describe_tex
-Returns the full description of the function
-
-```ruby
-fx.name = :g
-fx.describe_tex
-```
-
-returns
-
-```string
-g(t, a, S_0, V_0) = S_0 + V_0 \cdot t + \frac{a \cdot t^{2}}{2}
-```
-
-##### describe_gnu
-Returns the full description of the function
-
-```ruby
-fx.name = :g
-fx.describe_gnu
-```
-
-returns
-
-```string
-g(t, a, S0, V0) = S0 + V0 * t + (a * t**(2))/(2)
+```gnuplot
+f(t, a, S0, V0) = S0 + V0 * t + (a * t**(2))/(2)
 ```
 
 ##### calculate / to_f
@@ -282,7 +325,7 @@ fx.to_tex
 ```
 
 returns
-```string
+```tex
 x^{2} -y^{2}
 ```
 
@@ -292,12 +335,12 @@ fx.to_gnu
 ```
 
 returns
-```string
+```gnuplot
 x**(2) -y**(2)
 ```
 
 ### DSL and building
-A function can be created using the DSL direct from ```Danica```
+An expression can be created using the DSL direct from ```Danica```
 
 ```ruby
 Danica.build do
@@ -305,7 +348,7 @@ Danica.build do
 end
 ```
 
-will result into a ```Danica::Operator::Power``` object
+will result into a ```Danica::Operator::Power``` wrapped into an ```Danica::Expression```
 
 ```ruby
 Danica::Operator::Power.new(:x, -1)

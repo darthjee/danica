@@ -10,7 +10,7 @@ describe Danica do
       end
 
       it 'returns the expected addition' do
-        expect(result).to eq(Danica::Operator::Addition.new(1,2))
+        expect(result.expression_block).to eq(Danica::Operator::Addition.new(1,2))
       end
     end
 
@@ -26,7 +26,7 @@ describe Danica do
       end
 
       it 'returns the expected power' do
-        expect(result).to eq(expected)
+        expect(result.expression_block).to eq(expected)
       end
     end
 
@@ -37,7 +37,7 @@ describe Danica do
       let(:expected) { Danica::Wrapper::Negative.new(10) }
 
       it 'returns the expected negative' do
-        expect(result).to eq(expected)
+        expect(result.expression_block).to eq(expected)
       end
     end
 
@@ -53,6 +53,10 @@ describe Danica do
         Danica::Function.build(:x) do
           Danica::Operator::Power.new(x, 2)
         end.new
+      end
+
+      it do
+        expect(result).to be_a(Danica::Function)
       end
 
       it 'returns the expected function with variables' do
@@ -76,7 +80,7 @@ describe Danica do
       end
 
       it 'wrap object with negative' do
-        expect(result).to eq(expected)
+        expect(result.expression_block).to eq(expected)
       end
 
       context 'for a number' do
@@ -89,7 +93,7 @@ describe Danica do
         end
 
         it 'wrap object with negative' do
-          expect(result).to eq(expected)
+          expect(result.expression_block).to eq(expected)
         end
       end
     end
