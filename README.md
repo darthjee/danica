@@ -171,6 +171,27 @@ clazz.new.to_tex
 \frac{-b \pm \sqrt{b^{2} -4 \cdot a \cdot c}}{2 \cdot a}
 ```
 
+### Equations
+
+Equations are formed by two expressions with their own variables
+
+```ruby
+Danica::Equation.new.tap do |equation|
+  equation.left = Danica.build(:x, :y) do
+    x ** 2 + y ** 2
+  end
+  equation.right = Danica.build(:x, :z) do
+    number(1) - z ** 2
+  end
+end.to_tex
+```
+
+so we can create the equation
+
+```gnuplot
+x**(2) + y**(2) = 1 -z**(2)
+```
+
 ### Functions
 
 Functions are composition of operators threating their variables input.
