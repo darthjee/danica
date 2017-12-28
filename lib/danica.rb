@@ -6,7 +6,7 @@ module Danica
   autoload :VariablesHolder,  'danica/variables_holder'
   autoload :Common,           'danica/common'
   autoload :Expression,       'danica/expression'
-  autoload :LegacyEquation,   'danica/equation'
+  autoload :LegacyEquation,   'danica/legacy_equation'
   autoload :Function,         'danica/function'
   autoload :Exception,        'danica/exception'
   autoload :Expressable,      'danica/expressable'
