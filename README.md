@@ -7,11 +7,11 @@ A tool for math formulation on docs
 ## How to use
 Add the gem to your project or just install the gem
 
-```
+```ruby
 gem 'danica'
 ```
 
-```console
+```bash
 bundle install danica
 ```
 
@@ -89,7 +89,7 @@ fx.to_tex
 ```
 
 returns
-```string
+```tex
 (x)^{-1}
 ```
 
@@ -99,7 +99,7 @@ fx.to_gnu
 ```
 
 returns
-```string
+```gnuplot
 (x) ** -1
 ```
 
@@ -113,7 +113,7 @@ Danica::Operator::Inverse.new(2).to_f
 ```
 
 both return
-```string
+```float
 0.5
 ```
 
@@ -258,7 +258,7 @@ fx.to_tex
 ```
 
 returns
-```string
+```tex
 f(t, a, S_0, V_0) = S_0 + V_0 \cdot t + \frac{a \cdot t^{2}}{2}
 ```
 
@@ -268,7 +268,7 @@ fx.to_gnu
 ```
 
 returns
-```string
+```gnuplot
 f(t, a, S0, V0) = S0 + V0 * t + (a * t**(2))/(2)
 ```
 
@@ -325,7 +325,7 @@ fx.to_tex
 ```
 
 returns
-```string
+```tex
 x^{2} -y^{2}
 ```
 
@@ -335,7 +335,7 @@ fx.to_gnu
 ```
 
 returns
-```string
+```gnuplot
 x**(2) -y**(2)
 ```
 
