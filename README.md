@@ -37,7 +37,7 @@ end
 func.to_gnu
 ```
 
-create gnu or tex output strings to be used on yopur template
+create gnu or tex output strings to be used on your template
 
 ### Operators
 Operators represent a matematical operation such as sum, product, sin, etc..
@@ -115,6 +115,60 @@ Danica::Operator::Inverse.new(2).to_f
 both return
 ```string
 0.5
+```
+
+### Expressions
+
+Expressions  are composition of operators threating their variables input.
+
+Example of expression could be ```x ^ y + y / 2``` which is composed of an operator sum of 2 parcels,
+being the first an operator power and the second an operator division, while the variable ```x``` is only used
+as the base of the power operator and the y variable is present on both power and division operator
+
+Expressions can be defined on the fly or as a class
+
+```ruby
+clazz = Danica::Expression.build(:a, :b, :c) do
+  (
+    negative(b) + Danica::Wrapper::PlusMinus.new(
+      squared_root(
+        power(b, 2) - multiplication(4, a, c)
+      )
+    )
+  ) / (number(2) * a)
+end
+```
+
+```ruby
+module Danica
+  class Expression::Baskara < Expression.build(:a, :b, :c) { numerator / denominator }
+
+    private
+
+    def numerator
+       negative(b) + Wrapper::PlusMinus.new(squared_root(delta))
+    end
+
+    def denominator
+      number(2) * a
+    end
+
+    def delta
+      power(b, 2) - multiplication(4, a, c)
+    end
+  end
+end
+clazz = Danica::Expression::Baskara
+```
+
+Both would create a class whose instance knows how to build baskara formula
+
+```ruby
+clazz.new.to_tex
+```
+
+```tex
+\frac{-b \pm \sqrt{b^{2} -4 \cdot a \cdot c}}{2 \cdot a}
 ```
 
 ### Functions
