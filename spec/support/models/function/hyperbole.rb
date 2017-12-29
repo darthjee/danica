@@ -1,11 +1,11 @@
 
 module Danica
-  class Function::Hyperbole < Function.build(:x) { Danica::Hyperbole.new }
+  class LegacyFunction::Hyperbole < LegacyFunction.build(:x) { Danica::Hyperbole.new }
   end
 end
 
 module Danica
-  class Function::SaddleHyperbole < Function::Hyperbole
+  class LegacyFunction::SaddleHyperbole < LegacyFunction::Hyperbole
     variables :y
 
     def function_block

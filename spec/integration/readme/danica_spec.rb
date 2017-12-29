@@ -17,14 +17,14 @@ describe Danica do
     context 'when building a function' do
       let(:function) do
         Danica.build do
-          Danica::Function.create(:x, :y) do
+          Danica::LegacyFunction.create(:x, :y) do
             (number(1) + x) * power(3, y)
           end
         end
       end
 
       it do
-        expect(function).to be_a(Danica::Function)
+        expect(function).to be_a(Danica::LegacyFunction)
       end
     end
   end

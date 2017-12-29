@@ -17,7 +17,7 @@ module Danica
     end
 
     def function(*variables, &block)
-      Function.build(*variables, &block).new
+      LegacyFunction.build(*variables, &block).new
     end
   end
 

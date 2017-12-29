@@ -24,7 +24,7 @@ shared_examples 'a generically generated function' do
   end
 end
 
-describe Danica::Function do
+describe Danica::LegacyFunction do
   subject { function }
   let(:function) { function_class.new }
   let(:variables) { %i(x y) }
@@ -52,7 +52,7 @@ describe Danica::Function do
     end
 
     context 'when creating a class using build' do
-      let(:function_class) { Danica::Function::Hyperbole }
+      let(:function_class) { Danica::LegacyFunction::Hyperbole }
 
       it 'has the defined variables on class definition' do
         expect(function_class.variables_names).to eq([:x])
@@ -76,7 +76,7 @@ describe Danica::Function do
     end
 
     context 'when using a class that inherits from another class' do
-      let(:function_class) { Danica::Function::SaddleHyperbole }
+      let(:function_class) { Danica::LegacyFunction::SaddleHyperbole }
 
       it 'has the defined variables on class definition' do
         expect(function_class.variables_names).to eq([:x, :y])
@@ -120,7 +120,7 @@ describe Danica::Function do
     end
 
     it do
-      expect(function.name.content).to be_a(Danica::Function::Name)
+      expect(function.name.content).to be_a(Danica::LegacyFunction::Name)
     end
 
     context 'when changing the function variables' do

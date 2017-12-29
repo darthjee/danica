@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Danica::Function::Name do
+describe Danica::LegacyFunction::Name do
   let(:x) {  Danica::Wrapper::Variable.new(name: :x, latex: '\mu', gnu: 'u')}
   let(:subject) { described_class.new(name: :f, variables: [x]) }
 

@@ -1,5 +1,5 @@
 module Danica
-  class Function::Name
+  class LegacyFunction::Name
     include Common
     attr_reader :name, :containers
 

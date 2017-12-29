@@ -50,13 +50,13 @@ describe Danica do
         end
       end
       let(:function) do
-        Danica::Function.build(:x) do
+        Danica::LegacyFunction.build(:x) do
           Danica::Operator::Power.new(x, 2)
         end.new
       end
 
       it do
-        expect(result).to be_a(Danica::Function)
+        expect(result).to be_a(Danica::LegacyFunction)
       end
 
       it 'returns the expected function with variables' do
