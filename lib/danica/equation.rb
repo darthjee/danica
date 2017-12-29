@@ -1,0 +1,24 @@
+module Danica
+  class Equation
+    include Common
+    include VariablesHolder
+  
+    autoload :Builder, 'danica/equation/builder'
+
+    def initialize(*args)
+      self.variables = args.flatten
+    end
+
+    class << self
+      def build(*variables, &block)
+        Builder.new(*variables, &block).build
+      end
+    end
+
+    def to(format)
+      "#{left.to(format)} = #{right.to(format)}"
+    end
+  end
+end
+
+
