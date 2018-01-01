@@ -1,5 +1,5 @@
 module Danica
-  class LegacyFunction::Spatial < LegacyFunction
+  class Function::Spatial < Function
     variables :time, :acceleration, :initial_space, :initial_velocity
 
     private

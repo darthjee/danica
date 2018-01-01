@@ -1,3 +1,4 @@
+
 module Danica
   class Function::Hyperbole < Function.build(:x) { Danica::Hyperbole.new }
   end

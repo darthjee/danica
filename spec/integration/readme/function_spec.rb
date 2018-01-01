@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Danica::LegacyFunction::Spatial do
+describe Danica::Function::Spatial do
   subject do
     described_class.new(
       time: :t,
@@ -65,7 +65,7 @@ describe Danica::LegacyFunction::Spatial do
   end
 end
 
-describe Danica::LegacyFunction::MyFunction do
+describe Danica::Function::MyFunction do
   describe '#to_gnu' do
     it 'returns the function' do
       expect(subject.to_gnu).to eq('f(x, y) = x**(2) + y')
