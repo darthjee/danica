@@ -58,18 +58,18 @@ describe Danica::Function do
         expect(function_class.variables_names).to eq([:x])
       end
 
-      xit 'has the defined variables' do
+      it 'has the defined variables' do
         expect(function.variables_hash).to eq(x: Danica::Wrapper::Variable.new(name: :x))
       end
 
       context 'when calling to_tex' do
-        xit 'build function from block' do
+        it 'build function from block' do
           expect(function.to_tex).to eq('f(x) = x^{2}')
         end
       end
 
       context 'when calling to_gnu' do
-        xit 'build function from block' do
+        it 'build function from block' do
           expect(function.to_gnu).to eq('f(x) = x**(2)')
         end
       end
@@ -78,11 +78,11 @@ describe Danica::Function do
     context 'when using a class that inherits from another class' do
       let(:function_class) { Danica::Function::SaddleHyperbole }
 
-      xit 'has the defined variables on class definition' do
+      it 'has the defined variables on class definition' do
         expect(function_class.variables_names).to eq([:x, :y])
       end
 
-      xit 'has the defined variables' do
+      it 'has the defined variables' do
         expect(function.variables_hash).to eq(
           x: Danica::Wrapper::Variable.new(name: :x),
           y: Danica::Wrapper::Variable.new(name: :y)
@@ -90,13 +90,13 @@ describe Danica::Function do
       end
 
       context 'when calling to_tex' do
-        xit 'build function from block' do
+        it 'build function from block' do
           expect(function.to_tex).to eq('f(x, y) = x^{2} -y^{2}')
         end
       end
 
       context 'when calling to_gnu' do
-        xit 'build function from block' do
+        it 'build function from block' do
           expect(function.to_gnu).to eq('f(x, y) = x**(2) -y**(2)')
         end
       end
