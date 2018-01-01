@@ -5,12 +5,13 @@ module Danica
     include DSL
     include Expressable
 
+    autoload :Name,    'danica/function/name'
     attr_accessor :name
 
     built_with(:function_block)
 
     def name
-      LegacyFunction::Name.new(name: @name, variables: containers)
+      Name.new(name: @name, variables: containers)
     end
 
     def to(*args)

@@ -119,12 +119,12 @@ describe Danica::Function do
       function_class.new(name: :f)
     end
 
-    xit do
+    it do
       expect(function.name.content).to be_a(Danica::Function::Name)
     end
 
     context 'when changing the function variables' do
-      xit 'changes the name variables' do
+      it 'changes the name variables' do
         expect do
           function.x = 2
         end.to change { function.name.variables.map(&:content) }

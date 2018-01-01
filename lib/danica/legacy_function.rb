@@ -4,7 +4,7 @@ module Danica
     include DSL
     include Expressable
 
-    autoload :Name,    'danica/function/name'
+    autoload :Name,    'danica/legacy_function/name'
     attr_accessor :name
 
     reset_variables
