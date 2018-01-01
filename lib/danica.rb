@@ -8,6 +8,7 @@ module Danica
   autoload :Expression,       'danica/expression'
   autoload :Equation,         'danica/equation'
   autoload :LegacyEquation,   'danica/legacy_equation'
+  autoload :Function,         'danica/function'
   autoload :LegacyFunction,   'danica/legacy_function'
   autoload :Exception,        'danica/exception'
   autoload :Expressable,      'danica/expressable'
