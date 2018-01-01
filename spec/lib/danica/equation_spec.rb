@@ -12,6 +12,25 @@ describe Danica::Equation do
     clazz.new
   end
 
+  describe '.build' do
+    it 'returns a class that is also an equation' do
+      expect(subject).to be_a(Danica::Equation)
+    end
+  end
+
+  describe '.create' do
+    subject do
+      described_class.create(:x, :y) do
+        left { y }
+        right { x ** 2 }
+      end
+    end
+
+    it 'returns a class that is also an equation' do
+      expect(subject).to be_a(Danica::Equation)
+    end
+  end
+
   describe '#to_f' do
     it do
       expect { subject.to_f }.to raise_error(Danica::Exception::NotImplemented)

@@ -42,7 +42,7 @@ create gnu or tex output strings to be used on your template
 ### Operators
 Operators represent a matematical operation such as sum, product, sin, etc..
 
-Operators are to be composed to create an [expression](#expressions), [equation](#expressions) or [function](#functions) (see below)
+Operators are to be composed to create an [expression](#expressions), [equation](#equations) or [function](#functions) (see below)
 
 ```ruby
 class MyOperator < Danica::Operator
@@ -180,6 +180,13 @@ Danica::Equation.build(:x, :y, :z) do
   left { x ** 2 + y ** 2 }
   right { number(1) - z ** 2 }
 end.new.to_tex
+```
+
+```ruby
+Danica::Equation.create(:x, :y, :z) do
+  left { x ** 2 + y ** 2 }
+  right { number(1) - z ** 2 }
+end.to_tex
 ```
 
 so we can create the equation

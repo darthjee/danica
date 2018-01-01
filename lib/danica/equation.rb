@@ -13,6 +13,10 @@ module Danica
       def build(*variables, &block)
         Builder.new(*variables, &block).build
       end
+
+      def create(*variables, &block)
+        build(*variables, &block).new
+      end
     end
 
     def to(format)
