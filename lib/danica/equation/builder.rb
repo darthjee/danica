@@ -4,12 +4,7 @@ module Danica
 
     def initialize(*variables, &block)
       @variables = variables
-      left do
-        y
-      end
-      right do
-        x ** 2
-      end
+      instance_eval(&block)
     end
 
     def build

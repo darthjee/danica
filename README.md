@@ -176,14 +176,10 @@ clazz.new.to_tex
 Equations are formed by two expressions with their own variables
 
 ```ruby
-Danica::Equation.new.tap do |equation|
-  equation.left = Danica.build(:x, :y) do
-    x ** 2 + y ** 2
-  end
-  equation.right = Danica.build(:x, :z) do
-    number(1) - z ** 2
-  end
-end.to_tex
+Danica::Equation.build(:x, :y, :z) do
+  left { x ** 2 + y ** 2 }
+  right { number(1) - z ** 2 }
+end.new.to_tex
 ```
 
 so we can create the equation
