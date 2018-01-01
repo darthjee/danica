@@ -242,25 +242,5 @@ describe Danica::Function do
         expect(function.to_gnu).to eq('f(2, y) = 2**(y)')
       end
     end
-
-    describe '#left' do
-      it 'is an alias for name' do
-        expect(subject.left).to eq(subject.name)
-      end
-    end
-
-    describe '#left=' do
-      it 'is an alias for the expression' do
-        expect do
-          subject.left = Danica::Operator::Power.new(:x, 2)
-        end.to change { subject.left.content }
-      end
-    end
-
-    describe '#right' do
-      it 'is an alias for the expression' do
-        expect(subject.right).to eq(subject.right)
-      end
-    end
   end
 end

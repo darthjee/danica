@@ -2,14 +2,10 @@ require 'spec_helper'
 
 describe Danica::Equation do
   subject do
-    described_class.new.tap do |equation|
-      equation.left = Danica.build(:x, :y) do
-        x ** 2 + y ** 2
-      end
-      equation.right = Danica.build(:x, :z) do
-        number(1) - z ** 2
-      end
-    end
+    described_class.build(:x, :y, :z) do
+      left { x ** 2 + y ** 2 }
+      right { number(1) - z ** 2 }
+    end.new
   end
 
   describe '#to_gnu' do

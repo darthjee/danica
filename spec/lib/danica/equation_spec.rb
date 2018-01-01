@@ -1,14 +1,35 @@
 require 'spec_helper'
 
 describe Danica::Equation do
-  let(:left) do
-    Danica::Expression.create(:y) { y }
-  end
-  let(:right) do
-    Danica::Expression.create(:x) { x ** 2 }
+  let(:clazz) do
+    described_class.build(:x, :y) do
+      left { y }
+      right { x ** 2 }
+    end
   end
 
-  subject { described_class.new(left, right) }
+  subject do
+    clazz.new
+  end
+
+  describe '.build' do
+    it 'returns a class that is also an equation' do
+      expect(subject).to be_a(Danica::Equation)
+    end
+  end
+
+  describe '.create' do
+    subject do
+      described_class.create(:x, :y) do
+        left { y }
+        right { x ** 2 }
+      end
+    end
+
+    it 'returns a class that is also an equation' do
+      expect(subject).to be_a(Danica::Equation)
+    end
+  end
 
   describe '#to_f' do
     it do
