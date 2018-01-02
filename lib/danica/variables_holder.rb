@@ -33,6 +33,12 @@ module Danica
       end
     end
 
+    def initialize(*args)
+      args = args.flatten
+      args = args.first if (args.length == 1) && args.first.is_a?(Hash) && args.first.keys == self.class.variables_names
+      self.variables = args
+    end
+
     def variables=(vars)
       vars = vars.as_hash(self.class.variables_names).compact unless vars.is_a? Hash
       vars = vars.dup.change_values!(skip_inner: false) { |v| wrap_value(v) }

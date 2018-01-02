@@ -1,8 +1,8 @@
 module Danica
   module Expressable extend ::ActiveSupport::Concern
-    included do
-      include VariablesHolder
+    include VariablesHolder
 
+    included do
       class << self
         def built_with(block_name)
           self.send(:delegate, :to_f, to: block_name)

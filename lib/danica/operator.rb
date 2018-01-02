@@ -7,12 +7,6 @@ module Danica
     default_value :priority, 3
     default_value :is_grouped?, false
 
-    def initialize(*args)
-      args = args.flatten
-      args = args.first if (args.length == 1) && args.first.is_a?(Hash) && args.first.keys == self.class.variables_names
-      self.variables = args
-    end
-
     def ==(other)
       return false unless other.class == self.class
       variables == other.variables
