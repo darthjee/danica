@@ -8,10 +8,6 @@ module Danica
 
       delegate :to, :to_f, to: :block
 
-      def initialize(vars = {})
-        self.variables=vars
-      end
-
       def block
         x ** y + z
       end

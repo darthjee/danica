@@ -33,6 +33,32 @@ describe Danica::VariablesHolder do
   let(:clazz) { described_class::Dummy }
   subject { clazz.new }
 
+  describe '#initialize' do
+    context 'when initializing with an array' do
+      subject { clazz.new(1,2,3) }
+
+      it 'initialize variables in order of declaration' do
+        expect(subject.variables_hash).to eq({
+          x: Danica::Wrapper::Number.new(1),
+          y: Danica::Wrapper::Number.new(2),
+          z: Danica::Wrapper::Number.new(3)
+        })
+      end
+    end
+
+    context 'when initialized with a hash' do
+      subject { clazz.new(z: 1, y: 2) }
+
+      it 'initialize variables with the map given' do
+        expect(subject.variables_hash).to eq({
+          x: Danica::Wrapper::Variable.new(name: :x),
+          y: Danica::Wrapper::Number.new(2),
+          z: Danica::Wrapper::Number.new(1)
+        })
+      end
+    end
+  end
+
   describe 'variables assignement' do
     it 'creates setters and getters for the variables' do
       %i(x y z).each do |var|

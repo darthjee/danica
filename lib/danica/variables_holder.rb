@@ -35,7 +35,7 @@ module Danica
 
     def initialize(*args)
       args = args.flatten
-      args = args.first if (args.length == 1) && args.first.is_a?(Hash) && args.first.keys == self.class.variables_names
+      args = args.first if (args.length == 1) && args.first.is_a?(Hash) && args.first.keys.all? { |k| self.class.variables_names.include?(k) }
       self.variables = args
     end
 
