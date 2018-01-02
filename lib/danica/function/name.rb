@@ -5,11 +5,7 @@ module Danica
 
     def initialize(name:, variables:)
       @name = name || :f
-      @containers = variables.map do |v|
-        v = wrap_value(v)
-        v = Wrapper::Container.new(v) unless v.container?
-        v
-      end
+      @containers = variables.map { |v| wrap_value(v) }
     end
 
     def to(format)
