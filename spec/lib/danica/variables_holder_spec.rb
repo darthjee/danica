@@ -57,6 +57,42 @@ describe Danica::VariablesHolder do
         })
       end
     end
+
+    context 'when initializing with hashes' do
+      subject do
+        clazz.new(
+          {name: :xis, value: 1},
+          {name: :yps, value: 2},
+          {name: :zes, value: 3}
+        )
+      end
+
+      it 'initialize variables with the maps given' do
+        expect(subject.variables_hash).to eq({
+          x: Danica::Wrapper::Variable.new(name: :xis, value: 1),
+          y: Danica::Wrapper::Variable.new(name: :yps, value: 2),
+          z: Danica::Wrapper::Variable.new(name: :zes, value: 3)
+        })
+      end
+    end
+
+    context 'when initializing with array of hashes' do
+      subject do
+        clazz.new([
+          {name: :xis, value: 1},
+          {name: :yps, value: 2},
+          {name: :zes, value: 3}
+        ])
+      end
+
+      it 'initialize variables with the maps given' do
+        expect(subject.variables_hash).to eq({
+          x: Danica::Wrapper::Variable.new(name: :xis, value: 1),
+          y: Danica::Wrapper::Variable.new(name: :yps, value: 2),
+          z: Danica::Wrapper::Variable.new(name: :zes, value: 3)
+        })
+      end
+    end
   end
 
   describe 'variables assignement' do
