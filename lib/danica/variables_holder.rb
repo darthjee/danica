@@ -3,6 +3,10 @@ module Danica
     autoload :VariablesBuilder, 'danica/variables_holder/variables_builder'
     autoload :AliasBuilder,     'danica/variables_holder/alias_builder'
     autoload :Calculator,       'danica/variables_holder/calculator'
+    autoload :Store,            'danica/variables_holder/store'
+
+    delegate :containers_hash, :containers, :variables,
+             :variables_hash, :variables_value_hash, to: :store
 
     included do
       class << self
@@ -61,32 +65,14 @@ module Danica
       end
     end
 
-    def variables
-      containers.map(&:content)
-    end
-
-    def containers
-      containers_hash.values
-    end
-
-    def containers_hash
-      @containers_hash ||= {}.merge(self.class.variables_hash.change_values do |value|
-        Wrapper::Container.new(value)
-      end)
-    end
-
-    def variables_hash
-      containers_hash.change_values(&:content)
-    end
-
-    def variables_value_hash
-      variables.map do |var|
-        var.try(:value)
-      end.as_hash(self.class.variables_names)
-    end
-
     def calculate(*args)
       Calculator.new(self, *args).calculate
+    end
+
+    private
+
+    def store
+      @store ||= Store.new(self.class.variables_hash)
     end
   end
 end
