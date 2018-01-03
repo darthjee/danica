@@ -1,4 +1,4 @@
-class MyFunction < Danica::Function
+class Danica::Function::MyFunction < Danica::Function
   variables :x, :y
 
   def function_block
