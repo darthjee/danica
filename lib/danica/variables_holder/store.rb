@@ -30,14 +30,17 @@ module Danica
     end
 
     def extract_variables
-      inner_containers_hash.tap do |hash|
-        variable_variables.each do |key, container|
-          hash[(container.content.name || key).to_sym] = container
-        end
-      end
+      inner_containers_hash.merge(named_variables_hash)
     end
 
     private
+
+    def named_variables_hash
+      variable_variables.inject({}) do |hash, pair|
+        key, container = pair
+        hash.merge( (container.content.name || key).to_sym => container )
+      end
+    end
 
     def variable_variables
       containers_hash.select do |_, container|
