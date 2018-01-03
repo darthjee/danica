@@ -6,7 +6,8 @@ module Danica
     autoload :Store,            'danica/variables_holder/store'
 
     delegate :containers_hash, :containers, :variables,
-             :variables_hash, :variables_value_hash, to: :store
+             :variables_hash, :variables_value_hash,
+             :extract_variables, to: :store
 
     included do
       class << self
@@ -48,20 +49,6 @@ module Danica
       vars = vars.dup.change_values!(skip_inner: false) { |v| wrap_value(v) }
       vars.each do |k, v|
         public_send("#{k}=", v)
-      end
-    end
-
-    def extract_variables
-      variables.select do |var|
-        var.is_a?(VariablesHolder)
-      end.inject({}) do |hash, container|
-        hash.merge!(container.content.extract_variables)
-      end.tap do |hash|
-        containers_hash.select do |_, container|
-          container.content.is_a?(Wrapper::Variable)
-        end.each do |key, container|
-          hash[(container.content.name || key).to_sym] = container
-        end
       end
     end
 

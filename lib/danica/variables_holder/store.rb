@@ -29,7 +29,33 @@ module Danica
       end.as_hash(variables_names)
     end
 
+    def extract_variables
+      inner_containers_hash.tap do |hash|
+        variable_variables.each do |key, container|
+          hash[(container.content.name || key).to_sym] = container
+        end
+      end
+    end
+
     private
+
+    def variable_variables
+      containers_hash.select do |_, container|
+        container.content.is_a?(Wrapper::Variable)
+      end
+    end
+
+    def inner_containers_hash
+      variable_holders.inject({}) do |hash, container|
+        hash.merge!(container.content.extract_variables)
+      end
+    end
+
+    def variable_holders
+      variables.select do |var|
+        var.is_a?(VariablesHolder)
+      end
+    end
 
     def default_containers_hash
       default_variables_hash.change_values do |value|
