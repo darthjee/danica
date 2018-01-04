@@ -5,8 +5,9 @@ module Danica
 
     attr_accessor :value, :name, :latex, :gnu
 
-    default_value :priority, 10
+    default_value :priority,    10
     default_value :is_grouped?, false
+    default_value :variable?,   true
 
     def initialize(attributes={})
       attributes.each do |key, value|

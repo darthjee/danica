@@ -5,7 +5,7 @@ module Danica
 
     delegate :to_f, :contentd?, :to, :to_tex, :to_gnu, :priority, :grouped?,
              :signaled?, :constant?, :valued?, :*, :+, :-, :/, :**,
-             :variables, to: :content
+             :variables, :variable?, to: :content
 
     default_value :container?, true
 

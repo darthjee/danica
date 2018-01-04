@@ -44,7 +44,7 @@ module Danica
 
     def variable_variables
       containers_hash.select do |_, container|
-        container.content.is_a?(Wrapper::Variable)
+        container.variable?
       end
     end
 
