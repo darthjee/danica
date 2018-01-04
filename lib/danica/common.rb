@@ -8,13 +8,16 @@ module Danica
         def default_value(name, value)
           define_method(name) { |*_| value }
         end
+
+        def default_values(*names, value)
+          names.each do |name|
+            default_value(name, value)
+          end
+        end
       end
 
-      default_value :constant?,         false
-      default_value :signaled?,         false
-      default_value :container?,        false
-      default_value :variable?,         false
-      default_value :variable_holder?,  false
+      default_values :constant?, :signaled?, :container?, :variable?,
+                     :variable_holder?, false
     end
 
     def to_f
