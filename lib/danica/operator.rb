@@ -1,6 +1,5 @@
 module Danica
   class Operator
-    include Common
     include VariablesHolder
     include BaseOperations
 

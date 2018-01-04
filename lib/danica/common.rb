@@ -10,10 +10,11 @@ module Danica
         end
       end
 
-      default_value :constant?,  false
-      default_value :signaled?,  false
-      default_value :container?, false
-      default_value :variable?,  false
+      default_value :constant?,         false
+      default_value :signaled?,         false
+      default_value :container?,        false
+      default_value :variable?,         false
+      default_value :variable_holder?,  false
     end
 
     def to_f

@@ -55,9 +55,7 @@ module Danica
     end
 
     def variable_holders
-      variables.select do |var|
-        var.is_a?(VariablesHolder)
-      end
+      variables.select(&:variable_holder?)
     end
 
     def default_containers_hash

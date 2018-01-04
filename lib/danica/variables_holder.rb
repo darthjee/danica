@@ -1,5 +1,7 @@
 module Danica
   module VariablesHolder extend ::ActiveSupport::Concern
+    include Common
+
     autoload :VariablesBuilder, 'danica/variables_holder/variables_builder'
     autoload :AliasBuilder,     'danica/variables_holder/alias_builder'
     autoload :Calculator,       'danica/variables_holder/calculator'
@@ -10,6 +12,8 @@ module Danica
              :extract_variables, to: :store
 
     included do
+      default_value :variable_holder?,  true
+
       class << self
         def variables(*names)
           VariablesBuilder.new(names, self).build

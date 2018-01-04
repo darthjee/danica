@@ -1,6 +1,5 @@
 module Danica
   class Equation
-    include Common
     include VariablesHolder
   
     autoload :Builder, 'danica/equation/builder'
