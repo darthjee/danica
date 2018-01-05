@@ -142,7 +142,9 @@ describe Danica::VariablesHolder do
         expect(clazz.variables_names).to eq(%i(k z))
       end
     end
+  end
 
+  describe 'variable alias' do
     context 'when we alias a variable' do
       let(:clazz) { described_class::DummyAlias }
 
@@ -274,7 +276,7 @@ describe Danica::VariablesHolder do
       it 'does not change the class variables' do
         expect do
           subject.z = 2
-        end.not_to change { clazz.variables_hash }
+        end.not_to change(clazz, :variables_hash)
       end
     end
   end
