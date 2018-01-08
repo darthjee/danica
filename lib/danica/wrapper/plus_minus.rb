@@ -1,6 +1,5 @@
 module Danica
   class Wrapper::PlusMinus
-    include Common
     include BaseOperations
     include VariablesHolder
 

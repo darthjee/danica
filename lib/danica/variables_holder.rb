@@ -1,10 +1,19 @@
 module Danica
   module VariablesHolder extend ::ActiveSupport::Concern
+    include Common
+
     autoload :VariablesBuilder, 'danica/variables_holder/variables_builder'
     autoload :AliasBuilder,     'danica/variables_holder/alias_builder'
     autoload :Calculator,       'danica/variables_holder/calculator'
+    autoload :Store,            'danica/variables_holder/store'
+
+    delegate :containers_hash, :containers, :variables,
+             :variables_hash, :variables_value_hash,
+             :extract_variables, to: :store
 
     included do
+      default_value :variable_holder?,  true
+
       class << self
         def variables(*names)
           VariablesBuilder.new(names, self).build
@@ -33,6 +42,14 @@ module Danica
       end
     end
 
+    def initialize(*args)
+      args = args.flatten
+      args = args.first if (args.length == 1) && args.first.try(:keys).try(:all?) do |k|
+        self.class.variables_names.include?(k)
+      end
+      self.variables = args
+    end
+
     def variables=(vars)
       vars = vars.as_hash(self.class.variables_names).compact unless vars.is_a? Hash
       vars = vars.dup.change_values!(skip_inner: false) { |v| wrap_value(v) }
@@ -41,46 +58,14 @@ module Danica
       end
     end
 
-    def extract_variables
-      variables.select do |var|
-        var.is_a?(VariablesHolder)
-      end.inject({}) do |hash, container|
-        hash.merge!(container.content.extract_variables)
-      end.tap do |hash|
-        containers_hash.select do |_, container|
-          container.content.is_a?(Wrapper::Variable)
-        end.each do |key, container|
-          hash[(container.content.name || key).to_sym] = container
-        end
-      end
-    end
-
-    def variables
-      containers.map(&:content)
-    end
-
-    def containers
-      containers_hash.values
-    end
-
-    def containers_hash
-      @containers_hash ||= {}.merge(self.class.variables_hash.change_values do |value|
-        Wrapper::Container.new(value)
-      end)
-    end
-
-    def variables_hash
-      containers_hash.change_values(&:content)
-    end
-
-    def variables_value_hash
-      variables.map do |var|
-        var.try(:value)
-      end.as_hash(self.class.variables_names)
-    end
-
     def calculate(*args)
       Calculator.new(self, *args).calculate
+    end
+
+    private
+
+    def store
+      @store ||= Store.new(self.class.variables_hash)
     end
   end
 end

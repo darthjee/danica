@@ -1,6 +1,5 @@
 module Danica
   class Function
-    include Common
     include VariablesHolder
     include DSL
     include Expressable

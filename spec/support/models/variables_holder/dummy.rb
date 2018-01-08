@@ -8,10 +8,6 @@ module Danica
 
       delegate :to, :to_f, to: :block
 
-      def initialize(vars = {})
-        self.variables=vars
-      end
-
       def block
         x ** y + z
       end
@@ -29,6 +25,17 @@ module Danica
 
     class DummyAlias < Dummy
       variable_alias :x, :a
+    end
+  end
+end
+
+module Danica
+  module VariablesHolder
+    class DummyString
+      include Common
+      include VariablesHolder
+
+      variables 'x', 'y' => { latex: '\y' }, 'z' => 10
     end
   end
 end

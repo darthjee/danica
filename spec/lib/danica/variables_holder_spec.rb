@@ -28,10 +28,82 @@ shared_examples 'an variable set that does not change the class variables' do
   end
 end
 
+shared_examples 'a class with mapped variables' do
+  context 'when initializing with an array' do
+    subject { clazz.new(1,2,3) }
+
+    it 'initialize variables in order of declaration' do
+      expect(subject.variables_hash).to eq({
+        x: Danica::Wrapper::Number.new(1),
+        y: Danica::Wrapper::Number.new(2),
+        z: Danica::Wrapper::Number.new(3)
+      })
+    end
+  end
+
+  context 'when initialized with a hash' do
+    subject { clazz.new(z: 1, y: 2) }
+
+    it 'initialize variables with the map given' do
+      expect(subject.variables_hash).to eq({
+        x: Danica::Wrapper::Variable.new(name: :x),
+        y: Danica::Wrapper::Number.new(2),
+        z: Danica::Wrapper::Number.new(1)
+      })
+    end
+  end
+
+  context 'when initializing with hashes' do
+    subject do
+      clazz.new(
+        {name: :xis, value: 1},
+        {name: :yps, value: 2},
+        {name: :zes, value: 3}
+      )
+    end
+
+    it 'initialize variables with the maps given' do
+      expect(subject.variables_hash).to eq({
+        x: Danica::Wrapper::Variable.new(name: :xis, value: 1),
+        y: Danica::Wrapper::Variable.new(name: :yps, value: 2),
+        z: Danica::Wrapper::Variable.new(name: :zes, value: 3)
+      })
+    end
+  end
+
+  context 'when initializing with array of hashes' do
+    subject do
+      clazz.new([
+        {name: :xis, value: 1},
+        {name: :yps, value: 2},
+        {name: :zes, value: 3}
+      ])
+    end
+
+    it 'initialize variables with the maps given' do
+      expect(subject.variables_hash).to eq({
+        x: Danica::Wrapper::Variable.new(name: :xis, value: 1),
+        y: Danica::Wrapper::Variable.new(name: :yps, value: 2),
+        z: Danica::Wrapper::Variable.new(name: :zes, value: 3)
+      })
+    end
+  end
+end
 
 describe Danica::VariablesHolder do
   let(:clazz) { described_class::Dummy }
   subject { clazz.new }
+
+  describe '#initialize' do
+    context 'when using a symbolized key definition' do
+      it_behaves_like 'a class with mapped variables'
+    end
+
+    context 'when using a string key definition' do
+      let(:clazz) { described_class::DummyString }
+      it_behaves_like 'a class with mapped variables'
+    end
+  end
 
   describe 'variables assignement' do
     it 'creates setters and getters for the variables' do
@@ -80,7 +152,9 @@ describe Danica::VariablesHolder do
         expect(clazz.variables_names).to eq(%i(k z))
       end
     end
+  end
 
+  describe 'variable alias' do
     context 'when we alias a variable' do
       let(:clazz) { described_class::DummyAlias }
 
@@ -212,7 +286,7 @@ describe Danica::VariablesHolder do
       it 'does not change the class variables' do
         expect do
           subject.z = 2
-        end.not_to change { clazz.variables_hash }
+        end.not_to change(clazz, :variables_hash)
       end
     end
   end

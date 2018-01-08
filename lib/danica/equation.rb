@@ -1,13 +1,8 @@
 module Danica
   class Equation
-    include Common
     include VariablesHolder
   
     autoload :Builder, 'danica/equation/builder'
-
-    def initialize(*args)
-      self.variables = args.flatten
-    end
 
     class << self
       def build(*variables, &block)

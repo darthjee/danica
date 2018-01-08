@@ -5,11 +5,15 @@ module Danica
 
     attr_accessor :value, :name, :latex, :gnu
 
-    default_value :priority, 10
+    default_value :priority,    10
     default_value :is_grouped?, false
+    default_value :variable?,   true
 
-    def initialize(attributes={})
-      attributes.each do |key, value|
+    def initialize(*args)
+      attrs = args.extract_options!
+      attrs = args.as_hash(%i(value name latex gnu)).merge(attrs)
+
+      attrs.each do |key, value|
         self.public_send("#{key}=", value)
       end
     end
