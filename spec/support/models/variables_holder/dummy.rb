@@ -28,3 +28,14 @@ module Danica
     end
   end
 end
+
+module Danica
+  module VariablesHolder
+    class DummyString
+      include Common
+      include VariablesHolder
+
+      variables 'x', 'y' => { latex: '\y' }, 'z' => 10
+    end
+  end
+end

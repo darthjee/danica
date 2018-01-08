@@ -16,7 +16,7 @@ module Danica::VariablesHolder
       attr_names.each do |name|
         add_setter(name)
         add_reader(name)
-        instance.variables_hash[name.to_sym] = wrap_value(name)
+        instance.variables_hash[name.to_sym] = wrap_value(name.to_sym)
       end
 
       names_hash.each do |name, default|
