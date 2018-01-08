@@ -11,18 +11,18 @@ module Danica::VariablesHolder
     end
 
     def build
-      names_hash = attr_names.extract_options!
+      names_hash = attr_names.extract_options!.symbolize_keys
 
-      attr_names.each do |name|
+      attr_names.map(&:to_sym).each do |name|
         add_setter(name)
         add_reader(name)
-        instance.variables_hash[name.to_sym] = wrap_value(name.to_sym)
+        instance.variables_hash[name] = wrap_value(name)
       end
 
       names_hash.each do |name, default|
         add_setter(name)
         add_reader(name)
-        instance.variables_hash[name.to_sym] = wrap_value(default)
+        instance.variables_hash[name] = wrap_value(default)
       end
     end
 
@@ -30,13 +30,13 @@ module Danica::VariablesHolder
 
     def add_setter(name)
       instance.send(:define_method, "#{name}=") do |value|
-        containers_hash[name.to_sym].content = wrap_value(value)
+        containers_hash[name].content = wrap_value(value)
       end
     end
 
     def add_reader(name)
       instance.send(:define_method, name) do
-        containers_hash[name.to_sym]
+        containers_hash[name]
       end
     end
   end
