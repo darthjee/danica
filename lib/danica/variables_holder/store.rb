@@ -36,8 +36,7 @@ module Danica
     private
 
     def named_variables_hash
-      variable_variables.inject({}) do |hash, pair|
-        key, container = pair
+      variable_variables.inject({}) do |hash, (key, container)|
         hash.merge( (container.content.name || key).to_sym => container )
       end
     end
