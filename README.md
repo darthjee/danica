@@ -457,6 +457,16 @@ end
 ```
 would produce different ```#to_tex``` and ```#to_gnu``` results (```\lambda``` and ```f``` respectvly)
 
+Also, valued variables will always use their value on string representation
+
+```ruby
+Danica::DSL.build do
+  variable(name: :frequency, latex: '\lambda', gnu: :f, value: 2)
+end
+```
+
+will always return ```2``` for both ```to(:tex)``` and ```to(:gnu)``` calls
+
 #### #to_f
 
 Variables can be used to calculate the value of an expression by usage of the value attribute
@@ -523,3 +533,9 @@ Danica::Operator::Addition.new(
   Danica::Wrapper::Number.new(3)
 )
 ```
+
+### Constant
+Constant are pretty much like any other variable, except that they always have value,
+and have a gnu and latex representation.
+
+While variables 

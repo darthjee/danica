@@ -33,6 +33,18 @@ describe Danica::Wrapper::Variable do
         expect(subject.to_tex).to eq('x')
       end
     end
+
+    context 'when variable has value' do
+      subject do
+        Danica::DSL.build do
+          variable(name: :frequency, latex: '\lambda', gnu: :f, value: 2)
+        end
+      end
+
+      it do
+        expect(subject.to_tex).to eq('2')
+      end
+    end
   end
 
   describe '#to_f' do
