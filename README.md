@@ -457,6 +457,35 @@ end
 ```
 would produce different ```#to_tex``` and ```#to_gnu``` results (```\lambda``` and ```f``` respectvly)
 
+#### #to_f
+
+Variables can be used to calculate the value of an expression by usage of the value attribute
+
+```ruby
+Danica::DSL.build do
+  variable(name: :x, value: 2)
+end
+```
+
+with will respond to ```#tot_f``` as ```2```
+
+It can be used when calculating an expression later
+
+```ruby
+x = Danica::DSL.build do
+  variable(:x)
+end
+
+p = Danica::DSL.build do
+  power(x, 2)
+end
+
+x.value = 4
+p.to_f
+```
+
+which will return ```16```
+
 ### Number
 Numberss are simple wrappers using ```Danica::Wrapper::Number```
 
