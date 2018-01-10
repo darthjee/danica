@@ -21,5 +21,17 @@ describe Danica::Wrapper::Variable do
         expect(subject.to_tex).to eq('x')
       end
     end
+
+    context 'when initializing from DSL' do
+      subject do
+        Danica::DSL.build do
+          variable(:x)
+        end
+      end
+
+      it do
+        expect(subject.to_tex).to eq('x')
+      end
+    end
   end
 end

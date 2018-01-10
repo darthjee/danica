@@ -415,8 +415,15 @@ The initialization of the variable can be made through the class, DSL or when in
   Danica::Wrapper::Variable.new(name: :x)
 ```
 
-both will grate the same variable that can be coverted ```#to_tex```
+```ruby
+Danica::DSL.build do
+  variable(:x)
+end
+```
+
+all will create the same variable that can be coverted ```#to_tex```
 
 ```string
 x
 ```
+
