@@ -538,4 +538,18 @@ Danica::Operator::Addition.new(
 Constant are pretty much like any other variable, except that they always have value,
 and have a gnu and latex representation.
 
-While variables 
+While variables with value have a numeric string representation, constants will always
+be represented by their string attribute
+
+```ruby
+Danica::Wrapper::Constant.new(gnu: 'pi', latex: '\pi', value: 3.141592)
+```
+which will have the returns of ```#to(format)``` obeying the following
+
+```ruby
+{
+  tex: '\pi',
+  gnu: 'pi',
+  f: 3.141592
+}
+```
