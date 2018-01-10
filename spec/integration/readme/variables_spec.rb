@@ -34,4 +34,24 @@ describe Danica::Wrapper::Variable do
       end
     end
   end
+
+  describe 'custom outputs' do
+    subject do
+      Danica::DSL.build do
+        variable(name: :frequency, latex: '\lambda', gnu: :f)
+      end
+    end
+
+    describe '#to_tex' do
+      it do
+        expect(subject.to_tex).to eq('\lambda')
+      end
+    end
+
+    describe '#to_gnu' do
+      it do
+        expect(subject.to_gnu).to eq('f')
+      end
+    end
+  end
 end

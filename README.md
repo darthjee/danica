@@ -427,3 +427,11 @@ all will create the same variable that can be coverted ```#to_tex```
 x
 ```
 
+Variables can also behave differently when converting to tex or gnu
+
+```ruby
+Danica::DSL.build do
+  variable(name: :frequency, latex: '\lambda', gnu: :f)
+end
+```
+would produce different ```#to_tex``` and ```#to_gnu``` results (```\lambda``` and ```f``` respectvly)
