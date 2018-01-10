@@ -54,4 +54,26 @@ describe Danica::Wrapper::Variable do
       end
     end
   end
+
+  describe 'automatic wrapp' do
+    let(:sum) do
+      Danica::DSL.build do
+        power(:x, { name: :y }) + :z
+      end
+    end
+
+    let(:expected) do
+      Danica::Operator::Addition.new(
+        Danica::Operator::Power.new(
+          Danica::Wrapper::Variable.new(:x),
+          Danica::Wrapper::Variable.new(:y)
+        ),
+        Danica::Wrapper::Variable.new(:z)
+      )
+    end
+
+    it do
+      expect(sum).to eq(expected)
+    end
+  end
 end

@@ -427,6 +427,27 @@ all will create the same variable that can be coverted ```#to_tex```
 x
 ```
 
+When using it with function, operators or other ```Danica::Common``` objects, the variables are wrapped
+automatically
+
+```ruby
+Danica::DSL.build do
+  power(:x, { name: :y }) + :z
+end
+```
+
+will result in
+
+```ruby
+Danica::Operator::Addition.new(
+  Danica::Operator::Power.new(
+    Danica::Wrapper::Variable.new(:x), 
+    Danica::Wrapper::Variable.new(:y) 
+  ),
+  Danica::Wrapper::Variable.new(:z) 
+)
+```
+
 Variables can also behave differently when converting to tex or gnu
 
 ```ruby
