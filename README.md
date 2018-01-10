@@ -402,7 +402,7 @@ Danica::Operator::Inverse.new(:x)
 ```
 
 ### Variables
-Variables are instances of ```Danica::Operator::Variable``` having the optional attributes
+Variables are instances of ```Danica::Wrapper::Variable``` having the optional attributes
 ```name```, ```gnu``` , ```latex``` and ```value```
 
 The initialization of the variable can be made through the class, DSL or when initializing an operator
@@ -435,3 +435,41 @@ Danica::DSL.build do
 end
 ```
 would produce different ```#to_tex``` and ```#to_gnu``` results (```\lambda``` and ```f``` respectvly)
+
+### Number
+Numberss are simple wrappers using ```Danica::Wrapper::Number```
+
+they can be initialized explicitly, through the DSL or whenever an operation is made with other ```Danica``` objects
+
+```ruby
+Danica::Wrapper::Number.new(3)
+```
+
+```ruby
+Danica::DSL.build do
+  number(3)
+end
+```
+
+will both return the number object that can be used to generate tex, gnu or float outputs (for calculation)
+
+Other ways of creating instances of number is when using it as a right side element in basic operations such as sum
+or when using it as the parameter of any other class such as functions and operators
+
+```ruby
+Danica::DSL.build do
+  power(:x, 2) + 3
+end
+```
+
+will create
+
+```ruby
+Danica::Operator::Addition.new(
+  Danica::Operator::Power.new(
+    Danica::Wrapper::Variable.new(:x), 
+    Danica::Wrapper::Number.new(2)
+  ),
+  Danica::Wrapper::Number.new(3)
+)
+```
