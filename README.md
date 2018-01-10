@@ -341,7 +341,6 @@ returns
 ```gnuplot
 x**(2) -y**(2)
 ```
-
 ### DSL and building
 An expression can be created using the DSL direct from ```Danica```
 
@@ -357,7 +356,7 @@ will result into a ```Danica::Operator::Power``` wrapped into an ```Danica::Expr
 Danica::Operator::Power.new(:x, -1)
 ```
 
-#### Operator registering on DSL
+#### Operator registration on DSL
 
 Any operator created can be added to the DSL by running ```DSL.register_operator```
 
@@ -400,4 +399,24 @@ will result into a ```Danica::Operator::Inverse``` object
 
 ```ruby
 Danica::Operator::Inverse.new(:x)
+```
+
+### Variables
+Variables are instances of ```Danica::Operator::Variable``` having the optional attributes
+```name```, ```gnu``` , ```latex``` and ```value```
+
+The initialization of the variable can be made through the class, DSL or when initializing an operator
+
+```ruby
+  Danica::Wrapper::Variable.new(:x)
+```
+
+```ruby
+  Danica::Wrapper::Variable.new(name: :x)
+```
+
+both will grate the same variable that can be coverted ```#to_tex```
+
+```string
+x
 ```

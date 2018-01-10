@@ -11,7 +11,7 @@ module Danica
 
     def initialize(*args)
       attrs = args.extract_options!
-      attrs = args.as_hash(%i(value name latex gnu)).merge(attrs)
+      attrs = args.as_hash(%i(name value latex gnu)).merge(attrs)
 
       attrs.each do |key, value|
         self.public_send("#{key}=", value)
