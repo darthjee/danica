@@ -341,7 +341,6 @@ returns
 ```gnuplot
 x**(2) -y**(2)
 ```
-
 ### DSL and building
 An expression can be created using the DSL direct from ```Danica```
 
@@ -357,7 +356,7 @@ will result into a ```Danica::Operator::Power``` wrapped into an ```Danica::Expr
 Danica::Operator::Power.new(:x, -1)
 ```
 
-#### Operator registering on DSL
+#### Operator registration on DSL
 
 Any operator created can be added to the DSL by running ```DSL.register_operator```
 
@@ -400,4 +399,157 @@ will result into a ```Danica::Operator::Inverse``` object
 
 ```ruby
 Danica::Operator::Inverse.new(:x)
+```
+
+### Variables
+Variables are instances of ```Danica::Wrapper::Variable``` having the optional attributes
+```name```, ```gnu``` , ```latex``` and ```value```
+
+The initialization of the variable can be made through the class, DSL or when initializing an operator
+
+```ruby
+  Danica::Wrapper::Variable.new(:x)
+```
+
+```ruby
+  Danica::Wrapper::Variable.new(name: :x)
+```
+
+```ruby
+Danica::DSL.build do
+  variable(:x)
+end
+```
+
+all will create the same variable that can be coverted ```#to_tex```
+
+```string
+x
+```
+
+When using it with function, operators or other ```Danica::Common``` objects, the variables are wrapped
+automatically
+
+```ruby
+Danica::DSL.build do
+  power(:x, { name: :y }) + :z
+end
+```
+
+will result in
+
+```ruby
+Danica::Operator::Addition.new(
+  Danica::Operator::Power.new(
+    Danica::Wrapper::Variable.new(:x), 
+    Danica::Wrapper::Variable.new(:y) 
+  ),
+  Danica::Wrapper::Variable.new(:z) 
+)
+```
+
+Variables can also behave differently when converting to tex or gnu
+
+```ruby
+Danica::DSL.build do
+  variable(name: :frequency, latex: '\lambda', gnu: :f)
+end
+```
+would produce different ```#to_tex``` and ```#to_gnu``` results (```\lambda``` and ```f``` respectvly)
+
+Also, valued variables will always use their value on string representation
+
+```ruby
+Danica::DSL.build do
+  variable(name: :frequency, latex: '\lambda', gnu: :f, value: 2)
+end
+```
+
+will always return ```2``` for both ```to(:tex)``` and ```to(:gnu)``` calls
+
+#### #to_f
+
+Variables can be used to calculate the value of an expression by usage of the value attribute
+
+```ruby
+Danica::DSL.build do
+  variable(name: :x, value: 2)
+end
+```
+
+with will respond to ```#tot_f``` as ```2```
+
+It can be used when calculating an expression later
+
+```ruby
+x = Danica::DSL.build do
+  variable(:x)
+end
+
+p = Danica::DSL.build do
+  power(x, 2)
+end
+
+x.value = 4
+p.to_f
+```
+
+which will return ```16```
+
+### Number
+Numberss are simple wrappers using ```Danica::Wrapper::Number```
+
+they can be initialized explicitly, through the DSL or whenever an operation is made with other ```Danica``` objects
+
+```ruby
+Danica::Wrapper::Number.new(3)
+```
+
+```ruby
+Danica::DSL.build do
+  number(3)
+end
+```
+
+will both return the number object that can be used to generate tex, gnu or float outputs (for calculation)
+
+Other ways of creating instances of number is when using it as a right side element in basic operations such as sum
+or when using it as the parameter of any other class such as functions and operators
+
+```ruby
+Danica::DSL.build do
+  power(:x, 2) + 3
+end
+```
+
+will create
+
+```ruby
+Danica::Operator::Addition.new(
+  Danica::Operator::Power.new(
+    Danica::Wrapper::Variable.new(:x), 
+    Danica::Wrapper::Number.new(2)
+  ),
+  Danica::Wrapper::Number.new(3)
+)
+```
+
+### Constant
+Constant are pretty much like any other variable, except that they always have value,
+and have a gnu and latex representation.
+
+While variables with value have a numeric string representation, constants will always
+be represented by their string attribute
+
+```ruby
+Danica::Wrapper::Constant.new(gnu: 'pi', latex: '\pi', value: 3.141592)
+```
+which will have the returns of ```#to(format)``` obeying the following
+
+```ruby
+{
+  tex: '\pi',
+  gnu: 'pi',
+  f: 3.141592
+}
 ```

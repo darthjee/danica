@@ -45,4 +45,17 @@ describe Danica::DSL do
 
   let(:subject) { described_class::Dummy.new }
   it_behaves_like 'a class with mapped dsl'
+
+  describe '.build' do
+    let(:expected) do
+      Danica::Operator::Addition.new(
+        Danica::Wrapper::Number.new(2),
+        Danica::Wrapper::Variable.new(:x)
+      )
+    end
+
+    it 'executes the build block' do
+      expect(described_class.build { number(2) + variable(:x) }).to eq(expected)
+    end
+  end
 end

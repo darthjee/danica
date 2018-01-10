@@ -1,18 +1,32 @@
 module Danica
   module DSL
-    def self.register_operator(method, clazz=nil)
-      register(method, clazz, 'Danica::Operator')
-    end
+    class << self
+      def register_operator(method, clazz=nil)
+        register(method, clazz, 'Danica::Operator')
+      end
 
-    def self.register_wrapper(method, clazz=nil)
-      register(method, clazz, 'Danica::Wrapper')
-    end
+      def register_wrapper(method, clazz=nil)
+        register(method, clazz, 'Danica::Wrapper')
+      end
 
-    def self.register(method, clazz=nil, base=nil)
-      define_method method do |*args|
-        clazz = [base.to_s, method.to_s.camelize].compact.join('::').constantize unless clazz
-        clazz = [base, clazz.to_s].compact.join('::').constantize unless clazz.is_a? Class
-        clazz.new(*args)
+      def register(method, clazz=nil, base=nil)
+        define_method method do |*args|
+          clazz = [base.to_s, method.to_s.camelize].compact.join('::').constantize unless clazz
+          clazz = [base, clazz.to_s].compact.join('::').constantize unless clazz.is_a? Class
+          clazz.new(*args)
+        end
+      end
+
+      def build(&block)
+        builder.instance_eval(&block)
+      end
+
+      private
+
+      def builder
+        @builder ||= Class.new do
+          include DSL
+        end.new
       end
     end
 

@@ -38,6 +38,8 @@ module Danica
         to_tex
       when :gnu
         to_gnu
+      when :f
+        to_f
       else
         raise Exception::FormatNotFound.new
       end
