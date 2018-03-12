@@ -341,6 +341,31 @@ returns
 ```gnuplot
 x**(2) -y**(2)
 ```
+
+#### Danica::Function.for
+A function can also created after an expression
+
+```ruby
+module Danica
+  class Expression
+    class QuadraticSum < build(:x, :y) { (x + y) ** 2 }
+    end
+  end
+  class Function
+    class QuadraticSum < Function.for(Expression::QuadraticSum)
+    end
+  end
+end
+
+fx = Danica::Function::QuadraticSum.new
+
+fx.to_tex
+```
+
+```tex
+f(x, y) = \left(x + y\right)^{2}
+```
+
 ### DSL and building
 An expression can be created using the DSL direct from ```Danica```
 

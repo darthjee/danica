@@ -52,7 +52,7 @@ describe Danica::Expression do
     end
 
     context 'when creating a class using build' do
-      let(:expression_class) { Danica::Hyperbole }
+      let(:expression_class) { Danica::Parabole }
 
       it_behaves_like 'an object with basic operation'
       it_behaves_like 'an object that respond to basic_methods'
@@ -78,7 +78,7 @@ describe Danica::Expression do
     end
 
     context 'when using a class that inherits from another class' do
-      let(:expression_class) { Danica::SaddleHyperbole }
+      let(:expression_class) { Danica::SaddleParabole }
 
       it_behaves_like 'an object with basic operation'
       it_behaves_like 'an object that respond to basic_methods'
