@@ -82,7 +82,7 @@ describe Danica::Function do
     end
 
     context 'when creating a class using build' do
-      let(:function_class) { Danica::Function::Hyperbole }
+      let(:function_class) { Danica::Function::Parabole }
 
       it 'has the defined variables on class definition' do
         expect(function_class.variables_names).to eq([:x])
@@ -106,7 +106,7 @@ describe Danica::Function do
     end
 
     context 'when using a class that inherits from another class' do
-      let(:function_class) { Danica::Function::SaddleHyperbole }
+      let(:function_class) { Danica::Function::SaddleParabole }
 
       it 'has the defined variables on class definition' do
         expect(function_class.variables_names).to eq([:x, :y])
