@@ -258,8 +258,8 @@ describe Danica::Function do
         function_class.new(name: :f, x: { name: :x, value: 2 })
       end
 
-      it 'sohws the variable as number' do
-        expect(function.to_gnu).to eq('f(2, y) = 2**(y)')
+      it 'hides the numver variable from name' do
+        expect(function.to_gnu).to eq('f(y) = 2**(y)')
       end
     end
 
@@ -268,8 +268,8 @@ describe Danica::Function do
         function_class.new(name: :f, x: 2)
       end
 
-      it 'sohws the variable as number' do
-        expect(function.to_gnu).to eq('f(2, y) = 2**(y)')
+      it 'hides the numver variable from name' do
+        expect(function.to_gnu).to eq('f(y) = 2**(y)')
       end
     end
   end

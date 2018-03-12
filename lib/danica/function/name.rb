@@ -19,7 +19,20 @@ module Danica
     private
 
     def description_variables(format)
-      non_constant_variables.map { |v| v.to(format) }.join(', ')
+      variables_for(format).map { |v| v.to(format) }.join(', ')
+    end
+
+    def variables_for(format)
+      case format.to_sym
+      when :tex
+        non_constant_variables
+      when :gnu
+        non_valued_variables
+      end
+    end
+
+    def non_valued_variables
+      variables.reject(&:valued?)
     end
 
     def non_constant_variables
