@@ -54,6 +54,14 @@ describe Danica::Function do
     it 'creates a funcion out of an expression' do
       expect(subject.to_tex).to eq("f(x, \\mu, \\sigma) = #{expression.to_tex}")
     end
+
+    context 'when passing an operator' do
+      let(:expression_class) { Danica::Operator::Cos }
+
+      it do
+        expect(subject.to_tex).to eq("f(value) = #{expression.to_tex}")
+      end
+    end
   end
 
   describe '.build' do
