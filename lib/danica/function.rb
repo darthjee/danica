@@ -9,6 +9,12 @@ module Danica
 
     built_with(:function_block)
 
+    def self.for(expression_class)
+      build(expression_class.variables_hash) do
+        expression_class.new(variables_hash)
+      end
+    end
+
     def name
       Name.new(name: @name, variables: containers)
     end

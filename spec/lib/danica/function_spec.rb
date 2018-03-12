@@ -34,6 +34,28 @@ describe Danica::Function do
     end
   end
 
+  describe '.for' do
+    let(:expression_class) { Danica::Expression::Gauss }
+    let(:expression) { expression_class.new }
+    subject do
+      described_class.for(expression_class).new
+    end
+
+    it 'returns a function' do
+      expect(subject).to be_a(described_class)
+    end
+
+    it 'behaves like a function' do
+      expect do
+        subject.to_tex
+      end.not_to raise_error
+    end
+
+    it 'creates a funcion out of an expression' do
+      expect(subject.to_tex).to eq("f(x, \\mu, \\sigma) = #{expression.to_tex}")
+    end
+  end
+
   describe '.build' do
     let(:function) do
       function_class.new(name: :f)
