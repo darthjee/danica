@@ -12,7 +12,7 @@ services:
   danica:
     <<: *base
     container_name: danica
-    command: bundle exec rspec
+    command: /bin/bash -c 'bundle install && bundle exec rspec'
 
 volumes:
   danica_gems_2_4_0:
