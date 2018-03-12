@@ -265,6 +265,23 @@ returns
 f(t, a, S_0, V_0) = S_0 + V_0 \cdot t + \frac{a \cdot t^{2}}{2}
 ```
 
+functions ignore constants variables on the function definition (left side of the equation)
+
+
+```ruby
+class Func <  Danica::Function.build(:x, :y, :z) { z*(x ** y) }
+end
+
+f = Func.new(y: 3, z: Danica::PI)
+
+f.to_tex
+```
+
+returns
+```tex
+f(x, 3) = \pi \cdot x^{3}
+```
+
 ##### to_gnu
 ```ruby
 fx.to_gnu
@@ -273,6 +290,23 @@ fx.to_gnu
 returns
 ```gnuplot
 f(t, a, S0, V0) = S0 + V0 * t + (a * t**(2))/(2)
+```
+
+functions ignore constants AND numeric variables on the function
+definition (left side of the equation)
+
+```ruby
+class Func <  Danica::Function.build(:x, :y, :z) { z*(x ** y) }
+end
+
+f = Func.new(y: 3, z: Danica::PI)
+
+f.to_gnu
+```
+
+returns
+```tex
+f(x) = pi * x**(3)
 ```
 
 ##### calculate / to_f
