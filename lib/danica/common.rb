@@ -45,6 +45,14 @@ module Danica
       end
     end
 
+    def tex
+      Format.new(self, :tex)
+    end
+
+    def gnu
+      Format.new(self, :gnu)
+    end
+
     def valued?
       to_f.present?
     rescue Exception::NotDefined

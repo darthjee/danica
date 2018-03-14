@@ -8,8 +8,18 @@ describe Danica::Format do
   end
 
   describe '#to_s' do
-    it 'return the expected format from the object' do
-      expect(subject.to_s).to eq('V')
+    context 'when format is tex' do
+      it 'return the expected tex string' do
+        expect(subject.to_s).to eq('V')
+      end
+    end
+
+    context 'when format is gnu' do
+      let(:format) { :gnu }
+
+      it 'return the expected gnu string' do
+        expect(subject.to_s).to eq('v')
+      end
     end
   end
 
