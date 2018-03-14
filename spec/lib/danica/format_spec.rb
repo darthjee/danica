@@ -86,12 +86,20 @@ describe Danica::Format do
       it 'returns the tex string' do
         expect(subject.tex.to_s).to eq('V')
       end
+
+      it 'returns similar object' do
+        expect(subject.tex).to eq(subject)
+      end
     end
 
     context 'when original format is gnu' do
       let(:format) { :gnu }
       it 'returns the tex string' do
         expect(subject.tex.to_s).to eq('V')
+      end
+
+      it 'returns a new format object' do
+        expect(subject.tex).not_to eq(subject)
       end
     end
   end

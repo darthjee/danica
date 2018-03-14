@@ -10,6 +10,12 @@ class Danica::Format
     content.to(format)
   end
 
+  def ==(other)
+    return false unless other.class == self.class
+    return other.content == content &&
+           other.format == format
+  end
+
   private
 
   def method_missing(method, *args)
