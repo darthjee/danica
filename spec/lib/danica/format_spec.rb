@@ -33,5 +33,15 @@ describe Danica::Format do
         expect((subject * 2).to_s).to eq('V \cdot 2')
       end
     end
+
+    describe '-@' do
+      it do
+        expect(-subject).to be_a(described_class)
+      end
+
+      it 'keeps being able to parse format' do
+        expect((-subject).to_s).to eq('-V')
+      end
+    end
   end
 end
