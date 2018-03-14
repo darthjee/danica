@@ -10,6 +10,8 @@ class Danica::Format
     content.to(format)
   end
 
+  private
+
   def method_missing(method, *args)
     value = content.public_send(method, *args)
     return value unless value.is_a?(Danica::Common)
