@@ -9,4 +9,8 @@ class Danica::Format
   def to_s
     content.to(format)
   end
+
+  def *(other)
+    self.class.new(content * other, format)
+  end
 end

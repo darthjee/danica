@@ -12,4 +12,16 @@ describe Danica::Format do
       expect(subject.to_s).to eq('V')
     end
   end
+
+  describe 'operators' do
+    describe '*' do
+      it do
+        expect(subject * 2).to be_a(described_class)
+      end
+
+      it 'keeps being able to parse format' do
+        expect((subject * 2).to_s).to eq('V \cdot 2')
+      end
+    end
+  end
 end
