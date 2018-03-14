@@ -10,11 +10,10 @@ class Danica::Format
     content.to(format)
   end
 
-  def +(other)
-    self.class.new(content + other, format)
-  end
-
-  def *(other)
-    self.class.new(content * other, format)
+  def method_missing(method, *args)
+    self.class.new(
+      content.public_send(method, *args),
+      format
+    )
   end
 end
