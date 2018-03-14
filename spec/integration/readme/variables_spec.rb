@@ -37,7 +37,7 @@ describe Danica::Wrapper::Variable do
     context 'when variable has value' do
       subject do
         Danica::DSL.build do
-          variable(name: :frequency, latex: '\lambda', gnu: :f, value: 2)
+          variable(name: :frequency, latex: '\lambda', gnuplot: :f, value: 2)
         end
       end
 
@@ -82,7 +82,7 @@ describe Danica::Wrapper::Variable do
   describe 'custom outputs' do
     subject do
       Danica::DSL.build do
-        variable(name: :frequency, latex: '\lambda', gnu: :f)
+        variable(name: :frequency, latex: '\lambda', gnuplot: :f)
       end
     end
 

@@ -5,8 +5,8 @@ describe Danica::Function::Spatial do
     described_class.new(
       time: :t,
       acceleration: 'a',
-      initial_space: { name: :S0, latex: 'S_0', gnu: 'S0' },
-      initial_velocity: { name: :V0, latex: 'V_0', gnu: 'V0' }
+      initial_space: { name: :S0, latex: 'S_0', gnuplot: 'S0' },
+      initial_velocity: { name: :V0, latex: 'V_0', gnuplot: 'V0' }
     )
   end
 

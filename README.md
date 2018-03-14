@@ -250,8 +250,8 @@ end
 fx = Danica::Function::Spatial.new(
   time: :t,
   acceleration: 'a',
-  initial_space: { name: :S0, latex: 'S_0', gnu: 'S0' },
-  initial_velocity: { name: :V0, latex: 'V_0', gnu: 'V0' }
+  initial_space: { name: :S0, latex: 'S_0', gnuplot: 'S0' },
+  initial_velocity: { name: :V0, latex: 'V_0', gnuplot: 'V0' }
 )
 ```
 
@@ -511,7 +511,7 @@ Variables can also behave differently when converting to tex or gnu
 
 ```ruby
 Danica::DSL.build do
-  variable(name: :frequency, latex: '\lambda', gnu: :f)
+  variable(name: :frequency, latex: '\lambda', gnuplot: :f)
 end
 ```
 would produce different ```#to_tex``` and ```#to_gnu``` results (```\lambda``` and ```f``` respectvly)
@@ -520,7 +520,7 @@ Also, valued variables will always use their value on string representation
 
 ```ruby
 Danica::DSL.build do
-  variable(name: :frequency, latex: '\lambda', gnu: :f, value: 2)
+  variable(name: :frequency, latex: '\lambda', gnuplot: :f, value: 2)
 end
 ```
 
@@ -601,14 +601,14 @@ While variables with value have a numeric string representation, constants will 
 be represented by their string attribute
 
 ```ruby
-Danica::Wrapper::Constant.new(gnu: 'pi', latex: '\pi', value: 3.141592)
+Danica::Wrapper::Constant.new(gnuplot: 'pi', latex: '\pi', value: 3.141592)
 ```
 which will have the returns of ```#to(format)``` obeying the following
 
 ```ruby
 {
   tex: '\pi',
-  gnu: 'pi',
+  gnuplot: 'pi',
   f: 3.141592
 }
 ```
