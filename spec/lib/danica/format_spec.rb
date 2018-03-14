@@ -14,6 +14,16 @@ describe Danica::Format do
   end
 
   describe 'operators' do
+    describe '+' do
+      it do
+        expect(subject + 2).to be_a(described_class)
+      end
+
+      it 'keeps being able to parse format' do
+        expect((subject + 2).to_s).to eq('V + 2')
+      end
+    end
+
     describe '*' do
       it do
         expect(subject * 2).to be_a(described_class)
