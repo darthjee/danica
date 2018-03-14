@@ -11,8 +11,11 @@ class Danica::Format
   end
 
   def method_missing(method, *args)
+    value = content.public_send(method, *args)
+    binding.pry
+    return value unless value.is_a?(Danica::Common)
     self.class.new(
-      content.public_send(method, *args),
+      value,
       format
     )
   end
