@@ -62,11 +62,11 @@ describe Danica::Wrapper::Constant do
   end
 
   context 'when initializing from hash' do
-    subject { described_class.new(value: 2.5, latex: :M, gnu: :m) }
+    subject { described_class.new(value: 2.5, latex: :M, gnuplot: :m) }
 
     it 'initialize normaly' do
       expect do
-        described_class.new(value: 2.5, latex: :M, gnu: :m)
+        described_class.new(value: 2.5, latex: :M, gnuplot: :m)
       end.not_to raise_error
     end
 

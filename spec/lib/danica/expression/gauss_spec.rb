@@ -5,7 +5,7 @@ describe Danica::Expression::Gauss do
     {
       x: :x,
       average: :u,
-      variance_root: { latex: '\theta', gnu: :v }
+      variance_root: { latex: '\theta', gnuplot: :v }
     }
   end
 

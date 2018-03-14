@@ -3,7 +3,7 @@ module Danica
     include BaseOperations
     include Common
 
-    attr_reader :value, :latex, :gnu
+    attr_reader :value, :latex, :gnuplot
 
     default_value :priority, 10
     default_value :valued?, true
@@ -12,7 +12,7 @@ module Danica
 
     def initialize(*args)
       attrs = args.extract_options!
-      attrs = args.as_hash(%i(value latex gnu)).merge(attrs)
+      attrs = args.as_hash(%i(value latex gnuplot)).merge(attrs)
 
       attrs.each do |key, value|
         self.send("#{key}=", value)
@@ -25,7 +25,7 @@ module Danica
 
     def ==(other)
       return false unless other.class == self.class
-      gnu == other.gnu && latex == other.latex && value == other.value
+      gnuplot == other.gnuplot && latex == other.latex && value == other.value
     end
 
     def to_tex
@@ -33,7 +33,7 @@ module Danica
     end
 
     def to_gnu
-      gnu.to_s
+      gnuplot.to_s
     end
 
     private
@@ -46,8 +46,8 @@ module Danica
       @latex = latex
     end
 
-    def gnu=(gnu)
-      @gnu = gnu
+    def gnuplot=(gnuplot)
+      @gnuplot = gnuplot
     end
   end
 

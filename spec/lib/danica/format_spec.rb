@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Danica::Format do
-  let(:content) { Danica::Wrapper::Variable.new(latex: :V, gnu: :v) }
+  let(:content) { Danica::Wrapper::Variable.new(latex: :V, gnuplot: :v) }
   let(:format) { :tex }
   subject do
     described_class.new(content, format)

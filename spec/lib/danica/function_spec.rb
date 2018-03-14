@@ -192,7 +192,7 @@ describe Danica::Function do
 
       context 'from a hash' do
         let(:function) do
-          function_class.new(name: :f, x: { latex: '\pi', gnu: 'pi', value: 3.14 })
+          function_class.new(name: :f, x: { latex: '\pi', gnuplot: 'pi', value: 3.14 })
         end
 
         it 'ignores the constant in the definition' do
@@ -244,7 +244,7 @@ describe Danica::Function do
 
       context 'from a hash' do
         let(:function) do
-          function_class.new(name: :f, x: { latex: '\pi', gnu: 'pi', value: 3.14 })
+          function_class.new(name: :f, x: { latex: '\pi', gnuplot: 'pi', value: 3.14 })
         end
 
         it 'ignores the constant in the definition' do
