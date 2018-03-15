@@ -15,7 +15,7 @@ module Danica
 
     def to(_, decimals: nil)
       return value.to_i.to_s if value.to_i == value
-      return "%.#{decimals}f" % value if decimals
+      return ("%.#{decimals}f" % value).to_f.to_s if decimals
       value.to_s
     end
 

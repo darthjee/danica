@@ -68,6 +68,14 @@ describe Danica::Wrapper::Number do
         it 'returns the value float string' do
           expect(subject.to_gnu(decimals: 4)).to eq('10')
         end
+
+        context 'but the number has less decimals' do
+          let(:value) { 10.5 }
+
+          it 'returns the value integer string' do
+            expect(subject.to_tex(decimals: 4)).to eq('10.5')
+          end
+        end
       end
     end
 
@@ -81,6 +89,14 @@ describe Danica::Wrapper::Number do
       context 'and passing the decimals argument' do
         it 'returns the value float string' do
           expect(subject.to_gnu(decimals: 4)).to eq('3.3333')
+        end
+
+        context 'but the number has less decimals' do
+          let(:value) { 10.5 }
+
+          it 'returns the value integer string' do
+            expect(subject.to_gnu(decimals: 4)).to eq('10.5')
+          end
         end
       end
     end
