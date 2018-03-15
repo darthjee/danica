@@ -1,4 +1,4 @@
-class Danica::Format
+class Danica::Formatted
   attr_reader :content, :format
 
   def initialize(content, format)

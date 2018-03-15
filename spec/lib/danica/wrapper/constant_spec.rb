@@ -44,7 +44,7 @@ describe Danica::Wrapper::Constant do
       it do
         expect do
           subject.to('format')
-        end.to raise_error(Danica::Exception::FormatNotFound)
+        end.to raise_error(Danica::Exception::FormattedNotFound)
       end
     end
   end

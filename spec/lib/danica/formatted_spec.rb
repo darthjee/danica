@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Danica::Format do
+describe Danica::Formatted do
   let(:content) { Danica::Wrapper::Variable.new(latex: :V, gnuplot: :v) }
   let(:format) { :tex }
   subject do
@@ -79,7 +79,7 @@ describe Danica::Format do
 
   describe '#tex' do
     it do
-      expect(subject.tex).to be_a(Danica::Format)
+      expect(subject.tex).to be_a(Danica::Formatted)
     end
 
     context 'when original format is tex' do
@@ -106,7 +106,7 @@ describe Danica::Format do
 
   describe '#gnu' do
     it do
-      expect(subject.gnu).to be_a(Danica::Format)
+      expect(subject.gnu).to be_a(Danica::Formatted)
     end
 
     context 'when original format is tex' do

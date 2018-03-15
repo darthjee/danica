@@ -41,16 +41,16 @@ module Danica
       when :f
         to_f
       else
-        raise Exception::FormatNotFound.new
+        raise Exception::FormattedNotFound.new
       end
     end
 
     def tex
-      Format.new(self, :tex)
+      Formatted.new(self, :tex)
     end
 
     def gnu
-      Format.new(self, :gnu)
+      Formatted.new(self, :gnu)
     end
 
     def valued?
