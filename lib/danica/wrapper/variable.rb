@@ -30,13 +30,13 @@ module Danica
              other.gnuplot == gnuplot
     end
 
-    def to_tex
-      return value.to_tex if value
+    def to_tex(decimals: nil)
+      return value.to_tex(decimals: decimals) if value
       (latex || name).to_s
     end
 
-    def to_gnu
-      return value.to_gnu if value
+    def to_gnu(decimals: nil)
+      return value.to_gnu(decimals: decimals) if value
       (gnuplot || name).to_s
     end
 
