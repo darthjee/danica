@@ -14,12 +14,12 @@ module Danica
             Math.#{operator}(value.to_f)
           end
 
-          def to_tex
-            '#{tex.gsub(':value:', "' + value.to_tex + '")}'
+          def to_tex(**options)
+            '#{tex.gsub(':value:', "' + value.to_tex(options) + '")}'
           end
 
-          def to_gnu
-            '#{gnu.gsub(':value:', "' + value.to_gnu + '")}'
+          def to_gnu(**options)
+            '#{gnu.gsub(':value:', "' + value.to_gnu(options) + '")}'
           end
         ))
       end
