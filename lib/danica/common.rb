@@ -24,20 +24,20 @@ module Danica
       raise Exception::NotImplemented
     end
 
-    def to_tex(decimals: nil)
-      to(:tex, decimals: decimals)
+    def to_tex(**options)
+      to(:tex, options)
     end
 
-    def to_gnu(decimals: nil)
-      to(:gnu, decimals: decimals)
+    def to_gnu(**options)
+      to(:gnu, options)
     end
 
-    def to(format, decimals: nil)
+    def to(format, **options)
       case format.to_sym
       when :tex
-        to_tex(decimals: decimals)
+        to_tex(options)
       when :gnu
-        to_gnu(decimals: decimals)
+        to_gnu(options)
       when :f
         to_f
       else

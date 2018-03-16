@@ -13,7 +13,7 @@ module Danica
       @value = value
     end
 
-    def to(_, decimals: nil)
+    def to(_, decimals: nil, **__)
       return value.to_i.to_s if value.to_i == value
       return ("%.#{decimals}f" % value).to_f.to_s if decimals
       value.to_s
