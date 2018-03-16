@@ -23,7 +23,7 @@ module Danica
     end
 
     def self.wrap_hash(hash)
-      return Constant.new(hash) if hash.keys.map(&:to_sym).sort == %i(gnu latex value)
+      return Constant.new(hash) if hash.keys.map(&:to_sym).sort == %i(gnuplot latex value)
       Variable.new(hash)
     end
 

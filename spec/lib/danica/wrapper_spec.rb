@@ -38,7 +38,7 @@ describe Danica::Wrapper do
 
     context 'when value is a Hash' do
       context 'but it is a constant' do
-        let(:value) { { value: 10, latex: :x, gnu: :X } }
+        let(:value) { { value: 10, latex: :x, gnuplot: :X } }
 
         it do
           expect(subject.wrapped_value.content).to be_a(Danica::Wrapper::Constant)

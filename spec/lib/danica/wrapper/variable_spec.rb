@@ -39,6 +39,6 @@ describe Danica::Wrapper::Variable do
   end
 
   describe '#to_gnu' do
-    it_behaves_like 'a variable method to formated string', :to_gnu, :gnu
+    it_behaves_like 'a variable method to formated string', :to_gnu, :gnuplot
   end
 end

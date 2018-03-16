@@ -62,7 +62,7 @@ describe Danica::Common do
         it do
           expect do
             subject.to('format')
-          end.to raise_error(Danica::Exception::FormatNotFound)
+          end.to raise_error(Danica::Exception::FormattedNotFound)
         end
       end
     end
@@ -83,6 +83,26 @@ describe Danica::Common do
       it 'returns the call of #to(:gnu)' do
         expect(subject.to_gnu).to eq('formatted: gnu')
       end
+    end
+  end
+
+  describe '#tex' do
+    it do
+      expect(subject.tex).to be_a(Danica::Formatted)
+    end
+
+    it 'knows how to return a tex string' do
+      expect(subject.tex.to_s).to eq('tex')
+    end
+  end
+
+  describe '#gnu' do
+    it do
+      expect(subject.gnu).to be_a(Danica::Formatted)
+    end
+
+    it 'knows how to return a gnu string' do
+      expect(subject.gnu.to_s).to eq('gnu')
     end
   end
 end

@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Danica::Wrapper::Constant do
   subject do
-    Danica::Wrapper::Constant.new(gnu: 'pi', latex: '\pi', value: 3.141592)
+    Danica::Wrapper::Constant.new(gnuplot: 'pi', latex: '\pi', value: 3.141592)
   end
   let(:output) do
     {
