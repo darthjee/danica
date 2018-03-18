@@ -19,7 +19,9 @@ module Danica
     private
 
     def description_variables(format, **options)
-      variables_for(format).map { |v| v.to(format, options) }.join(', ')
+      variables_for(format).map do |value|
+        value.to(format, options)
+      end.join(', ')
     end
 
     def variables_for(format)
