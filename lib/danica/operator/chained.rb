@@ -16,7 +16,7 @@ module Danica
 
       def to(format, **options)
         extractor = string_extractor(format, **options)
-        variables.procedural_join(extractor, &join_proc(symbol(format), options))
+        variables.procedural_join(extractor, &join_proc(symbol(format)))
       end
 
       def variables
@@ -34,7 +34,7 @@ module Danica
         end
       end
 
-      def join_proc(symbol, **_)
+      def join_proc(symbol)
         proc { " #{symbol} " }
       end
 

@@ -14,7 +14,7 @@ module Danica
       a + b
     end
 
-    def join_proc(symbol, **_)
+    def join_proc(symbol)
       proc do |_, value|
         value.signaled? ? ' ' : " #{symbol} "
       end
