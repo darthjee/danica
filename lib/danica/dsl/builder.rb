@@ -13,6 +13,8 @@ module Danica
         DSL.register_class(method, clazz)
       end
 
+      private
+
       def clazz
         @clazz ||= build_clazz
       end
