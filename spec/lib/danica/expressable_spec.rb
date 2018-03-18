@@ -3,11 +3,18 @@ require 'spec_helper'
 class Danica::Expressable::Dummy
   include Danica::Expressable
 
+  delegate :to, to: :the_block
+
   built_with :the_block
 end
 
 describe Danica::Expressable do
   let(:clazz) { described_class::Dummy }
+  subject do
+    clazz.create(:x) { x }
+  end
+
+  it_behaves_like 'an object that respond to basic_methods', ignore: %i(valued? container? is_grouped? priority)
 
   describe '.build' do
     it 'responds to build' do
