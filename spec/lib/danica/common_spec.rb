@@ -27,6 +27,7 @@ end
 describe Danica::Common do
   let(:clazz) { described_class::Dummy }
   subject { clazz.new }
+  it_behaves_like 'an object that respond to basic_methods'
 
   describe '#to_f' do
     it do

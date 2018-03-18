@@ -18,6 +18,7 @@ module Danica
 
       default_values :constant?, :signaled?, :container?, :variable?,
                      :variable_holder?, false
+      default_value  :priority, 1
     end
 
     def to_f
