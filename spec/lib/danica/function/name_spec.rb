@@ -18,7 +18,7 @@ describe Danica::Function::Name do
     end
   end
 
-  describe '#to_tex' do
+  describe '#to_gnu' do
     it 'returns the name of the function with tex variables' do
       expect(subject.to_gnu).to eq('f(u)')
     end
