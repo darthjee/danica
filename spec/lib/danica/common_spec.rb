@@ -5,19 +5,19 @@ module Danica
     class Dummy
       include Common
 
-      def to_tex
-        'tex'
+      def to_tex(**options)
+        options.empty? ? 'tex' : "tex #{options}"
       end
 
-      def to_gnu
-        'gnu'
+      def to_gnu(**options)
+        options.empty? ? 'gnu' : "gnu #{options}"
       end
     end
 
     class Dummy2
       include Common
 
-      def to(format)
+      def to(format, **_)
         "formatted: #{format}"
       end
     end
@@ -63,6 +63,11 @@ describe Danica::Common do
           expect do
             subject.to('format')
           end.to raise_error(Danica::Exception::FormattedNotFound)
+        end
+      end
+      context 'when passing options' do
+        it 'passes the options ahead' do
+          expect(subject.to(:gnu, { opt: 1 })).to eq('gnu {:opt=>1}')
         end
       end
     end
