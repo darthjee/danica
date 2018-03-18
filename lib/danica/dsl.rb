@@ -1,12 +1,20 @@
 module Danica
   module DSL
-    class Inferator
-      attr_reader :method, :claz, :base
+    class Builder
+      attr_reader :instance, :method, :claz, :base
 
-      def initialize(method, claz=nil, base=nil)
+      def initialize(instance, method, claz=nil, base=nil)
+        @instance = instance
         @method = method
         @claz = claz
         @base = base
+      end
+
+      def build
+        clas = clazz
+        instance.send(:define_method, method) do |*args|
+          clas.new(*args)
+        end
       end
 
       def clazz
@@ -38,11 +46,7 @@ module Danica
       end
 
       def register(method, clazz=nil, base=nil)
-        clazz = Inferator.new(method, clazz, base).clazz
-
-        define_method method do |*args|
-          clazz.new(*args)
-        end
+        Builder.new(self, method, clazz, base).build
       end
 
       def build(&block)
