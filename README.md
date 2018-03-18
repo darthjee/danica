@@ -612,3 +612,46 @@ which will have the returns of ```#to(format)``` obeying the following
   f: 3.141592
 }
 ```
+
+###Formatting
+When generating the output, you can choose options or even
+create a formatted object
+
+#### decimals
+define the float decimals
+
+```ruby
+value = 1 / 3.0
+expression = Danica.build(:x) do
+  x + value
+end
+
+expression.to_tex(decimals: 3)
+```
+
+returns
+
+```string
+x + 0.333
+```
+
+#### Formatted
+Any Danica object can be formatted previously returning a pre-formatted object
+
+
+```ruby
+value = 1 / 3.0
+expression = Danica.build(:x) do
+  x + value
+end
+
+formatted = expression.tex(decimals: 3)
+formatted.to_s
+```
+
+returns
+
+```string
+x + 0.333
+```
+

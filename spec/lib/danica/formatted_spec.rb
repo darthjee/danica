@@ -3,8 +3,9 @@ require 'spec_helper'
 describe Danica::Formatted do
   let(:content) { Danica::Wrapper::Variable.new(latex: :V, gnuplot: :v) }
   let(:format) { :tex }
+  let(:options) { {} }
   subject do
-    described_class.new(content, format)
+    described_class.new(content, format, options)
   end
 
   describe '#to_s' do
@@ -19,6 +20,22 @@ describe Danica::Formatted do
 
       it 'return the expected gnu string' do
         expect(subject.to_s).to eq('v')
+      end
+    end
+
+    context 'when variable has numeric value' do
+      let(:content) { Danica::Wrapper::Number.new(1/3.0) }
+
+      it 'returns the formatted number' do
+        expect(subject.to_s).to eq('0.3333333333333333')
+      end
+
+      context 'when passing decimals settings' do
+        let(:options) { { decimals: 4 } }
+
+        it 'returns the formatted number' do
+          expect(subject.to_s).to eq('0.3333')
+        end
       end
     end
   end

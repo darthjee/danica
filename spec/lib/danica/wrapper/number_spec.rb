@@ -27,38 +27,10 @@ describe Danica::Wrapper::Number do
   end
 
   describe '#to_tex' do
-    context 'when value should be integer' do
-      let(:value) { 10.0 }
-
-      it 'returns the value integer string' do
-        expect(subject.to_tex).to eq('10')
-      end
-    end
-
-    context 'when value should be a float' do
-      let(:value) { 10.5 }
-
-      it 'returns the value float string' do
-        expect(subject.to_tex).to eq('10.5')
-      end
-    end
+    it_behaves_like 'a method that display the numeric value', :to_tex
   end
 
   describe '#to_gnu' do
-    context 'when value should be integer' do
-      let(:value) { 10.0 }
-
-      it 'returns the value integer string' do
-        expect(subject.to_gnu).to eq('10')
-      end
-    end
-
-    context 'when value should be integer' do
-      let(:value) { 10.5 }
-
-      it 'returns the value integer string' do
-        expect(subject.to_gnu).to eq('10.5')
-      end
-    end
+    it_behaves_like 'a method that display the numeric value', :to_gnu
   end
 end

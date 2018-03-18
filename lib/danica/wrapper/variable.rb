@@ -30,13 +30,13 @@ module Danica
              other.gnuplot == gnuplot
     end
 
-    def to_tex
-      return value.to_tex if value
+    def to_tex(**options)
+      return value.to_tex(options) if value
       (latex || name).to_s
     end
 
-    def to_gnu
-      return value.to_gnu if value
+    def to_gnu(**options)
+      return value.to_gnu(options) if value
       (gnuplot || name).to_s
     end
 

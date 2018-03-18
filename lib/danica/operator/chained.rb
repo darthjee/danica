@@ -14,8 +14,8 @@ module Danica
         variables.include?(value.content)
       end
 
-      def to(format)
-        extractor = string_extractor(format)
+      def to(format, **options)
+        extractor = string_extractor(format, **options)
         variables.procedural_join(extractor, &join_proc(symbol(format)))
       end
 
@@ -38,10 +38,10 @@ module Danica
         proc { " #{symbol} " }
       end
 
-      def string_extractor(method)
+      def string_extractor(*args)
         proc do |parcel|
           parcel = wrap_as_group(parcel)
-          parcel.to(method)
+          parcel.to(*args)
         end
       end
 

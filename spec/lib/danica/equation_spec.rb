@@ -12,6 +12,8 @@ describe Danica::Equation do
     clazz.new
   end
 
+  it_behaves_like 'an object that respond to basic_methods'
+
   describe '.build' do
     it 'returns a class that is also an equation' do
       expect(subject).to be_a(Danica::Equation)

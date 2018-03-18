@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 shared_examples 'a generically generated function' do
+  it_behaves_like 'an object that respond to basic_methods'
+
   it 'returns a function class' do
     expect(function.class.superclass).to eq(described_class)
   end

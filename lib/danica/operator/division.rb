@@ -8,12 +8,12 @@ module Danica
       numerator.to_f / denominator.to_f
     end
 
-    def to_tex
-      "\\frac{#{numerator.to_tex}}{#{denominator.to_tex}}"
+    def to_tex(**options)
+      "\\frac{#{numerator.to_tex(options)}}{#{denominator.to_tex(options)}}"
     end
 
-    def to_gnu
-      "(#{numerator.to_gnu})/(#{denominator.to_gnu})"
+    def to_gnu(**options)
+      "(#{numerator.to_gnu(options)})/(#{denominator.to_gnu(options)})"
     end
   end
 end

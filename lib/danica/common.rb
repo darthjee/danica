@@ -18,26 +18,27 @@ module Danica
 
       default_values :constant?, :signaled?, :container?, :variable?,
                      :variable_holder?, false
+      default_value  :priority, 1
     end
 
     def to_f
       raise Exception::NotImplemented
     end
 
-    def to_tex
-      to(:tex)
+    def to_tex(**options)
+      to(:tex, options)
     end
 
-    def to_gnu
-      to(:gnu)
+    def to_gnu(**options)
+      to(:gnu, options)
     end
 
-    def to(format)
+    def to(format, **options)
       case format.to_sym
       when :tex
-        to_tex
+        to_tex(options)
       when :gnu
-        to_gnu
+        to_gnu(options)
       when :f
         to_f
       else
@@ -45,12 +46,12 @@ module Danica
       end
     end
 
-    def tex
-      Formatted.new(self, :tex)
+    def tex(**options)
+      Formatted.new(self, :tex, options)
     end
 
-    def gnu
-      Formatted.new(self, :gnu)
+    def gnu(**options)
+      Formatted.new(self, :gnu, options)
     end
 
     def valued?

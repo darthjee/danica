@@ -5,19 +5,19 @@ module Danica
     class Dummy
       include Common
 
-      def to_tex
-        'tex'
+      def to_tex(**options)
+        options.empty? ? 'tex' : "tex #{options}"
       end
 
-      def to_gnu
-        'gnu'
+      def to_gnu(**options)
+        options.empty? ? 'gnu' : "gnu #{options}"
       end
     end
 
     class Dummy2
       include Common
 
-      def to(format)
+      def to(format, **_)
         "formatted: #{format}"
       end
     end
@@ -27,6 +27,7 @@ end
 describe Danica::Common do
   let(:clazz) { described_class::Dummy }
   subject { clazz.new }
+  it_behaves_like 'an object that respond to basic_methods'
 
   describe '#to_f' do
     it do
@@ -65,6 +66,11 @@ describe Danica::Common do
           end.to raise_error(Danica::Exception::FormattedNotFound)
         end
       end
+      context 'when passing options' do
+        it 'passes the options ahead' do
+          expect(subject.to(:gnu, { opt: 1 })).to eq('gnu {:opt=>1}')
+        end
+      end
     end
   end
 
@@ -92,7 +98,13 @@ describe Danica::Common do
     end
 
     it 'knows how to return a tex string' do
-      expect(subject.tex.to_s).to eq('tex')
+      expect(subject.tex.to_s).to eq('tex {:decimals=>nil}')
+    end
+
+    context 'when passing options' do
+      it 'uses the arguments' do
+        expect(subject.tex(decimals: 3).to_s).to eq('tex {:decimals=>3}')
+      end
     end
   end
 
@@ -102,7 +114,13 @@ describe Danica::Common do
     end
 
     it 'knows how to return a gnu string' do
-      expect(subject.gnu.to_s).to eq('gnu')
+      expect(subject.gnu.to_s).to eq('gnu {:decimals=>nil}')
+    end
+
+    context 'when passing options' do
+      it 'uses the arguments' do
+        expect(subject.gnu(decimals: 3).to_s).to eq('gnu {:decimals=>3}')
+      end
     end
   end
 end

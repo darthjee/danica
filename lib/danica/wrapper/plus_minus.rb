@@ -19,12 +19,12 @@ module Danica
       value.to_f
     end
 
-    def to_tex
-      "\\pm #{wrap_as_group(value).to_tex}"
+    def to_tex(**options)
+      "\\pm #{wrap_as_group(value).to_tex(options)}"
     end
 
-    def to_gnu
-      "+ #{wrap_as_group(value).to_gnu}"
+    def to_gnu(**options)
+      "+ #{wrap_as_group(value).to_gnu(options)}"
     end
 
     def ==(other)
