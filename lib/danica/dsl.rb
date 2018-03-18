@@ -12,7 +12,13 @@ module Danica
       end
 
       def register(method, clazz=nil, base=nil)
-        Builder.new(self, method, clazz, base).build
+        Builder.new(method, clazz, base).build
+      end
+
+      def register_class(method, clazz)
+        define_method(method) do |*args|
+          clazz.new(*args)
+        end
       end
 
       def build(&block)

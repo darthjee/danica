@@ -1,20 +1,16 @@
 module Danica
   module DSL
     class Builder
-      attr_reader :instance, :method, :claz, :base
+      attr_reader :method, :claz, :base
 
-      def initialize(instance, method, claz=nil, base=nil)
-        @instance = instance
+      def initialize(method, claz=nil, base=nil)
         @method = method
         @claz = claz
         @base = base
       end
 
       def build
-        clas = clazz
-        instance.send(:define_method, method) do |*args|
-          clas.new(*args)
-        end
+        DSL.register_class(method, clazz)
       end
 
       def clazz
