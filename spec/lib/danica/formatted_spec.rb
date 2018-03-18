@@ -8,8 +8,6 @@ describe Danica::Formatted do
     described_class.new(content, format, options)
   end
 
-  it_behaves_like 'an object that respond to basic_methods'
-
   describe '#to_s' do
     context 'when format is tex' do
       it 'return the expected tex string' do

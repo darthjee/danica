@@ -98,7 +98,7 @@ describe Danica::Common do
     end
 
     it 'knows how to return a tex string' do
-      expect(subject.tex.to_s).to eq('tex')
+      expect(subject.tex.to_s).to eq('tex {:decimals=>nil}')
     end
   end
 
@@ -108,7 +108,7 @@ describe Danica::Common do
     end
 
     it 'knows how to return a gnu string' do
-      expect(subject.gnu.to_s).to eq('gnu')
+      expect(subject.gnu.to_s).to eq('gnu {:decimals=>nil}')
     end
   end
 end

@@ -8,7 +8,7 @@ class Danica::Formatted
   end
 
   def to_s
-    content.to(format)
+    content.to(format, decimals: decimals)
   end
 
   def ==(other)
