@@ -19,8 +19,8 @@ module Danica
       -value.to_f
     end
 
-    def to(format, **options)
-      "-#{wrap_as_group(value).to(format, options)}"
+    def to(*args)
+      "-#{wrap_as_group(value).to(*args)}"
     end
 
     def ==(other)

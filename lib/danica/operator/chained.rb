@@ -38,10 +38,10 @@ module Danica
         proc { " #{symbol} " }
       end
 
-      def string_extractor(method, **options)
+      def string_extractor(*args)
         proc do |parcel|
           parcel = wrap_as_group(parcel)
-          parcel.to(method, options)
+          parcel.to(*args)
         end
       end
 
