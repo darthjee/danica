@@ -46,12 +46,12 @@ module Danica
       end
     end
 
-    def tex
-      Formatted.new(self, :tex)
+    def tex(**options)
+      Formatted.new(self, :tex, options)
     end
 
-    def gnu
-      Formatted.new(self, :gnu)
+    def gnu(**options)
+      Formatted.new(self, :gnu, options)
     end
 
     def valued?

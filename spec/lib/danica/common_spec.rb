@@ -100,6 +100,12 @@ describe Danica::Common do
     it 'knows how to return a tex string' do
       expect(subject.tex.to_s).to eq('tex {:decimals=>nil}')
     end
+
+    context 'when passing options' do
+      it 'uses the arguments' do
+        expect(subject.tex(decimals: 3).to_s).to eq('tex {:decimals=>3}')
+      end
+    end
   end
 
   describe '#gnu' do
@@ -109,6 +115,12 @@ describe Danica::Common do
 
     it 'knows how to return a gnu string' do
       expect(subject.gnu.to_s).to eq('gnu {:decimals=>nil}')
+    end
+
+    context 'when passing options' do
+      it 'uses the arguments' do
+        expect(subject.gnu(decimals: 3).to_s).to eq('gnu {:decimals=>3}')
+      end
     end
   end
 end
