@@ -1,5 +1,33 @@
 module Danica
   module DSL
+    class Inferator
+      attr_reader :method, :claz, :base
+
+      def initialize(method, claz=nil, base=nil)
+        @method = method
+        @claz = claz
+        @base = base
+      end
+
+      def clazz
+        @clazz ||= build_clazz
+      end
+
+      def build_clazz
+        return clazz_from_method unless claz
+        return claz if claz.is_a? Class
+        clazz_from_string
+      end
+
+      def clazz_from_method
+        [base.to_s, method.to_s.camelize].compact.join('::').constantize
+      end
+
+      def clazz_from_string
+        [base, claz.to_s].compact.join('::').constantize
+      end
+    end
+
     class << self
       def register_operator(method, clazz=nil)
         register(method, clazz, 'Danica::Operator')
@@ -10,9 +38,9 @@ module Danica
       end
 
       def register(method, clazz=nil, base=nil)
+        clazz = Inferator.new(method, clazz, base).clazz
+
         define_method method do |*args|
-          clazz = [base.to_s, method.to_s.camelize].compact.join('::').constantize unless clazz
-          clazz = [base, clazz.to_s].compact.join('::').constantize unless clazz.is_a? Class
           clazz.new(*args)
         end
       end
