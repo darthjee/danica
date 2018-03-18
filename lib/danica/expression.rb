@@ -7,7 +7,7 @@ module Danica
 
     autoload :Gauss,    'danica/expression/gauss'
 
-    delegate :to, :is_grouped?, :priority, to: :expression_block
+    delegate :is_grouped?, :priority, to: :expression_block
 
     built_with(:expression_block)
   end

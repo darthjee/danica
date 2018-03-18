@@ -5,7 +5,7 @@ module Danica
     included do
       class << self
         def built_with(block_name)
-          self.send(:delegate, :to_f, to: block_name)
+          self.send(:delegate, :to, :to_f, to: block_name)
 
           self.send(:define_singleton_method, :build) do |*vars, &block|
             Class.new(self) do
