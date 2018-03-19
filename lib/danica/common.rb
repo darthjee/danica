@@ -4,21 +4,21 @@ module Danica
       include Wrapper
       include DSL
 
-      class << self
-        def default_value(name, value)
-          define_method(name) { |*_| value }
-        end
-
-        def default_values(*names, value)
-          names.each do |name|
-            default_value(name, value)
-          end
-        end
-      end
-
       default_values :constant?, :signaled?, :container?, :variable?,
                      :variable_holder?, false
       default_value  :priority, 1
+    end
+
+    class_methods do
+      def default_value(name, value)
+        define_method(name) { |*_| value }
+      end
+
+      def default_values(*names, value)
+        names.each do |name|
+          default_value(name, value)
+        end
+      end
     end
 
     def to_f
