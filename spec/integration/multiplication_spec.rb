@@ -41,4 +41,40 @@ describe 'integration of multiplication' do
       end
     end
   end
+
+  describe 'when calling * operator' do
+    subject do
+      Danica::Operator::Multiplication.new(:x, :y)
+    end
+    let(:variable) { Danica::Wrapper::Variable.new(:v) }
+    let(:result) { subject * variable }
+
+    it do
+      expect(result).to be_a(Danica::Operator::Multiplication)
+    end
+
+    it 'rewraps variables' do
+      expect(result.variables.size).to eq(3)
+    end
+
+    it 'knows how to order variables' do
+      expect(result.to_gnu).to eq('x * y * v')
+    end
+
+    context 'when called from the other' do
+      let(:result) { variable * subject }
+
+      it do
+        expect(result).to be_a(Danica::Operator::Multiplication)
+      end
+
+      it 'rewraps variables' do
+        expect(result.variables.size).to eq(3)
+      end
+
+      it 'knows how to order variables' do
+        expect(result.to_gnu).to eq('v * x * y')
+      end
+    end
+  end
 end
