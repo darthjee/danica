@@ -2,26 +2,24 @@ module Danica
   module Expressable extend ::ActiveSupport::Concern
     include VariablesHolder
 
-    included do
-      class << self
-        def built_with(block_name)
-          self.send(:delegate, :to, :to_f, to: block_name)
+    class_methods do
+      def built_with(block_name)
+        self.delegate :to, :to_f, to: block_name
 
-          self.send(:define_singleton_method, :build) do |*vars, &block|
-            Class.new(self) do
-              variables(*vars)
+        self.define_singleton_method(:build) do |*vars, &block|
+          Class.new(self) do
+            variables(*vars)
 
-              private
+            private
 
-              module_eval("define_method :#{block_name} do
+            module_eval("define_method :#{block_name} do
                 @#{block_name} ||= instance_eval(&block) if block
               end")
-            end
           end
+        end
 
-          self.send(:define_singleton_method, :create) do |*vars, &block|
-            build(*vars, &block).new
-          end
+        self.define_singleton_method(:create) do |*vars, &block|
+          build(*vars, &block).new
         end
       end
     end
