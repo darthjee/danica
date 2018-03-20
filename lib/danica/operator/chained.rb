@@ -45,11 +45,6 @@ module Danica
         end
       end
 
-      def repack(other)
-        other_variables = other.is_a?(self.class) ? other.variables : [ other ]
-        self.class.new(variables + other_variables)
-      end
-
       def chain(numbers)
         numbers.inject do |a,b|
           chain_operation(a,b)

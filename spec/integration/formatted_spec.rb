@@ -18,11 +18,6 @@ describe 'integration of formatted objects' do
     it 'knows how to convert it to string' do
       expect(result.to_s).to eq('v \\cdot x \\cdot y')
     end
-
-    it 'rewraps the multiplication' do
-      expect(result.variables).to include(multiplication.variables)
-      expect(result.variables).to include(variable)
-    end
   end
 
   context 'when multiplicated by another multiplication' do
@@ -33,11 +28,6 @@ describe 'integration of formatted objects' do
 
     it 'knows how to convert it to string' do
       expect(result.to_s).to eq('v \\cdot x \\cdot y')
-    end
-
-    it 'rewraps the multiplication' do
-      expect(result.variables).to include(multiplication.variables)
-      expect(result.variables).to include(variable)
     end
   end
 end

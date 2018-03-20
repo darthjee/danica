@@ -2,10 +2,6 @@ module Danica
   class Operator::Addition < Operator::Chained
     default_value :priority, 1
 
-    def +(other)
-      repack(other)
-    end
-
     private
 
     default_value :symbol, :+

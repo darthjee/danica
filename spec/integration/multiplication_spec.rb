@@ -53,10 +53,6 @@ describe 'integration of multiplication' do
       expect(result).to be_a(Danica::Operator::Multiplication)
     end
 
-    it 'rewraps variables' do
-      expect(result.variables.size).to eq(3)
-    end
-
     it 'knows how to order variables' do
       expect(result.to_gnu).to eq('x * y * v')
     end
@@ -66,10 +62,6 @@ describe 'integration of multiplication' do
 
       it do
         expect(result).to be_a(Danica::Operator::Multiplication)
-      end
-
-      it 'rewraps variables' do
-        expect(result.variables.size).to eq(3)
       end
 
       it 'knows how to order variables' do
