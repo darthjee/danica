@@ -1,33 +1,62 @@
 require 'spec_helper'
 
 describe 'integration of formatted objects' do
-  let(:multiplication) do
-    Danica.build(:x, :y) { x * y }
-  end
   let(:variable) { Danica.build(:v) { v } }
   subject do
     variable.tex
   end
 
-  context 'when multipling another multiplication' do
-    let(:result) { subject * multiplication }
-    it do
-      expect(result).to be_a(Danica::Formatted)
+  context 'when interacting with a multiplication' do
+    let(:other) do
+      Danica.build(:x, :y) { x * y }
+    end
+    context 'when multipling another multiplication' do
+      let(:result) { subject * other }
+      it do
+        expect(result).to be_a(Danica::Formatted)
+      end
+
+      it 'knows how to convert it to string' do
+        expect(result.to_s).to eq('v \\cdot x \\cdot y')
+      end
     end
 
-    it 'knows how to convert it to string' do
-      expect(result.to_s).to eq('v \\cdot x \\cdot y')
+    context 'when multiplicated by another multiplication' do
+      let(:result) { other * subject }
+      it do
+        expect(result).to be_a(Danica::Formatted)
+      end
+
+      it 'knows how to convert it to string' do
+        expect(result.to_s).to eq('x \\cdot y \\cdot v')
+      end
     end
   end
 
-  context 'when multiplicated by another multiplication' do
-    let(:result) { multiplication * subject }
-    it do
-      expect(result).to be_a(Danica::Formatted)
+  context 'when interacting with a sum' do
+    let(:other) do
+      Danica.build(:x, :y) { x + y }
+    end
+    context 'when summing another sum' do
+      let(:result) { subject + other }
+      it do
+        expect(result).to be_a(Danica::Formatted)
+      end
+
+      it 'knows how to convert it to string' do
+        expect(result.to_s).to eq('v + x + y')
+      end
     end
 
-    it 'knows how to convert it to string' do
-      expect(result.to_s).to eq('x \\cdot y \\cdot v')
+    context 'when added by another sum' do
+      let(:result) { other + subject }
+      it do
+        expect(result).to be_a(Danica::Formatted)
+      end
+
+      it 'knows how to convert it to string' do
+        expect(result.to_s).to eq('x + y + v')
+      end
     end
   end
 end

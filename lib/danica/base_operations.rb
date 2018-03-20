@@ -1,7 +1,9 @@
 module Danica
   module BaseOperations
     def +(other)
-      addition(self, other)
+      value = addition(self, other)
+      return other.repack(value) if other.is_a?(Danica::Formatted)
+      value
     end
 
     def *(other)
