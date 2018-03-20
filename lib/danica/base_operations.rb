@@ -5,7 +5,9 @@ module Danica
     end
 
     def *(other)
-      multiplication(self, other)
+      value = multiplication(self, other)
+      return other.repack(value) if other.is_a?(Danica::Formatted)
+      value
     end
 
     def /(other)

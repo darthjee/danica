@@ -27,7 +27,7 @@ describe 'integration of formatted objects' do
     end
 
     it 'knows how to convert it to string' do
-      expect(result.to_s).to eq('v \\cdot x \\cdot y')
+      expect(result.to_s).to eq('x \\cdot y \\cdot v')
     end
   end
 end

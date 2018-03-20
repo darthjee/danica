@@ -17,14 +17,18 @@ class Danica::Formatted
            other.format == format
   end
 
+  def repack(object)
+    self.class.new(
+      object,
+      format
+    )
+  end
+
   private
 
   def method_missing(method, *args)
     value = content.public_send(method, *args)
     return value unless value.is_a?(Danica::Common)
-    self.class.new(
-      value,
-      format
-    )
+    repack(value)
   end
 end
