@@ -1,11 +1,25 @@
 module Danica
   module Wrapper
+    class InvalidInput < StandardError
+      attr_reader :value
+      def initialize(value)
+        @value = value
+        super
+      end
+
+      def message
+        "invalid input class #{value.class}"
+      end
+    end
+
     def wrap_value(value)
       Wrapper.wrap_value(value)
     end
 
     def self.wrap_value(value)
       case value
+      when Formatted
+        value.content
       when Numeric
         wrap_numeric(value)
       when Hash
@@ -13,6 +27,7 @@ module Danica
       when String, Symbol, NilClass
         Variable.new(name: value)
       else
+        raise InvalidInput, value unless value.is_a?(Danica::Common)
         value
       end
     end
