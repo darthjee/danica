@@ -20,6 +20,7 @@ module Danica
 
   class << self
     delegate :build, to: :builder
+    attr_accessor :debug
 
     def builder
       @builder ||= Builder.new

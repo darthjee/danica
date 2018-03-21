@@ -59,4 +59,17 @@ describe 'integration of formatted objects' do
       end
     end
   end
+
+  context 'when operating multiplication and subtraction all toguether' do
+    let(:variable) { Danica::Wrapper::Variable.new(:v) }
+    let(:x) { Danica::Wrapper::Variable.new(:x) }
+    let(:result) { x * (-subject) }
+    it do
+      expect(result).to be_a(Danica::Formatted)
+    end
+
+    it 'knows how to convert it to string' do
+      expect(result.to_s).to eq('x \cdot \left(-v\right)')
+    end
+  end
 end
