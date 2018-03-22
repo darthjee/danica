@@ -19,6 +19,28 @@ describe 'integration of negative' do
         expect(subject.to_tex).to eq('-\left(1 + 2 + 3\right)')
       end
     end
+
+    describe 'when it is the result of an expression' do
+      let(:x) { Danica::Wrapper::Variable.new(:x) }
+      let(:y) { Danica::Wrapper::Variable.new(:y) }
+      let(:z) { Danica::Wrapper::Variable.new(:z) }
+      let(:negative_parcel) { y + z }
+      subject do
+        x - (y + z)
+      end
+
+      it 'wraps parcel into a group' do
+        expect(subject.to_gnu).to eq('x -(y + z)')
+      end
+
+      context 'when the negative parcel is an expression' do
+        let(:negative_parcel) { Danica.build(:y, :z) { x + z } }
+
+        it 'wraps parcel into a group' do
+          expect(subject.to_gnu).to eq('x -(y + z)')
+        end
+      end
+    end
   end
 end
 
