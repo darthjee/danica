@@ -46,7 +46,7 @@ describe Danica::Wrapper do
       it do
         expect do
           subject.wrapped_value.content
-        end.to raise_error(Danica::Wrapper::InvalidInput)
+        end.to raise_error(Danica::Exception::InvalidInput)
       end
     end
   end
