@@ -1,14 +1,14 @@
 class Danica::Formatted
-  attr_reader :content, :format, :decimals
+  attr_reader :content, :format, :options
 
-  def initialize(content, format, decimals: nil)
+  def initialize(content, format, **options)
     @content = content
     @format = format
-    @decimals = decimals
+    @options = options
   end
 
   def to_s
-    content.to(format, decimals: decimals)
+    content.to(format, options)
   end
 
   def ==(other)
@@ -21,7 +21,7 @@ class Danica::Formatted
     self.class.new(
       object,
       format,
-      decimals: decimals
+      options
     )
   end
 
