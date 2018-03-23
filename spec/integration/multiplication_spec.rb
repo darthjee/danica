@@ -73,7 +73,8 @@ describe 'integration of multiplication' do
   context 'when multiplicating a negative number' do
     let(:x) { Danica::Wrapper::Variable.new(:x) }
     let(:y) { Danica::Wrapper::Variable.new(:y) }
-    let(:result) { x * (-y) }
+    let(:negative) { -y }
+    let(:result) { x * negative }
 
     it do
       expect(result).to be_a(Danica::Operator::Multiplication)
@@ -81,6 +82,22 @@ describe 'integration of multiplication' do
 
     it 'knows how to order variables' do
       expect(result.to_gnu).to eq('x * (-y)')
+    end
+
+    context 'when negative parcel is an expression' do
+      let(:negative) { Danica.build(:y) { -y } }
+
+      it 'knows how to order variables' do
+        expect(result.to_gnu).to eq('x * (-y)')
+      end
+    end
+
+    context 'when negative is the negative of an expression' do
+      let(:negative) { -Danica.build(:y) { y } }
+
+      it 'knows how to order variables' do
+        expect(result.to_gnu).to eq('x * (-y)')
+      end
     end
   end
 end
