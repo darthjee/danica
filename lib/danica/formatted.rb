@@ -1,10 +1,9 @@
 class Danica::Formatted
-  attr_reader :content, :format, :options
+  attr_reader :content, :options
 
   def initialize(content, format, **options)
     @content = content
-    @format = format
-    @options = options
+    @options = options.merge(format: format)
   end
 
   def to_s
@@ -15,6 +14,10 @@ class Danica::Formatted
     return false unless other.class == self.class
     return other.content == content &&
            other.format == format
+  end
+
+  def format
+    options[:format]
   end
 
   def repack(object)

@@ -98,12 +98,12 @@ describe Danica::Common do
     end
 
     it 'knows how to return a tex string' do
-      expect(subject.tex.to_s).to eq('tex')
+      expect(subject.tex.to_s).to eq('tex {:format=>:tex}')
     end
 
     context 'when passing options' do
       it 'uses the arguments' do
-        expect(subject.tex(decimals: 3).to_s).to eq('tex {:decimals=>3}')
+        expect(subject.tex(decimals: 3).to_s).to eq('tex {:decimals=>3, :format=>:tex}')
       end
     end
   end
@@ -114,12 +114,12 @@ describe Danica::Common do
     end
 
     it 'knows how to return a gnu string' do
-      expect(subject.gnu.to_s).to eq('gnu')
+      expect(subject.gnu.to_s).to eq('gnu {:format=>:gnu}')
     end
 
     context 'when passing options' do
       it 'uses the arguments' do
-        expect(subject.gnu(decimals: 3).to_s).to eq('gnu {:decimals=>3}')
+        expect(subject.gnu(decimals: 3).to_s).to eq('gnu {:decimals=>3, :format=>:gnu}')
       end
     end
   end
@@ -130,7 +130,7 @@ describe Danica::Common do
     end
 
     it 'knows how to return to build the string string' do
-      expect(subject.formatted(:gnu, decimals: 3).to_s).to eq('gnu {:decimals=>3}')
+      expect(subject.formatted(:gnu, decimals: 3).to_s).to eq('gnu {:decimals=>3, :format=>:gnu}')
     end
   end
 end
