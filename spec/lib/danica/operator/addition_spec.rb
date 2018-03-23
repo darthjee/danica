@@ -13,19 +13,15 @@ describe Danica::Operator::Addition do
 
   it_behaves_like 'an object with basic operation', ignore: %i(+ -)
   it_behaves_like 'an object with + operation' do
-    let(:subject_included) { 10 }
-
     context 'when other is also a addition' do
       let(:other) { described_class.new(200, 5) }
 
       it 'includes the addition parcels' do
-        expect(result).to include(200)
+        expect(result.to_gnu).to eq('10 + 2 + 200 + 5')
       end
     end
   end
-  it_behaves_like 'an object with - operation' do
-    let(:subject_included) { 10 }
-  end
+  it_behaves_like 'an object with - operation'
 
   it_behaves_like 'a operator that joins many variables with same operation', {
     calculated: 10,

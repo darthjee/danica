@@ -1,5 +1,7 @@
 module Danica
   module DSL
+    autoload :Builder, 'danica/dsl/builder'
+
     class << self
       def register_operator(method, clazz=nil)
         register(method, clazz, 'Danica::Operator')
@@ -10,9 +12,11 @@ module Danica
       end
 
       def register(method, clazz=nil, base=nil)
-        define_method method do |*args|
-          clazz = [base.to_s, method.to_s.camelize].compact.join('::').constantize unless clazz
-          clazz = [base, clazz.to_s].compact.join('::').constantize unless clazz.is_a? Class
+        Builder.new(method, clazz, base).build
+      end
+
+      def register_class(method, clazz)
+        define_method(method) do |*args|
           clazz.new(*args)
         end
       end

@@ -1,5 +1,29 @@
 require 'spec_helper'
 
+
+shared_examples 'a formatted result' do |output|
+  it do
+    expect(result).to be_a(described_class)
+  end
+
+  it 'keeps being able to parse format' do
+    expect(result.to_s).to eq(output)
+  end
+end
+
+shared_examples('a formatted object that responds to basic operations') do |operations_map|
+  operations_map.each do |operation, (output, reverse_output)|
+    describe(operation.to_s) do
+      let(:result) { subject.public_send(operation, 2) }
+      it_behaves_like 'a formatted result', output
+
+      context 'when doing it backwards' do
+        let(:result) { Danica::Wrapper::Number.new(2).public_send(operation, subject) }
+        it_behaves_like 'a formatted result', reverse_output
+      end
+    end
+  end
+end
 describe Danica::Formatted do
   let(:content) { Danica::Wrapper::Variable.new(latex: :V, gnuplot: :v) }
   let(:format) { :tex }
@@ -41,25 +65,13 @@ describe Danica::Formatted do
   end
 
   describe 'operators' do
-    describe '+' do
-      it do
-        expect(subject + 2).to be_a(described_class)
-      end
-
-      it 'keeps being able to parse format' do
-        expect((subject + 2).to_s).to eq('V + 2')
-      end
-    end
-
-    describe '*' do
-      it do
-        expect(subject * 2).to be_a(described_class)
-      end
-
-      it 'keeps being able to parse format' do
-        expect((subject * 2).to_s).to eq('V \cdot 2')
-      end
-    end
+    it_behaves_like 'a formatted object that responds to basic operations', {
+      :+  => ['V + 2', '2 + V'],
+      :-  => ['V -2', '2 -V'],
+      :*  => ['V \cdot 2', '2 \cdot V'],
+      :/  => ['\frac{V}{2}', '\frac{2}{V}'],
+      :** => ['V^{2}', '2^{V}']
+    }
 
     describe '-@' do
       it do

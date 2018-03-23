@@ -13,32 +13,32 @@ module Danica
 
     included do
       default_value :variable_holder?,  true
+    end
 
-      class << self
-        def variables(*names)
-          VariablesBuilder.new(names, self).build
-        end
+    class_methods do
+      def variables(*names)
+        VariablesBuilder.new(names, self).build
+      end
 
-        def variable_alias(origin, destiny)
-          AliasBuilder.new(origin, destiny, self).build
-        end
+      def variable_alias(origin, destiny)
+        AliasBuilder.new(origin, destiny, self).build
+      end
 
-        def variables_names
-          variables_hash.keys
-        end
+      def variables_names
+        variables_hash.keys
+      end
 
-        def variables_hash
-          @variables_hash ||= superclass_variables_hash.dup
-        end
+      def variables_hash
+        @variables_hash ||= superclass_variables_hash.dup
+      end
 
-        def reset_variables
-          @superclass_variables_hash = {}
-          @variables_hash = nil
-        end
+      def reset_variables
+        @superclass_variables_hash = {}
+        @variables_hash = nil
+      end
 
-        def superclass_variables_hash
-          @superclass_variables_hash ||= (superclass.try(:variables_hash) || {})
-        end
+      def superclass_variables_hash
+        @superclass_variables_hash ||= (superclass.try(:variables_hash) || {})
       end
     end
 

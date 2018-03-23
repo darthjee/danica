@@ -6,6 +6,8 @@ module Danica
 
     def self.wrap_value(value)
       case value
+      when Formatted
+        value.content
       when Numeric
         wrap_numeric(value)
       when Hash
@@ -13,6 +15,7 @@ module Danica
       when String, Symbol, NilClass
         Variable.new(name: value)
       else
+        raise Exception::InvalidInput, value unless value.is_a?(Danica::Common)
         value
       end
     end

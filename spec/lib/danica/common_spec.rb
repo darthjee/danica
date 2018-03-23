@@ -123,4 +123,14 @@ describe Danica::Common do
       end
     end
   end
+
+  describe '#formatted' do
+    it do
+      expect(subject.formatted(:gnu)).to be_a(Danica::Formatted)
+    end
+
+    it 'knows how to return to build the string string' do
+      expect(subject.formatted(:gnu, decimals: 3).to_s).to eq('gnu {:decimals=>3}')
+    end
+  end
 end

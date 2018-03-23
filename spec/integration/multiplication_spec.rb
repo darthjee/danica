@@ -41,4 +41,63 @@ describe 'integration of multiplication' do
       end
     end
   end
+
+  describe 'when calling * operator' do
+    subject do
+      Danica::Operator::Multiplication.new(:x, :y)
+    end
+    let(:variable) { Danica::Wrapper::Variable.new(:v) }
+    let(:result) { subject * variable }
+
+    it do
+      expect(result).to be_a(Danica::Operator::Multiplication)
+    end
+
+    it 'knows how to order variables' do
+      expect(result.to_gnu).to eq('x * y * v')
+    end
+
+    context 'when called from the other' do
+      let(:result) { variable * subject }
+
+      it do
+        expect(result).to be_a(Danica::Operator::Multiplication)
+      end
+
+      it 'knows how to order variables' do
+        expect(result.to_gnu).to eq('v * x * y')
+      end
+    end
+  end
+
+  context 'when multiplicating a negative number' do
+    let(:x) { Danica::Wrapper::Variable.new(:x) }
+    let(:y) { Danica::Wrapper::Variable.new(:y) }
+    let(:negative) { -y }
+    let(:result) { x * negative }
+
+    it do
+      expect(result).to be_a(Danica::Operator::Multiplication)
+    end
+
+    it 'knows how to order variables' do
+      expect(result.to_gnu).to eq('x * (-y)')
+    end
+
+    context 'when negative parcel is an expression' do
+      let(:negative) { Danica.build(:y) { -y } }
+
+      it 'knows how to order variables' do
+        expect(result.to_gnu).to eq('x * (-y)')
+      end
+    end
+
+    context 'when negative is the negative of an expression' do
+      let(:negative) { -Danica.build(:y) { y } }
+
+      it 'knows how to order variables' do
+        expect(result.to_gnu).to eq('x * (-y)')
+      end
+    end
+  end
 end

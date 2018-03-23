@@ -3,7 +3,7 @@ module Danica
     include VariablesHolder
     include BaseOperations
 
-    default_value :priority, 3
+    default_value :priority, 4
     default_value :is_grouped?, false
 
     def ==(other)
