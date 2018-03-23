@@ -1,9 +1,9 @@
 class Danica::Formatted
   attr_reader :content, :options
 
-  def initialize(content, format, **options)
+  def initialize(content, **options)
     @content = content
-    @options = options.merge(format: format)
+    @options = options
   end
 
   def to_s
@@ -23,7 +23,6 @@ class Danica::Formatted
   def repack(object)
     self.class.new(
       object,
-      format,
       options
     )
   end

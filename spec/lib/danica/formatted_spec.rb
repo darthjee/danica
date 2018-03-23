@@ -28,7 +28,7 @@ describe Danica::Formatted do
   let(:format) { :tex }
   let(:options) { {} }
   subject do
-    described_class.new(content, format, options)
+    described_class.new(content, format: format, **options)
   end
 
   describe '#repack' do
