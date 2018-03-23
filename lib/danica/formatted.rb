@@ -20,7 +20,8 @@ class Danica::Formatted
   def repack(object)
     self.class.new(
       object,
-      format
+      format,
+      decimals: decimals
     )
   end
 

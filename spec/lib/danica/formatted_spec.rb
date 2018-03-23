@@ -1,6 +1,5 @@
 require 'spec_helper'
 
-
 shared_examples 'a formatted result' do |output|
   it do
     expect(result).to be_a(described_class)
@@ -30,6 +29,22 @@ describe Danica::Formatted do
   let(:options) { {} }
   subject do
     described_class.new(content, format, options)
+  end
+
+  describe '#repack' do
+    let(:expression) { Danica::Wrapper::Number.new(1.0 / 3) }
+
+    it do
+      expect(subject.repack(expression)).to be_a(Danica::Formatted)
+    end
+
+    context 'when there are options' do
+      let(:options) { { decimals: 3 } }
+
+      it 'wraps expression with options' do
+        expect(subject.repack(expression).to_s).to eq('0.333')
+      end
+    end
   end
 
   describe '#to_s' do
