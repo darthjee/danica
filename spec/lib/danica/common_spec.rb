@@ -81,6 +81,21 @@ describe Danica::Common do
         expect(subject.to_tex).to eq('formatted: tex')
       end
     end
+
+    context 'when formatted was generated with gnu and with options' do
+      let(:number) { Danica::Wrapper::Number.new(1.0/3) }
+      subject { number.gnu(decimals: 3) }
+
+      it 'formats with the current options' do
+        expect(subject.to_tex).to eq('0.333')
+      end
+
+      context 'but overwritting options' do
+        it 'formats with the current options' do
+          expect(subject.to_tex(decimals: 4)).to eq('0.3333')
+        end
+      end
+    end
   end
 
   describe '#to_gnu' do
@@ -88,6 +103,38 @@ describe Danica::Common do
       let(:clazz) { described_class::Dummy2 }
       it 'returns the call of #to(:gnu)' do
         expect(subject.to_gnu).to eq('formatted: gnu')
+      end
+    end
+
+    context 'when formatted was generated with tex and with options' do
+      let(:number) { Danica::Wrapper::Number.new(1.0/3) }
+      subject { number.tex(decimals: 3) }
+
+      it 'formats with the current options' do
+        expect(subject.to_gnu).to eq('0.333')
+      end
+
+      context 'but overwritting options' do
+        it 'formats with the current options' do
+          expect(subject.to_gnu(decimals: 4)).to eq('0.3333')
+        end
+      end
+    end
+  end
+
+  describe 'to' do
+    context 'when already formatted with options' do
+      let(:number) { Danica::Wrapper::Number.new(1.0/3) }
+      subject { number.tex(decimals: 3) }
+
+      it 'uses to with options' do
+        expect(subject.to(:gnu)).to eq('0.333')
+      end
+
+      context 'when calling with options' do
+        it 'uses options' do
+          expect(subject.to(:gnu, decimals: 4)).to eq('0.3333')
+        end
       end
     end
   end

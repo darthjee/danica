@@ -27,6 +27,18 @@ class Danica::Formatted
     )
   end
 
+  def to_tex(**opts)
+    content.to_tex(options.merge(opts))
+  end
+
+  def to_gnu(**opts)
+    content.to_gnu(options.merge(opts))
+  end
+
+  def to(format, **opts)
+    content.to(format, options.merge(opts))
+  end
+
   private
 
   def method_missing(method, *args)
