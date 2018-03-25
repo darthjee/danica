@@ -28,11 +28,11 @@ class Danica::Formatted
   end
 
   def to_tex(**opts)
-    content.to_tex(options.merge(opts))
+    to(:tex, **opts)
   end
 
   def to_gnu(**opts)
-    content.to_gnu(options.merge(opts))
+    to(:gnu, **opts)
   end
 
   def to(format, **opts)
