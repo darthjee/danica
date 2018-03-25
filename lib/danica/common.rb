@@ -47,11 +47,11 @@ module Danica
     end
 
     def tex(**options)
-      formatted(:tex, options)
+      formatted(format: :tex, **options)
     end
 
     def gnu(**options)
-      formatted(:gnu, options)
+      formatted(format: :gnu, **options)
     end
 
     def formatted(*args)

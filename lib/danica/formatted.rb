@@ -1,14 +1,13 @@
 class Danica::Formatted
-  attr_reader :content, :format, :decimals
+  attr_reader :content, :options
 
-  def initialize(content, format, decimals: nil)
+  def initialize(content, **options)
     @content = content
-    @format = format
-    @decimals = decimals
+    @options = options
   end
 
   def to_s
-    content.to(format, decimals: decimals)
+    content.to(format, options)
   end
 
   def ==(other)
@@ -17,11 +16,27 @@ class Danica::Formatted
            other.format == format
   end
 
+  def format
+    options[:format]
+  end
+
   def repack(object)
     self.class.new(
       object,
-      format
+      options
     )
+  end
+
+  def to_tex(**opts)
+    to(:tex, **opts)
+  end
+
+  def to_gnu(**opts)
+    to(:gnu, **opts)
+  end
+
+  def to(format, **opts)
+    content.to(format, options.merge(opts))
   end
 
   private
