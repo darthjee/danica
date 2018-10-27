@@ -15,8 +15,8 @@ Gem::Specification.new do |spec|
   spec.test_files = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ['lib']
 
-  spec.add_runtime_dependency 'activesupport', '~> 5.1.4'
-  spec.add_runtime_dependency 'darthjee-core_ext', '~> 1.5.0'
+  spec.add_runtime_dependency 'activesupport', '~> 5.2.x'
+  spec.add_runtime_dependency 'darthjee-core_ext', '~> 1.7.3'
 
   spec.add_development_dependency 'bundler', '~> 1.6'
   spec.add_development_dependency 'rake'
