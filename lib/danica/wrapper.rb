@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Danica
   module Wrapper
     def wrap_value(value)
@@ -26,7 +28,7 @@ module Danica
     end
 
     def self.wrap_hash(hash)
-      return Constant.new(hash) if hash.keys.map(&:to_sym).sort == %i(gnuplot latex value)
+      return Constant.new(hash) if hash.keys.map(&:to_sym).sort == %i[gnuplot latex value]
       Variable.new(hash)
     end
 

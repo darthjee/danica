@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe 'integration of positive negative' do
   describe 'with a addition' do
     subject do
       Danica::Wrapper::PlusMinus.new(
-        Danica::Operator::Addition.new(1,2,3)
+        Danica::Operator::Addition.new(1, 2, 3)
       )
     end
 
@@ -21,4 +23,3 @@ describe 'integration of positive negative' do
     end
   end
 end
-

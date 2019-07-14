@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 shared_examples 'an object that returns the default variables hash' do
@@ -13,10 +15,10 @@ end
 shared_examples 'an object that returns the default variables' do
   it 'returns the default variables hash' do
     expect(subject.variables).to eq([
-      Danica::Wrapper::Variable.new(name: :x),
-      Danica::Wrapper::Variable.new(latex: '\y'),
-      Danica::Wrapper::Number.new(10)
-    ])
+                                      Danica::Wrapper::Variable.new(name: :x),
+                                      Danica::Wrapper::Variable.new(latex: '\y'),
+                                      Danica::Wrapper::Number.new(10)
+                                    ])
   end
 end
 
@@ -24,20 +26,20 @@ shared_examples 'an variable set that does not change the class variables' do
   it 'does not change the the class variables' do
     expect do
       subject.variables = variables
-    end.not_to change { clazz.variables_hash }
+    end.not_to change(clazz, :variables_hash)
   end
 end
 
 shared_examples 'a class with mapped variables' do
   context 'when initializing with an array' do
-    subject { clazz.new(1,2,3) }
+    subject { clazz.new(1, 2, 3) }
 
     it 'initialize variables in order of declaration' do
-      expect(subject.variables_hash).to eq({
+      expect(subject.variables_hash).to eq(
         x: Danica::Wrapper::Number.new(1),
         y: Danica::Wrapper::Number.new(2),
         z: Danica::Wrapper::Number.new(3)
-      })
+      )
     end
   end
 
@@ -45,54 +47,55 @@ shared_examples 'a class with mapped variables' do
     subject { clazz.new(z: 1, y: 2) }
 
     it 'initialize variables with the map given' do
-      expect(subject.variables_hash).to eq({
+      expect(subject.variables_hash).to eq(
         x: Danica::Wrapper::Variable.new(name: :x),
         y: Danica::Wrapper::Number.new(2),
         z: Danica::Wrapper::Number.new(1)
-      })
+      )
     end
   end
 
   context 'when initializing with hashes' do
     subject do
       clazz.new(
-        {name: :xis, value: 1},
-        {name: :yps, value: 2},
-        {name: :zes, value: 3}
+        { name: :xis, value: 1 },
+        { name: :yps, value: 2 },
+        name: :zes, value: 3
       )
     end
 
     it 'initialize variables with the maps given' do
-      expect(subject.variables_hash).to eq({
+      expect(subject.variables_hash).to eq(
         x: Danica::Wrapper::Variable.new(name: :xis, value: 1),
         y: Danica::Wrapper::Variable.new(name: :yps, value: 2),
         z: Danica::Wrapper::Variable.new(name: :zes, value: 3)
-      })
+      )
     end
   end
 
   context 'when initializing with array of hashes' do
     subject do
       clazz.new([
-        {name: :xis, value: 1},
-        {name: :yps, value: 2},
-        {name: :zes, value: 3}
-      ])
+                  { name: :xis, value: 1 },
+                  { name: :yps, value: 2 },
+                  { name: :zes, value: 3 }
+                ])
     end
 
     it 'initialize variables with the maps given' do
-      expect(subject.variables_hash).to eq({
+      expect(subject.variables_hash).to eq(
         x: Danica::Wrapper::Variable.new(name: :xis, value: 1),
         y: Danica::Wrapper::Variable.new(name: :yps, value: 2),
         z: Danica::Wrapper::Variable.new(name: :zes, value: 3)
-      })
+      )
     end
   end
 end
 
 describe Danica::VariablesHolder do
-  let(:clazz) { described_class::Dummy }
   subject { clazz.new }
+
+  let(:clazz) { described_class::Dummy }
 
   describe '#initialize' do
     context 'when using a symbolized key definition' do
@@ -101,13 +104,14 @@ describe Danica::VariablesHolder do
 
     context 'when using a string key definition' do
       let(:clazz) { described_class::DummyString }
+
       it_behaves_like 'a class with mapped variables'
     end
   end
 
   describe 'variables assignement' do
     it 'creates setters and getters for the variables' do
-      %i(x y z).each do |var|
+      %i[x y z].each do |var|
         expect(subject).to respond_to(var)
         expect(subject).to respond_to("#{var}=")
       end
@@ -134,14 +138,14 @@ describe Danica::VariablesHolder do
 
   describe '.variables_names' do
     it 'returns the list of variables pre configured' do
-      expect(clazz.variables_names).to eq(%i(x y z))
+      expect(clazz.variables_names).to eq(%i[x y z])
     end
 
     context 'when variables are defined in super class' do
       let(:clazz) { described_class::DummyChild }
 
       it 'returns the list of variables of both classes merged' do
-        expect(clazz.variables_names).to eq(%i(x y z k))
+        expect(clazz.variables_names).to eq(%i[x y z k])
       end
     end
 
@@ -149,7 +153,7 @@ describe Danica::VariablesHolder do
       let(:clazz) { described_class::DummyOverwrite }
 
       it 'returns the list of variables of both classes merged' do
-        expect(clazz.variables_names).to eq(%i(k z))
+        expect(clazz.variables_names).to eq(%i[k z])
       end
     end
   end
@@ -159,7 +163,7 @@ describe Danica::VariablesHolder do
       let(:clazz) { described_class::DummyAlias }
 
       it 'returns the list of variables of both classes merged' do
-        expect(clazz.variables_names).to eq(%i(a y z))
+        expect(clazz.variables_names).to eq(%i[a y z])
       end
 
       context 'when original variable is set' do
@@ -208,21 +212,25 @@ describe Danica::VariablesHolder do
     context 'when changing the variables of the object' do
       context 'when all the variables are set with value' do
         let(:variables) { [1, 2, 3] }
+
         it_behaves_like 'an variable set that does not change the class variables'
       end
 
       context 'setting the variables through a hash' do
         let(:variables) { { x: 1, y: 2, z: 3 } }
+
         it_behaves_like 'an variable set that does not change the class variables'
       end
 
       context 'when none of the variables are set with values' do
         let(:variables) { [] }
+
         it_behaves_like 'an variable set that does not change the class variables'
       end
 
       context 'when the variables are set through an empty hash' do
         let(:variables) { {} }
+
         it_behaves_like 'an variable set that does not change the class variables'
       end
     end
@@ -231,6 +239,7 @@ describe Danica::VariablesHolder do
       before do
         subject.variables = variables
       end
+
       let(:variables) { [1, 2, 3] }
 
       it 'changes the values of the variables' do
@@ -239,6 +248,7 @@ describe Danica::VariablesHolder do
 
       context 'but the array is empty' do
         let(:variables) { [] }
+
         it_behaves_like 'an object that returns the default variables hash'
       end
     end
@@ -256,6 +266,7 @@ describe Danica::VariablesHolder do
 
       context 'but the hash is empty' do
         let(:variables) { {} }
+
         it_behaves_like 'an object that returns the default variables hash'
       end
     end
@@ -277,10 +288,10 @@ describe Danica::VariablesHolder do
 
       it 'returns the default variables and the new set one' do
         expect(subject.variables).to eq([
-          Danica::Wrapper::Variable.new(name: :x),
-          Danica::Wrapper::Number.new(1),
-          Danica::Wrapper::Number.new(10)
-        ])
+                                          Danica::Wrapper::Variable.new(name: :x),
+                                          Danica::Wrapper::Number.new(1),
+                                          Danica::Wrapper::Number.new(10)
+                                        ])
       end
 
       it 'does not change the class variables' do
@@ -314,7 +325,7 @@ describe Danica::VariablesHolder do
   describe '#variables_value_hash' do
     context 'when instance has no variables defined' do
       it 'returns the default value' do
-        expect(subject.variables_value_hash).to eq({x: nil, y: nil, z: 10})
+        expect(subject.variables_value_hash).to eq(x: nil, y: nil, z: 10)
       end
     end
 
@@ -324,7 +335,7 @@ describe Danica::VariablesHolder do
       end
 
       it 'returns the values' do
-        expect(subject.variables_value_hash).to eq({x: nil, y: 1, z: 10})
+        expect(subject.variables_value_hash).to eq(x: nil, y: 1, z: 10)
       end
     end
   end
@@ -347,15 +358,16 @@ describe Danica::VariablesHolder do
 
   describe '#extract_variables' do
     let(:clazz) { described_class::DummyChild }
+
     context 'when holder has straight variables' do
       it 'returns the variables hash' do
-        expect(subject.extract_variables).to eq(subject.containers.as_hash([:x, :y, :zeta, :k]))
+        expect(subject.extract_variables).to eq(subject.containers.as_hash(%i[x y zeta k]))
       end
 
       context 'but one of them is a number' do
         let(:clazz) { described_class::Dummy }
         let(:expected) do
-          subject.containers_hash.reject { |k,v| k == :z }
+          subject.containers_hash.reject { |k, v| k == :z }
         end
 
         it 'returns only the variables' do
@@ -368,7 +380,7 @@ describe Danica::VariablesHolder do
       let(:subject) { clazz.new(x: :xis, y: :lambda, z: :zeta, k: :key) }
 
       it 'returns the names as keys' do
-        expect(subject.extract_variables.keys).to eq(%i(xis lambda zeta key))
+        expect(subject.extract_variables.keys).to eq(%i[xis lambda zeta key])
       end
     end
 
@@ -378,8 +390,8 @@ describe Danica::VariablesHolder do
         clazz.new(z: inner)
       end
       let(:expected) do
-        subject.containers_hash.reject { |k,v| k == :z }
-                               .merge(inner.containers_hash)
+        subject.containers_hash.reject { |k, v| k == :z }
+               .merge(inner.containers_hash)
       end
 
       it 'returns the ineer variables of the inner holder as well' do
@@ -389,7 +401,7 @@ describe Danica::VariablesHolder do
       context 'when inner holder has the same variables' do
         let(:inner) { clazz.new }
         let(:expected) do
-          inner.containers.as_hash([:x, :y, :zeta, :k])
+          inner.containers.as_hash(%i[x y zeta k])
         end
 
         it 'merges them together in favor of the inner variables' do

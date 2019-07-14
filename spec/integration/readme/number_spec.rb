@@ -1,14 +1,16 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe Danica::Wrapper::Number do
-  let(:number) do
-    Danica::Wrapper::Number.new(3)
-  end
-
   subject do
     Danica::DSL.build do
       number(3)
     end
+  end
+
+  let(:number) do
+    described_class.new(3)
   end
 
   it do
@@ -25,10 +27,10 @@ describe Danica::Wrapper::Number do
     let(:expected) do
       Danica::Operator::Addition.new(
         Danica::Operator::Power.new(
-          Danica::Wrapper::Variable.new(:x), 
-          Danica::Wrapper::Number.new(2)
+          Danica::Wrapper::Variable.new(:x),
+          described_class.new(2)
         ),
-        Danica::Wrapper::Number.new(3)
+        described_class.new(3)
       )
     end
 
@@ -37,4 +39,3 @@ describe Danica::Wrapper::Number do
     end
   end
 end
-

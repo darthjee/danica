@@ -1,5 +1,8 @@
+# frozen_string_literal: true
+
 module Danica
-  module VariablesHolder extend ::ActiveSupport::Concern
+  module VariablesHolder
+    extend ::ActiveSupport::Concern
     include Common
 
     autoload :VariablesBuilder, 'danica/variables_holder/variables_builder'
@@ -12,7 +15,7 @@ module Danica
              :extract_variables, to: :store
 
     included do
-      default_value :variable_holder?,  true
+      default_value :variable_holder?, true
     end
 
     class_methods do

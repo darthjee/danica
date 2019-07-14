@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Danica
   class Operator::Multiplication < Operator::Chained
     default_value :priority, 3

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Danica
   class Wrapper::Variable
     include BaseOperations
@@ -11,10 +13,10 @@ module Danica
 
     def initialize(*args)
       attrs = args.extract_options!
-      attrs = args.as_hash(%i(name value latex gnuplot)).merge(attrs)
+      attrs = args.as_hash(%i[name value latex gnuplot]).merge(attrs)
 
       attrs.each do |key, value|
-        self.public_send("#{key}=", value)
+        public_send("#{key}=", value)
       end
     end
 
@@ -24,10 +26,10 @@ module Danica
 
     def ==(other)
       return false unless other.class == self.class
-      return other.value == value &&
-             other.name == name &&
-             other.latex == latex &&
-             other.gnuplot == gnuplot
+      other.value == value &&
+        other.name == name &&
+        other.latex == latex &&
+        other.gnuplot == gnuplot
     end
 
     def to_tex(**options)
@@ -45,4 +47,3 @@ module Danica
     end
   end
 end
-

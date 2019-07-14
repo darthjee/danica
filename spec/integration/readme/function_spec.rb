@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe Danica::Function::Spatial do
@@ -13,18 +15,19 @@ describe Danica::Function::Spatial do
   let(:name) { :f }
 
   context 'when using it as default' do
+    subject { described_class.new }
+
     let(:left) { "#{name}(time, acceleration, initial_space, initial_velocity)" }
     let(:right) { 'initial_space + initial_velocity * time + (acceleration * time**(2))/(2)' }
-
-    subject { described_class.new }
 
     it 'knows how to return to gnu format' do
       expect(subject.to_gnu).to eq("#{left} = #{right}")
     end
 
     context 'when changing the name' do
-      let(:name) { :g }
       subject { described_class.new(name: name) }
+
+      let(:name) { :g }
 
       it 'knows how to return to gnu format' do
         expect(subject.to_gnu).to eq("#{left} = #{right}")
@@ -33,13 +36,13 @@ describe Danica::Function::Spatial do
   end
 
   context 'when setting the variables' do
+    subject { described_class.new(variables) }
+
     let(:variables) do
       { time: :t, acceleration: :a, initial_space: :s0, initial_velocity: :v0 }
     end
     let(:left) { "#{name}(t, a, s0, v0)" }
     let(:right) { 's0 + v0 * t + (a * t**(2))/(2)' }
-
-    subject { described_class.new(variables) }
 
     it 'knows how to return to gnu format' do
       expect(subject.to_gnu).to eq("#{left} = #{right}")
@@ -76,13 +79,14 @@ end
 describe Danica::Function::QuadraticSum do
   describe '#to_tex' do
     it 'creates a funcion out of an expression' do
-      expect(subject.to_tex).to eq("f(x, y) = \\left(x + y\\right)^{2}")
+      expect(subject.to_tex).to eq('f(x, y) = \\left(x + y\\right)^{2}')
     end
   end
 end
 
 describe Danica::Function do
-  subject { described_class.build(:x, :y, :z) { z*(x ** y) }.new(y: 3, z: Danica::PI) }
+  subject { described_class.build(:x, :y, :z) { z * (x**y) }.new(y: 3, z: Danica::PI) }
+
   describe '#to_tex' do
     it do
       expect(subject.to_tex).to eq('f(x, 3) = \pi \cdot x^{3}')

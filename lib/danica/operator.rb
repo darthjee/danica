@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Danica
   class Operator
     include VariablesHolder

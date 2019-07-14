@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 module Danica
   class Equation
     include VariablesHolder
-  
+
     autoload :Builder, 'danica/equation/builder'
 
     class << self
@@ -19,5 +21,3 @@ module Danica
     end
   end
 end
-
-

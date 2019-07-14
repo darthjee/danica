@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe Danica::Wrapper::Variable do
@@ -25,8 +27,9 @@ describe Danica::Wrapper::Variable do
     end
 
     context 'when variable has value' do
-      let(:value) { 100 }
       subject { described_class.new(value: value) }
+
+      let(:value) { 100 }
 
       it 'returns the value' do
         expect(subject.to_f).to eq(value)

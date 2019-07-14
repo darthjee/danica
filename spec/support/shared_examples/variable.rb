@@ -1,8 +1,11 @@
+# frozen_string_literal: true
+
 shared_examples 'a variable method to formated string' do |method, format|
+  subject { described_class.new(arguments) }
+
   let(:name) { :delta }
   let(:value) { 10.0 }
   let(:arguments) { { name: name, latex: '\delta', gnuplot: 'del' } }
-  subject { described_class.new(arguments) }
 
   context "when #{format} is not defined" do
     before { arguments.delete(format) }
@@ -13,6 +16,7 @@ shared_examples 'a variable method to formated string' do |method, format|
 
     context 'when value is defined' do
       before { arguments[:value] = value }
+
       it_behaves_like 'a method that display the numeric value', method
     end
   end

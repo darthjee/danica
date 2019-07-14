@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Danica
   class Operator::Functional < Operator
     variables :value
@@ -9,7 +11,7 @@ module Danica
       gnu = text if gnu.nil?
 
       Class.new(self) do
-        module_eval(%Q(
+        module_eval(%(
           def to_f
             Math.#{operator}(value.to_f)
           end
@@ -26,4 +28,3 @@ module Danica
     end
   end
 end
-

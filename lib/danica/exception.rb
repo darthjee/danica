@@ -1,4 +1,6 @@
-class Danica::Exception < ::Exception
+# frozen_string_literal: true
+
+class Danica::Exception < RuntimeError
   class NotDefined < self; end
   class FormattedNotFound < self; end
   class NotImplemented < self; end
@@ -14,4 +16,3 @@ class Danica::Exception < ::Exception
     end
   end
 end
-

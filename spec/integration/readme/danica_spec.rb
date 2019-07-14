@@ -1,11 +1,13 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe Danica do
   describe '.build' do
     context 'when building an expression' do
       let(:expression) do
-        Danica.build do
-          (number(1) + 2) * power(3,4)
+        described_class.build do
+          (number(1) + 2) * power(3, 4)
         end
       end
 
@@ -16,7 +18,7 @@ describe Danica do
 
     context 'when building a function' do
       let(:function) do
-        Danica.build do
+        described_class.build do
           Danica::Function.create(:x, :y) do
             (number(1) + x) * power(3, y)
           end
@@ -29,4 +31,3 @@ describe Danica do
     end
   end
 end
-

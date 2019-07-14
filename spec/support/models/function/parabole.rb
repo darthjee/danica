@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 
 module Danica
   class Function::Parabole < Function.build(:x) { Danica::Parabole.new }
@@ -13,4 +14,3 @@ module Danica
     end
   end
 end
-

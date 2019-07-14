@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Danica::Formatted
   attr_reader :content, :options
 
@@ -12,8 +14,8 @@ class Danica::Formatted
 
   def ==(other)
     return false unless other.class == self.class
-    return other.content == content &&
-           other.format == format
+    other.content == content &&
+      other.format == format
   end
 
   def format

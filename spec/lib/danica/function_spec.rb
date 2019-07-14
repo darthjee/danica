@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 shared_examples 'a generically generated function' do
@@ -28,8 +30,9 @@ end
 
 describe Danica::Function do
   subject { function }
+
   let(:function) { function_class.new }
-  let(:variables) { %i(x y) }
+  let(:variables) { %i[x y] }
   let(:function_class) do
     described_class.build(*variables) do
       Danica::Operator::Power.new(x, y)
@@ -37,11 +40,12 @@ describe Danica::Function do
   end
 
   describe '.for' do
-    let(:expression_class) { Danica::Expression::Gauss }
-    let(:expression) { expression_class.new }
     subject do
       described_class.for(expression_class).new
     end
+
+    let(:expression_class) { Danica::Expression::Gauss }
+    let(:expression) { expression_class.new }
 
     it 'returns a function' do
       expect(subject).to be_a(described_class)
@@ -111,7 +115,7 @@ describe Danica::Function do
       let(:function_class) { Danica::Function::SaddleParabole }
 
       it 'has the defined variables on class definition' do
-        expect(function_class.variables_names).to eq([:x, :y])
+        expect(function_class.variables_names).to eq(%i[x y])
       end
 
       it 'has the defined variables' do
@@ -143,6 +147,7 @@ describe Danica::Function do
         f.name = :f
       end
     end
+
     it_behaves_like 'a generically generated function'
   end
 

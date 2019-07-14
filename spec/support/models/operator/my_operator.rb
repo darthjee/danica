@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 class MyOperator < Danica::Operator
   variables :x
 
   def to_f
-    (x ** Danica::PI).to_f
+    (x**Danica::PI).to_f
   end
 
   def to_tex

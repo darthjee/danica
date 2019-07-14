@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe 'integration of negative' do
   describe 'with a addition' do
     subject do
       Danica::Wrapper::Negative.new(
-        Danica::Operator::Addition.new(1,2,3)
+        Danica::Operator::Addition.new(1, 2, 3)
       )
     end
 
@@ -21,13 +23,14 @@ describe 'integration of negative' do
     end
 
     describe 'when it is the result of an expression' do
+      subject do
+        x - negative_parcel
+      end
+
       let(:x) { Danica::Wrapper::Variable.new(:x) }
       let(:y) { Danica::Wrapper::Variable.new(:y) }
       let(:z) { Danica::Wrapper::Variable.new(:z) }
       let(:negative_parcel) { y + z }
-      subject do
-        x - negative_parcel
-      end
 
       it 'wraps parcel into a group' do
         expect(subject.to_gnu).to eq('x -(y + z)')
@@ -51,5 +54,3 @@ describe 'integration of negative' do
     end
   end
 end
-
-

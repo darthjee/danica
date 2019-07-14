@@ -1,17 +1,20 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 class Danica::Operator::Dummy < Danica::Operator
   variables :a, :b
 
-  def to(*args)
+  def to(*_args)
     a + b
   end
 end
 
 describe Danica::Operator do
+  subject { clazz.new(*variables) }
+
   let(:variables) { [2, 4] }
   let(:clazz) { described_class::Dummy }
-  subject { clazz.new(*variables) }
 
   it_behaves_like 'an object that respond to basic_methods'
 

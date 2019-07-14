@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Danica
   module VariablesHolder
     class Dummy
@@ -9,7 +11,7 @@ module Danica
       delegate :to, :to_f, to: :block
 
       def block
-        x ** y + z
+        x**y + z
       end
     end
 

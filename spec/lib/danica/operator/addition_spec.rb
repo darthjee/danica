@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe Danica::Operator::Addition do
@@ -11,7 +13,7 @@ describe Danica::Operator::Addition do
 
   it_behaves_like 'an object that respond to basic_methods'
 
-  it_behaves_like 'an object with basic operation', ignore: %i(+ -)
+  it_behaves_like 'an object with basic operation', ignore: %i[+ -]
   it_behaves_like 'an object with + operation' do
     context 'when other is also a addition' do
       let(:other) { described_class.new(200, 5) }
@@ -23,18 +25,17 @@ describe Danica::Operator::Addition do
   end
   it_behaves_like 'an object with - operation'
 
-  it_behaves_like 'a operator that joins many variables with same operation', {
-    calculated: 10,
-    numeric_variables: [ 1.5, 3.0, 3.5 ],
-    tex: {
-      string_expected: 'X1 + X2 + X3 + X4',
-      integer_expected: '1.5 + 3 + X3 + X4',
-      float_expected: '1.5 + 3 + 3.5 + X4'
-    },
-    gnu: {
-      string_expected: 'X1 + X2 + X3 + X4',
-      integer_expected: '1.5 + 3 + X3 + X4',
-      float_expected: '1.5 + 3 + 3.5 + X4'
-    }
-  }
+  it_behaves_like 'a operator that joins many variables with same operation',
+                  calculated: 10,
+                  numeric_variables: [1.5, 3.0, 3.5],
+                  tex: {
+                    string_expected: 'X1 + X2 + X3 + X4',
+                    integer_expected: '1.5 + 3 + X3 + X4',
+                    float_expected: '1.5 + 3 + 3.5 + X4'
+                  },
+                  gnu: {
+                    string_expected: 'X1 + X2 + X3 + X4',
+                    integer_expected: '1.5 + 3 + X3 + X4',
+                    float_expected: '1.5 + 3 + 3.5 + X4'
+                  }
 end

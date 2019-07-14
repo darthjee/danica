@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'darthjee/core_ext'
 
 module Danica
@@ -27,4 +29,3 @@ module Danica
     end
   end
 end
-

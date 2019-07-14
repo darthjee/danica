@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe 'formatting' do
@@ -16,14 +18,15 @@ describe 'formatting' do
 end
 
 describe Danica::Formatted do
+  subject do
+    expression.tex(decimals: 3)
+  end
+
   let(:expression) do
     value = 1 / 3.0
     Danica.build(:x) do
       x + value
     end
-  end
-  subject do
-    expression.tex(decimals: 3)
   end
 
   describe '#to_tex' do

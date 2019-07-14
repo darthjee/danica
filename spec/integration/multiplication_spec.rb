@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe 'integration of multiplication' do
@@ -24,8 +26,8 @@ describe 'integration of multiplication' do
   describe 'of additions' do
     subject do
       Danica::Operator::Multiplication.new(
-        Danica::Operator::Addition.new(1,2),
-        Danica::Operator::Addition.new(3,4)
+        Danica::Operator::Addition.new(1, 2),
+        Danica::Operator::Addition.new(3, 4)
       )
     end
 
@@ -46,6 +48,7 @@ describe 'integration of multiplication' do
     subject do
       Danica::Operator::Multiplication.new(:x, :y)
     end
+
     let(:variable) { Danica::Wrapper::Variable.new(:v) }
     let(:result) { subject * variable }
 

@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 module Danica
   class Function
     include VariablesHolder
     include DSL
     include Expressable
 
-    autoload :Name,    'danica/function/name'
+    autoload :Name, 'danica/function/name'
     attr_accessor :name
 
     built_with(:function_block)
@@ -24,4 +26,3 @@ module Danica
     end
   end
 end
-

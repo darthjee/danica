@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Danica
   class Operator::Addition < Operator::Chained
     default_value :priority, 1
@@ -17,4 +19,3 @@ module Danica
     end
   end
 end
-

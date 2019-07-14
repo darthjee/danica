@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 shared_context 'a class with alias to a clazz' do |aliaz, clazz, *variables|
@@ -44,6 +46,7 @@ describe Danica::DSL do
   end
 
   let(:subject) { described_class::Dummy.new }
+
   it_behaves_like 'a class with mapped dsl'
 
   describe '.build' do

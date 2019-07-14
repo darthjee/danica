@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Danica
   class Parabole < Expression.build(:x) { power(x, 2) }
   end

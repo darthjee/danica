@@ -1,7 +1,10 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe Danica::Wrapper::Constant do
   subject { described_class.new(2.5, :M, :m) }
+
   let(:other) { described_class.new(3, :N, :n) }
 
   it_behaves_like 'an object that respond to basic_methods'
@@ -25,22 +28,26 @@ describe Danica::Wrapper::Constant do
         expect(subject.to(:tex)).to eq('M')
       end
     end
+
     context "when requesting 'tex'" do
       it 'has a string for latex' do
         expect(subject.to('tex')).to eq('M')
       end
     end
+
     context 'when requesting :gnu' do
       it 'has a string for gnu' do
         expect(subject.to(:gnu)).to eq('m')
       end
     end
+
     context "when requesting 'gnu'" do
       it 'has a string for gnu' do
         expect(subject.to('gnu')).to eq('m')
       end
     end
-    context "when requesting wrong format" do
+
+    context 'when requesting wrong format' do
       it do
         expect do
           subject.to('format')
@@ -95,9 +102,9 @@ describe Danica::Wrapper::Constant do
 
       context 'with same values' do
         let(:other) { described_class.new(2.5, :M, :m) }
+
         it { expect(subject).to eq(other) }
       end
     end
   end
 end
-

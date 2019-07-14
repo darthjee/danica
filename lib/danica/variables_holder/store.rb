@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Danica
   class VariablesHolder::Store
     attr_reader :default_variables_hash, :variables_names
@@ -37,7 +39,7 @@ module Danica
 
     def named_variables_hash
       variable_variables.inject({}) do |hash, (key, container)|
-        hash.merge( (container.content.name || key).to_sym => container )
+        hash.merge((container.content.name || key).to_sym => container)
       end
     end
 
@@ -64,4 +66,3 @@ module Danica
     end
   end
 end
-
