@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 shared_examples 'a operator with a single input value' do |arguments|
-  include_context 'variables are initialized', arguments, 'variable_value', 'expected_number', 'expected_tex', 'expected_number_tex', 'expected_gnu', 'expected_number_gnu'
+  include_context 'when variables are initialized', arguments, 'variable_value', 'expected_number', 'expected_tex', 'expected_number_tex', 'expected_gnu', 'expected_number_gnu'
   subject { described_class.new(variable) }
 
   let(:variable) { { name: 'X', value: variable_value } }

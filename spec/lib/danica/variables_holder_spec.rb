@@ -213,7 +213,7 @@ describe Danica::VariablesHolder do
         it_behaves_like 'an variable set that does not change the class variables'
       end
 
-      context 'setting the variables through a hash' do
+      context 'when setting the variables through a hash' do
         let(:variables) { { x: 1, y: 2, z: 3 } }
 
         it_behaves_like 'an variable set that does not change the class variables'
@@ -243,7 +243,7 @@ describe Danica::VariablesHolder do
         expect(subject.x).to eq(Danica::Wrapper::Number.new(1))
       end
 
-      context 'but the array is empty' do
+      context 'when the array is empty' do
         let(:variables) { [] }
 
         it_behaves_like 'an object that returns the default variables hash'
@@ -261,7 +261,7 @@ describe Danica::VariablesHolder do
         expect(subject.x).to eq(Danica::Wrapper::Number.new(1))
       end
 
-      context 'but the hash is empty' do
+      context 'when the hash is empty' do
         let(:variables) { {} }
 
         it_behaves_like 'an object that returns the default variables hash'
@@ -360,7 +360,7 @@ describe Danica::VariablesHolder do
         expect(subject.extract_variables).to eq(subject.containers.as_hash(%i[x y zeta k]))
       end
 
-      context 'but one of them is a number' do
+      context 'when one of them is a number' do
         let(:clazz) { described_class::Dummy }
         let(:expected) do
           subject.containers_hash.reject { |k, _v| k == :z }
@@ -414,7 +414,7 @@ describe Danica::VariablesHolder do
           expect { subject.calculate }.to raise_error(Danica::Exception::NotDefined)
         end
 
-        context 'which does not complete the values' do
+        context 'when it does not complete the values' do
           it do
             expect { subject.calculate(2) }.to raise_error(Danica::Exception::NotDefined)
           end
@@ -422,7 +422,7 @@ describe Danica::VariablesHolder do
       end
 
       context 'when passing the values' do
-        context 'as a list of values' do
+        context 'when values are a list' do
           it do
             expect { subject.calculate(2, 4) }.not_to raise_error
           end
@@ -431,7 +431,7 @@ describe Danica::VariablesHolder do
             expect(subject.calculate(2, 4)).to eq(26)
           end
 
-          context 'and replacing all the values' do
+          context 'when replacing all the values' do
             it do
               expect { subject.calculate(2, 4, 5) }.not_to raise_error
             end
@@ -442,8 +442,8 @@ describe Danica::VariablesHolder do
           end
         end
 
-        context 'as a hash' do
-          context 'which completes the values' do
+        context 'when the values are hash' do
+          context 'when it completes the values' do
             it do
               expect { subject.calculate(x: 2, y: 4) }.not_to raise_error
             end
@@ -453,7 +453,7 @@ describe Danica::VariablesHolder do
             end
           end
 
-          context 'which does not complete the values' do
+          context 'when it does not complete the values' do
             it do
               expect { subject.calculate(x: 2, z: 4) }.to raise_error(Danica::Exception::NotDefined)
             end

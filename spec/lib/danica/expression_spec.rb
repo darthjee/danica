@@ -205,7 +205,7 @@ describe Danica::Expression do
       end
 
       context 'when initializing with array' do
-        context 'as hash' do
+        context 'when variables contain hashes' do
           subject { described_class::Spatial.new(variables) }
 
           let(:variables) { [:t, 'a', { name: :S0, latex: 'S_0' }, { name: :V0, latex: 'V_0' }] }
@@ -217,7 +217,7 @@ describe Danica::Expression do
       end
 
       context 'when initializing with sequence' do
-        context 'as hash' do
+        context 'when variables contain hashes' do
           subject { described_class::Spatial.new(*variables, {}) }
 
           let(:variables) { [:t, 'a', { name: :S0, latex: 'S_0' }, { name: :V0, latex: 'V_0' }] }
@@ -228,8 +228,8 @@ describe Danica::Expression do
         end
       end
 
-      context 'when initializing with variables array' do
-        context 'as hash' do
+      context 'when initializing with variables hash' do
+        context 'when variables contain hashes' do
           subject { described_class::Spatial.new(variables: variables) }
 
           let(:variables) { [:t, 'a', { name: :S0, latex: 'S_0' }, { name: :V0, latex: 'V_0' }] }
@@ -330,7 +330,7 @@ describe Danica::Expression do
             expect { subject.calculate }.to raise_error(Danica::Exception::NotDefined)
           end
 
-          context 'but calling calculate with a value for the variables' do
+          context 'when calling calculate with a value for the variables' do
             it 'calculate using the given value' do
               expect(subject.calculate(time_value)).to eq(expected)
             end

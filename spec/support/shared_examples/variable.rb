@@ -36,7 +36,7 @@ shared_examples 'a method that display the numeric value' do |method|
       expect(subject.public_send(method)).to eq('10')
     end
 
-    context 'and passing the decimals argument' do
+    context 'when passing the decimals argument' do
       it 'returns the value float string' do
         expect(subject.public_send(method, decimals: 4)).to eq('10')
       end
@@ -50,13 +50,13 @@ shared_examples 'a method that display the numeric value' do |method|
       expect(subject.public_send(method)).to eq('3.3333333333333335')
     end
 
-    context 'and passing the decimals argument' do
+    context 'when passing the decimals argument' do
       it 'returns the value float string' do
         expect(subject.public_send(method, decimals: 4)).to eq('3.3333')
       end
     end
 
-    context 'but the number has less decimals' do
+    context 'when the number has less decimals' do
       let(:value) { 10.5 }
 
       it 'returns the value integer string' do

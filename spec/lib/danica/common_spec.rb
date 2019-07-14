@@ -101,7 +101,7 @@ describe Danica::Common do
         expect(subject.to_tex).to eq('0.333')
       end
 
-      context 'but overwritting options' do
+      context 'when overwritting options' do
         it 'formats with the current options' do
           expect(subject.to_tex(decimals: 4)).to eq('0.3333')
         end
@@ -127,7 +127,7 @@ describe Danica::Common do
         expect(subject.to_gnu).to eq('0.333')
       end
 
-      context 'but overwritting options' do
+      context 'when overwritting options' do
         it 'formats with the current options' do
           expect(subject.to_gnu(decimals: 4)).to eq('0.3333')
         end

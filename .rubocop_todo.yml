@@ -21,20 +21,6 @@ Metrics/BlockLength:
 Metrics/MethodLength:
   Max: 16
 
-# Offense count: 26
-# Configuration parameters: Prefixes.
-# Prefixes: when, with, without
-RSpec/ContextWording:
-  Exclude:
-    - 'spec/lib/danica/common_spec.rb'
-    - 'spec/lib/danica/dsl_spec.rb'
-    - 'spec/lib/danica/expression_spec.rb'
-    - 'spec/lib/danica/function_spec.rb'
-    - 'spec/lib/danica/variables_holder_spec.rb'
-    - 'spec/lib/danica_spec.rb'
-    - 'spec/support/shared_contexts/common.rb'
-    - 'spec/support/shared_examples/variable.rb'
-
 # Offense count: 7
 RSpec/DescribeClass:
   Exclude:

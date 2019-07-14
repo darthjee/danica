@@ -7,7 +7,7 @@ shared_examples 'a operator that joins many variables with same operation' do |a
 end
 
 shared_examples 'a operator that knows how to calculate' do |arguments|
-  include_context 'variables are initialized', arguments, 'calculated'
+  include_context 'when variables are initialized', arguments, 'calculated'
   subject { described_class.new(*variables) }
 
   let(:variables) do
@@ -52,7 +52,7 @@ shared_examples 'a operator that knows how to write to a string' do |format, arg
   subject { described_class.new(*variables) }
 
   let(:numeric_variables) { arguments[:numeric_variables] }
-  include_context 'variables are initialized', arguments[format], 'integer_expected', 'string_expected', 'float_expected'
+  include_context 'when variables are initialized', arguments[format], 'integer_expected', 'string_expected', 'float_expected'
 
   describe "#to(#{format})" do
     let(:variables) do

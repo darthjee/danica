@@ -85,7 +85,7 @@ describe Danica do
         expect(result.expression_block).to eq(expected)
       end
 
-      context 'for a number' do
+      context 'when it is a number' do
         let(:block) do
           proc { -num(2) }
         end

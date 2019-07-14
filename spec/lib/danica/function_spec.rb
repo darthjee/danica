@@ -178,7 +178,7 @@ describe Danica::Function do
         expect(function.to_tex).to eq('f(x, y) = x^{y}')
       end
 
-      context 'and one of the variables is changed' do
+      context 'when one of the variables is changed' do
         it 'uses the new variable value' do
           expect do
             function.y = 2
@@ -196,7 +196,7 @@ describe Danica::Function do
         expect(function.to_tex).to eq('f(y) = \pi^{y}')
       end
 
-      context 'from a hash' do
+      context 'when name is in the hash' do
         let(:function) do
           function_class.new(name: :f, x: { latex: '\pi', gnuplot: 'pi', value: 3.14 })
         end
@@ -248,7 +248,7 @@ describe Danica::Function do
         expect(function.to_gnu).to eq('f(y) = pi**(y)')
       end
 
-      context 'from a hash' do
+      context 'when name is in the hash' do
         let(:function) do
           function_class.new(name: :f, x: { latex: '\pi', gnuplot: 'pi', value: 3.14 })
         end
