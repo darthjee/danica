@@ -2,13 +2,13 @@
 
 module Danica
   module VariablesHolder
-    extend ::ActiveSupport::Concern
-    include Common
-
     autoload :VariablesBuilder, 'danica/variables_holder/variables_builder'
     autoload :AliasBuilder,     'danica/variables_holder/alias_builder'
     autoload :Calculator,       'danica/variables_holder/calculator'
     autoload :Store,            'danica/variables_holder/store'
+
+    extend ::ActiveSupport::Concern
+    include Common
 
     delegate :containers_hash, :containers, :variables,
              :variables_hash, :variables_value_hash,

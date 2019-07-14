@@ -2,11 +2,12 @@
 
 module Danica
   class Function
+    autoload :Name, 'danica/function/name'
+
     include VariablesHolder
     include DSL
     include Expressable
 
-    autoload :Name, 'danica/function/name'
     attr_writer :name
 
     built_with(:function_block)

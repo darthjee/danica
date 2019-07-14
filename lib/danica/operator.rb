@@ -3,15 +3,6 @@
 module Danica
   class Operator
     include VariablesHolder
-    include BaseOperations
-
-    default_value :priority, 4
-    default_value :is_grouped?, false
-
-    def ==(other)
-      return false unless other.class == self.class
-      variables == other.variables
-    end
 
     autoload :Functional,     'danica/operator/functional'
     autoload :Chained,        'danica/operator/chained'
@@ -23,5 +14,15 @@ module Danica
     autoload :Sin,            'danica/operator/sin'
     autoload :SquaredRoot,    'danica/operator/squared_root'
     autoload :Exponential,    'danica/operator/exponential'
+
+    include BaseOperations
+
+    default_value :priority, 4
+    default_value :is_grouped?, false
+
+    def ==(other)
+      return false unless other.class == self.class
+      variables == other.variables
+    end
   end
 end
