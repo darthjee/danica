@@ -268,13 +268,17 @@ describe Danica::Expression do
             subject.time = time
           end
 
+          let(:expected_variables) do
+            [
+              time,
+              Danica::Wrapper::Variable.new(name: :acceleration),
+              Danica::Wrapper::Variable.new(name: :initial_space),
+              Danica::Wrapper::Variable.new(name: :initial_velocity)
+            ]
+          end
+
           it 'returns the list of variables merged default and new variables' do
-            expect(subject.variables.compact).to eq([
-                                                      time,
-                                                      Danica::Wrapper::Variable.new(name: :acceleration),
-                                                      Danica::Wrapper::Variable.new(name: :initial_space),
-                                                      Danica::Wrapper::Variable.new(name: :initial_velocity)
-                                                    ])
+            expect(subject.variables.compact).to eq(expected_variables)
           end
         end
 

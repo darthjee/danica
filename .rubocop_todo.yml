@@ -38,12 +38,6 @@ RSpec/EmptyExampleGroup:
   Exclude:
     - 'spec/lib/danica/variables_holder/store_spec.rb'
 
-# Offense count: 1
-# Configuration parameters: Max.
-RSpec/ExampleLength:
-  Exclude:
-    - 'spec/lib/danica/expression_spec.rb'
-
 # Offense count: 4
 # Configuration parameters: CustomTransform, IgnoreMethods.
 RSpec/FilePath:

@@ -29,13 +29,17 @@ describe Danica::VariablesHolder::Store do
         subject.containers_hash[:y] = Danica::Wrapper::Number.new(1)
       end
 
+      let(:expected_variables) do
+        [
+          Danica::Wrapper::Variable.new(name: :x),
+          Danica::Wrapper::Number.new(1),
+          Danica::Wrapper::Number.new(10)
+        ]
+      end
+
       it 'returns the default variables and the new set one' do
         expect(subject.variables)
-          .to eq([
-                   Danica::Wrapper::Variable.new(name: :x),
-                   Danica::Wrapper::Number.new(1),
-                   Danica::Wrapper::Number.new(10)
-                 ])
+          .to eq(expected_variables)
       end
 
       it 'does not change the default variables' do
@@ -68,7 +72,7 @@ describe Danica::VariablesHolder::Store do
 
   describe '#containers' do
     it 'is an array of Containers' do
-      subject.containers.to all(be_a(Danica::Wrapper::Container))
+      expect(subject.containers).to all(be_a(Danica::Wrapper::Container))
     end
   end
 end
