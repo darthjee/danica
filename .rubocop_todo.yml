@@ -39,7 +39,6 @@ Lint/DuplicateMethods:
 Lint/UnusedBlockArgument:
   Exclude:
     - 'lib/danica/expressable.rb'
-    - 'spec/lib/danica/variables_holder_spec.rb'
 
 # Offense count: 1
 # Configuration parameters: ContextCreatingMethods, MethodCreatingMethods.

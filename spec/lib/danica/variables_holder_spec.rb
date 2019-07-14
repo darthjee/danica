@@ -367,7 +367,7 @@ describe Danica::VariablesHolder do
       context 'but one of them is a number' do
         let(:clazz) { described_class::Dummy }
         let(:expected) do
-          subject.containers_hash.reject { |k, v| k == :z }
+          subject.containers_hash.reject { |k, _v| k == :z }
         end
 
         it 'returns only the variables' do
@@ -390,7 +390,7 @@ describe Danica::VariablesHolder do
         clazz.new(z: inner)
       end
       let(:expected) do
-        subject.containers_hash.reject { |k, v| k == :z }
+        subject.containers_hash.reject { |k, _v| k == :z }
                .merge(inner.containers_hash)
       end
 
