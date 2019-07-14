@@ -5,7 +5,8 @@ module Danica
     include BaseOperations
     include Common
 
-    attr_accessor :value, :name, :latex, :gnuplot
+    attr_accessor :name, :latex, :gnuplot
+    attr_reader :value
 
     default_value :priority,    10
     default_value :is_grouped?, false

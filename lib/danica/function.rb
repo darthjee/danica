@@ -7,7 +7,7 @@ module Danica
     include Expressable
 
     autoload :Name, 'danica/function/name'
-    attr_accessor :name
+    attr_writer :name
 
     built_with(:function_block)
 
