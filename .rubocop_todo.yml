@@ -63,11 +63,6 @@ RSpec/NamedSubject:
 RSpec/NestedGroups:
   Max: 6
 
-# Offense count: 2
-RSpec/VoidExpect:
-  Exclude:
-    - 'spec/lib/danica/wrapper/variable_spec.rb'
-
 # Offense count: 35
 # Cop supports --auto-correct.
 # Configuration parameters: AutoCorrect, EnforcedStyle.

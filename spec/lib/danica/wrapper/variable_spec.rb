@@ -12,13 +12,13 @@ describe Danica::Wrapper::Variable do
   it 'can be initialize from nil value' do
     expect do
       described_class.new(nil)
-    end
+    end.not_to raise_error
   end
 
   it 'can be initialize from nil name' do
     expect do
       described_class.new(name: nil)
-    end
+    end.not_to raise_error
   end
 
   describe '#to_f' do
