@@ -9,8 +9,8 @@ module Danica
     default_value :tex_symbol, '\cdot'
     default_value :gnu_symbol, :*
 
-    def chain_operation(a, b)
-      a * b
+    def chain_operation(first, second)
+      first * second
     end
   end
 end

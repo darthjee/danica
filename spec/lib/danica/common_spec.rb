@@ -19,7 +19,7 @@ module Danica
     class Dummy2
       include Common
 
-      def to(format, **_)
+      def to(format, **_options)
         "formatted: #{format}"
       end
     end

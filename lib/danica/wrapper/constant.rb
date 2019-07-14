@@ -30,11 +30,11 @@ module Danica
       gnuplot == other.gnuplot && latex == other.latex && value == other.value
     end
 
-    def to_tex(**_)
+    def to_tex(**_options)
       latex.to_s
     end
 
-    def to_gnu(**_)
+    def to_gnu(**_options)
       gnuplot.to_s
     end
 

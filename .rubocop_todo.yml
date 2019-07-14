@@ -21,17 +21,6 @@ Metrics/BlockLength:
 Metrics/MethodLength:
   Max: 16
 
-# Offense count: 9
-# Configuration parameters: MinNameLength, AllowNamesEndingInNumbers, AllowedNames, ForbiddenNames.
-# AllowedNames: io, id, to, by, on, in, at
-Naming/UncommunicativeMethodParamName:
-  Exclude:
-    - 'lib/danica/operator/addition.rb'
-    - 'lib/danica/operator/multiplication.rb'
-    - 'lib/danica/wrapper/constant.rb'
-    - 'lib/danica/wrapper/number.rb'
-    - 'spec/lib/danica/common_spec.rb'
-
 # Offense count: 26
 # Configuration parameters: Prefixes.
 # Prefixes: when, with, without

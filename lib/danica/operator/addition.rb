@@ -8,8 +8,8 @@ module Danica
 
     default_value :symbol, :+
 
-    def chain_operation(a, b)
-      a + b
+    def chain_operation(first, second)
+      first + second
     end
 
     def join_proc(symbol)
