@@ -53,11 +53,6 @@ RSpec/FilePath:
     - 'spec/integration/readme/number_spec.rb'
     - 'spec/integration/readme/variables_spec.rb'
 
-# Offense count: 1
-RSpec/IteratedExpectation:
-  Exclude:
-    - 'spec/lib/danica/variables_holder/store_spec.rb'
-
 # Offense count: 4
 RSpec/MultipleDescribes:
   Exclude:
