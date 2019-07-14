@@ -1,5 +1,7 @@
-shared_examples 'an object with basic operation' do |operations:%i(+ - * / **), ignore:[]|
-  (operations - [ ignore ].flatten).each do |operation|
+# frozen_string_literal: true
+
+shared_examples 'an object with basic operation' do |operations: %i[+ - * / **], ignore: []|
+  (operations - [ignore].flatten).each do |operation|
     it_behaves_like "an object with #{operation} operation"
   end
 end
@@ -25,6 +27,7 @@ shared_examples 'an object with + operation' do
 
   context 'when operating as reverse' do
     let(:result) { Danica::Wrapper::Number.new(other) + subject }
+
     it_behaves_like 'an object with an operation', Danica::Operator::Addition
   end
 end
@@ -38,6 +41,7 @@ shared_examples 'an object with * operation' do
 
   context 'when operating as reverse' do
     let(:result) { Danica::Wrapper::Number.new(other) * subject }
+
     it_behaves_like 'an object with an operation', Danica::Operator::Multiplication
   end
 end
@@ -77,7 +81,7 @@ end
 
 shared_examples 'an object with ** operation' do
   let(:other) { 104 }
-  let(:result) { subject ** other }
+  let(:result) { subject**other }
 
   it { expect(result).to be_a(Danica::Operator::Power) }
 
@@ -89,4 +93,3 @@ shared_examples 'an object with ** operation' do
     expect(result.exponent).to eq(Danica::Wrapper::Number.new(other))
   end
 end
-

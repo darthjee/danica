@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
-shared_context 'a class with alias to a clazz' do |aliaz, clazz, *variables|
+shared_examples 'a class with alias to a clazz' do |aliaz, clazz, *variables|
   it do
     expect(subject).to respond_to(aliaz)
   end
@@ -10,7 +12,7 @@ shared_context 'a class with alias to a clazz' do |aliaz, clazz, *variables|
   end
 end
 
-shared_context 'a class with mapped dsl' do
+shared_examples 'a class with mapped dsl' do
   {
     addition:       Danica::Operator::Addition,
     sum:            Danica::Operator::Addition,
@@ -44,6 +46,7 @@ describe Danica::DSL do
   end
 
   let(:subject) { described_class::Dummy.new }
+
   it_behaves_like 'a class with mapped dsl'
 
   describe '.build' do

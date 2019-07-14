@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Danica
   class Function::Spatial < Function
     variables :time, :acceleration, :initial_space, :initial_velocity

@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe Danica::Function::Name do
-  let(:x) {  Danica::Wrapper::Variable.new(name: :x, latex: '\mu', gnuplot: 'u')}
+  let(:x) { Danica::Wrapper::Variable.new(name: :x, latex: '\mu', gnuplot: 'u') }
   let(:subject) { described_class.new(name: :f, variables: [x]) }
 
   it_behaves_like 'an object that respond to basic_methods'

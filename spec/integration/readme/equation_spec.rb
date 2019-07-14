@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe Danica::Equation do
   subject do
     described_class.build(:x, :y, :z) do
-      left { x ** 2 + y ** 2 }
-      right { number(1) - z ** 2 }
+      left { x**2 + y**2 }
+      right { number(1) - z**2 }
     end.new
   end
 

@@ -1,11 +1,13 @@
+# frozen_string_literal: true
+
 module Danica
   class Expression
+    autoload :Gauss, 'danica/expression/gauss'
+
     include Common
     include DSL
     include BaseOperations
     include Expressable
-
-    autoload :Gauss,    'danica/expression/gauss'
 
     delegate :is_grouped?, :priority, to: :expression_block
 

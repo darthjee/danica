@@ -1,8 +1,11 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe Danica::Wrapper::Number do
-  let(:value) { 10 }
   subject { described_class.new(value) }
+
+  let(:value) { 10 }
 
   it_behaves_like 'an object that respond to basic_methods'
 
@@ -10,11 +13,13 @@ describe Danica::Wrapper::Number do
 
   describe '#valued?' do
     context 'when value is present' do
-      it { expect(subject.valued?).to be_truthy }
+      it { expect(subject).to be_valued }
     end
+
     context 'when value is not present' do
       let(:value) { false }
-      it { expect(subject.valued?).to be_falsey }
+
+      it { expect(subject).not_to be_valued }
     end
   end
 

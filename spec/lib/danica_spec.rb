@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe Danica do
@@ -10,13 +12,13 @@ describe Danica do
       end
 
       it 'returns the expected addition' do
-        expect(result.expression_block).to eq(Danica::Operator::Addition.new(1,2))
+        expect(result.expression_block).to eq(Danica::Operator::Addition.new(1, 2))
       end
     end
 
     context 'when creating a power of addition and multiplication' do
       let(:block) do
-        proc { power(addition(1, 2), multiplication(2,3)) }
+        proc { power(addition(1, 2), multiplication(2, 3)) }
       end
       let(:expected) do
         Danica::Operator::Power.new(
@@ -70,7 +72,7 @@ describe Danica do
 
     context 'when defining a negative output' do
       let(:block) do
-        proc { -(sum(2, 3)) }
+        proc { -sum(2, 3) }
       end
 
       let(:expected) do
@@ -83,7 +85,7 @@ describe Danica do
         expect(result.expression_block).to eq(expected)
       end
 
-      context 'for a number' do
+      context 'when it is a number' do
         let(:block) do
           proc { -num(2) }
         end
@@ -99,4 +101,3 @@ describe Danica do
     end
   end
 end
-

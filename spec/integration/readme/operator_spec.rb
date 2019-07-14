@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe MyOperator do
@@ -17,7 +19,7 @@ describe MyOperator do
     subject { described_class.new(x: 2) }
 
     it 'returns the result of the operation' do
-      expect(subject.to_f).to eq(2 ** Math::PI)
+      expect(subject.to_f).to eq(2**Math::PI)
     end
   end
 end

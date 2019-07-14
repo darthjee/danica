@@ -1,0 +1,28 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: darthjee/circleci_ruby_gems:0.1.0
+    steps:
+      - checkout
+      - run:
+          name: Prepare Coverage Test Report
+          command: cc-test-reporter before-build
+      - run:
+          name: Bundle Install
+          command: bundle install
+      - run:
+          name: RSpec
+          command: bundle exec rspec
+      - run:
+          name: Rubocop
+          command: rubocop
+      - run:
+          name: Coverage Test Report
+          command: cc-test-reporter after-build --exit-code $?
+      - run:
+          name: Yardstick coverage check
+          command: bundle exec rake verify_measurements
+      - run:
+          name: Rubycritcs check
+          command: scripts/rubycritic.sh

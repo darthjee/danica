@@ -1,6 +1,7 @@
+# frozen_string_literal: true
+
 module Danica
   class Expression::Spatial < Expression.build(:time, :acceleration, :initial_space, :initial_velocity) { addition(parcels) }
-
     private
 
     def parcels

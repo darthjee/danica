@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Danica
   class Wrapper::Number
     include BaseOperations
@@ -13,9 +15,9 @@ module Danica
       @value = value
     end
 
-    def to(_, decimals: nil, **__)
+    def to(_format, decimals: nil, **_options)
       return value.to_i.to_s if value.to_i == value
-      return ("%.#{decimals}f" % value).to_f.to_s if decimals
+      return format("%.#{decimals}f", value).to_f.to_s if decimals
       value.to_s
     end
 
@@ -33,4 +35,3 @@ module Danica
     end
   end
 end
-

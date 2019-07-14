@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Danica
   class Operator
     class Chained < Operator
@@ -46,11 +48,10 @@ module Danica
       end
 
       def chain(numbers)
-        numbers.inject do |a,b|
-          chain_operation(a,b)
+        numbers.inject do |a, b|
+          chain_operation(a, b)
         end.to_f
       end
     end
   end
 end
-

@@ -1,22 +1,24 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe Danica::Equation do
+  subject do
+    clazz.new
+  end
+
   let(:clazz) do
     described_class.build(:x, :y) do
       left { y }
-      right { x ** 2 }
+      right { x**2 }
     end
-  end
-
-  subject do
-    clazz.new
   end
 
   it_behaves_like 'an object that respond to basic_methods'
 
   describe '.build' do
     it 'returns a class that is also an equation' do
-      expect(subject).to be_a(Danica::Equation)
+      expect(subject).to be_a(described_class)
     end
   end
 
@@ -24,12 +26,12 @@ describe Danica::Equation do
     subject do
       described_class.create(:x, :y) do
         left { y }
-        right { x ** 2 }
+        right { x**2 }
       end
     end
 
     it 'returns a class that is also an equation' do
-      expect(subject).to be_a(Danica::Equation)
+      expect(subject).to be_a(described_class)
     end
   end
 

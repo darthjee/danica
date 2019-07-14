@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe Danica::Operator::Multiplication do
-  subject { described_class.new(2,4) }
+  subject { described_class.new(2, 4) }
 
   it 'initializes from array' do
     expect do
@@ -22,18 +24,17 @@ describe Danica::Operator::Multiplication do
   end
   it_behaves_like 'an object with basic operation', ignore: :*
 
-  it_behaves_like 'a operator that joins many variables with same operation', {
-    calculated: 24,
-    numeric_variables: [ 1.5, 2, 3.5 ],
-    tex: {
-      string_expected: %w(X1 X2 X3 X4).join(' \cdot '),
-      integer_expected: %w(1.5 2 X3 X4).join(' \cdot '),
-      float_expected: %w(1.5 2 3.5 X4).join(' \cdot ')
-    },
-    gnu: {
-      string_expected: %w(X1 X2 X3 X4).join(' * '),
-      integer_expected: %w(1.5 2 X3 X4).join(' * '),
-      float_expected: %w(1.5 2 3.5 X4).join(' * '),
-    }
-  }
+  it_behaves_like 'a operator that joins many variables with same operation',
+                  calculated: 24,
+                  numeric_variables: [1.5, 2, 3.5],
+                  tex: {
+                    string_expected: %w[X1 X2 X3 X4].join(' \cdot '),
+                    integer_expected: %w[1.5 2 X3 X4].join(' \cdot '),
+                    float_expected: %w[1.5 2 3.5 X4].join(' \cdot ')
+                  },
+                  gnu: {
+                    string_expected: %w[X1 X2 X3 X4].join(' * '),
+                    integer_expected: %w[1.5 2 X3 X4].join(' * '),
+                    float_expected: %w[1.5 2 3.5 X4].join(' * ')
+                  }
 end

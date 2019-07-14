@@ -1,6 +1,10 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe Danica::Expression::Gauss do
+  subject { described_class::Gauss.new(variables) }
+
   let(:variables) do
     {
       x: :x,
@@ -9,12 +13,11 @@ describe Danica::Expression::Gauss do
     }
   end
 
-  subject { described_class::Gauss.new(variables) }
   it_behaves_like 'an object that respond to basic_methods'
 
   describe '#to_tex' do
     context 'when creating the spatial operator for constantly accelerated movement' do
-      let(:expected) { '\frac{1}{\theta \cdot \sqrt{2 \cdot \pi}} \cdot e^{-\frac{\left(x -u\right)^{2}}{2 \cdot \theta^{2}}}'  }
+      let(:expected) { '\frac{1}{\theta \cdot \sqrt{2 \cdot \pi}} \cdot e^{-\frac{\left(x -u\right)^{2}}{2 \cdot \theta^{2}}}' }
 
       it 'return the latex format CAM' do
         expect(subject.to_tex).to eq(expected)
@@ -36,7 +39,7 @@ describe Danica::Expression::Gauss do
     subject { described_class::Gauss.new }
 
     describe '#to_tex' do
-      let(:expected) { '\frac{1}{\sigma \cdot \sqrt{2 \cdot \pi}} \cdot e^{-\frac{\left(x -\mu\right)^{2}}{2 \cdot \sigma^{2}}}'  }
+      let(:expected) { '\frac{1}{\sigma \cdot \sqrt{2 \cdot \pi}} \cdot e^{-\frac{\left(x -\mu\right)^{2}}{2 \cdot \sigma^{2}}}' }
 
       it 'rely on default variables definition' do
         expect(subject.to_tex).to eq(expected)

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 shared_examples 'a formatted result' do |output|
@@ -14,28 +16,31 @@ shared_examples('a formatted object that responds to basic operations') do |oper
   operations_map.each do |operation, (output, reverse_output)|
     describe(operation.to_s) do
       let(:result) { subject.public_send(operation, 2) }
+
       it_behaves_like 'a formatted result', output
 
       context 'when doing it backwards' do
         let(:result) { Danica::Wrapper::Number.new(2).public_send(operation, subject) }
+
         it_behaves_like 'a formatted result', reverse_output
       end
     end
   end
 end
 describe Danica::Formatted do
-  let(:content) { Danica::Wrapper::Variable.new(latex: :V, gnuplot: :v) }
-  let(:format) { :tex }
-  let(:options) { {} }
   subject do
     described_class.new(content, format: format, **options)
   end
+
+  let(:content) { Danica::Wrapper::Variable.new(latex: :V, gnuplot: :v) }
+  let(:format) { :tex }
+  let(:options) { {} }
 
   describe '#repack' do
     let(:expression) { Danica::Wrapper::Number.new(1.0 / 3) }
 
     it do
-      expect(subject.repack(expression)).to be_a(Danica::Formatted)
+      expect(subject.repack(expression)).to be_a(described_class)
     end
 
     context 'when there are options' do
@@ -63,7 +68,7 @@ describe Danica::Formatted do
     end
 
     context 'when variable has numeric value' do
-      let(:content) { Danica::Wrapper::Number.new(1/3.0) }
+      let(:content) { Danica::Wrapper::Number.new(1 / 3.0) }
 
       it 'returns the formatted number' do
         expect(subject.to_s).to eq('0.3333333333333333')
@@ -80,13 +85,12 @@ describe Danica::Formatted do
   end
 
   describe 'operators' do
-    it_behaves_like 'a formatted object that responds to basic operations', {
-      :+  => ['V + 2', '2 + V'],
-      :-  => ['V -2', '2 -V'],
-      :*  => ['V \cdot 2', '2 \cdot V'],
-      :/  => ['\frac{V}{2}', '\frac{2}{V}'],
-      :** => ['V^{2}', '2^{V}']
-    }
+    it_behaves_like 'a formatted object that responds to basic operations',
+                    :+  => ['V + 2', '2 + V'],
+                    :-  => ['V -2', '2 -V'],
+                    :*  => ['V \cdot 2', '2 \cdot V'],
+                    :/  => ['\frac{V}{2}', '\frac{2}{V}'],
+                    :** => ['V^{2}', '2^{V}']
 
     describe '-@' do
       it do
@@ -123,7 +127,7 @@ describe Danica::Formatted do
 
   describe '#tex' do
     it do
-      expect(subject.tex).to be_a(Danica::Formatted)
+      expect(subject.tex).to be_a(described_class)
     end
 
     context 'when original format is tex' do
@@ -138,6 +142,7 @@ describe Danica::Formatted do
 
     context 'when original format is gnu' do
       let(:format) { :gnu }
+
       it 'returns the tex string' do
         expect(subject.tex.to_s).to eq('V')
       end
@@ -150,7 +155,7 @@ describe Danica::Formatted do
 
   describe '#gnu' do
     it do
-      expect(subject.gnu).to be_a(Danica::Formatted)
+      expect(subject.gnu).to be_a(described_class)
     end
 
     context 'when original format is tex' do
@@ -161,6 +166,7 @@ describe Danica::Formatted do
 
     context 'when original format is gnu' do
       let(:format) { :gnu }
+
       it 'returns the gnu string' do
         expect(subject.gnu.to_s).to eq('v')
       end

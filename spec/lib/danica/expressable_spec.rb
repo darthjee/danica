@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 class Danica::Expressable::Dummy
@@ -9,12 +11,13 @@ class Danica::Expressable::Dummy
 end
 
 describe Danica::Expressable do
-  let(:clazz) { described_class::Dummy }
   subject do
     clazz.create(:x) { x }
   end
 
-  it_behaves_like 'an object that respond to basic_methods', ignore: %i(valued? container? is_grouped? priority)
+  let(:clazz) { described_class::Dummy }
+
+  it_behaves_like 'an object that respond to basic_methods', ignore: %i[valued? container? is_grouped? priority]
 
   describe '.build' do
     it 'responds to build' do

@@ -1,5 +1,8 @@
+# frozen_string_literal: true
+
 module Danica
-  module Common extend ::ActiveSupport::Concern
+  module Common
+    extend ::ActiveSupport::Concern
     included do
       include Wrapper
       include DSL
@@ -42,7 +45,7 @@ module Danica
       when :f
         to_f
       else
-        raise Exception::FormattedNotFound.new
+        raise Exception::FormattedNotFound
       end
     end
 

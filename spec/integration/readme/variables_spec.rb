@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe Danica::Wrapper::Variable do
   describe '#to_tex' do
     context 'when initializing with the name' do
       subject do
-        Danica::Wrapper::Variable.new(:x)
+        described_class.new(:x)
       end
 
       it do
@@ -14,7 +16,7 @@ describe Danica::Wrapper::Variable do
 
     context 'when initializing with a hash' do
       subject do
-        Danica::Wrapper::Variable.new(name: :x)
+        described_class.new(name: :x)
       end
 
       it do
@@ -102,17 +104,17 @@ describe Danica::Wrapper::Variable do
   describe 'automatic wrapp' do
     let(:sum) do
       Danica::DSL.build do
-        power(:x, { name: :y }) + :z
+        power(:x, name: :y) + :z
       end
     end
 
     let(:expected) do
       Danica::Operator::Addition.new(
         Danica::Operator::Power.new(
-          Danica::Wrapper::Variable.new(:x),
-          Danica::Wrapper::Variable.new(:y)
+          described_class.new(:x),
+          described_class.new(:y)
         ),
-        Danica::Wrapper::Variable.new(:z)
+        described_class.new(:z)
       )
     end
 

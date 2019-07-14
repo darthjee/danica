@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 module Danica
   module DSL
     class Builder
       attr_reader :method, :claz, :base
 
-      def initialize(method, claz=nil, base=nil)
+      def initialize(method, claz = nil, base = nil)
         @method = method
         @claz = claz
         @base = base

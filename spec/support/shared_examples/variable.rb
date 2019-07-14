@@ -1,8 +1,11 @@
+# frozen_string_literal: true
+
 shared_examples 'a variable method to formated string' do |method, format|
+  subject { described_class.new(arguments) }
+
   let(:name) { :delta }
   let(:value) { 10.0 }
   let(:arguments) { { name: name, latex: '\delta', gnuplot: 'del' } }
-  subject { described_class.new(arguments) }
 
   context "when #{format} is not defined" do
     before { arguments.delete(format) }
@@ -13,6 +16,7 @@ shared_examples 'a variable method to formated string' do |method, format|
 
     context 'when value is defined' do
       before { arguments[:value] = value }
+
       it_behaves_like 'a method that display the numeric value', method
     end
   end
@@ -32,7 +36,7 @@ shared_examples 'a method that display the numeric value' do |method|
       expect(subject.public_send(method)).to eq('10')
     end
 
-    context 'and passing the decimals argument' do
+    context 'when passing the decimals argument' do
       it 'returns the value float string' do
         expect(subject.public_send(method, decimals: 4)).to eq('10')
       end
@@ -46,13 +50,13 @@ shared_examples 'a method that display the numeric value' do |method|
       expect(subject.public_send(method)).to eq('3.3333333333333335')
     end
 
-    context 'and passing the decimals argument' do
+    context 'when passing the decimals argument' do
       it 'returns the value float string' do
         expect(subject.public_send(method, decimals: 4)).to eq('3.3333')
       end
     end
 
-    context 'but the number has less decimals' do
+    context 'when the number has less decimals' do
       let(:value) { 10.5 }
 
       it 'returns the value integer string' do

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Danica
   class Wrapper::Constant
     include BaseOperations
@@ -12,10 +14,10 @@ module Danica
 
     def initialize(*args)
       attrs = args.extract_options!
-      attrs = args.as_hash(%i(value latex gnuplot)).merge(attrs)
+      attrs = args.as_hash(%i[value latex gnuplot]).merge(attrs)
 
       attrs.each do |key, value|
-        self.send("#{key}=", value)
+        send("#{key}=", value)
       end
     end
 
@@ -28,30 +30,23 @@ module Danica
       gnuplot == other.gnuplot && latex == other.latex && value == other.value
     end
 
-    def to_tex(**_)
+    def to_tex(**_options)
       latex.to_s
     end
 
-    def to_gnu(**_)
+    def to_gnu(**_options)
       gnuplot.to_s
     end
 
     private
 
-    def value=(value)
-      @value = value
-    end
+    attr_writer :value
 
-    def latex=(latex)
-      @latex = latex
-    end
+    attr_writer :latex
 
-    def gnuplot=(gnuplot)
-      @gnuplot = gnuplot
-    end
+    attr_writer :gnuplot
   end
 
   E = Wrapper::Constant.new(Math::E, :e, 'exp(1)')
   PI = Wrapper::Constant.new(Math::PI, '\pi', :pi)
 end
-

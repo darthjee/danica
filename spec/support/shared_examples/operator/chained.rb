@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 shared_examples 'a operator that joins many variables with same operation' do |arguments|
   it_behaves_like 'a operator that knows how to calculate', arguments
   it_behaves_like 'a operator that knows how to write to tex', arguments
@@ -5,14 +7,15 @@ shared_examples 'a operator that joins many variables with same operation' do |a
 end
 
 shared_examples 'a operator that knows how to calculate' do |arguments|
-  include_context 'variables are initialized', arguments, 'calculated'
+  include_context 'when variables are initialized', arguments, 'calculated'
+  subject { described_class.new(*variables) }
+
   let(:variables) do
     (1..4).map do |i|
-      { name: "X#{i}", value: numeric_variables[i-1] }
+      { name: "X#{i}", value: numeric_variables[i - 1] }
     end
   end
-  let(:numeric_variables){ (1..4).to_a }
-  subject { described_class.new(*variables) }
+  let(:numeric_variables) { (1..4).to_a }
 
   describe 'to_f' do
     it 'returns the addition of variables value' do
@@ -46,9 +49,10 @@ shared_examples 'a operator that knows how to write to gnu' do |arguments|
 end
 
 shared_examples 'a operator that knows how to write to a string' do |format, arguments|
-  let(:numeric_variables) { arguments[:numeric_variables]  }
-  include_context 'variables are initialized', arguments[format], *%w(integer_expected string_expected float_expected)
   subject { described_class.new(*variables) }
+
+  let(:numeric_variables) { arguments[:numeric_variables] }
+  include_context 'when variables are initialized', arguments[format], 'integer_expected', 'string_expected', 'float_expected'
 
   describe "#to(#{format})" do
     let(:variables) do
@@ -63,6 +67,7 @@ shared_examples 'a operator that knows how to write to a string' do |format, arg
 
     context 'when some variables have values' do
       let(:numeric_variables_index) { 1 }
+
       before do
         (0..numeric_variables_index).each do |i|
           subject.variables[i].value = numeric_variables[i]
@@ -84,6 +89,7 @@ shared_examples 'a operator that knows how to write to a string' do |format, arg
 
     context 'when some variables are numbers' do
       let(:numeric_variables_index) { 1 }
+
       before do
         (0..numeric_variables_index).each do |i|
           variables[i] = numeric_variables[i]

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe Danica::Operator::Exponential do
@@ -6,12 +8,11 @@ describe Danica::Operator::Exponential do
   it_behaves_like 'an object that respond to basic_methods'
   it_behaves_like 'an object with basic operation'
 
-  it_behaves_like 'a operator with a single input value', {
-    variable_value: 2,
-    expected_number: Math.exp(2),
-    expected_number_tex: 'e^{2}',
-    expected_number_gnu: 'exp(2)',
-    expected_tex: 'e^{X}',
-    expected_gnu: 'exp(X)'
-  }
+  it_behaves_like 'a operator with a single input value',
+                  variable_value: 2,
+                  expected_number: Math.exp(2),
+                  expected_number_tex: 'e^{2}',
+                  expected_number_gnu: 'exp(2)',
+                  expected_tex: 'e^{X}',
+                  expected_gnu: 'exp(X)'
 end

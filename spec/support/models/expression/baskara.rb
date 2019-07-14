@@ -1,10 +1,11 @@
+# frozen_string_literal: true
+
 module Danica
   class Expression::Baskara < Expression.build(:a, :b, :c) { numerator / denominator }
-
     private
 
     def numerator
-       negative(b) + Wrapper::PlusMinus.new(squared_root(delta))
+      negative(b) + Wrapper::PlusMinus.new(squared_root(delta))
     end
 
     def denominator
@@ -16,4 +17,3 @@ module Danica
     end
   end
 end
-

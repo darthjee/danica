@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
-describe 'integration of power' do
+describe Danica::Operator::Power do
   describe 'of additions' do
     subject do
-      Danica::Operator::Power.new(
+      described_class.new(
         Danica::Operator::Addition.new(3, 4),
         Danica::Operator::Addition.new(5, 6)
       )

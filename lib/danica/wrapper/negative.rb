@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Danica
   class Wrapper::Negative
     include BaseOperations
@@ -29,4 +31,3 @@ module Danica
     end
   end
 end
-

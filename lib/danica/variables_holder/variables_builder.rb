@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Danica::VariablesHolder
   class VariablesBuilder
     include Danica::DSL
@@ -41,4 +43,3 @@ module Danica::VariablesHolder
     end
   end
 end
-

@@ -1,15 +1,18 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
-describe Danica::VariablesHolder::Store do 
+describe Danica::VariablesHolder::Store do
+  subject do
+    described_class.new(default_variables_hash)
+  end
+
   let(:default_variables_hash) do
     {
       x: Danica::Wrapper::Variable.new(name: :x),
-      y: Danica::Wrapper::Variable.new( latex: '\y' ),
+      y: Danica::Wrapper::Variable.new(latex: '\y'),
       z: Danica::Wrapper::Number.new(10)
     }
-  end
-  subject do
-    described_class.new(default_variables_hash)
   end
 
   describe '#variables' do
@@ -18,7 +21,7 @@ describe Danica::VariablesHolder::Store do
         expect(subject.variables).not_to be_empty
       end
 
-      #it_behaves_like 'an object that returns the default variables'
+      # it_behaves_like 'an object that returns the default variables'
     end
 
     context 'when some variables where defined' do
@@ -26,12 +29,17 @@ describe Danica::VariablesHolder::Store do
         subject.containers_hash[:y] = Danica::Wrapper::Number.new(1)
       end
 
-      it 'returns the default variables and the new set one' do
-        expect(subject.variables).to eq([
+      let(:expected_variables) do
+        [
           Danica::Wrapper::Variable.new(name: :x),
           Danica::Wrapper::Number.new(1),
           Danica::Wrapper::Number.new(10)
-        ])
+        ]
+      end
+
+      it 'returns the default variables and the new set one' do
+        expect(subject.variables)
+          .to eq(expected_variables)
       end
 
       it 'does not change the default variables' do
@@ -44,7 +52,7 @@ describe Danica::VariablesHolder::Store do
 
   describe '#variables_hash' do
     context 'when instance has no variables defined' do
-      #it_behaves_like 'an object that returns the default variables hash'
+      # it_behaves_like 'an object that returns the default variables hash'
     end
 
     context 'when some variables where defined' do
@@ -64,9 +72,7 @@ describe Danica::VariablesHolder::Store do
 
   describe '#containers' do
     it 'is an array of Containers' do
-      subject.containers.each do |container|
-        expect(container).to be_a(Danica::Wrapper::Container)
-      end
+      expect(subject.containers).to all(be_a(Danica::Wrapper::Container))
     end
   end
 end
