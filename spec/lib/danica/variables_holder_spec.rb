@@ -13,12 +13,16 @@ shared_examples 'an object that returns the default variables hash' do
 end
 
 shared_examples 'an object that returns the default variables' do
+  let(:expected_variables) do
+    [
+      Danica::Wrapper::Variable.new(name: :x),
+      Danica::Wrapper::Variable.new(latex: '\y'),
+      Danica::Wrapper::Number.new(10)
+    ]
+  end
+
   it 'returns the default variables hash' do
-    expect(subject.variables).to eq([
-                                      Danica::Wrapper::Variable.new(name: :x),
-                                      Danica::Wrapper::Variable.new(latex: '\y'),
-                                      Danica::Wrapper::Number.new(10)
-                                    ])
+    expect(subject.variables).to eq(expected_variables)
   end
 end
 
@@ -110,10 +114,15 @@ describe Danica::VariablesHolder do
   end
 
   describe 'variables assignement' do
-    it 'creates setters and getters for the variables' do
+    it 'creates setters for the variables' do
+      %i[x y z].each do |var|
+        expect(subject).to respond_to("#{var}=")
+      end
+    end
+
+    it 'creates getters for the variables' do
       %i[x y z].each do |var|
         expect(subject).to respond_to(var)
-        expect(subject).to respond_to("#{var}=")
       end
     end
 

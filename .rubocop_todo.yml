@@ -55,11 +55,6 @@ RSpec/MultipleDescribes:
     - 'spec/integration/readme/function_spec.rb'
     - 'spec/integration/readme/operator_spec.rb'
 
-# Offense count: 3
-# Configuration parameters: AggregateFailuresByDefault.
-RSpec/MultipleExpectations:
-  Max: 2
-
 # Offense count: 294
 RSpec/NamedSubject:
   Enabled: false

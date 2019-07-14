@@ -19,16 +19,22 @@ describe Danica::Operator do
   it_behaves_like 'an object that respond to basic_methods'
 
   describe 'variables assignment' do
-    it 'assignes the variables tpo its places' do
+    it 'assignes first variable' do
       expect(subject.a).to eq(Danica::Wrapper::Number.new(2))
+    end
+
+    it 'assignes second variable' do
       expect(subject.b).to eq(Danica::Wrapper::Number.new(4))
     end
 
     context 'when initializing with a hash' do
       let(:variables) { [{ name: :A, value: 2 }, { name: :B, value: 4 }] }
 
-      it 'assignes the variables tpo its places' do
+      it 'assignes first variable' do
         expect(subject.a).to eq(Danica::Wrapper::Variable.new(name: :A, value: 2))
+      end
+
+      it 'assignes second variable' do
         expect(subject.b).to eq(Danica::Wrapper::Variable.new(name: :B, value: 4))
       end
     end
