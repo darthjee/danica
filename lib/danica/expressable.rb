@@ -15,9 +15,12 @@ module Danica
 
             private
 
-            module_eval("define_method :#{block_name} do
-                @#{block_name} ||= instance_eval(&block) if block
-              end")
+            module_eval do
+              define_method block_name do
+                instance_variable_get("@#{block_name}") ||
+                  block && instance_variable_set("@#{block_name}", instance_eval(&block))
+              end
+            end
           end
         end
 
