@@ -179,9 +179,7 @@ describe Danica::VariablesHolder do
 
         context 'when changing the new alias value' do
           it do
-            expect do
-              subject.a = 20
-            end.to change { subject.x.content }
+            expect { subject.a = 20 }.to(change { subject.x.content })
           end
         end
       end
@@ -199,9 +197,8 @@ describe Danica::VariablesHolder do
 
         context 'when changing the original variable value' do
           it do
-            expect do
-              subject.x = 20
-            end.to change { subject.a.content }
+            expect { subject.x = 20 }
+              .to(change { subject.a.content })
           end
         end
       end
@@ -349,9 +346,8 @@ describe Danica::VariablesHolder do
       let(:containers) { subject.containers }
 
       it 'changes the variables in the containers' do
-        expect do
-          subject.x = 2
-        end.to change { containers.map(&:content) }
+        expect {  subject.x = 2 }
+          .to(change { containers.map(&:content) })
       end
     end
   end

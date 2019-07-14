@@ -162,9 +162,8 @@ describe Danica::Function do
 
     context 'when changing the function variables' do
       it 'changes the name variables' do
-        expect do
-          function.x = 2
-        end.to change { function.name.variables.map(&:content) }
+        expect { function.x = 2 }
+          .to(change { function.name.variables.map(&:content) })
       end
     end
   end

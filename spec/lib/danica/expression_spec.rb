@@ -279,7 +279,7 @@ describe Danica::Expression do
         end
 
         context 'when initializing with a variable set' do
-          subject { described_class::Spatial.new *names }
+          subject { described_class::Spatial.new(*names) }
 
           let(:names) { %i[t a s0 v0] }
 

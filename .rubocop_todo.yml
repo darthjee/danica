@@ -6,17 +6,6 @@
 # Note that changes in the inspected code, or installation of new
 # versions of RuboCop, may require this file to be generated again.
 
-# Offense count: 4
-Lint/AmbiguousBlockAssociation:
-  Exclude:
-    - 'spec/lib/danica/function_spec.rb'
-    - 'spec/lib/danica/variables_holder_spec.rb'
-
-# Offense count: 1
-Lint/AmbiguousOperator:
-  Exclude:
-    - 'spec/lib/danica/expression_spec.rb'
-
 # Offense count: 2
 Lint/DuplicateMethods:
   Exclude:
