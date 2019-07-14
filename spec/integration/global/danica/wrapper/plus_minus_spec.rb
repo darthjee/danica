@@ -2,10 +2,10 @@
 
 require 'spec_helper'
 
-describe 'integration of positive negative' do
+describe Danica::Wrapper::PlusMinus do
   describe 'with a addition' do
     subject do
-      Danica::Wrapper::PlusMinus.new(
+      described_class.new(
         Danica::Operator::Addition.new(1, 2, 3)
       )
     end

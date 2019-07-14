@@ -21,17 +21,6 @@ Metrics/BlockLength:
 Metrics/MethodLength:
   Max: 16
 
-# Offense count: 7
-RSpec/DescribeClass:
-  Exclude:
-    - 'spec/integration/addition_spec.rb'
-    - 'spec/integration/formatted_spec.rb'
-    - 'spec/integration/multiplication_spec.rb'
-    - 'spec/integration/negative_spec.rb'
-    - 'spec/integration/plus_minus_spec.rb'
-    - 'spec/integration/power_spec.rb'
-    - 'spec/integration/readme/formatting_spec.rb'
-
 # Offense count: 1
 # Configuration parameters: CustomIncludeMethods.
 RSpec/EmptyExampleGroup:

@@ -2,10 +2,10 @@
 
 require 'spec_helper'
 
-describe 'integration of multiplication' do
+describe Danica::Operator::Multiplication do
   describe 'of number and addition' do
     subject do
-      Danica::Operator::Multiplication.new(
+      described_class.new(
         3, Danica::Operator::Addition.new(2, 4)
       )
     end
@@ -25,7 +25,7 @@ describe 'integration of multiplication' do
 
   describe 'of additions' do
     subject do
-      Danica::Operator::Multiplication.new(
+      described_class.new(
         Danica::Operator::Addition.new(1, 2),
         Danica::Operator::Addition.new(3, 4)
       )
@@ -46,14 +46,14 @@ describe 'integration of multiplication' do
 
   describe 'when calling * operator' do
     subject do
-      Danica::Operator::Multiplication.new(:x, :y)
+      described_class.new(:x, :y)
     end
 
     let(:variable) { Danica::Wrapper::Variable.new(:v) }
     let(:result) { subject * variable }
 
     it do
-      expect(result).to be_a(Danica::Operator::Multiplication)
+      expect(result).to be_a(described_class)
     end
 
     it 'knows how to order variables' do
@@ -64,7 +64,7 @@ describe 'integration of multiplication' do
       let(:result) { variable * subject }
 
       it do
-        expect(result).to be_a(Danica::Operator::Multiplication)
+        expect(result).to be_a(described_class)
       end
 
       it 'knows how to order variables' do
@@ -80,7 +80,7 @@ describe 'integration of multiplication' do
     let(:result) { x * negative }
 
     it do
-      expect(result).to be_a(Danica::Operator::Multiplication)
+      expect(result).to be_a(described_class)
     end
 
     it 'knows how to order variables' do
