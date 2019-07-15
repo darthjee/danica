@@ -26,7 +26,7 @@ module Danica
     end
 
     def signaled?
-      value < 0
+      value.negative?
     end
 
     def ==(other)
