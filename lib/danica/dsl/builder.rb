@@ -27,8 +27,12 @@ module Danica
         clazz_from_string
       end
 
+      def base_module
+        @base_module ||= base.to_s.constantize
+      end
+
       def clazz_from_method
-        [base.to_s, method.to_s.camelize].compact.join('::').constantize
+        [base_module.to_s, method.to_s.camelize].compact.join('::').constantize
       end
 
       def clazz_from_string
