@@ -83,16 +83,6 @@ Style/MultilineBlockChain:
   Exclude:
     - 'spec/lib/danica/function_spec.rb'
 
-# Offense count: 2
-# Cop supports --auto-correct.
-# Configuration parameters: AutoCorrect, EnforcedStyle.
-# SupportedStyles: predicate, comparison
-Style/NumericPredicate:
-  Exclude:
-    - 'spec/**/*'
-    - 'lib/danica/wrapper.rb'
-    - 'lib/danica/wrapper/number.rb'
-
 # Offense count: 83
 # Configuration parameters: AllowHeredoc, AllowURI, URISchemes, IgnoreCopDirectives, IgnoredPatterns.
 # URISchemes: http, https
