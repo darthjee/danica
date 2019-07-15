@@ -2,9 +2,9 @@
 
 module Danica
   class Equation
-    include VariablesHolder
-
     autoload :Builder, 'danica/equation/builder'
+
+    include VariablesHolder
 
     class << self
       def build(*variables, &block)
