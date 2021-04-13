@@ -18,7 +18,7 @@ workflows:
 jobs:
   test:
     docker:
-      - image: darthjee/circleci_ruby_gems:0.6.0
+      - image: darthjee/circleci_ruby_250:0.6.1
         environment:
           PROJECT: danica
     steps:
@@ -52,7 +52,7 @@ jobs:
           command: check_specs
   build-and-release:
     docker:
-      - image: darthjee/circleci_ruby_gems:0.6.0
+      - image: darthjee/circleci_ruby_250:0.6.1
         environment:
           PROJECT: danica
     steps:
