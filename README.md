@@ -613,7 +613,7 @@ which will have the returns of ```#to(format)``` obeying the following
 }
 ```
 
-###Formatting
+### Formatting
 When generating the output, you can choose options or even
 create a formatted object
 
