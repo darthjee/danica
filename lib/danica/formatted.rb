@@ -14,6 +14,7 @@ class Danica::Formatted
 
   def ==(other)
     return false unless other.class == self.class
+
     other.content == content &&
       other.format == format
   end
@@ -46,6 +47,7 @@ class Danica::Formatted
   def method_missing(method, *args)
     value = content.public_send(method, *args)
     return value unless value.is_a?(Danica::Common)
+
     repack(value)
   end
 end

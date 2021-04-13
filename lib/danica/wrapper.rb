@@ -26,17 +26,20 @@ module Danica
         Variable.new(name: value)
       else
         raise Exception::InvalidInput, value unless value.is_a?(Danica::Common)
+
         value
       end
     end
 
     def self.wrap_numeric(number)
       return Negative.new(Number.new(-number)) if number < 0
+
       Number.new(number)
     end
 
     def self.wrap_hash(hash)
       return Constant.new(hash) if hash.keys.map(&:to_sym).sort == %i[gnuplot latex value]
+
       Variable.new(hash)
     end
   end

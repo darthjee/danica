@@ -75,6 +75,7 @@ module Danica
 
     def wrap_as_group(value)
       return value if is_grouped? || value.priority >= priority
+
       group(value)
     end
   end

@@ -30,6 +30,7 @@ module Danica
 
     def formatted_operation(other, value)
       return other.repack(value) if other.is_a?(Danica::Formatted)
+
       value
     end
   end
