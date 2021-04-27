@@ -1,1 +1,13 @@
-ignore: []
+ignore:
+  - lib/danica/builder.rb
+  - lib/danica/dsl/builder.rb
+  - lib/danica/equation/builder.rb
+  - lib/danica/exception.rb
+  - lib/danica/operator/chained.rb
+  - lib/danica/operator/functional.rb
+  - lib/danica/variables_holder/alias_builder.rb
+  - lib/danica/variables_holder/calculator.rb
+  - lib/danica/variables_holder/variables_builder.rb
+  - lib/danica/wrapper/container.rb
+  - lib/danica/base_operations.rb
+  - lib/danica/version.rb
