@@ -86,10 +86,10 @@ describe Danica::Formatted do
 
   describe 'operators' do
     it_behaves_like 'a formatted object that responds to basic operations',
-                    :+  => ['V + 2', '2 + V'],
-                    :-  => ['V -2', '2 -V'],
-                    :*  => ['V \cdot 2', '2 \cdot V'],
-                    :/  => ['\frac{V}{2}', '\frac{2}{V}'],
+                    :+ => ['V + 2', '2 + V'],
+                    :- => ['V -2', '2 -V'],
+                    :* => ['V \cdot 2', '2 \cdot V'],
+                    :/ => ['\frac{V}{2}', '\frac{2}{V}'],
                     :** => ['V^{2}', '2^{V}']
 
     describe '-@' do

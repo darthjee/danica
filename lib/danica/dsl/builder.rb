@@ -24,6 +24,7 @@ module Danica
       def build_clazz
         return clazz_from_method unless claz
         return claz if claz.is_a? Class
+
         clazz_from_string
       end
 

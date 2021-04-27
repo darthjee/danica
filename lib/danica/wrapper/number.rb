@@ -18,6 +18,7 @@ module Danica
     def to(_format, decimals: nil, **_options)
       return value.to_i.to_s if value.to_i == value
       return format("%.#{decimals}f", value).to_f.to_s if decimals
+
       value.to_s
     end
 
@@ -31,6 +32,7 @@ module Danica
 
     def ==(other)
       return false unless other.class == self.class
+
       value == other.value
     end
   end

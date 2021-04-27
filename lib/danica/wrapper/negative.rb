@@ -27,6 +27,7 @@ module Danica
 
     def ==(other)
       return false unless other.class == self.class
+
       value == other.value
     end
   end

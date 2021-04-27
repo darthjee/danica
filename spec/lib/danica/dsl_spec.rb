@@ -14,27 +14,27 @@ end
 
 shared_examples 'a class with mapped dsl' do
   {
-    addition:       Danica::Operator::Addition,
-    sum:            Danica::Operator::Addition,
+    addition: Danica::Operator::Addition,
+    sum: Danica::Operator::Addition,
     multiplication: Danica::Operator::Multiplication,
-    product:        Danica::Operator::Multiplication,
-    division:       Danica::Operator::Division,
-    power:          Danica::Operator::Power
+    product: Danica::Operator::Multiplication,
+    division: Danica::Operator::Division,
+    power: Danica::Operator::Power
   }.each do |aliaz, clazz|
     it_behaves_like 'a class with alias to a clazz', aliaz, clazz, 2, 3
   end
   {
-    squared_root:  Danica::Operator::SquaredRoot,
-    sqrt:          Danica::Operator::SquaredRoot,
-    exponential:   Danica::Operator::Exponential,
-    sin:           Danica::Operator::Sin,
-    cos:           Danica::Operator::Cos,
-    group:         Danica::Wrapper::Group,
-    negative:      Danica::Wrapper::Negative,
-    number:        Danica::Wrapper::Number,
-    num:           Danica::Wrapper::Number,
-    plus_minus:    Danica::Wrapper::PlusMinus,
-    constant:      Danica::Wrapper::Constant
+    squared_root: Danica::Operator::SquaredRoot,
+    sqrt: Danica::Operator::SquaredRoot,
+    exponential: Danica::Operator::Exponential,
+    sin: Danica::Operator::Sin,
+    cos: Danica::Operator::Cos,
+    group: Danica::Wrapper::Group,
+    negative: Danica::Wrapper::Negative,
+    number: Danica::Wrapper::Number,
+    num: Danica::Wrapper::Number,
+    plus_minus: Danica::Wrapper::PlusMinus,
+    constant: Danica::Wrapper::Constant
   }.each do |aliaz, clazz|
     it_behaves_like 'a class with alias to a clazz', aliaz, clazz, 9
   end

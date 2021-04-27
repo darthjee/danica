@@ -1,8 +1,16 @@
 # danica
 [![Code Climate](https://codeclimate.com/github/darthjee/danica/badges/gpa.svg)](https://codeclimate.com/github/darthjee/danica)
 [![Test Coverage](https://codeclimate.com/github/darthjee/danica/badges/coverage.svg)](https://codeclimate.com/github/darthjee/danica/coverage)
+[![Issue Count](https://codeclimate.com/github/darthjee/danica/badges/issue_count.svg)](https://codeclimate.com/github/darthjee/danica)
+[![Gem Version](https://badge.fury.io/rb/danica.svg)](https://badge.fury.io/rb/danica)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/7990acf6e4404787995fff3c0d6eb1dc)](https://www.codacy.com/gh/darthjee/danica/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=darthjee/danica&amp;utm_campaign=Badge_Grade)
+[![Inline docs](http://inch-ci.org/github/darthjee/danica.svg?branch=master)](http://inch-ci.org/github/darthjee/danica)
 
 A tool for math formulation on docs
+
+Yard Documentation
+-------------------
+[https://www.rubydoc.info/gems/danica/2.7.6](https://www.rubydoc.info/gems/danica/2.7.6)
 
 ## How to use
 Add the gem to your project or just install the gem
@@ -613,7 +621,7 @@ which will have the returns of ```#to(format)``` obeying the following
 }
 ```
 
-###Formatting
+### Formatting
 When generating the output, you can choose options or even
 create a formatted object
 

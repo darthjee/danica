@@ -27,6 +27,7 @@ module Danica
 
     def ==(other)
       return false unless other.class == self.class
+
       other.value == value &&
         other.name == name &&
         other.latex == latex &&
@@ -35,11 +36,13 @@ module Danica
 
     def to_tex(**options)
       return value.to_tex(options) if value
+
       (latex || name).to_s
     end
 
     def to_gnu(**options)
       return value.to_gnu(options) if value
+
       (gnuplot || name).to_s
     end
 

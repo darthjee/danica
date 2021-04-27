@@ -27,6 +27,7 @@ module Danica
 
     def ==(other)
       return false unless other.class == self.class
+
       gnuplot == other.gnuplot && latex == other.latex && value == other.value
     end
 

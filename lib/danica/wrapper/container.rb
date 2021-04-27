@@ -17,6 +17,7 @@ module Danica
 
     def ==(other)
       return content == other unless other.is_a?(self.class)
+
       content == other.content
     end
   end
