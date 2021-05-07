@@ -17,7 +17,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   spec.add_runtime_dependency 'activesupport', '~> 5.2.x'
-  spec.add_runtime_dependency 'darthjee-core_ext', '~> 1.7.3'
+  spec.add_runtime_dependency 'darthjee-core_ext', '~> 2.0.0'
 
   spec.add_development_dependency 'bundler',       '~> 1.16.1'
   spec.add_development_dependency 'pry-nav',       '~> 0.3.0'
