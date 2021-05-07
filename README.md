@@ -10,7 +10,7 @@ A tool for math formulation on docs
 
 Yard Documentation
 -------------------
-[https://www.rubydoc.info/gems/danica/2.7.6](https://www.rubydoc.info/gems/danica/2.7.6)
+[https://www.rubydoc.info/gems/danica/2.7.7](https://www.rubydoc.info/gems/danica/2.7.7)
 
 ## How to use
 Add the gem to your project or just install the gem
