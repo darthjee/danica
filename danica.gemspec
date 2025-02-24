@@ -19,7 +19,7 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency 'activesupport', '~> 5.2.x'
   spec.add_runtime_dependency 'darthjee-core_ext', '~> 2.x'
 
-  spec.add_development_dependency 'bundler',            '~> 1.16.1'
+  spec.add_development_dependency 'bundler',             '~> 2.4.8'
   spec.add_development_dependency 'pry-nav',            '~> 0.3.0'
   spec.add_development_dependency 'rake',               '>= 13.0.3'
   spec.add_development_dependency 'rspec',              '>= 3.9.0'
