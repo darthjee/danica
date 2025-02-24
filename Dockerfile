@@ -1,4 +1,4 @@
-FROM darthjee/scripts:0.1.8 as scripts
+FROM darthjee/scripts:0.4.2 as scripts
 
 FROM darthjee/ruby_250:0.7.0 as base
 
