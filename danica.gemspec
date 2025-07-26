@@ -21,7 +21,7 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency 'bundler',             '~> 2.6.8'
   spec.add_development_dependency 'pry-nav',            '~> 1.0.0'
-  spec.add_development_dependency 'rake',               '>= 13.0.3'
+  spec.add_development_dependency 'rake',               '>= 13.2.1'
   spec.add_development_dependency 'rspec',              '>= 3.9.0'
   spec.add_development_dependency 'rspec-core',         '>= 3.9.3'
   spec.add_development_dependency 'rspec-expectations', '>= 3.9.4'
