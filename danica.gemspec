@@ -30,7 +30,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rubocop',            '1.75.5'
   spec.add_development_dependency 'rubocop-rspec',      '3.6.0'
   spec.add_development_dependency 'rubycritic',         '>= 4.9.2'
-  spec.add_development_dependency 'simplecov',          '~> 0.17.1'
+  spec.add_development_dependency 'simplecov',          '~> 0.22.0'
   spec.add_development_dependency 'yard',               '>= 0.9.26'
   spec.add_development_dependency 'yardstick',          '>= 0.9.9'
 end
