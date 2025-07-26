@@ -2,11 +2,10 @@
 
 require 'simplecov'
 
-SimpleCov.profiles.define 'gem' do
+SimpleCov.start do
   add_filter '/spec/'
 end
 
-SimpleCov.start 'gem'
 require 'pry-nav'
 require 'danica'
 
