@@ -7,7 +7,7 @@ module Danica::VariablesHolder
 
     attr_reader :instance, :attr_names
 
-    def initialize(attr_names, instance)
+    def initialize(instance, attr_names)
       @instance = instance
       @attr_names = attr_names
     end

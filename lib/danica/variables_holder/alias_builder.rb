@@ -23,7 +23,7 @@ module Danica::VariablesHolder
     end
 
     def add_methods
-      VariablesBuilder.new([destiny], clazz).build
+      VariablesBuilder.new(clazz, [destiny]).build
     end
 
     def add_aliases

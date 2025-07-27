@@ -20,7 +20,7 @@ module Danica
 
     class_methods do
       def variables(*names)
-        VariablesBuilder.new(names, self).build
+        VariablesBuilder.new(self, names).build
       end
 
       def variable_alias(origin, destiny)
