@@ -34,13 +34,6 @@ Metrics/AbcSize:
 Metrics/MethodLength:
   Max: 16
 
-# Offense count: 2
-# This cop supports safe autocorrection (--autocorrect).
-RSpec/LeadingSubject:
-  Exclude:
-    - 'spec/support/shared_examples/operator/chained.rb'
-    - 'spec/support/shared_examples/operator/single_input.rb'
-
 # Offense count: 1
 RSpec/LeakyConstantDeclaration:
   Exclude:
