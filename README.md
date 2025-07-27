@@ -10,6 +10,10 @@
 
 A tool for math formulation on docs
 
+Current Release: [2.7.7](https://github.com/darthjee/danica/tree/2.7.7)
+
+[Next release](https://github.com/darthjee/danica/compare/2.2.7...master)
+
 Yard Documentation
 -------------------
 [https://www.rubydoc.info/gems/danica/2.7.7](https://www.rubydoc.info/gems/danica/2.7.7)
