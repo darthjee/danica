@@ -212,17 +212,7 @@ describe Danica::Function do
         function_class.new(name: :f, x: 2)
       end
 
-      it 'sohws the variable as number' do
-        expect(function.to_tex).to eq('f(2, y) = 2^{y}')
-      end
-    end
-
-    context 'when a variable has value' do
-      let(:function) do
-        function_class.new(name: :f, x: 2)
-      end
-
-      it 'sohws the variable as number' do
+      it 'shwws the variable as number' do
         expect(function.to_tex).to eq('f(2, y) = 2^{y}')
       end
     end

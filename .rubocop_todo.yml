@@ -40,11 +40,6 @@ RSpec/PendingWithoutReason:
   Exclude:
     - 'spec/lib/danica/variables_holder_spec.rb'
 
-# Offense count: 2
-RSpec/RepeatedExampleGroupBody:
-  Exclude:
-    - 'spec/lib/danica/function_spec.rb'
-
 # Offense count: 35
 # This cop supports unsafe autocorrection (--autocorrect-all).
 # Configuration parameters: EnforcedStyle, EnforcedStyleForClasses, EnforcedStyleForModules.
