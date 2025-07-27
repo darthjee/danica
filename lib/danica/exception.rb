@@ -7,6 +7,7 @@ class Danica::Exception < RuntimeError
 
   class InvalidInput < self
     attr_reader :value
+
     def initialize(value)
       @value = value
       super
