@@ -14,13 +14,6 @@ Gemspec/RequireMFA:
   Exclude:
     - 'danica.gemspec'
 
-# Offense count: 1
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: AllowForAlignment, AllowBeforeTrailingComments, ForceEqualSignAlignment.
-Layout/ExtraSpacing:
-  Exclude:
-    - 'danica.gemspec'
-
 # Offense count: 8
 # This cop supports safe autocorrection (--autocorrect).
 Lint/AmbiguousOperatorPrecedence:
