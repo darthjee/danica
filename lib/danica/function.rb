@@ -22,8 +22,8 @@ module Danica
       Name.new(name: @name, variables: containers)
     end
 
-    def to(format, **)
-      "#{name.to(format, **)} = #{function_block.to(format, **)}"
+    def to(format, **options)
+      "#{name.to(format, **options)} = #{function_block.to(format, **options)}"
     end
   end
 end

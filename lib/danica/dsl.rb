@@ -23,8 +23,8 @@ module Danica
         end
       end
 
-      def build(&)
-        builder.instance_eval(&)
+      def build(&block)
+        builder.instance_eval(&block)
       end
 
       private
@@ -36,8 +36,8 @@ module Danica
       end
     end
 
-    def function(*variables, &)
-      Function.build(*variables, &).new
+    def function(*variables, &block)
+      Function.build(*variables, &block).new
     end
   end
 

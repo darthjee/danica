@@ -2,16 +2,12 @@
 
 require 'spec_helper'
 
-module Danica
-  module Expressable
-    class Dummy
-      include Danica::Expressable
+class Danica::Expressable::Dummy
+  include Danica::Expressable
 
-      delegate :to, to: :the_block
+  delegate :to, to: :the_block
 
-      built_with :the_block
-    end
-  end
+  built_with :the_block
 end
 
 describe Danica::Expressable do

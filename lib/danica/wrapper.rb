@@ -32,7 +32,7 @@ module Danica
     end
 
     def self.wrap_numeric(number)
-      return Negative.new(Number.new(-number)) if number.negative?
+      return Negative.new(Number.new(-number)) if number < 0
 
       Number.new(number)
     end

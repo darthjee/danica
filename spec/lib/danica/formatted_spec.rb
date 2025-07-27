@@ -27,7 +27,6 @@ shared_examples('a formatted object that responds to basic operations') do |oper
     end
   end
 end
-
 describe Danica::Formatted do
   subject do
     described_class.new(content, format: format, **options)

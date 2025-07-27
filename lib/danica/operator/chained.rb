@@ -16,8 +16,8 @@ module Danica
         variables.include?(value.content)
       end
 
-      def to(format, **)
-        extractor = string_extractor(format, **)
+      def to(format, **options)
+        extractor = string_extractor(format, **options)
         variables.procedural_join(extractor, &join_proc(symbol(format)))
       end
 

@@ -1,18 +1,16 @@
 # frozen_string_literal: true
 
 module Danica
-  module Operator
-    class Multiplication < Operator::Chained
-      default_value :priority, 3
+  class Operator::Multiplication < Operator::Chained
+    default_value :priority, 3
 
-      private
+    private
 
-      default_value :tex_symbol, '\cdot'
-      default_value :gnu_symbol, :*
+    default_value :tex_symbol, '\cdot'
+    default_value :gnu_symbol, :*
 
-      def chain_operation(first, second)
-        first * second
-      end
+    def chain_operation(first, second)
+      first * second
     end
   end
 end

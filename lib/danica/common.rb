@@ -28,20 +28,20 @@ module Danica
       raise Exception::NotImplemented
     end
 
-    def to_tex(**)
-      to(:tex, **)
+    def to_tex(**options)
+      to(:tex, **options)
     end
 
-    def to_gnu(**)
-      to(:gnu, **)
+    def to_gnu(**options)
+      to(:gnu, **options)
     end
 
-    def to(format, **)
+    def to(format, **options)
       case format.to_sym
       when :tex
-        to_tex(**)
+        to_tex(**options)
       when :gnu
-        to_gnu(**)
+        to_gnu(**options)
       when :f
         to_f
       else
@@ -49,16 +49,16 @@ module Danica
       end
     end
 
-    def tex(**)
-      formatted(format: :tex, **)
+    def tex(**options)
+      formatted(format: :tex, **options)
     end
 
-    def gnu(**)
-      formatted(format: :gnu, **)
+    def gnu(**options)
+      formatted(format: :gnu, **options)
     end
 
-    def formatted(**)
-      Formatted.new(self, **)
+    def formatted(**options)
+      Formatted.new(self, **options)
     end
 
     def valued?

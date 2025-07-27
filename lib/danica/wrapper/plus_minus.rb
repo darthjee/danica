@@ -1,40 +1,38 @@
 # frozen_string_literal: true
 
 module Danica
-  module Wrapper
-    class PlusMinus
-      include BaseOperations
-      include VariablesHolder
+  class Wrapper::PlusMinus
+    include BaseOperations
+    include VariablesHolder
 
-      attr_accessor :value
+    attr_accessor :value
 
-      default_value :priority, 2
-      default_value :is_grouped?, false
-      default_value :signaled?, true
+    default_value :priority, 2
+    default_value :is_grouped?, false
+    default_value :signaled?, true
 
-      delegate :valued?, to: :value
+    delegate :valued?, to: :value
 
-      def initialize(value)
-        @value = wrap_value(value)
-      end
+    def initialize(value)
+      @value = wrap_value(value)
+    end
 
-      def to_f
-        value.to_f
-      end
+    def to_f
+      value.to_f
+    end
 
-      def to_tex(**)
-        "\\pm #{wrap_as_group(value).to_tex(**)}"
-      end
+    def to_tex(**options)
+      "\\pm #{wrap_as_group(value).to_tex(**options)}"
+    end
 
-      def to_gnu(**)
-        "+ #{wrap_as_group(value).to_gnu(**)}"
-      end
+    def to_gnu(**options)
+      "+ #{wrap_as_group(value).to_gnu(**options)}"
+    end
 
-      def ==(other)
-        return false unless other.class == self.class
+    def ==(other)
+      return false unless other.class == self.class
 
-        value == other.value
-      end
+      value == other.value
     end
   end
 end

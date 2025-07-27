@@ -2,15 +2,11 @@
 
 require 'spec_helper'
 
-module Danica
-  module Operator
-    class Dummy < Danica::Operator
-      variables :a, :b
+class Danica::Operator::Dummy < Danica::Operator
+  variables :a, :b
 
-      def to(*_args)
-        a + b
-      end
-    end
+  def to(*_args)
+    a + b
   end
 end
 

@@ -41,12 +41,8 @@ shared_examples 'a class with mapped dsl' do
 end
 
 describe Danica::DSL do
-  module Danica
-    module DSL
-      class Dummy
-        include Danica::DSL
-      end
-    end
+  class Danica::DSL::Dummy
+    include Danica::DSL
   end
 
   let(:subject) { described_class::Dummy.new }
