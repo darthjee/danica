@@ -24,7 +24,7 @@ jobs:
     docker:
       - image: darthjee/circleci_ruby_331:1.0.2
         environment:
-          PROJECT: azeroth
+          PROJECT: danica
     steps:
       - checkout
       - run:
@@ -37,7 +37,7 @@ jobs:
     docker:
       - image: darthjee/circleci_ruby_331:1.0.2
         environment:
-          PROJECT: azeroth
+          PROJECT: danica
     steps:
       - checkout
       - run:
@@ -62,7 +62,7 @@ jobs:
     docker:
       - image: darthjee/circleci_ruby_331:1.0.2
         environment:
-          PROJECT: azeroth
+          PROJECT: danica
     steps:
       - checkout
       - run:
