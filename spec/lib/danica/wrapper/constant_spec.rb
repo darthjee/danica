@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 describe Danica::Wrapper::Constant do
-  subject { described_class.new(2.5, :M, :m) }
+  subject(:constant) { described_class.new(2.5, :M, :m) }
 
   let(:other) { described_class.new(3, :N, :n) }
 
@@ -12,45 +12,45 @@ describe Danica::Wrapper::Constant do
 
   describe '#to_f' do
     it 'has a value' do
-      expect(subject.to_f).to eq(2.5)
+      expect(constant.to_f).to eq(2.5)
     end
   end
 
   describe '#to_tex' do
     it 'has a string for latex' do
-      expect(subject.to_tex).to eq('M')
+      expect(constant.to_tex).to eq('M')
     end
   end
 
   describe '#to' do
     context 'when requesting :tex' do
       it 'has a string for latex' do
-        expect(subject.to(:tex)).to eq('M')
+        expect(constant.to(:tex)).to eq('M')
       end
     end
 
     context "when requesting 'tex'" do
       it 'has a string for latex' do
-        expect(subject.to('tex')).to eq('M')
+        expect(constant.to('tex')).to eq('M')
       end
     end
 
     context 'when requesting :gnu' do
       it 'has a string for gnu' do
-        expect(subject.to(:gnu)).to eq('m')
+        expect(constant.to(:gnu)).to eq('m')
       end
     end
 
     context "when requesting 'gnu'" do
       it 'has a string for gnu' do
-        expect(subject.to('gnu')).to eq('m')
+        expect(constant.to('gnu')).to eq('m')
       end
     end
 
     context 'when requesting wrong format' do
       it do
         expect do
-          subject.to('format')
+          constant.to('format')
         end.to raise_error(Danica::Exception::FormattedNotFound)
       end
     end
@@ -58,18 +58,18 @@ describe Danica::Wrapper::Constant do
 
   describe '#to_gnu' do
     it 'has a string for gnu' do
-      expect(subject.to_gnu).to eq('m')
+      expect(constant.to_gnu).to eq('m')
     end
   end
 
   describe 'attr_setters' do
-    it { expect(subject).not_to respond_to(:value=) }
-    it { expect(subject).not_to respond_to(:latex=) }
-    it { expect(subject).not_to respond_to(:gnu=) }
+    it { expect(constant).not_to respond_to(:value=) }
+    it { expect(constant).not_to respond_to(:latex=) }
+    it { expect(constant).not_to respond_to(:gnu=) }
   end
 
   context 'when initializing from hash' do
-    subject { described_class.new(value: 2.5, latex: :M, gnuplot: :m) }
+    subject(:constant) { described_class.new(value: 2.5, latex: :M, gnuplot: :m) }
 
     it 'initialize normaly' do
       expect do
@@ -78,32 +78,32 @@ describe Danica::Wrapper::Constant do
     end
 
     it 'sets the value' do
-      expect(subject.value).to eq(2.5)
+      expect(constant.value).to eq(2.5)
     end
 
     it 'sets the latex' do
-      expect(subject.to_tex).to eq('M')
+      expect(constant.to_tex).to eq('M')
     end
 
     it 'sets the gnu' do
-      expect(subject.to_gnu).to eq('m')
+      expect(constant.to_gnu).to eq('m')
     end
   end
 
   describe '==' do
     context 'when comparing with the same object' do
-      it { expect(subject).to eq(described_class.new(2.5, :M, :m)) }
+      it { expect(constant).to eq(described_class.new(2.5, :M, :m)) }
     end
 
     context 'when comparing with a diferent object' do
       context 'with diferent values' do
-        it { expect(subject).not_to eq(other) }
+        it { expect(constant).not_to eq(other) }
       end
 
       context 'with same values' do
         let(:other) { described_class.new(2.5, :M, :m) }
 
-        it { expect(subject).to eq(other) }
+        it { expect(constant).to eq(other) }
       end
     end
   end

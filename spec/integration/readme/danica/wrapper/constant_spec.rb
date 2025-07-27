@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 describe Danica::Wrapper::Constant do
-  subject do
+  subject(:constant) do
     described_class.new(gnuplot: 'pi', latex: '\pi', value: 3.141592)
   end
 
@@ -18,7 +18,7 @@ describe Danica::Wrapper::Constant do
   describe 'outputs' do
     it do
       output.each do |format, expected|
-        expect(subject.to(format)).to eq(expected)
+        expect(constant.to(format)).to eq(expected)
       end
     end
   end
