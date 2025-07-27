@@ -34,14 +34,6 @@ Metrics/AbcSize:
 Metrics/MethodLength:
   Max: 16
 
-# Offense count: 1
-# This cop supports unsafe autocorrection (--autocorrect-all).
-# Configuration parameters: AutoCorrect.
-RSpec/EmptyExampleGroup:
-  Exclude:
-    - 'spec/lib/danica/variables_holder/store_spec.rb'
-
-# Offense count: 1
 # This cop supports safe autocorrection (--autocorrect).
 RSpec/EmptyLineAfterExampleGroup:
   Exclude:

@@ -51,10 +51,6 @@ describe Danica::VariablesHolder::Store do
   end
 
   describe '#variables_hash' do
-    context 'when instance has no variables defined' do
-      # it_behaves_like 'an object that returns the default variables hash'
-    end
-
     context 'when some variables where defined' do
       before do
         subject.containers_hash[:y] = Danica::Wrapper::Number.new(1)
