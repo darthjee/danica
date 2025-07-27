@@ -14,16 +14,6 @@ Gemspec/RequireMFA:
   Exclude:
     - 'danica.gemspec'
 
-# Offense count: 8
-# This cop supports safe autocorrection (--autocorrect).
-Lint/AmbiguousOperatorPrecedence:
-  Exclude:
-    - 'lib/danica/expressable.rb'
-    - 'spec/integration/readme/equation_spec.rb'
-    - 'spec/lib/danica/expression_spec.rb'
-    - 'spec/support/models/function/my_function.rb'
-    - 'spec/support/models/variables_holder/dummy.rb'
-
 # Offense count: 2
 # Configuration parameters: AllowedMethods, AllowedPatterns, CountRepeatedAttributes.
 Metrics/AbcSize:

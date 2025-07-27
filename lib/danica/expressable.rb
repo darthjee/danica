@@ -18,7 +18,7 @@ module Danica
             module_eval do
               define_method block_name do
                 instance_variable_get("@#{block_name}") ||
-                  block && instance_variable_set("@#{block_name}", instance_eval(&block))
+                  (block && instance_variable_set("@#{block_name}", instance_eval(&block)))
               end
             end
           end
