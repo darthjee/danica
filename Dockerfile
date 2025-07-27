@@ -1,6 +1,6 @@
-FROM darthjee/scripts:0.1.8 as scripts
+FROM darthjee/scripts:0.4.2 as scripts
 
-FROM darthjee/ruby_250:0.7.0 as base
+FROM darthjee/ruby_331:1.0.2 as base
 
 COPY --chown=app:app ./ /home/app/app/
 

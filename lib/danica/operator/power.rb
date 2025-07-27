@@ -10,11 +10,11 @@ module Danica
     end
 
     def to_tex(**options)
-      "#{wrap_as_group(base).to_tex(options)}^{#{exponent.to_tex(options)}}"
+      "#{wrap_as_group(base).to_tex(**options)}^{#{exponent.to_tex(**options)}}"
     end
 
     def to_gnu(**options)
-      "#{wrap_as_group(base).to_gnu(options)}**(#{exponent.to_gnu(options)})"
+      "#{wrap_as_group(base).to_gnu(**options)}**(#{exponent.to_gnu(**options)})"
     end
   end
 end

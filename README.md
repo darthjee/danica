@@ -6,7 +6,13 @@
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/7990acf6e4404787995fff3c0d6eb1dc)](https://www.codacy.com/gh/darthjee/danica/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=darthjee/danica&amp;utm_campaign=Badge_Grade)
 [![Inline docs](http://inch-ci.org/github/darthjee/danica.svg?branch=master)](http://inch-ci.org/github/darthjee/danica)
 
+![danica](https://raw.githubusercontent.com/darthjee/danica/master/danica.png)
+
 A tool for math formulation on docs
+
+Current Release: [2.7.7](https://github.com/darthjee/danica/tree/2.7.7)
+
+[Next release](https://github.com/darthjee/danica/compare/2.2.7...master)
 
 Yard Documentation
 -------------------

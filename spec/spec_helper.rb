@@ -2,11 +2,12 @@
 
 require 'simplecov'
 
-SimpleCov.profiles.define 'gem' do
+SimpleCov.start do
   add_filter '/spec/'
+
+  SimpleCov.formatter = SimpleCov::Formatter::JSONFormatter if ENV['COVERAGE_JSON'] == 'true'
 end
 
-SimpleCov.start 'gem'
 require 'pry-nav'
 require 'danica'
 

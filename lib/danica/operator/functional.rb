@@ -17,11 +17,11 @@ module Danica
           end
 
           def to_tex(**options)
-            '#{tex.gsub(':value:', "' + value.to_tex(options) + '")}'
+            '#{tex.gsub(':value:', "' + value.to_tex(**options) + '")}'
           end
 
           def to_gnu(**options)
-            '#{gnu.gsub(':value:', "' + value.to_gnu(options) + '")}'
+            '#{gnu.gsub(':value:', "' + value.to_gnu(**options) + '")}'
           end
         ))
       end

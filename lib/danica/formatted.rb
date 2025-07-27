@@ -9,7 +9,7 @@ class Danica::Formatted
   end
 
   def to_s
-    content.to(format, options)
+    content.to(format, **options)
   end
 
   def ==(other)
@@ -26,7 +26,7 @@ class Danica::Formatted
   def repack(object)
     self.class.new(
       object,
-      options
+      **options
     )
   end
 
@@ -39,7 +39,7 @@ class Danica::Formatted
   end
 
   def to(format, **opts)
-    content.to(format, options.merge(opts))
+    content.to(format, **options.merge(opts))
   end
 
   private
