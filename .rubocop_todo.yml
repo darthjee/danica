@@ -25,13 +25,6 @@ Lint/AmbiguousOperatorPrecedence:
     - 'spec/support/models/variables_holder/dummy.rb'
 
 # Offense count: 1
-# Configuration parameters: AllowedMethods.
-# AllowedMethods: enums
-Lint/ConstantDefinitionInBlock:
-  Exclude:
-    - 'spec/lib/danica/dsl_spec.rb'
-
-# Offense count: 1
 # This cop supports unsafe autocorrection (--autocorrect-all).
 Lint/RedundantDirGlobSort:
   Exclude:
