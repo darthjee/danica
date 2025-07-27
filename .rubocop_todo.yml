@@ -16,13 +16,6 @@ Gemspec/RequireMFA:
 
 # Offense count: 1
 # This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EmptyLineBetweenMethodDefs, EmptyLineBetweenClassDefs, EmptyLineBetweenModuleDefs, DefLikeMacros, AllowAdjacentOneLineDefs, NumberOfEmptyLines.
-Layout/EmptyLineBetweenDefs:
-  Exclude:
-    - 'lib/danica/exception.rb'
-
-# Offense count: 1
-# This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: AllowAliasSyntax, AllowedMethods.
 # AllowedMethods: alias_method, public, protected, private
 Layout/EmptyLinesAroundAttributeAccessor:
