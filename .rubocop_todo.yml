@@ -34,11 +34,6 @@ Metrics/AbcSize:
 Metrics/MethodLength:
   Max: 16
 
-# Offense count: 1
-RSpec/LeakyConstantDeclaration:
-  Exclude:
-    - 'spec/lib/danica/dsl_spec.rb'
-
 # Offense count: 3
 RSpec/MultipleDescribes:
   Exclude:
