@@ -45,11 +45,6 @@ RSpec/RepeatedExampleGroupBody:
   Exclude:
     - 'spec/lib/danica/function_spec.rb'
 
-# Offense count: 2
-RSpec/RepeatedExampleGroupDescription:
-  Exclude:
-    - 'spec/integration/global/danica/operator/multiplication_spec.rb'
-
 # Offense count: 35
 # This cop supports unsafe autocorrection (--autocorrect-all).
 # Configuration parameters: EnforcedStyle, EnforcedStyleForClasses, EnforcedStyleForModules.
