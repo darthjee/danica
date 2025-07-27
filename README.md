@@ -10,13 +10,13 @@
 
 A tool for math formulation on docs
 
-Current Release: [2.7.7](https://github.com/darthjee/danica/tree/2.7.7)
+Current Release: [3.0.0](https://github.com/darthjee/danica/tree/3.0.0)
 
 [Next release](https://github.com/darthjee/danica/compare/2.2.7...master)
 
 Yard Documentation
 -------------------
-[https://www.rubydoc.info/gems/danica/2.7.7](https://www.rubydoc.info/gems/danica/2.7.7)
+[https://www.rubydoc.info/gems/danica/3.0.0](https://www.rubydoc.info/gems/danica/3.0.0)
 
 ## How to use
 Add the gem to your project or just install the gem
