@@ -23,7 +23,7 @@ module Danica
           def to_gnu(**options)
             '#{gnu.gsub(':value:', "' + value.to_gnu(**options) + '")}'
           end
-        ))
+        ), __FILE__, __LINE__ - 12)
       end
     end
   end
