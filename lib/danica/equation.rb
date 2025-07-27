@@ -16,8 +16,8 @@ module Danica
       end
     end
 
-    def to(format, **options)
-      "#{left.to(format, **options)} = #{right.to(format, **options)}"
+    def to(format, **)
+      "#{left.to(format, **)} = #{right.to(format, **)}"
     end
   end
 end

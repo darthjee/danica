@@ -61,8 +61,8 @@ module Danica
       end
     end
 
-    def calculate(*args)
-      Calculator.new(self, *args).calculate
+    def calculate(*)
+      Calculator.new(self, *).calculate
     end
 
     private
