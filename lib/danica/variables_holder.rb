@@ -41,7 +41,7 @@ module Danica
       end
 
       def superclass_variables_hash
-        @superclass_variables_hash ||= (superclass.try(:variables_hash) || {})
+        @superclass_variables_hash ||= superclass.try(:variables_hash) || {}
       end
     end
 
