@@ -41,7 +41,7 @@ shared_examples 'a class with mapped dsl' do
 end
 
 describe Danica::DSL do
-  let(:subject) { described_class::Dummy.new }
+  subject { described_class::Dummy.new }
 
   it_behaves_like 'a class with mapped dsl'
 

@@ -50,13 +50,6 @@ RSpec/RepeatedExampleGroupDescription:
   Exclude:
     - 'spec/integration/global/danica/operator/multiplication_spec.rb'
 
-# Offense count: 4
-RSpec/SubjectDeclaration:
-  Exclude:
-    - 'spec/lib/danica/dsl_spec.rb'
-    - 'spec/lib/danica/function/name_spec.rb'
-    - 'spec/lib/danica/variables_holder_spec.rb'
-
 # Offense count: 57
 # This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: AllowOnlyRestArgument, UseAnonymousForwarding, RedundantRestArgumentNames, RedundantKeywordRestArgumentNames, RedundantBlockArgumentNames.

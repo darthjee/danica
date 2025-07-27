@@ -382,7 +382,7 @@ describe Danica::VariablesHolder do
     end
 
     context 'when variables names are different' do
-      let(:subject) { clazz.new(x: :xis, y: :lambda, z: :zeta, k: :key) }
+      subject { clazz.new(x: :xis, y: :lambda, z: :zeta, k: :key) }
 
       it 'returns the names as keys' do
         expect(subject.extract_variables.keys).to eq(%i[xis lambda zeta key])
@@ -390,10 +390,11 @@ describe Danica::VariablesHolder do
     end
 
     context 'when a variable is another variable holder' do
-      let(:inner) { Danica::Operator::Power.new }
-      let(:subject) do
+      subject do
         clazz.new(z: inner)
       end
+
+      let(:inner) { Danica::Operator::Power.new }
       let(:expected) do
         subject.containers_hash.reject { |k, _v| k == :z }
                .merge(inner.containers_hash)

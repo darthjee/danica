@@ -3,8 +3,9 @@
 require 'spec_helper'
 
 describe Danica::Function::Name do
+  subject { described_class.new(name: :f, variables: [x]) }
+
   let(:x) { Danica::Wrapper::Variable.new(name: :x, latex: '\mu', gnuplot: 'u') }
-  let(:subject) { described_class.new(name: :f, variables: [x]) }
 
   it_behaves_like 'an object that respond to basic_methods'
 
