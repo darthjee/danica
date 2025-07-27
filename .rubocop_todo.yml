@@ -34,11 +34,6 @@ Metrics/AbcSize:
 Metrics/MethodLength:
   Max: 16
 
-# Offense count: 1
-RSpec/IdenticalEqualityAssertion:
-  Exclude:
-    - 'spec/lib/danica/wrapper/constant_spec.rb'
-
 # Offense count: 2
 # This cop supports safe autocorrection (--autocorrect).
 RSpec/LeadingSubject:

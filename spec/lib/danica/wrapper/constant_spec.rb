@@ -92,7 +92,7 @@ describe Danica::Wrapper::Constant do
 
   describe '==' do
     context 'when comparing with the same object' do
-      it { expect(subject).to eq(subject) }
+      it { expect(subject).to eq(described_class.new(2.5, :M, :m)) }
     end
 
     context 'when comparing with a diferent object' do
