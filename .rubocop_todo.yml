@@ -73,11 +73,6 @@ Style/FloatDivision:
   Exclude:
     - 'lib/danica/operator/division.rb'
 
-# Offense count: 2
-# This cop supports unsafe autocorrection (--autocorrect-all).
-Style/HashExcept:
-  Exclude:
-    - 'spec/lib/danica/variables_holder_spec.rb'
 # Offense count: 1
 Style/MissingRespondToMissing:
   Exclude:
