@@ -51,17 +51,6 @@ RSpec/RepeatedExampleGroupDescription:
     - 'spec/integration/global/danica/operator/multiplication_spec.rb'
 
 # Offense count: 4
-# Configuration parameters: Include, CustomTransform, IgnoreMethods, IgnoreMetadata.
-# Include: **/*_spec.rb
-RSpec/SpecFilePathFormat:
-  Exclude:
-    - '**/spec/routing/**/*'
-    - 'spec/integration/readme/constant_spec.rb'
-    - 'spec/integration/readme/equation_spec.rb'
-    - 'spec/integration/readme/number_spec.rb'
-    - 'spec/integration/readme/variables_spec.rb'
-
-# Offense count: 4
 RSpec/SubjectDeclaration:
   Exclude:
     - 'spec/lib/danica/dsl_spec.rb'
