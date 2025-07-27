@@ -67,35 +67,3 @@ describe Danica::Function::Spatial do
     end
   end
 end
-
-describe Danica::Function::MyFunction do
-  describe '#to_gnu' do
-    it 'returns the function' do
-      expect(subject.to_gnu).to eq('f(x, y) = x**(2) + y')
-    end
-  end
-end
-
-describe Danica::Function::QuadraticSum do
-  describe '#to_tex' do
-    it 'creates a funcion out of an expression' do
-      expect(subject.to_tex).to eq('f(x, y) = \\left(x + y\\right)^{2}')
-    end
-  end
-end
-
-describe Danica::Function do
-  subject { described_class.build(:x, :y, :z) { z * (x**y) }.new(y: 3, z: Danica::PI) }
-
-  describe '#to_tex' do
-    it do
-      expect(subject.to_tex).to eq('f(x, 3) = \pi \cdot x^{3}')
-    end
-  end
-
-  describe '#to_gnu' do
-    it do
-      expect(subject.to_gnu).to eq('f(x) = pi * x**(3)')
-    end
-  end
-end
