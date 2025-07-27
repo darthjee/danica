@@ -11,8 +11,22 @@ module Danica::VariablesHolder
     end
 
     def build
+      change_keys
+      add_methods
+      add_aliases
+    end
+
+    private
+
+    def change_keys
       clazz.variables_hash.change_keys! { |k| k == origin ? destiny : k }
+    end
+
+    def add_methods
       VariablesBuilder.new([destiny], clazz).build
+    end
+
+    def add_aliases
       clazz.send(:alias_method, "#{origin}=", "#{destiny}=")
       clazz.send(:alias_method, origin, destiny)
     end

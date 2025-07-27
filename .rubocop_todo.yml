@@ -14,11 +14,6 @@ Gemspec/RequireMFA:
   Exclude:
     - 'danica.gemspec'
 
-# Offense count: 2
-# Configuration parameters: AllowedMethods, AllowedPatterns, CountRepeatedAttributes.
-Metrics/AbcSize:
-  Max: 21
-
 # Offense count: 4
 # Configuration parameters: CountComments, CountAsOne, AllowedMethods, AllowedPatterns.
 Metrics/MethodLength:
