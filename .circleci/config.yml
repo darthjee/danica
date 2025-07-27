@@ -7,8 +7,12 @@ workflows:
           filters:
             tags:
               only: /.*/
+      - checks:
+          filters:
+            tags:
+              only: /.*/
       - build-and-release:
-          requires: [test]
+          requires: [test, checks]
           filters:
             tags:
               only: /\d+\.\d+\.\d+/
@@ -20,7 +24,7 @@ jobs:
     docker:
       - image: darthjee/circleci_ruby_331:1.0.2
         environment:
-          PROJECT: danica
+          PROJECT: azeroth
     steps:
       - checkout
       - run:
@@ -31,13 +35,23 @@ jobs:
           command: bundle install
       - run:
           name: RSpec
-          command: bundle exec rspec
-      - run:
-          name: Rubocop
-          command: rubocop
+          command: COVERAGE_JSON=true bundle exec rspec
       - run:
           name: Coverage Test Report
           command: cc-test-reporter after-build --exit-code $?
+  checks:
+    docker:
+      - image: darthjee/circleci_ruby_331:1.0.2
+        environment:
+          PROJECT: azeroth
+    steps:
+      - checkout
+      - run:
+          name: Bundle Install
+          command: bundle install
+      - run:
+          name: Rubocop
+          command: rubocop
       - run:
           name: Yardstick coverage check
           command: bundle exec rake verify_measurements
@@ -54,7 +68,7 @@ jobs:
     docker:
       - image: darthjee/circleci_ruby_331:1.0.2
         environment:
-          PROJECT: danica
+          PROJECT: azeroth
     steps:
       - checkout
       - run:
