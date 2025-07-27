@@ -34,13 +34,6 @@ Metrics/AbcSize:
 Metrics/MethodLength:
   Max: 16
 
-# Offense count: 3
-RSpec/MultipleDescribes:
-  Exclude:
-    - 'spec/integration/readme/expression_spec.rb'
-    - 'spec/integration/readme/function_spec.rb'
-    - 'spec/integration/readme/operator_spec.rb'
-
 # Offense count: 4
 # Configuration parameters: AllowSubject.
 RSpec/MultipleMemoizedHelpers:
