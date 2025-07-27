@@ -3,10 +3,12 @@
 require 'spec_helper'
 
 describe Danica::Wrapper::Variable do
+  subject(:variable) { described_class.new }
+
   it_behaves_like 'an object that respond to basic_methods'
 
   it_behaves_like 'an object with basic operation' do
-    subject { described_class.new(value: 100) }
+    subject(:variable) { described_class.new(value: 100) }
   end
 
   it 'can be initialize from nil value' do
@@ -23,16 +25,16 @@ describe Danica::Wrapper::Variable do
 
   describe '#to_f' do
     context 'when variable has no value' do
-      it { expect { subject.to_f }.to raise_error(Danica::Exception::NotDefined) }
+      it { expect { variable.to_f }.to raise_error(Danica::Exception::NotDefined) }
     end
 
     context 'when variable has value' do
-      subject { described_class.new(value: value) }
+      subject(:variable) { described_class.new(value: value) }
 
       let(:value) { 100 }
 
       it 'returns the value' do
-        expect(subject.to_f).to eq(value)
+        expect(variable.to_f).to eq(value)
       end
     end
   end

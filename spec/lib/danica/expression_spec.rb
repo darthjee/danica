@@ -27,8 +27,6 @@ shared_examples 'a generically generated expression' do
 end
 
 describe Danica::Expression do
-  subject { expression }
-
   let(:variables) { %i[x y] }
   let(:expression_class) do
     described_class.build(*variables) do
@@ -37,7 +35,7 @@ describe Danica::Expression do
   end
 
   describe '.build' do
-    let(:expression) do
+    subject(:expression) do
       expression_class.new
     end
 
@@ -113,7 +111,7 @@ describe Danica::Expression do
   end
 
   describe '.create' do
-    let(:expression) do
+    subject(:expression) do
       described_class.create(*variables) do
         Danica::Operator::Power.new(x, y)
       end
@@ -125,7 +123,7 @@ describe Danica::Expression do
   end
 
   describe 'spatial' do
-    subject { described_class::Spatial.new(variables) }
+    subject(:expression) { described_class::Spatial.new(variables) }
 
     let(:variables) do
       {
@@ -144,7 +142,7 @@ describe Danica::Expression do
         let(:expected) { 'S_0 + V_0 \cdot t + \frac{a \cdot t^{2}}{2}' }
 
         it 'return the latex format CAM' do
-          expect(subject.to_tex).to eq(expected)
+          expect(expression.to_tex).to eq(expected)
         end
       end
     end
@@ -154,7 +152,7 @@ describe Danica::Expression do
         let(:expected) { 'S0 + V0 * t + (a * t**(2))/(2)' }
 
         it 'return the latex format CAM' do
-          expect(subject.to_gnu).to eq(expected)
+          expect(expression.to_gnu).to eq(expected)
         end
       end
     end
@@ -173,7 +171,7 @@ describe Danica::Expression do
         let(:variables) { expected }
 
         it 'returns a hash with the variabels' do
-          expect(subject.variables_hash).to eq(expected)
+          expect(expression.variables_hash).to eq(expected)
         end
       end
 
@@ -183,59 +181,59 @@ describe Danica::Expression do
         end
 
         it 'returns a hash with the variabels' do
-          expect(subject.variables_hash).to eq(expected)
+          expect(expression.variables_hash).to eq(expected)
         end
       end
 
       context 'when variables are not wrapped yet' do
         it 'returns a hash with the variabels' do
-          expect(subject.variables_hash).to eq(expected)
+          expect(expression.variables_hash).to eq(expected)
         end
       end
 
       context 'when changing a variable' do
         before do
-          subject.time = :x
+          expression.time = :x
           expected[:time] = Danica::Wrapper::Variable.new(name: :x)
         end
 
         it do
-          expect(subject.variables_hash).to eq(expected)
+          expect(expression.variables_hash).to eq(expected)
         end
       end
 
       context 'when initializing with array' do
         context 'when variables contain hashes' do
-          subject { described_class::Spatial.new(variables) }
+          subject(:expression) { described_class::Spatial.new(variables) }
 
           let(:variables) { [:t, 'a', { name: :S0, latex: 'S_0' }, { name: :V0, latex: 'V_0' }] }
 
           it 'returns a hash with the variabels' do
-            expect(subject.variables_hash).to eq(expected)
+            expect(expression.variables_hash).to eq(expected)
           end
         end
       end
 
       context 'when initializing with sequence' do
         context 'when variables contain hashes' do
-          subject { described_class::Spatial.new(*variables, {}) }
+          subject(:expression) { described_class::Spatial.new(*variables, {}) }
 
           let(:variables) { [:t, 'a', { name: :S0, latex: 'S_0' }, { name: :V0, latex: 'V_0' }] }
 
           it 'returns a hash with the variabels' do
-            expect(subject.variables_hash).to eq(expected)
+            expect(expression.variables_hash).to eq(expected)
           end
         end
       end
 
       context 'when initializing with variables hash' do
         context 'when variables contain hashes' do
-          subject { described_class::Spatial.new(variables: variables) }
+          subject(:expression) { described_class::Spatial.new(variables: variables) }
 
           let(:variables) { [:t, 'a', { name: :S0, latex: 'S_0' }, { name: :V0, latex: 'V_0' }] }
 
           it 'returns a hash with the variabels' do
-            expect(subject.variables_hash).to eq(expected)
+            expect(expression.variables_hash).to eq(expected)
           end
         end
       end
@@ -243,29 +241,29 @@ describe Danica::Expression do
 
     describe '#variables' do
       context 'when initialized with an array of variables' do
-        subject { described_class::Spatial.new(variables: variables.values) }
+        subject(:expression) { described_class::Spatial.new(variables: variables.values) }
 
         let(:expected) { variables.values.map { |v| Danica::Wrapper::Variable.new(v.is_a?(Hash) ? v : { name: v }) } }
 
         it do
-          expect(subject.variables.compact).to eq(expected)
+          expect(expression.variables.compact).to eq(expected)
         end
       end
 
       context 'when not initializing all variables' do
-        subject { described_class::Spatial.new }
+        subject(:expression) { described_class::Spatial.new }
 
         let(:time) { Danica::Wrapper::Variable.new(name: :t) }
 
         context 'when initialized with an empty variable set' do
           it do
-            expect(subject.variables.compact).not_to be_empty
+            expect(expression.variables.compact).not_to be_empty
           end
         end
 
         context 'when changing a variable' do
           before do
-            subject.time = time
+            expression.time = time
           end
 
           let(:expected_variables) do
@@ -278,21 +276,21 @@ describe Danica::Expression do
           end
 
           it 'returns the list of variables merged default and new variables' do
-            expect(subject.variables.compact).to eq(expected_variables)
+            expect(expression.variables.compact).to eq(expected_variables)
           end
         end
 
         context 'when initializing with a variable set' do
-          subject { described_class::Spatial.new(*names) }
+          subject(:expression) { described_class::Spatial.new(*names) }
 
           let(:names) { %i[t a s0 v0] }
 
           it 'returns the variables given oin initialization' do
-            expect(subject.variables.map(&:name)).to eq(names)
+            expect(expression.variables.map(&:name)).to eq(names)
           end
 
           context 'when initializing variables with a hash out of order' do
-            subject { described_class::Spatial.new variables }
+            subject(:expression) { described_class::Spatial.new variables }
 
             let(:variables) do
               {
@@ -304,7 +302,7 @@ describe Danica::Expression do
             end
 
             it 'returns the variables given on initialization' do
-              expect(subject.variables.map(&:name)).to eq(names)
+              expect(expression.variables.map(&:name)).to eq(names)
             end
           end
         end
@@ -313,7 +311,7 @@ describe Danica::Expression do
 
     describe '#calculate' do
       context 'when all variables have value' do
-        subject { described_class::Spatial.new(time, acceleration, initial_space, initial_velocity) }
+        subject(:expression) { described_class::Spatial.new(time, acceleration, initial_space, initial_velocity) }
 
         let(:time_value) { 2 }
         let(:time) { time_value }
@@ -321,40 +319,40 @@ describe Danica::Expression do
         let(:initial_space) { 1 }
         let(:initial_velocity) { 1 }
 
-        let(:expected) { initial_space + initial_velocity * time_value + acceleration * (time_value**2) / 2.0 }
+        let(:expected) { initial_space + (initial_velocity * time_value) + (acceleration * (time_value**2) / 2.0) }
 
         it 'retuirns the calculated value' do
-          expect(subject.calculate).to eq(expected)
+          expect(expression.calculate).to eq(expected)
         end
 
         context 'when not all variables have value' do
           let(:time) { :t }
 
           it do
-            expect { subject.calculate }.to raise_error(Danica::Exception::NotDefined)
+            expect { expression.calculate }.to raise_error(Danica::Exception::NotDefined)
           end
 
           context 'when calling calculate with a value for the variables' do
             it 'calculate using the given value' do
-              expect(subject.calculate(time_value)).to eq(expected)
+              expect(expression.calculate(time_value)).to eq(expected)
             end
 
             it 'does not change the values of then valued variables' do
               expect do
-                subject.calculate(time_value)
-              end.not_to change(subject.time, :valued?)
+                expression.calculate(time_value)
+              end.not_to change(expression.time, :valued?)
             end
           end
 
           context 'when calling with a hash for the values' do
             it 'calculate using the given value' do
-              expect(subject.calculate(time: time_value)).to eq(expected)
+              expect(expression.calculate(time: time_value)).to eq(expected)
             end
 
             it 'does not change the values of then valued variables' do
               expect do
-                subject.calculate(time: time_value)
-              end.not_to change(subject.time, :valued?)
+                expression.calculate(time: time_value)
+              end.not_to change(expression.time, :valued?)
             end
           end
         end
@@ -364,7 +362,7 @@ describe Danica::Expression do
 
   describe 'baskara' do
     context 'when using the default value for variables' do
-      subject { described_class::Baskara.new }
+      subject(:expression) { described_class::Baskara.new }
 
       it_behaves_like 'an object that respond to basic_methods'
 
@@ -372,7 +370,7 @@ describe Danica::Expression do
         let(:expected) { '\frac{-b \pm \sqrt{b^{2} -4 \cdot a \cdot c}}{2 \cdot a}' }
 
         it 'return the latex format CAM' do
-          expect(subject.to_tex).to eq(expected)
+          expect(expression.to_tex).to eq(expected)
         end
       end
 
@@ -380,7 +378,7 @@ describe Danica::Expression do
         let(:expected) { '(-b + sqrt(b**(2) -4 * a * c))/(2 * a)' }
 
         it 'return the gnu format CAM' do
-          expect(subject.to_gnu).to eq(expected)
+          expect(expression.to_gnu).to eq(expected)
         end
       end
     end

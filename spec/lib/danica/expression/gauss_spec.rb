@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 describe Danica::Expression::Gauss do
-  subject { described_class::Gauss.new(variables) }
+  subject(:expression) { described_class::Gauss.new(variables) }
 
   let(:variables) do
     {
@@ -20,7 +20,7 @@ describe Danica::Expression::Gauss do
       let(:expected) { '\frac{1}{\theta \cdot \sqrt{2 \cdot \pi}} \cdot e^{-\frac{\left(x -u\right)^{2}}{2 \cdot \theta^{2}}}' }
 
       it 'return the latex format CAM' do
-        expect(subject.to_tex).to eq(expected)
+        expect(expression.to_tex).to eq(expected)
       end
     end
   end
@@ -30,19 +30,19 @@ describe Danica::Expression::Gauss do
       let(:expected) { '(1)/(v * sqrt(2 * pi)) * exp(-((x -u)**(2))/(2 * v**(2)))' }
 
       it 'return the gnu format CAM' do
-        expect(subject.to_gnu).to eq(expected)
+        expect(expression.to_gnu).to eq(expected)
       end
     end
   end
 
   context 'when not passing variables' do
-    subject { described_class::Gauss.new }
+    subject(:expression) { described_class::Gauss.new }
 
     describe '#to_tex' do
       let(:expected) { '\frac{1}{\sigma \cdot \sqrt{2 \cdot \pi}} \cdot e^{-\frac{\left(x -\mu\right)^{2}}{2 \cdot \sigma^{2}}}' }
 
       it 'rely on default variables definition' do
-        expect(subject.to_tex).to eq(expected)
+        expect(expression.to_tex).to eq(expected)
       end
     end
 
@@ -50,7 +50,7 @@ describe Danica::Expression::Gauss do
       let(:expected) { '(1)/(v * sqrt(2 * pi)) * exp(-((x -u)**(2))/(2 * v**(2)))' }
 
       it 'rely on default variables definition' do
-        expect(subject.to_gnu).to eq(expected)
+        expect(expression.to_gnu).to eq(expected)
       end
     end
   end

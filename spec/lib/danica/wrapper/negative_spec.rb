@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 describe Danica::Wrapper::Negative do
-  subject { described_class.new(value) }
+  subject(:wrapper) { described_class.new(value) }
 
   let(:value) { 10 }
 
@@ -12,10 +12,10 @@ describe Danica::Wrapper::Negative do
 
   describe '#to_f' do
     it 'returns the float of value' do
-      expect(subject.to_f).to eq(-10)
+      expect(wrapper.to_f).to eq(-10)
     end
 
-    it { expect(subject.to_f).to be_a(Float) }
+    it { expect(wrapper.to_f).to be_a(Float) }
   end
 
   describe '#to_tex' do
@@ -23,7 +23,7 @@ describe Danica::Wrapper::Negative do
       let(:value) { 10.0 }
 
       it 'returns the value integer string' do
-        expect(subject.to_tex).to eq('-10')
+        expect(wrapper.to_tex).to eq('-10')
       end
     end
 
@@ -31,7 +31,7 @@ describe Danica::Wrapper::Negative do
       let(:value) { 10.5 }
 
       it 'returns the value float string' do
-        expect(subject.to_tex).to eq('-10.5')
+        expect(wrapper.to_tex).to eq('-10.5')
       end
     end
   end
@@ -41,7 +41,7 @@ describe Danica::Wrapper::Negative do
       let(:value) { 10.0 }
 
       it 'returns the value integer string' do
-        expect(subject.to_gnu).to eq('-10')
+        expect(wrapper.to_gnu).to eq('-10')
       end
     end
 
@@ -49,7 +49,7 @@ describe Danica::Wrapper::Negative do
       let(:value) { 10.5 }
 
       it 'returns the value float string' do
-        expect(subject.to_gnu).to eq('-10.5')
+        expect(wrapper.to_gnu).to eq('-10.5')
       end
     end
   end

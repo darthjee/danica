@@ -7,17 +7,17 @@ module Danica
     autoload :Builder, 'danica/equation/builder'
 
     class << self
-      def build(*variables, &block)
-        Builder.new(*variables, &block).build
+      def build(*variables, &)
+        Builder.new(*variables, &).build
       end
 
-      def create(*variables, &block)
-        build(*variables, &block).new
+      def create(*variables, &)
+        build(*variables, &).new
       end
     end
 
-    def to(format, **options)
-      "#{left.to(format, **options)} = #{right.to(format, **options)}"
+    def to(format, **)
+      "#{left.to(format, **)} = #{right.to(format, **)}"
     end
   end
 end

@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 describe Danica::Wrapper::Number do
-  subject { described_class.new(value) }
+  subject(:wrapper) { described_class.new(value) }
 
   let(:value) { 10 }
 
@@ -13,22 +13,22 @@ describe Danica::Wrapper::Number do
 
   describe '#valued?' do
     context 'when value is present' do
-      it { expect(subject).to be_valued }
+      it { expect(wrapper).to be_valued }
     end
 
     context 'when value is not present' do
       let(:value) { false }
 
-      it { expect(subject).not_to be_valued }
+      it { expect(wrapper).not_to be_valued }
     end
   end
 
   describe '#to_f' do
     it 'returns the float of value' do
-      expect(subject.to_f).to eq(10)
+      expect(wrapper.to_f).to eq(10)
     end
 
-    it { expect(subject.to_f).to be_a(Float) }
+    it { expect(wrapper.to_f).to be_a(Float) }
   end
 
   describe '#to_tex' do

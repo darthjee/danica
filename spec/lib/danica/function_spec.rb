@@ -29,9 +29,8 @@ shared_examples 'a generically generated function' do
 end
 
 describe Danica::Function do
-  subject { function }
+  subject(:function) { function_class.new }
 
-  let(:function) { function_class.new }
   let(:variables) { %i[x y] }
   let(:function_class) do
     described_class.build(*variables) do
@@ -40,7 +39,7 @@ describe Danica::Function do
   end
 
   describe '.for' do
-    subject do
+    subject(:function) do
       described_class.for(expression_class).new
     end
 
@@ -48,24 +47,24 @@ describe Danica::Function do
     let(:expression) { expression_class.new }
 
     it 'returns a function' do
-      expect(subject).to be_a(described_class)
+      expect(function).to be_a(described_class)
     end
 
     it 'behaves like a function' do
       expect do
-        subject.to_tex
+        function.to_tex
       end.not_to raise_error
     end
 
     it 'creates a funcion out of an expression' do
-      expect(subject.to_tex).to eq("f(x, \\mu, \\sigma) = #{expression.to_tex}")
+      expect(function.to_tex).to eq("f(x, \\mu, \\sigma) = #{expression.to_tex}")
     end
 
     context 'when passing an operator' do
       let(:expression_class) { Danica::Operator::Cos }
 
       it do
-        expect(subject.to_tex).to eq("f(value) = #{expression.to_tex}")
+        expect(function.to_tex).to eq("f(value) = #{expression.to_tex}")
       end
     end
   end
@@ -212,17 +211,7 @@ describe Danica::Function do
         function_class.new(name: :f, x: 2)
       end
 
-      it 'sohws the variable as number' do
-        expect(function.to_tex).to eq('f(2, y) = 2^{y}')
-      end
-    end
-
-    context 'when a variable has value' do
-      let(:function) do
-        function_class.new(name: :f, x: 2)
-      end
-
-      it 'sohws the variable as number' do
+      it 'shwws the variable as number' do
         expect(function.to_tex).to eq('f(2, y) = 2^{y}')
       end
     end

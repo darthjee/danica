@@ -3,19 +3,19 @@
 require 'spec_helper'
 
 describe Danica::Operator::Division do
-  subject { described_class.new(*variables) }
+  subject(:operator) { described_class.new(*variables) }
 
   let(:variables) { [2, 4] }
 
   describe '#numerator' do
     it 'returns the numerator' do
-      expect(subject.numerator).to eq(Danica::Wrapper::Number.new(2))
+      expect(operator.numerator).to eq(Danica::Wrapper::Number.new(2))
     end
   end
 
   describe '#denominator' do
     it 'returns the denominator' do
-      expect(subject.denominator).to eq(Danica::Wrapper::Number.new(4))
+      expect(operator.denominator).to eq(Danica::Wrapper::Number.new(4))
     end
   end
 
@@ -38,7 +38,7 @@ describe Danica::Operator::Division do
 
   describe 'more complex division' do
     describe 'of two additions' do
-      subject do
+      subject(:operator) do
         described_class.new(
           Danica::Operator::Addition.new(2, :x),
           Danica::Operator::Addition.new(3, :y)
@@ -51,7 +51,7 @@ describe Danica::Operator::Division do
         end
 
         it 'groups addition' do
-          expect(subject.to_gnu).to eq(expected)
+          expect(operator.to_gnu).to eq(expected)
         end
       end
     end

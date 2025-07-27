@@ -10,8 +10,8 @@ module Danica
       @containers = variables.map { |v| wrap_value(v) }
     end
 
-    def to(format, **options)
-      "#{name}(#{description_variables(format, **options)})"
+    def to(format, **)
+      "#{name}(#{description_variables(format, **)})"
     end
 
     def variables

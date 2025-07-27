@@ -19,14 +19,14 @@ shared_examples 'a value wrapper' do |examples|
       let(:value) { val }
 
       it do
-        expect(subject.wrapped_value.content).to be_a(expected)
+        expect(wrapper.wrapped_value.content).to be_a(expected)
       end
     end
   end
 end
 
 describe Danica::Wrapper do
-  subject { clazz.new(value) }
+  subject(:wrapper) { clazz.new(value) }
 
   let(:clazz) { described_class::Dummy }
 
@@ -47,7 +47,7 @@ describe Danica::Wrapper do
 
       it do
         expect do
-          subject.wrapped_value.content
+          wrapper.wrapped_value.content
         end.to raise_error(Danica::Exception::InvalidInput)
       end
     end

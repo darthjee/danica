@@ -41,11 +41,7 @@ module Danica
 
     private
 
-    attr_writer :value
-
-    attr_writer :latex
-
-    attr_writer :gnuplot
+    attr_writer :value, :latex, :gnuplot
   end
 
   E = Wrapper::Constant.new(Math::E, :e, 'exp(1)')

@@ -30,22 +30,22 @@ class Danica::Formatted
     )
   end
 
-  def to_tex(**opts)
-    to(:tex, **opts)
+  def to_tex(**)
+    to(:tex, **)
   end
 
-  def to_gnu(**opts)
-    to(:gnu, **opts)
+  def to_gnu(**)
+    to(:gnu, **)
   end
 
-  def to(format, **opts)
-    content.to(format, **options.merge(opts))
+  def to(format, **)
+    content.to(format, **options, **)
   end
 
   private
 
-  def method_missing(method, *args)
-    value = content.public_send(method, *args)
+  def method_missing(method, *)
+    value = content.public_send(method, *)
     return value unless value.is_a?(Danica::Common)
 
     repack(value)

@@ -11,7 +11,7 @@ class Danica::Operator::Dummy < Danica::Operator
 end
 
 describe Danica::Operator do
-  subject { clazz.new(*variables) }
+  subject(:operator) { clazz.new(*variables) }
 
   let(:variables) { [2, 4] }
   let(:clazz) { described_class::Dummy }
@@ -20,22 +20,22 @@ describe Danica::Operator do
 
   describe 'variables assignment' do
     it 'assignes first variable' do
-      expect(subject.a).to eq(Danica::Wrapper::Number.new(2))
+      expect(operator.a).to eq(Danica::Wrapper::Number.new(2))
     end
 
     it 'assignes second variable' do
-      expect(subject.b).to eq(Danica::Wrapper::Number.new(4))
+      expect(operator.b).to eq(Danica::Wrapper::Number.new(4))
     end
 
     context 'when initializing with a hash' do
       let(:variables) { [{ name: :A, value: 2 }, { name: :B, value: 4 }] }
 
       it 'assignes first variable' do
-        expect(subject.a).to eq(Danica::Wrapper::Variable.new(name: :A, value: 2))
+        expect(operator.a).to eq(Danica::Wrapper::Variable.new(name: :A, value: 2))
       end
 
       it 'assignes second variable' do
-        expect(subject.b).to eq(Danica::Wrapper::Variable.new(name: :B, value: 4))
+        expect(operator.b).to eq(Danica::Wrapper::Variable.new(name: :B, value: 4))
       end
     end
   end

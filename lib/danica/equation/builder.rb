@@ -4,9 +4,9 @@ module Danica
   class Equation::Builder
     attr_reader :variables
 
-    def initialize(*variables, &block)
+    def initialize(*variables, &)
       @variables = variables
-      instance_eval(&block)
+      instance_eval(&)
     end
 
     def build

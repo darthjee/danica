@@ -7,8 +7,9 @@ shared_examples 'a operator that joins many variables with same operation' do |a
 end
 
 shared_examples 'a operator that knows how to calculate' do |arguments|
-  include_context 'when variables are initialized', arguments, 'calculated'
   subject { described_class.new(*variables) }
+
+  include_context 'when variables are initialized', arguments, 'calculated'
 
   let(:variables) do
     (1..4).map do |i|

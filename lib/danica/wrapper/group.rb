@@ -16,12 +16,12 @@ module Danica
       @value = wrap_value(value)
     end
 
-    def to_tex(**options)
-      "\\left(#{value.to_tex(**options)}\\right)"
+    def to_tex(**)
+      "\\left(#{value.to_tex(**)}\\right)"
     end
 
-    def to_gnu(**options)
-      "(#{value.to_gnu(**options)})"
+    def to_gnu(**)
+      "(#{value.to_gnu(**)})"
     end
 
     def ==(other)

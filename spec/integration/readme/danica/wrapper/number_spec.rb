@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 describe Danica::Wrapper::Number do
-  subject do
+  subject(:wrapper) do
     Danica::DSL.build do
       number(3)
     end
@@ -14,11 +14,11 @@ describe Danica::Wrapper::Number do
   end
 
   it do
-    expect(subject).to eq(number)
+    expect(wrapper).to eq(number)
   end
 
   describe 'from basic operation' do
-    let(:sum) do
+    subject(:sum) do
       Danica::DSL.build do
         power(:x, 2) + 3
       end

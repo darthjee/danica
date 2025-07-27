@@ -16,7 +16,7 @@ describe Danica::Operator::Multiplication do
       end
     end
 
-    describe '#to_gnu' do
+    describe '#to_tex' do
       it 'returns the correct string' do
         expect(subject.to_tex).to eq('3 \cdot \left(2 + 4\right)')
       end
