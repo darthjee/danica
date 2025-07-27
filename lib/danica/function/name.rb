@@ -10,8 +10,8 @@ module Danica
       @containers = variables.map { |v| wrap_value(v) }
     end
 
-    def to(*args)
-      "#{name}(#{description_variables(*args)})"
+    def to(format, **options)
+      "#{name}(#{description_variables(format, **options)})"
     end
 
     def variables
@@ -22,7 +22,7 @@ module Danica
 
     def description_variables(format, **options)
       variables_for(format).map do |value|
-        value.to(format, options)
+        value.to(format, **options)
       end.join(', ')
     end
 

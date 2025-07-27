@@ -11,11 +11,11 @@ module Danica
     end
 
     def to_tex(**options)
-      "\\frac{#{numerator.to_tex(options)}}{#{denominator.to_tex(options)}}"
+      "\\frac{#{numerator.to_tex(**options)}}{#{denominator.to_tex(**options)}}"
     end
 
     def to_gnu(**options)
-      "(#{numerator.to_gnu(options)})/(#{denominator.to_gnu(options)})"
+      "(#{numerator.to_gnu(**options)})/(#{denominator.to_gnu(**options)})"
     end
   end
 end

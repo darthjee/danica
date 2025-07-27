@@ -22,11 +22,11 @@ module Danica
     end
 
     def to_tex(**options)
-      "\\pm #{wrap_as_group(value).to_tex(options)}"
+      "\\pm #{wrap_as_group(value).to_tex(**options)}"
     end
 
     def to_gnu(**options)
-      "+ #{wrap_as_group(value).to_gnu(options)}"
+      "+ #{wrap_as_group(value).to_gnu(**options)}"
     end
 
     def ==(other)
