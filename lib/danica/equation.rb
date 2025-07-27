@@ -7,12 +7,12 @@ module Danica
     autoload :Builder, 'danica/equation/builder'
 
     class << self
-      def build(*variables, &block)
-        Builder.new(*variables, &block).build
+      def build(*variables, &)
+        Builder.new(*variables, &).build
       end
 
-      def create(*variables, &block)
-        build(*variables, &block).new
+      def create(*variables, &)
+        build(*variables, &).new
       end
     end
 
