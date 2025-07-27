@@ -38,8 +38,8 @@ class Danica::Formatted
     to(:gnu, **)
   end
 
-  def to(format, **opts)
-    content.to(format, **options.merge(opts))
+  def to(format, **)
+    content.to(format, **options, **)
   end
 
   private
