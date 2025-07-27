@@ -65,7 +65,8 @@ end
 shared_examples 'a operator that has two terms and knows how to return a string out of it' do |command, arguments|
   let(:values) { arguments[:values]  }
 
-  include_context 'when variables are initialized', arguments[command], 'string_expected', 'numeric_string_expected', 'partial_string_expected'
+  include_context 'when variables are initialized', arguments[command], 'string_expected', 'numeric_string_expected',
+                  'partial_string_expected'
   describe "##{command}" do
     let(:variables) do
       [1, 2].map do |i|

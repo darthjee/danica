@@ -1,17 +1,18 @@
 # frozen_string_literal: true
 
 module Danica
-  class Operator::Functional < Operator
-    variables :value
-    default_value :is_grouped?, true
+  module Operator
+    class Functional < Operator
+      variables :value
+      default_value :is_grouped?, true
 
-    def self.build(operator:, text: nil, tex: nil, gnu: nil)
-      text = "#{operator}(:value:)" if text.nil?
-      tex = text if tex.nil?
-      gnu = text if gnu.nil?
+      def self.build(operator:, text: nil, tex: nil, gnu: nil)
+        text = "#{operator}(:value:)" if text.nil?
+        tex = text if tex.nil?
+        gnu = text if gnu.nil?
 
-      Class.new(self) do
-        module_eval(%(
+        Class.new(self) do
+          module_eval(%(
           def to_f
             Math.#{operator}(value.to_f)
           end
@@ -23,7 +24,8 @@ module Danica
           def to_gnu(**options)
             '#{gnu.gsub(':value:', "' + value.to_gnu(**options) + '")}'
           end
-        ))
+        ), __FILE__, __LINE__ - 12)
+        end
       end
     end
   end

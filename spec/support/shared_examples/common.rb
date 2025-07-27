@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
-shared_examples 'an object that respond to basic_methods' do |ignore: [], methods: %i[to_f to_tex to_gnu priority valued? container? variable? variable_holder?]|
+shared_examples 'an object that respond to basic_methods' do |ignore: [], methods: %i[to_f to_tex to_gnu priority
+                                                                                      valued? container? variable? variable_holder?]|
   (methods - ignore).each do |method|
     it { expect(subject).to respond_to(method) }
   end

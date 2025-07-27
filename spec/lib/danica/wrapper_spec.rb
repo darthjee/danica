@@ -2,14 +2,18 @@
 
 require 'spec_helper'
 
-class Danica::Wrapper::Dummy
-  include Danica::DSL
-  include Danica::Wrapper
+module Danica
+  module Wrapper
+    class Dummy
+      include Danica::DSL
+      include Danica::Wrapper
 
-  attr_reader :wrapped_value
+      attr_reader :wrapped_value
 
-  def initialize(value)
-    @wrapped_value = wrap_value(value)
+      def initialize(value)
+        @wrapped_value = wrap_value(value)
+      end
+    end
   end
 end
 

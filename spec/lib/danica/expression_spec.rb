@@ -321,7 +321,7 @@ describe Danica::Expression do
         let(:initial_space) { 1 }
         let(:initial_velocity) { 1 }
 
-        let(:expected) { initial_space + initial_velocity * time_value + acceleration * (time_value**2) / 2.0 }
+        let(:expected) { initial_space + (initial_velocity * time_value) + (acceleration * (time_value**2) / 2.0) }
 
         it 'retuirns the calculated value' do
           expect(subject.calculate).to eq(expected)
