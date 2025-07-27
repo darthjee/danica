@@ -34,11 +34,6 @@ Metrics/AbcSize:
 Metrics/MethodLength:
   Max: 16
 
-# This cop supports safe autocorrection (--autocorrect).
-RSpec/EmptyLineAfterExampleGroup:
-  Exclude:
-    - 'spec/lib/danica/formatted_spec.rb'
-
 # Offense count: 1
 RSpec/IdenticalEqualityAssertion:
   Exclude:
