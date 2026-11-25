@@ -16,11 +16,11 @@ Current Release: [3.0.0](https://github.com/darthjee/danica/tree/3.0.0)
 
 Yard Documentation
 -------------------
-[https://www.rubydoc.info/gems/danica/3.0.0](https://www.rubydoc.info/gems/danica/3.0.0)
+[https://www.rubydoc.info/gems/danica/3.1.0](https://www.rubydoc.info/gems/danica/3.1.0)
 
-**Current Release**: [3.0.0](https://github.com/darthjee/danica/tree/3.0.0)
+**Current Release**: [3.1.0](https://github.com/darthjee/danica/tree/3.1.0)
 
-**Next release**: [3.1.0](https://github.com/darthjee/danica/compare/3.0.0...main)
+**Next release**: [3.2.0](https://github.com/darthjee/danica/compare/3.1.0...main)
 
 ## How to use
 Add the gem to your project or just install the gem
