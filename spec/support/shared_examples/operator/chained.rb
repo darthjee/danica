@@ -28,7 +28,7 @@ shared_examples 'a operator that knows how to calculate' do |arguments|
     end
 
     context 'when one variable is a number' do
-      let(:variables) { (1..4) }
+      let(:variables) { 1..4 }
 
       it do
         expect(subject.to_f).to eq(calculated)
@@ -53,6 +53,7 @@ shared_examples 'a operator that knows how to write to a string' do |format, arg
   subject { described_class.new(*variables) }
 
   let(:numeric_variables) { arguments[:numeric_variables] }
+
   include_context 'when variables are initialized', arguments[format], 'integer_expected', 'string_expected', 'float_expected'
 
   describe "#to(#{format})" do

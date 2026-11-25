@@ -1,12 +1,18 @@
 # frozen_string_literal: true
 
 require 'simplecov'
+require 'simplecov-lcov'
 
-SimpleCov.start do
-  add_filter '/spec/'
-
-  SimpleCov.formatter = SimpleCov::Formatter::JSONFormatter if ENV['COVERAGE_JSON'] == 'true'
+if ENV['CI']
+  SimpleCov::Formatter::LcovFormatter.config.report_with_single_file = true
+  SimpleCov.formatter = SimpleCov::Formatter::LcovFormatter
 end
+
+SimpleCov.profiles.define 'gem' do
+  add_filter '/spec/'
+end
+
+SimpleCov.start 'gem'
 
 require 'pry-nav'
 require 'danica'

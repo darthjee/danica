@@ -3,6 +3,7 @@
 module Danica
   module Common
     extend ::ActiveSupport::Concern
+
     included do
       include Wrapper
       include DSL

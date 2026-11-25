@@ -77,7 +77,7 @@ describe Danica::Common do
 
       context 'when passing options' do
         it 'passes the options ahead' do
-          expect(dummy.to(:gnu, opt: 1)).to eq('gnu {:opt=>1}')
+          expect(dummy.to(:gnu, opt: 1)).to eq('gnu {opt: 1}')
         end
       end
     end
@@ -159,12 +159,12 @@ describe Danica::Common do
     end
 
     it 'knows how to return a tex string' do
-      expect(dummy.tex.to_s).to eq('tex {:format=>:tex}')
+      expect(dummy.tex.to_s).to eq('tex {format: :tex}')
     end
 
     context 'when passing options' do
       it 'uses the arguments' do
-        expect(dummy.tex(decimals: 3).to_s).to eq('tex {:format=>:tex, :decimals=>3}')
+        expect(dummy.tex(decimals: 3).to_s).to eq('tex {format: :tex, decimals: 3}')
       end
     end
   end
@@ -175,12 +175,12 @@ describe Danica::Common do
     end
 
     it 'knows how to return a gnu string' do
-      expect(dummy.gnu.to_s).to eq('gnu {:format=>:gnu}')
+      expect(dummy.gnu.to_s).to eq('gnu {format: :gnu}')
     end
 
     context 'when passing options' do
       it 'uses the arguments' do
-        expect(dummy.gnu(decimals: 3).to_s).to eq('gnu {:format=>:gnu, :decimals=>3}')
+        expect(dummy.gnu(decimals: 3).to_s).to eq('gnu {format: :gnu, decimals: 3}')
       end
     end
   end
@@ -191,7 +191,7 @@ describe Danica::Common do
     end
 
     it 'knows how to return to build the string string' do
-      expect(dummy.formatted(format: :gnu, decimals: 3).to_s).to eq('gnu {:format=>:gnu, :decimals=>3}')
+      expect(dummy.formatted(format: :gnu, decimals: 3).to_s).to eq('gnu {format: :gnu, decimals: 3}')
     end
   end
 end

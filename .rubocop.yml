@@ -17,3 +17,7 @@ Style/HashTransformKeys:
 
 Style/HashTransformValues:
   Enabled: true
+
+RSpec/SpecFilePathFormat:
+  Exclude:
+    - 'spec/integration/**/*_spec.rb'
