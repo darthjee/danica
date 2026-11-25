@@ -16,6 +16,6 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
   spec.required_ruby_version = '>= 3.3.1'
 
-  spec.add_dependency 'activesupport', '~> 7.2.4'
-  spec.add_dependency 'darthjee-core_ext', '~> 3.x'
+  spec.add_dependency 'activesupport', '~> 7.x'
+  spec.add_dependency 'darthjee-core_ext', '> 3.2.0'
 end
