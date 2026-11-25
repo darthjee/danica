@@ -1,6 +1,5 @@
-version: 2
+version: 2.1
 workflows:
-  version: 2
   test-and-build:
     jobs:
       - test:
@@ -18,11 +17,11 @@ workflows:
               only: /\d+\.\d+\.\d+/
             branches:
               only:
-                - master
+                - main
 jobs:
   test:
     docker:
-      - image: darthjee/circleci_ruby_331:1.0.2
+      - image: darthjee/circleci_ruby_3412:1.0.0
         environment:
           PROJECT: danica
     steps:
@@ -32,10 +31,13 @@ jobs:
           command: bundle install
       - run:
           name: RSpec
-          command: COVERAGE_JSON=true bundle exec rspec
+          command: bundle exec rspec
+      - run:
+          name: Upload coverage to Codacy
+          command: bash <(curl -Ls https://coverage.codacy.com/get.sh) report -r coverage/lcov/project.lcov
   checks:
     docker:
-      - image: darthjee/circleci_ruby_331:1.0.2
+      - image: darthjee/circleci_ruby_3412:1.0.0
         environment:
           PROJECT: danica
     steps:
@@ -51,7 +53,7 @@ jobs:
           command: bundle exec rake verify_measurements
       - run:
           name: Check version documentation
-          command: check_readme.sh
+          command: PROJECT=danica check_readme.sh
       - run:
           name: Rubycritcs check
           command: rubycritic.sh
@@ -60,7 +62,7 @@ jobs:
           command: check_specs
   build-and-release:
     docker:
-      - image: darthjee/circleci_ruby_331:1.0.2
+      - image: darthjee/circleci_ruby_3412:1.0.0
         environment:
           PROJECT: danica
     steps:
@@ -73,7 +75,7 @@ jobs:
           command: build_gem.sh signin
       - run:
           name: Build Gem
-          command: build_gem.sh build
+          command: PROJECT=danica build_gem.sh build
       - run:
           name: Push Gem
-          command: build_gem.sh push
+          command: PROJECT=danica build_gem.sh push
