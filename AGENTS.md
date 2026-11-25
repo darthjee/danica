@@ -46,3 +46,4 @@ docs/agents/plans/<issue_id>_<topic>/<related_files>.md
 ```
 
 Example: `docs/agents/plans/12_add-auth/plan.md` for issue #12.
+| [Contributing](docs/agents/contributing.md) | Commit guidelines, PR standards, code organization, and refactoring rules. |
