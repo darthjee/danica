@@ -3,6 +3,7 @@
 module Danica
   class Function::Name
     include Common
+
     attr_reader :name, :containers
 
     def initialize(name:, variables:)

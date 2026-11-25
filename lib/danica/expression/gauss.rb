@@ -10,9 +10,9 @@ module Danica
 
     def exp
       - (
-          ((x - average)**2) /
-          (num(2) * variance)
-        )
+        ((x - average)**2) /
+        (num(2) * variance)
+      )
     end
 
     def variance
