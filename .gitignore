@@ -6,3 +6,4 @@ pkg
 measurement
 **/*.swp
 rubycritic/
+.claude/state
