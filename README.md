@@ -1,6 +1,6 @@
 # Danica
 
-[![CircleCI](https://dl.circleci.com/status-badge/img/gh/darthjee/danica/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/darthjee/danica/tree/main)
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/darthjee/danica/tree/main.svg?style=shield)](https://dl.circleci.com/status-badge/redirect/gh/darthjee/danica/tree/main)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/7990acf6e4404787995fff3c0d6eb1dc)](https://app.codacy.com/gh/darthjee/danica/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 [![Codacy Badge](https://app.codacy.com/project/badge/Coverage/7990acf6e4404787995fff3c0d6eb1dc)](https://app.codacy.com/gh/darthjee/danica/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_coverage)
 [![Gem Version](https://badge.fury.io/rb/danica.svg)](https://badge.fury.io/rb/danica)
